@@ -1,0 +1,4 @@
+VINCONNECT recovery build generated 22 Sep 2026.
+Original Sites slug: vinconnect-website-base
+Original managed Site source could not be raw-exported because Site projections cannot be materialized as files.
+This build is intended to become the new portable source of truth after review/testing.
