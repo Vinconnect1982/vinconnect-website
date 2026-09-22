@@ -25,7 +25,7 @@ export const RURAL_EXTRA: Article[] = [
     description:
       "What to expect at a VINCONNECT Rural Connections Roadshow hub: free Wi-Fi, demonstrations, farmer-health resources, no marketing opt-in.",
     crumbs: crumbs("Visiting the hub"),
-    image: "/scenes-new/roadshow-hub.jpg",
+    image: "/scenes-new/roadshow-hub.webp",
     sections: [
       {
         heading: "People first",
@@ -62,7 +62,7 @@ export const RURAL_EXTRA: Article[] = [
     description:
       "Indicative VINCONNECT Rural Connections Roadshow dates from Korumburra Sheepdog Trials in November 2026 through Bunyip Show in April 2027.",
     crumbs: crumbs("Roadshow dates"),
-    image: "/scenes-new/roadshow-hub.jpg",
+    image: "/scenes-new/roadshow-hub.webp",
     sections: [
       {
         heading: "Indicative pathway",
@@ -99,7 +99,7 @@ export const RURAL_EXTRA: Article[] = [
     description:
       "Community Wi-Fi at VINCONNECT Rural Connection Hubs. No email capture. Not a showgrounds-wide network.",
     crumbs: crumbs("Community Wi-Fi"),
-    image: "/scenes-new/rural-event.jpg",
+    image: "/scenes-new/rural-event.webp",
     sections: [
       {
         heading: "The rule",
@@ -129,7 +129,7 @@ export const RURAL_EXTRA: Article[] = [
     description:
       "Farmer wellbeing and community resources at VINCONNECT Rural Connection Hubs. Links to recognised services only. VINCONNECT is not a health provider.",
     crumbs: crumbs("Wellbeing resources"),
-    image: "/scenes-new/info-hub-farmer.jpg",
+    image: "/scenes-new/info-hub-farmer.webp",
     sections: [
       {
         heading: "What the hub offers",

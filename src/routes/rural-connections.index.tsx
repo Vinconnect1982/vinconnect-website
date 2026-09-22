@@ -23,7 +23,7 @@ function RuralHub() {
   return (
     <SiteShell>
       <div className="relative overflow-hidden">
-        <img src="/scenes-new/rural-event.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/scenes-new/rural-event.webp" alt="" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <p className="kicker">Rural Connections Initiative · Victoria 2026–27</p>

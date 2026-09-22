@@ -336,7 +336,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Equestrian connectivity",
     title: "The horse property, connected.",
     lede: "Wi-Fi that reaches the arena, tack room and house, with cameras and recording planned around how the property is actually used.",
-    image: "/scenes-new/horse-property.jpg",
+    image: "/scenes-new/horse-property.webp",
     points: [
       "Stable and arena camera views",
       "Wireless links where cabling cannot run",
@@ -388,7 +388,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Cabinets & racks",
     title: "A tidy home for the kit.",
     lede: "Routers, recorders, UPS and switches belong in a ventilated, labelled cabinet — not a tangle behind the TV.",
-    image: "/scenes-new/network-cabinet.jpg",
+    image: "/scenes-new/network-cabinet.webp",
     points: ["Existing rack integration", "UPS planning", "Labelling and handover"],
     body: [
       {
@@ -420,7 +420,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "HiLook CCTV",
     title: "Packages that match the property.",
     lede: "Four specified HiLook kits — from a four-camera home to stables and acreage — with labour and hardware starting prices, not a generic bundle dumped on the verandah.",
-    image: "/scenes-new/home-cctv-kit.jpg",
+    image: "/scenes-new/home-cctv-kit.webp",
     points: ["Camera count from views, not a bundle", "Recorder and retention agreed", "Remote access included in the install"],
     body: [
       {
@@ -439,7 +439,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Stable cameras",
     title: "A closer eye on the stable.",
     lede: "Plan cameras, recording and remote access for your horse property.",
-    image: "/scenes-new/stable-cameras-day.jpg",
+    image: "/scenes-new/stable-cameras-day.webp",
     points: ["Stable, arena and driveway views", "Dust and lighting taken seriously", "Alerts you can check from the house"],
     body: [
       {
@@ -458,7 +458,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Solar & remote cameras",
     title: "See what’s happening at the gate.",
     lede: "Solar and mobile-connected cameras for places beyond the home network — gates, dams, far paddocks.",
-    image: "/scenes-new/gate-camera.jpg",
+    image: "/scenes-new/gate-camera.webp",
     points: ["No trench to the front gate", "Mobile or long-range backhaul", "Power budget checked against shade"],
     body: [
       {
@@ -477,7 +477,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Home CCTV",
     title: "Entrances, yards and the driveway.",
     lede: "A home camera plan starts with the moments that matter: who is at the door, what is in the yard, and whether the cars are still there.",
-    image: "/scenes-new/home-cctv-kit.jpg",
+    image: "/scenes-new/home-cctv-kit.webp",
     points: ["Front and rear coverage", "Recording you can review", "Clean internal routing"],
     body: [
       {
@@ -515,7 +515,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Camera planning",
     title: "Views first. Hardware second.",
     lede: "Mark the house, gate, stable and driveway on the planner, then we will talk camera counts with the distances in front of us.",
-    image: "/scenes-new/property-cctv.jpg",
+    image: "/scenes-new/property-cctv.webp",
     points: ["Use the property planner", "Note power at each place", "Decide recording before you buy cameras"],
     body: [
       {
@@ -534,7 +534,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Recording",
     title: "If it is not recorded, it did not happen.",
     lede: "Retention, remote playback and a recorder that stays powered through a short outage.",
-    image: "/scenes-new/home-cctv-kit.jpg",
+    image: "/scenes-new/home-cctv-kit.webp",
     points: ["Days of retention agreed", "UPS considered with the rest of the network", "Remote playback tested at handover"],
     body: [
       {

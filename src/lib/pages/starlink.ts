@@ -109,7 +109,7 @@ export const STARLINK: Article[] = [
     description:
       "Rural Starlink installation across Cardinia, Bass Coast, South Gippsland and West Gippsland. Sky view, mounts and what happens after the dish is up.",
     crumbs: crumbs("Rural properties"),
-    image: "/scenes-new/gippsland-farm.jpg",
+    image: "/scenes-new/gippsland-farm.webp",
     sections: [
       {
         heading: "Sky view is not optional",
@@ -276,7 +276,7 @@ export const STARLINK: Article[] = [
     description:
       "When Starlink Mini is the right kit, when VINCONNECT will talk you out of it, and how Mini installation differs from a residential dish.",
     crumbs: crumbs("Starlink Mini"),
-    image: "/scenes-new/event-link-kit.jpg",
+    image: "/scenes-new/event-link-kit.webp",
     sections: [
       {
         heading: "A good Mini job",

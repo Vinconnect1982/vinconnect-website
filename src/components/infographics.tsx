@@ -138,7 +138,7 @@ export function FunnelGraphic({ className }: { className?: string }) {
 function InfographicPhoto({ src, title, caption }: { src: string; title: string; caption: string }) {
   return (
     <figure className={cn(box, "overflow-hidden p-0")}>
-      <img src={src} alt={title} className="w-full object-cover" />
+      <img src={src} alt={title} className="w-full object-cover" loading="lazy" decoding="async" />
       <figcaption className="px-5 py-4 text-sm text-muted">{caption}</figcaption>
     </figure>
   );
@@ -148,7 +148,7 @@ export function MountsGraphic({ className }: { className?: string }) {
   return (
     <div className={className}>
       <InfographicPhoto
-        src="/visuals/mount-types.jpg"
+        src="/visuals/mount-types.webp"
         title="Five ways a dish sits on a Victorian roof"
         caption="Tile, Colorbond fascia, Astrogear tripod, wall/gable and pole. The building decides — not the first accessory in the carton."
       />
@@ -160,7 +160,7 @@ export function CompareGraphic({ className }: { className?: string }) {
   return (
     <div className={className}>
       <InfographicPhoto
-        src="/visuals/local-300.jpg"
+        src="/visuals/local-300.webp"
         title="Local Starlink labour is $300"
         caption="Typical Melbourne installer ads sit around $390–$549. VINCONNECT local labour is $300 for the published standard scope. Hardware and the monthly plan stay with Starlink."
       />
@@ -172,7 +172,7 @@ export function DoorsGraphic({ className }: { className?: string }) {
   return (
     <div className={className}>
       <InfographicPhoto
-        src="/visuals/three-doors.jpg"
+        src="/visuals/three-doors.webp"
         title="Three ways in"
         caption="Direct jobs use Check My Install Price. Circl-allocated visits use the Circl hub. Already booked? Customer help and the install terms."
       />
@@ -188,7 +188,7 @@ export function ArticleVisual({ name }: { name: NonNullable<import("@/lib/pages/
       return (
         <div className="mt-10 space-y-6">
           <InfographicPhoto
-            src="/visuals/network-stack.jpg"
+            src="/visuals/network-stack.webp"
             title="The dish is the front door"
             caption="Internet to one building, then cabinet, house Wi-Fi, a wireless link and cameras. Each hop is specified."
           />

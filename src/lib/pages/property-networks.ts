@@ -170,7 +170,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Multi-building property networks in Victoria: staged design from the house outwards, with Starlink or existing internet as the upstream.",
     crumbs: crumbs("Multi-building"),
-    image: "/scenes-new/acreage-network.jpg",
+    image: "/scenes-new/acreage-network.webp",
     sections: [
       {
         heading: "Name the buildings",
@@ -201,7 +201,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Network cabinet installation and dressing for homes, farms and small commercial sites in Victoria.",
     crumbs: crumbs("Network cabinets"),
-    image: "/scenes-new/network-cabinet.jpg",
+    image: "/scenes-new/network-cabinet.webp",
     sections: [
       {
         heading: "What belongs in the box",
@@ -237,7 +237,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Wi-Fi, wireless links and camera planning for horse properties across Cardinia, the Peninsula and Gippsland.",
     crumbs: crumbs("Equestrian"),
-    image: "/scenes-new/horse-property.jpg",
+    image: "/scenes-new/horse-property.webp",
     sections: [
       {
         heading: "The property is the client",

@@ -242,7 +242,7 @@ export const JOURNAL: Article[] = [
     image: "/media/pearcedale-five-acre-property.webp",
     visual: "network-stack",
     gallery: [
-      { src: "/scenes-new/acreage-network.jpg", alt: "Acreage network scene." },
+      { src: "/scenes-new/acreage-network.webp", alt: "Acreage network scene." },
       { src: "/scenes/building-links.webp", alt: "Building-to-building wireless link." },
     ],
     sections: [
@@ -278,7 +278,7 @@ export const JOURNAL: Article[] = [
     image: "/scenes/building-links.webp",
     visual: "network-stack",
     gallery: [
-      { src: "/scenes-new/horse-property.jpg", alt: "Horse property buildings." },
+      { src: "/scenes-new/horse-property.webp", alt: "Horse property buildings." },
       { src: "/visuals/network-cutaway.webp", alt: "Property network concept illustration." },
     ],
     sections: [

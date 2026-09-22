@@ -6,23 +6,7 @@ import { SiteShell } from "@/components/site-shell";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "VINCONNECT";
-const BUILD_ID = "2026-09-23-p";
-
-const CACHE_BUST = `(function(){
-  try {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(rs){
-        rs.forEach(function(r){ r.unregister(); });
-      });
-      navigator.serviceWorker.register("/sw.js").catch(function(){});
-    }
-    if (window.caches) {
-      caches.keys().then(function(keys){
-        keys.forEach(function(k){ caches.delete(k); });
-      });
-    }
-  } catch (e) {}
-})();`;
+const BUILD_ID = "2026-09-23-q";
 
 export const Route = createRootRoute({
   notFoundComponent: () => (
@@ -46,10 +30,7 @@ export const Route = createRootRoute({
     </SiteShell>
   ),
   headers: () => ({
-    "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-    Pragma: "no-cache",
-    Expires: "0",
-    "Clear-Site-Data": '"cache"',
+    "Cache-Control": "public, max-age=0, must-revalidate",
   }),
   head: () => ({
     meta: [
@@ -62,8 +43,6 @@ export const Route = createRootRoute({
           "VINCONNECT installs Starlink, Wi-Fi, wireless links and CCTV across South East Melbourne, Mornington Peninsula, Bass Coast and Gippsland. Call 0408 559 555.",
       },
       { name: "theme-color", content: "#071112" },
-      { httpEquiv: "Cache-Control", content: "no-store, no-cache, must-revalidate" },
-      { httpEquiv: "Pragma", content: "no-cache" },
       { name: "vinconnect-build", content: BUILD_ID },
     ],
     links: [
@@ -83,7 +62,6 @@ export const Route = createRootRoute({
     <html lang="en-AU" className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
-        <script dangerouslySetInnerHTML={{ __html: CACHE_BUST }} />
       </head>
       <body>
         <PreviewHostBridge />

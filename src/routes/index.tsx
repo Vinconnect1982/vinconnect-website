@@ -66,6 +66,8 @@ function Home() {
           src="/roadshow/paddocks.webp"
           alt="Rural Connections Roadshow at a country show."
           className="absolute inset-0 h-full w-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/25" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
@@ -111,7 +113,7 @@ function Home() {
               to={item.href}
               className="group overflow-hidden rounded-xl border border-line bg-surface"
             >
-              <img src={item.image} alt="" className="h-52 w-full object-cover sm:h-60" />
+              <img src={item.image} alt="" className="h-52 w-full object-cover sm:h-60" loading="lazy" decoding="async" />
               <div className="p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-mint">{item.kicker}</p>
                 <h3 className="mt-2 font-display text-2xl">{item.title}</h3>
@@ -157,6 +159,8 @@ function Home() {
               src="/visuals/network-cutaway.webp"
               alt="Property network concept illustration. Equipment is selected around your buildings and coverage needs."
               className="absolute inset-0 h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
@@ -194,7 +198,7 @@ function Home() {
         </p>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           <AppLink to="/security/stable-cctv" className="overflow-hidden rounded-xl border border-line">
-            <img src="/visuals/stable-cctv.webp" alt="" className="h-56 w-full object-cover" />
+            <img src="/visuals/stable-cctv.webp" alt="" className="h-56 w-full object-cover" loading="lazy" decoding="async" />
             <div className="p-5">
               <h3 className="font-display text-2xl">Check the stable from the house.</h3>
               <p className="mt-2 text-sm text-muted">
@@ -204,7 +208,7 @@ function Home() {
             </div>
           </AppLink>
           <AppLink to="/security/solar-cameras" className="overflow-hidden rounded-xl border border-line">
-            <img src="/visuals/solar-gate.webp" alt="" className="h-56 w-full object-cover" />
+            <img src="/visuals/solar-gate.webp" alt="" className="h-56 w-full object-cover" loading="lazy" decoding="async" />
             <div className="p-5">
               <h3 className="font-display text-2xl">See what’s happening at the gate.</h3>
               <p className="mt-2 text-sm text-muted">
@@ -217,7 +221,7 @@ function Home() {
       </section>
 
       <section className="relative overflow-hidden">
-        <img src="/travel/caravan-river.webp" alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/travel/caravan-river.webp" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-ink/70" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <p className="kicker">Take the long way home</p>
@@ -240,7 +244,7 @@ function Home() {
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {PROJECTS.slice(0, 3).map((p) => (
             <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group">
-              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" />
+              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" loading="lazy" decoding="async" />
               <p className="mt-3 text-xs uppercase tracking-[0.16em] text-mint">{p.place}</p>
               <h3 className="mt-1 font-display text-xl">{p.title}</h3>
               <p className="mt-2 text-sm text-muted">{p.summary}</p>
@@ -263,7 +267,7 @@ function Home() {
         </p>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           <AppLink to="/rural-connections" className="overflow-hidden rounded-xl border border-line">
-            <img src="/scenes-new/rural-event.jpg" alt="" className="h-56 w-full object-cover" />
+            <img src="/scenes-new/rural-event.webp" alt="" className="h-56 w-full object-cover" loading="lazy" decoding="async" />
             <div className="p-5">
               <h3 className="font-display text-2xl">Rural Connections</h3>
               <p className="mt-2 text-sm text-muted">
@@ -273,7 +277,7 @@ function Home() {
             </div>
           </AppLink>
           <AppLink to="/event-link" className="overflow-hidden rounded-xl border border-line">
-            <img src="/scenes-new/event-link-kit.jpg" alt="" className="h-56 w-full object-cover" />
+            <img src="/scenes-new/event-link-kit.webp" alt="" className="h-56 w-full object-cover" loading="lazy" decoding="async" />
             <div className="p-5">
               <h3 className="font-display text-2xl">Event Link pilot</h3>
               <p className="mt-2 text-sm text-muted">

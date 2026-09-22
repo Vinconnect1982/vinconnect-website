@@ -177,7 +177,7 @@ export const RESOURCE_GUIDES: Article[] = [
       "How to plan a whole-property network in Victoria before buying Starlink accessories or cameras. VINCONNECT property planner.",
     crumbs: crumbs("Planning a property network"),
     cta: PLAN_CTA,
-    image: "/scenes-new/acreage-network.jpg",
+    image: "/scenes-new/acreage-network.webp",
     sections: [
       {
         heading: "A usable sketch",
@@ -213,7 +213,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "Running HiLook CCTV over Starlink on Victorian rural properties. Recording on site, remote view, and why the network plan comes first.",
     crumbs: crumbs("CCTV on Starlink"),
-    image: "/scenes-new/property-cctv.jpg",
+    image: "/scenes-new/property-cctv.webp",
     sections: [
       {
         heading: "Record locally",
@@ -249,7 +249,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "Rural internet options in Victoria in plain language: where Starlink fits, and where fibre, mobile or fixed wireless still matter.",
     crumbs: crumbs("Rural connectivity options"),
-    image: "/scenes-new/gippsland-farm.jpg",
+    image: "/scenes-new/gippsland-farm.webp",
     sections: [
       {
         heading: "A toolkit, not a religion",

@@ -101,7 +101,7 @@ export const CUSTOMER_HELP: Article[] = [
     description:
       "What to do before a VINCONNECT Starlink installation in Victoria: kit on site, access, power, pets and the questions we confirm.",
     crumbs: crumbs("Before your install"),
-    image: "/scenes-new/peninsula-home.jpg",
+    image: "/scenes-new/peninsula-home.webp",
     points: [
       "Kit on site, Starlink box still sealed",
       "A responsible adult present for the visit",

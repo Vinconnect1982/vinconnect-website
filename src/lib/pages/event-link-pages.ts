@@ -33,7 +33,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     lede: "A smaller Starlink and Wi-Fi kit for club days, trials and committee areas. We can plan it with you. It is not a finished showgrounds network, and it is not something you can buy off the shelf.",
     description:
       "VINCONNECT Event Link Mini: compact event connectivity for rural clubs and smaller gatherings. Design and proposal examples only. Not a certified product.",
-    image: "/scenes-new/event-link-kit.jpg",
+    image: "/scenes-new/event-link-kit.webp",
     crumbs: crumbs("Mini"),
     status:
       "Event Link Mini is the smaller end of the 2026–27 pilot. There is no public price list and no certification claim. A layout drawn for a particular event stays private until that event is booked and delivered.",
@@ -91,7 +91,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     description:
       "VINCONNECT Event Link platform is a development concept for repeatable rural event connectivity. Not certified, not priced, not available to order as a product.",
     crumbs: crumbs("Platform"),
-    image: "/scenes-new/event-link-kit.jpg",
+    image: "/scenes-new/event-link-kit.webp",
     status:
       "Development concept only. No certification, IP rating, launch date, price or availability is claimed. The 2026–27 pilot and organiser register are the live conversation.",
     sections: [
@@ -130,7 +130,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     description:
       "Event connectivity for Victorian agricultural shows, field days, sheepdog trials and rural club events. VINCONNECT Event Link pilot.",
     crumbs: crumbs("Community events"),
-    image: "/scenes-new/rural-event.jpg",
+    image: "/scenes-new/rural-event.webp",
     sections: [
       {
         heading: "What we need from an organiser",
@@ -167,7 +167,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     description:
       "Scope of a VINCONNECT Event Link activation: what is included, what is quoted extra, and what is never promised.",
     crumbs: crumbs("What is included"),
-    image: "/scenes-new/event-link-kit.jpg",
+    image: "/scenes-new/event-link-kit.webp",
     sections: [
       {
         heading: "In a typical activation",

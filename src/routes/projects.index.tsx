@@ -36,7 +36,7 @@ function ProjectsIndex() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((p) => (
             <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group">
-              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" />
+              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" loading="lazy" decoding="async" />
               <p className="mt-3 text-xs uppercase tracking-[0.16em] text-mint">{p.place}</p>
               <h2 className="mt-1 font-display text-xl">{p.title}</h2>
               <p className="mt-2 text-sm text-muted">{p.summary}</p>

@@ -4,7 +4,7 @@ export const RURAL_PAGES = [
     title: "Rural Connections",
     kicker: "Communities, not just connections",
     lede: "A practical Victorian initiative: meet people at shows and field days, keep useful information online, and document the connectivity gaps rural communities keep repeating.",
-    image: "/scenes-new/rural-event.jpg",
+    image: "/scenes-new/rural-event.webp",
   },
 ] as const;
 
@@ -14,7 +14,7 @@ export const RURAL_PILLARS = [
     title: "Rural Connection Hub",
     kicker: "In person",
     lede: "A travelling hub inside established agricultural shows, field days and rural community events. Free temporary Wi-Fi, shade, practical demonstrations and farmer-health resources without a sales pitch at the door.",
-    image: "/scenes-new/roadshow-hub.jpg",
+    image: "/scenes-new/roadshow-hub.webp",
     points: [
       "Welcome, seating and free Wi-Fi",
       "Demonstrations of rural digital access",
@@ -27,7 +27,7 @@ export const RURAL_PILLARS = [
     title: "Rural & Remote Info Hub",
     kicker: "Online",
     lede: "A free, non-gated resource: Starlink and Wi-Fi in plain English, grants and rebates, digital safety, CCTV and remote monitoring, and links to recognised health and community services.",
-    image: "/scenes-new/info-hub-farmer.jpg",
+    image: "/scenes-new/info-hub-farmer.webp",
     points: [
       "Guides you can use without creating an account",
       "Grants and rebate pathways, dated when we checked them",
@@ -40,7 +40,7 @@ export const RURAL_PILLARS = [
     title: "Connectivity advocacy",
     kicker: "System level",
     lede: "Listen locally, write down recurring barriers, and take practical evidence to councils, industry and government. Rapidly deployable LEO satellite is one option in the toolkit — not a replacement for fibre, mobile or fixed wireless.",
-    image: "/scenes-new/advocacy-table.jpg",
+    image: "/scenes-new/advocacy-table.webp",
     points: [
       "Documented rural barriers, in aggregate",
       "Fast-to-deploy Starlink where terrestrial build is uneconomic",
@@ -64,7 +64,7 @@ export const EVENT_LINK = {
   name: "VINCONNECT Event Link",
   kicker: "Pilot product · 2026–27",
   lede: "A rapidly deployable Starlink and managed Wi-Fi kit for agricultural shows, field days, clubs and rural community events. The same thinking as a property network — packed so it can stand up in a paddock.",
-  image: "/scenes-new/event-link-kit.jpg",
+  image: "/scenes-new/event-link-kit.webp",
   status:
     "Event Link is a 2026–27 pilot. Organisers can register interest. It is not for sale as a product, and it is not a promise to cover an entire showgrounds.",
   includes: [

@@ -113,6 +113,8 @@ export function ArticlePage({ page }: { page: Article }) {
             src={page.image}
             alt={page.imageAlt || ""}
             className="absolute inset-0 h-full w-full object-cover"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/55" />
           <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
@@ -154,7 +156,7 @@ export function ArticlePage({ page }: { page: Article }) {
           <div className="mt-10 grid gap-3 sm:grid-cols-2">
             {page.gallery.map((g) => (
               <figure key={g.src} className="overflow-hidden rounded-xl border border-line">
-                <img src={g.src} alt={g.alt} className="h-56 w-full object-cover sm:h-64" />
+                <img src={g.src} alt={g.alt} className="h-56 w-full object-cover sm:h-64" loading="lazy" decoding="async" />
                 <figcaption className="px-3 py-2 text-xs text-muted">{g.alt}</figcaption>
               </figure>
             ))}
