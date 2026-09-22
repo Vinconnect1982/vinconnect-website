@@ -14,6 +14,9 @@ const GUIDE_LINKS: Record<string, { href: string; label: string; copy?: string }
     { href: "/resources/where-should-the-router-go", label: "Where the router should go" },
     { href: "/resources/starlink-power-outage", label: "Starlink in a power outage" },
     { href: "/resources/fixed-wireless-vs-starlink", label: "Fixed wireless or Starlink" },
+    { href: "/resources/trees-and-starlink", label: "Trees and obstructions" },
+    { href: "/resources/external-or-concealed-cabling", label: "External or concealed cable" },
+    { href: "/resources/house-or-shed", label: "House or shed?" },
   ],
   "whole-property-wifi": [
     { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },

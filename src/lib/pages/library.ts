@@ -397,4 +397,193 @@ export const LIBRARY: Article[] = [
       { href: "/security/stable-cctv", label: "Stable cameras" },
     ],
   }),
+  page({
+    path: "/resources/trees-and-starlink",
+    slug: "trees-and-starlink",
+    kicker: "Starlink",
+    title: "Trees, obstructions and Starlink",
+    lede: "Starlink needs a clear view of the sky. A tidy mount under a gum is still a bad mount if the canopy sits in the way.",
+    description:
+      "How trees and buildings affect a Starlink install in Victoria, and how VINCONNECT chooses a mount position before drilling.",
+    image: "/guides/vinconnect-trees-and-starlink.webp",
+    imageAlt: "Illustrative Starlink dish on a roof with open sky beside gum trees.",
+    sections: [
+      {
+        heading: "What actually blocks it",
+        copy: [
+          "Leaves, a neighbour’s roof, a second storey, and a dense stand of gums all count. The dish does not need a bare paddock. It needs the part of the sky it uses to stay clear. Seasonal growth matters. A winter view and a summer canopy are not the same shot.",
+        ],
+      },
+      {
+        heading: "How we decide",
+        copy: [
+          "We look at the app obstruction check and at the building. Sometimes the clear sky is over the house. Sometimes it is further along the roof, or on a short pole, or on a fascia that faces the open side. We do not put a dish in a pretty spot and hope.",
+          "If the only clear sky is awkward to reach, that becomes an access conversation, not a surprise on the day.",
+        ],
+      },
+      {
+        heading: "What you can check first",
+        copy: [
+          "Stand where you think the dish should go and look up. If you are under branches, it is probably the wrong place. Photos of the roof and the trees save time. Red Hill and other treed properties are where this question comes up most.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/resources/choosing-a-starlink-mount", label: "Choosing a mount" },
+      { href: "/services/starlink-installation", label: "Book the install" },
+      { href: "/service-areas/red-hill", label: "Red Hill" },
+      { href: "/estimate", label: "Check My Install Price" },
+    ],
+  }),
+  page({
+    path: "/resources/new-home-starlink-ready",
+    slug: "new-home-starlink-ready",
+    kicker: "New homes",
+    title: "Make a new home Starlink-ready",
+    lede: "If the estate is still waiting on NBN or OptiComm, the useful work is a cable path and a router wall, not a hole drilled in a hurry after you move in.",
+    description:
+      "How builders and new-home owners in South East Victoria can leave a property ready for a professional Starlink install.",
+    image: "/guides/vinconnect-new-home-starlink.webp",
+    imageAlt: "Illustrative new estate home with a Starlink dish and open sky.",
+    sections: [
+      {
+        heading: "What to leave in the build",
+        copy: [
+          "A path from the likely dish position to an internal wall with power. A brush plate or a planned penetration beats a later chase through new plaster. If there is a data cabinet, say where it is. If the router has to live in the garage, plan an access point for the rooms people actually use.",
+        ],
+      },
+      {
+        heading: "What not to assume",
+        copy: [
+          "A new house is not automatically an easy install. Double storeys, tile, and a roof that only has sky on the street side all change the labour. The Clyde job was a new estate waiting on infrastructure. That was one house. Your estate may be different.",
+        ],
+      },
+      {
+        heading: "Order and install are still separate",
+        copy: [
+          "Starlink supplies the kit and the service. VINCONNECT mounts and cables it. If you have not ordered yet, check the referral offer before you buy. Then use the estimator for the labour.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/projects/clyde-new-estate-home", label: "Clyde new estate", copy: "A completed job." },
+      { href: "/starlink-offer", label: "One month free" },
+      { href: "/services/starlink-installation", label: "Starlink installation" },
+      { href: "/estimate", label: "Check My Install Price" },
+    ],
+  }),
+  page({
+    path: "/resources/starlink-for-acreage",
+    slug: "starlink-for-acreage",
+    kicker: "Rural",
+    title: "Starlink for farms and acreage",
+    lede: "On acreage the dish is the start. The shed, the yard and the second building are the rest of the job.",
+    description:
+      "How Starlink fits a Victorian farm or acreage: sky view at the house, then Wi-Fi and links to the buildings that matter.",
+    image: "/guides/vinconnect-starlink-acreage.webp",
+    imageAlt: "Illustrative Victorian acreage with a house, shed and Starlink dish.",
+    cta: PLAN_CTA,
+    sections: [
+      {
+        heading: "Put the internet where the sky is",
+        copy: [
+          "The dish belongs where the sky is clear and the building can hold the mount. That is often the house. It is not automatically the shed. Once the connection is in, the property network carries it to the places that were never going to hear a lounge-room router.",
+        ],
+      },
+      {
+        heading: "The buildings",
+        copy: [
+          "A workshop, stable, farm office or granny flat usually needs its own link and its own indoor coverage. Cameras ride that same path if you want them. Pearcedale is an example of a five-acre property where the house was not the only place that needed to be online.",
+        ],
+      },
+      {
+        heading: "Do it in an order",
+        copy: [
+          "Connection first. Then the building that matters most. Then cameras or a gate. The planner exists so the second visit does not undo the first.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/starlink/rural-properties", label: "Rural Starlink notes" },
+      { href: "/resources/house-or-shed", label: "House or shed?" },
+      { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+      { href: "/projects/pearcedale-five-acre-property", label: "Pearcedale project" },
+      { href: "/property-planner", label: "Plan my property" },
+    ],
+  }),
+  page({
+    path: "/resources/external-or-concealed-cabling",
+    slug: "external-or-concealed-cabling",
+    kicker: "Starlink",
+    title: "External or concealed Starlink cabling",
+    lede: "A standard install uses a visible, clipped outdoor cable and one sealed entry. A hidden route is a different job, and it is priced as one.",
+    description:
+      "The difference between a standard external Starlink cable route and a concealed internal run on a Victorian home.",
+    image: "/guides/vinconnect-starlink-cable-route.webp",
+    imageAlt: "Illustrative neat cable entry on an Australian home.",
+    sections: [
+      {
+        heading: "The standard route",
+        copy: [
+          "Cable leaves the dish, is clipped so it cannot flap, and enters once through a sealed penetration with a brush plate. The router sits on the inside of that wall, near power. That is the labour behind the local single-storey price. Conduit, when the run needs it, is an extra.",
+        ],
+      },
+      {
+        heading: "A concealed route",
+        copy: [
+          "If you want the cable inside the wall, through a roof space, or out of sight on an architectural home, say so before the visit. It takes more time and sometimes a second person or a different entry. We do not start a concealed run on the ladder and invoice it afterwards as a surprise.",
+        ],
+      },
+      {
+        heading: "What to send",
+        copy: [
+          "A photo of the wall you care about, and a sentence on whether a visible clipped run is acceptable. The estimator has a tick for a concealed route. Use it if that is what you want.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/resources/standard-install-explained", label: "What a standard install includes" },
+      { href: "/starlink/cable-entry-and-router", label: "Cable entry and router" },
+      { href: "/install-terms-and-conditions", label: "Install terms" },
+      { href: "/estimate", label: "Check My Install Price" },
+    ],
+  }),
+  page({
+    path: "/resources/house-or-shed",
+    slug: "house-or-shed",
+    kicker: "Starlink",
+    title: "Should Starlink go on the house or the shed?",
+    lede: "Put the dish where the sky is clear and the cable can reach a sensible router. That is usually the house. The shed gets a link, not a second internet service.",
+    description:
+      "How to choose whether a Starlink dish belongs on the house or the shed at a Victorian property.",
+    image: "/guides/vinconnect-house-or-shed.webp",
+    imageAlt: "Illustrative acreage with the dish on the house and a shed further away.",
+    cta: PLAN_CTA,
+    sections: [
+      {
+        heading: "Sky first",
+        copy: [
+          "If the house roof is under trees and the shed roof is open, the shed can be the better dish position. If both are open, the house is usually simpler: shorter cable, router near the rooms you live in, and a link onward to the shed.",
+        ],
+      },
+      {
+        heading: "Do not buy two services",
+        copy: [
+          "A shed that needs Wi-Fi does not need its own Starlink account. It needs a path from the dish you already have. That is a wireless bridge or a cable, then an access point inside the shed.",
+        ],
+      },
+      {
+        heading: "Cable length still matters",
+        copy: [
+          "A dish on a far shed means the router and the power start at the shed unless you design it otherwise. Say which building you actually work in. We will not hide the dish on a roof you cannot service.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+      { href: "/resources/trees-and-starlink", label: "Trees and obstructions" },
+      { href: "/services/starlink-installation", label: "Starlink installation" },
+      { href: "/property-planner", label: "Plan my property" },
+    ],
+  }),
 ];

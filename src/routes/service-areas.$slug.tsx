@@ -17,6 +17,7 @@ const AREA_GUIDES: Record<string, { href: string; label: string }[]> = {
     { href: "/resources/connected-horse-property", label: "Horse property connectivity" },
   ],
   "red-hill": [
+    { href: "/resources/trees-and-starlink", label: "Trees and obstructions" },
     { href: "/resources/choosing-a-starlink-mount", label: "Choosing a mount" },
     { href: "/resources/where-should-the-router-go", label: "Router placement" },
   ],

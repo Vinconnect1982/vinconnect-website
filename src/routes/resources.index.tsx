@@ -18,6 +18,11 @@ const LIBRARY = [
   { href: "/resources/where-should-the-router-go", title: "Where the router should go", copy: "Open room, not a shut metal cupboard." },
   { href: "/resources/starlink-power-outage", title: "Starlink in a power outage", copy: "What a small UPS can and cannot keep on." },
   { href: "/resources/rural-cctv", title: "CCTV for rural properties", copy: "Record locally. Reach the shed on purpose." },
+  { href: "/resources/trees-and-starlink", title: "Trees and Starlink", copy: "Clear sky matters more than a tidy spot." },
+  { href: "/resources/new-home-starlink-ready", title: "New home, Starlink-ready", copy: "Leave a path before the plaster is finished." },
+  { href: "/resources/starlink-for-acreage", title: "Starlink for acreage", copy: "The dish is the start. The shed is the rest." },
+  { href: "/resources/external-or-concealed-cabling", title: "External or concealed cable", copy: "A visible clipped run, or a hidden one you ask for." },
+  { href: "/resources/house-or-shed", title: "House or shed?", copy: "Where the dish should actually sit." },
 ];
 
 const GUIDES = [
