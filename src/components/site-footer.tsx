@@ -100,7 +100,7 @@ export function SiteFooter() {
             </Link>
           </p>
           <p className="pt-2">
-            VINCONNECT © 2026 · ACMA Registered Open Cabler · Insured · Victoria
+            VINCONNECT © 2026 · Based in Cranbourne · South East Melbourne, Mornington Peninsula, Bass Coast, Gippsland and regional Victoria by arrangement
           </p>
         </div>
       </div>

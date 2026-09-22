@@ -133,7 +133,7 @@ export const SERVICES: ServicePage[] = [
     group: "install",
     kicker: "Starlink installation",
     title: "Starlink installed properly.",
-    lede: "A considered Starlink installation brings work, calls and everyday life back within reach — for homes, sheds, workshops, stables, offices, farms and businesses across Victoria.",
+    lede: "A considered Starlink installation brings work, calls and everyday life back within reach — for homes, sheds, workshops, stables, offices, farms and businesses across South East Melbourne, the Peninsula, Bass Coast and Gippsland, with regional work by arrangement.",
     image: "/scenes/starlink-home.webp",
     points: [
       "Sky view and mount choice before a drill goes near the roof",
@@ -187,7 +187,7 @@ export const SERVICES: ServicePage[] = [
   {
     slug: "wireless-links",
     group: "network",
-    kicker: "TP-Link Omada wireless links",
+    kicker: "Building-to-building wireless links",
     title: "Take the connection further.",
     lede: "Keep the workshop, stable or second building connected with a dedicated wireless link instead of hoping the house Wi-Fi stretches across the paddock.",
     image: "/scenes/building-links.webp",
@@ -221,9 +221,9 @@ export const SERVICES: ServicePage[] = [
     image: "/visuals/network-cutaway.webp",
     points: [
       "Starlink and NBN-ready network design",
-      "TP-Link Omada wireless bridges",
-      "Mesh and managed Wi-Fi",
-      "HiLook CCTV and stable monitoring",
+      "A wireless link when the shed is too far for house Wi-Fi",
+      "Wi-Fi planned around the rooms and buildings you use",
+      "Cameras at the stable, gate or driveway",
       "UPS and remote-support planning",
     ],
     body: [

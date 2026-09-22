@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "VINCONNECT installs Starlink, whole-property Wi-Fi, wireless links and HiLook CCTV across Casey, Cardinia, Mornington Peninsula, Bass Coast and Gippsland. Based in Cranbourne.",
+          "Starlink installation, whole-property Wi-Fi, wireless links and CCTV across South East Melbourne, Mornington Peninsula, Bass Coast and Gippsland. Based in Cranbourne. Regional Victorian work by arrangement.",
       },
     ],
   }),
@@ -29,7 +29,7 @@ const FEATURES = [
     title: "Country living. Connected.",
     copy: "A considered Starlink installation brings work, calls and everyday life back within reach.",
     image: "/scenes/starlink-home.webp",
-    cta: "Explore Starlink installation",
+    cta: "See Starlink installation",
   },
   {
     href: "/services/whole-property-wifi",
@@ -37,15 +37,15 @@ const FEATURES = [
     title: "Room to live. Room to connect.",
     copy: "From the home office to the back verandah, give every space a reliable Wi-Fi plan.",
     image: "/scenes/whole-home-wifi.webp",
-    cta: "Explore whole-property Wi-Fi",
+    cta: "See whole-property Wi-Fi options",
   },
   {
     href: "/services/wireless-links",
-    kicker: "TP-Link Omada Wireless Links",
-    title: "Take the connection further.",
-    copy: "Keep the workshop, stable or second building connected with a dedicated wireless link.",
+    kicker: "Building-to-building wireless links",
+    title: "Connect the shed without trenching.",
+    copy: "Connect the shed, stable, workshop or second building without digging a trench across the property.",
     image: "/scenes/building-links.webp",
-    cta: "Explore wireless links",
+    cta: "See how wireless links work",
   },
   {
     href: "/services/cctv",
@@ -53,7 +53,7 @@ const FEATURES = [
     title: "A little more peace of mind.",
     copy: "Thoughtful camera placement helps you check on home, entrances and the moments that matter.",
     image: "/scenes/home-cctv.webp",
-    cta: "Explore CCTV",
+    cta: "Plan my cameras",
   },
 ];
 
@@ -74,8 +74,9 @@ function Home() {
             Starlink installed properly. Every important place connected.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-fg/85">
-            Professional Starlink installation and whole-property connectivity for homes, sheds,
-            workshops, stables, offices, farms and businesses across Victoria.
+            Professional Starlink installation and whole-property connectivity across South East
+            Melbourne, Mornington Peninsula, Bass Coast and Gippsland, with regional Victorian
+            projects available by arrangement.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
@@ -128,23 +129,21 @@ function Home() {
       </section>
 
       <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <p className="kicker">Where to start</p>
-          <h2 className="mt-3 font-display text-3xl">Pick the job you actually have.</h2>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <p className="kicker">Start here</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl">What do you need to connect?</h2>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { href: "/customer-help", title: "Customer help", copy: "What to have ready, what the visit includes, and who to call afterwards." },
-              { href: "/circl-starlink-installations", title: "Circl customers", copy: "The kit and the mounts often arrive separately. Leave the Starlink box sealed until we are there." },
-              { href: "/starlink", title: "Starlink guides", copy: "How the dish goes on a home, rural property or caravan, and what the labour includes." },
-              { href: "/property-networks", title: "Property networks", copy: "Wi-Fi through the house, and a proper link to the shed, stable or second building." },
-              { href: "/security", title: "CCTV", copy: "Camera views planned first. A package only when it fits the property." },
-              { href: "/event-link", title: "Event Link", copy: "Temporary Starlink and Wi-Fi for shows, trials and club days. A 2026–27 pilot." },
-              { href: "/rural-connections", title: "Rural Connections", copy: "A travelling hub at rural shows — shade, free Wi-Fi and useful information." },
-              { href: "/vingear", title: "VIN Gear", copy: "Products we are still developing. Register interest. Nothing is for sale yet." },
+              { href: "/services/starlink-installation", title: "My home", copy: "Starlink, Wi-Fi and a router position that covers the rooms you use." },
+              { href: "/services/wireless-links", title: "My shed or workshop", copy: "Extend the internet to another building without trenching." },
+              { href: "/property-networks", title: "My stable or horse property", copy: "Wi-Fi, cameras and a link between the house and the yards." },
+              { href: "/security/solar-cameras", title: "My gate or remote camera", copy: "See the gate, drive or paddock when it is beyond the house Wi-Fi." },
+              { href: "/event-link", title: "My business or event", copy: "Commercial networks, and Event Link for shows, trials and temporary sites." },
+              { href: "/estimate", title: "Just the install price", copy: "Enter the address. Location is included. Hardware stays separate." },
             ].map((item) => (
-              <AppLink key={item.href} to={item.href} className="link-card rounded-xl border border-line bg-surface p-4">
-                <h3 className="font-display text-lg">{item.title}</h3>
-                <p className="mt-1 text-sm text-muted">{item.copy}</p>
+              <AppLink key={item.href} to={item.href} className="link-card rounded-xl border border-line bg-surface p-5">
+                <h3 className="font-display text-xl">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted">{item.copy}</p>
               </AppLink>
             ))}
           </div>
@@ -169,11 +168,11 @@ function Home() {
               was never designed as one system.
             </p>
             <ul className="mt-6 space-y-2 text-sm">
-              <li>Starlink and NBN-ready network design</li>
-              <li>TP-Link Omada wireless bridges</li>
-              <li>Mesh and managed Wi-Fi</li>
-              <li>HiLook CCTV and stable monitoring</li>
-              <li>UPS and remote-support planning</li>
+              <li>Starlink or an existing service, designed as one network</li>
+              <li>A wireless link to the shed, stable or second building</li>
+              <li>Wi-Fi that follows the rooms you actually use</li>
+              <li>Cameras at the gate, stable or driveway</li>
+              <li>Backup power and a handover you can use</li>
             </ul>
             <Button asChild className="mt-7">
               <Link to="/property-planner">Build your property plan →</Link>
@@ -201,7 +200,7 @@ function Home() {
               <p className="mt-2 text-sm text-muted">
                 Plan cameras, recording and remote access for your horse property.
               </p>
-              <span className="mt-3 inline-block text-sm text-mint">Explore stable CCTV →</span>
+              <span className="mt-3 inline-block text-sm text-mint">Plan stable cameras →</span>
             </div>
           </AppLink>
           <AppLink to="/security/solar-cameras" className="overflow-hidden rounded-xl border border-line">
@@ -211,7 +210,7 @@ function Home() {
               <p className="mt-2 text-sm text-muted">
                 Explore solar and mobile-connected cameras for places beyond the home network.
               </p>
-              <span className="mt-3 inline-block text-sm text-mint">Explore remote cameras →</span>
+              <span className="mt-3 inline-block text-sm text-mint">See remote camera options →</span>
             </div>
           </AppLink>
         </div>
@@ -230,8 +229,24 @@ function Home() {
             vehicle mounts and practical power planning.
           </p>
           <Button asChild className="mt-7" variant="paper">
-            <AppLink to="/services/starlink-caravan-installation">Explore caravan installations →</AppLink>
+            <AppLink to="/services/starlink-caravan-installation">See caravan Starlink setups →</AppLink>
           </Button>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <p className="kicker">Recent work</p>
+        <h2 className="mt-3 font-display text-3xl sm:text-4xl">Connected in the real world.</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {PROJECTS.slice(0, 3).map((p) => (
+            <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group">
+              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" />
+              <p className="mt-3 text-xs uppercase tracking-[0.16em] text-mint">{p.place}</p>
+              <h3 className="mt-1 font-display text-xl">{p.title}</h3>
+              <p className="mt-2 text-sm text-muted">{p.summary}</p>
+              <span className="mt-3 inline-block text-sm text-mint">View {p.title} →</span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -254,7 +269,7 @@ function Home() {
               <p className="mt-2 text-sm text-muted">
                 Travelling hubs, a free info resource, and advocacy that stays separate from sales.
               </p>
-              <span className="mt-3 inline-block text-sm text-mint">Read the program →</span>
+              <span className="mt-3 inline-block text-sm text-mint">Read the Roadshow →</span>
             </div>
           </AppLink>
           <AppLink to="/event-link" className="overflow-hidden rounded-xl border border-line">
@@ -264,25 +279,9 @@ function Home() {
               <p className="mt-2 text-sm text-muted">
                 Packed so it can stand up in a paddock. A 2026–27 pilot — organisers can register.
               </p>
-              <span className="mt-3 inline-block text-sm text-mint">Event Link brief →</span>
+              <span className="mt-3 inline-block text-sm text-mint">Plan event connectivity →</span>
             </div>
           </AppLink>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="kicker">Recent work</p>
-        <h2 className="mt-3 font-display text-3xl sm:text-4xl">Connected in the real world.</h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {PROJECTS.slice(0, 3).map((p) => (
-            <Link key={p.slug} to="/projects/$slug" params={{ slug: p.slug }} className="group">
-              <img src={p.image} alt="" className="h-48 w-full rounded-xl object-cover" />
-              <p className="mt-3 text-xs uppercase tracking-[0.16em] text-mint">{p.place}</p>
-              <h3 className="mt-1 font-display text-xl">{p.title}</h3>
-              <p className="mt-2 text-sm text-muted">{p.summary}</p>
-              <span className="mt-3 inline-block text-sm text-mint">View {p.title} →</span>
-            </Link>
-          ))}
         </div>
       </section>
 

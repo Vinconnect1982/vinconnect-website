@@ -77,7 +77,7 @@ function ProjectPage() {
 
           {detail && (
             <section className="mt-10">
-              <h2 className="font-display text-2xl">What was done</h2>
+              <h2 className="font-display text-2xl">The installation</h2>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-muted">
                 {detail.works.map((w) => (
                   <li key={w}>{w}</li>
@@ -94,6 +94,9 @@ function ProjectPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild>
               <Link to="/estimate">Check My Install Price</Link>
+            </Button>
+            <Button asChild variant="ghost">
+              <Link to="/property-planner">Plan a similar project</Link>
             </Button>
             {area && (
               <Button asChild variant="ghost">

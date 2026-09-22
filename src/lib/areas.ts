@@ -212,7 +212,7 @@ export function areaFaqs(area: Area) {
   return [
     {
       q: `Do you install Starlink in ${area.name}?`,
-      a: `Yes. ${area.blurb} Travel from Cranbourne is included automatically when you enter the street address in the estimator.`,
+      a: `Yes. ${area.blurb} Enter the street address in the estimator and location is included in the range.`,
     },
     {
       q: `How much is Starlink installation in ${area.name} ${area.postcode}?`,

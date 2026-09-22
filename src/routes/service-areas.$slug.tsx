@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { areaBySlug, areaFaqs, nearbyAreas, regionBySlug } from "@/lib/areas";
+import { LOCAL_NOTES } from "@/lib/local-notes";
 import { PROJECTS, SITE_URL } from "@/lib/content";
 import { HILOOK_PACKAGES } from "@/lib/packages";
 
@@ -84,9 +85,11 @@ function AreaPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted">{area.blurb}</p>
         <p className="mt-3 max-w-2xl text-muted">
-          {area.focus} VINCONNECT quotes from Cranbourne ({area.postcode} is in range). Enter the
-          street address in the estimator and travel is included automatically.
+          {area.focus} Enter your installation address and we’ll include location in your estimate.
         </p>
+        {LOCAL_NOTES[area.slug] && (
+          <p className="mt-4 max-w-2xl text-muted">{LOCAL_NOTES[area.slug]}</p>
+        )}
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild>
             <Link to="/estimate">Check My Install Price</Link>
