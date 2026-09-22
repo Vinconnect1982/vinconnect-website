@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { RelatedLinks } from "@/components/related-links";
+import { StarlinkOfferCta } from "@/components/starlink-offer-cta";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { SERVICES, SITE_URL, findService } from "@/lib/content";
@@ -83,6 +84,9 @@ function ServicePage() {
             </div>
           </div>
         </div>
+        {["starlink-installation", "starlink-caravan-installation", "starlink-mini-installation", "rural-connectivity"].includes(page.slug) && (
+          <StarlinkOfferCta />
+        )}
         <RelatedLinks items={related} title="Keep reading" />
       </div>
     </SiteShell>

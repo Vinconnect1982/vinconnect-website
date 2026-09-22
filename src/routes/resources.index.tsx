@@ -11,7 +11,8 @@ export const Route = createFileRoute("/resources/")({
 const GUIDES = [
   { href: "/customer-help", title: "Customer help", copy: "The booking journey, from confirm to handover." },
   { href: "/install-terms-and-conditions", title: "Install terms", copy: "The stable page linked from booking SMS." },
-  { href: "/circl-starlink-installations", title: "Circl installations", copy: "Two deliveries, sealed box, Circl tracking." },
+  { href: "/starlink-offer", title: "One month of Starlink free", copy: "Check the referral offer before you order. Then book the install." },
+  { href: "/resources/starlink-referral-free-month", title: "How the free month works", copy: "Who may qualify, and why a shop-bought kit may not." },
   { href: "/resources/starlink-delivery-installation", title: "Starlink delivery and installation", copy: "What happens between the carton and the visit." },
   { href: "/resources/standard-install-explained", title: "Standard install explained", copy: "Visible cable, one hole, router at the wall." },
   { href: "/starlink", title: "Starlink guides", copy: "Home, rural, mounts, Mini and caravan." },
@@ -28,7 +29,7 @@ const GUIDES = [
   { href: "/vingear", title: "VIN Gear", copy: "Products in development. Interest list only." },
   { href: "/about/capability", title: "Capability statement", copy: "Credentials, regions and how we quote." },
   { href: "/about/safety-and-credentials", title: "Safety & credentials", copy: "Open cabler, heights, White Card, insurance." },
-  { href: "/starlink-offer", title: "Starlink referral offer", copy: "Confirm eligibility at Starlink checkout." },
+  { href: "/circl-starlink-installations", title: "If Circl arranged your install", copy: "Delivery and booking notes for Circl-allocated work only." },
   { href: "/service-areas", title: "Service areas", copy: "South East Melbourne, the Peninsula, Bass Coast and Gippsland." },
 ];
 

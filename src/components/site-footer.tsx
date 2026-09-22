@@ -48,7 +48,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-muted">
               <li><Link to="/property-planner" className="hover:text-fg">Property planner</Link></li>
               <li><AppLink to="/customer-help" className="hover:text-fg">Customer help</AppLink></li>
-              <li><AppLink to="/circl-starlink-installations" className="hover:text-fg">Circl customers</AppLink></li>
+              <li><Link to="/starlink-offer" className="hover:text-fg">Starlink referral offer</Link></li>
               <li><AppLink to="/install-terms-and-conditions" className="hover:text-fg">Install terms</AppLink></li>
               <li><Link to="/resources" className="hover:text-fg">Guides & answers</Link></li>
               <li><Link to="/resources/downloads" className="hover:text-fg">Downloads</Link></li>
@@ -69,6 +69,7 @@ export function SiteFooter() {
               <li><Link to="/journal" className="hover:text-fg">Field notes</Link></li>
               <li><Link to="/contact" className="hover:text-fg">Contact us</Link></li>
               <li><Link to="/privacy" className="hover:text-fg">Privacy</Link></li>
+              <li><AppLink to="/circl-starlink-installations" className="hover:text-fg">If Circl arranged your install</AppLink></li>
               {SOCIALS.map((s) => (
                 <li key={s.href}>
                   <a href={s.href} className="hover:text-fg" target="_blank" rel="noreferrer">

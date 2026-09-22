@@ -28,9 +28,9 @@ export const NAV: NavItem[] = [
     href: "/services/starlink-installation",
     children: [
       { label: "Book an install", href: "/services/starlink-installation" },
+      { label: "One month free", href: "/starlink-offer" },
       { label: "Starlink guides", href: "/starlink" },
       { label: "Standard install scope", href: "/customer-help/standard-install-scope" },
-      { label: "Circl customers", href: "/circl-starlink-installations" },
       { label: "Caravan Starlink", href: "/services/starlink-caravan-installation" },
       { label: "Starlink Mini", href: "/services/starlink-mini-installation" },
     ],
@@ -103,11 +103,9 @@ export const NAV: NavItem[] = [
     href: "/customer-help",
     children: [
       { label: "Customer help", href: "/customer-help" },
-      { label: "Field notes", href: "/journal" },
-      { label: "Install terms", href: "/install-terms-and-conditions" },
-      { label: "Circl installations", href: "/circl-starlink-installations" },
       { label: "Guides & answers", href: "/resources" },
-      { label: "How we work", href: "/about/how-we-work" },
+      { label: "Install terms", href: "/install-terms-and-conditions" },
+      { label: "If Circl arranged your install", href: "/circl-starlink-installations" },
     ],
   },
 ];
@@ -194,7 +192,7 @@ export const SERVICES: ServicePage[] = [
     points: [
       "Point-to-point links for sheds, stables, offices and granny flats",
       "Line-of-sight check before hardware is ordered",
-      "Managed Omada gear that can be supported remotely",
+      "A dedicated radio link, not house Wi-Fi stretched across the paddock",
       "Power and mounting planned with the rest of the property",
     ],
     body: [

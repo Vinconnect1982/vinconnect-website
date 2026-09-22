@@ -21,7 +21,7 @@ export const RESOURCE_GUIDES: Article[] = [
     slug: "starlink-delivery-installation",
     kicker: "Guides",
     title: "Starlink delivery and installation",
-    lede: "The kit arrives. The mount may arrive separately. The visit is labour, not a courier. This is the sequence Circl customers and direct bookings both run into.",
+    lede: "If you ordered Starlink yourself, the kit comes from Starlink and the VINCONNECT quote sets the mount and the visit. If Circl coordinated the job and allocated it to us, the Starlink carton and the mounting hardware can arrive as two deliveries. Direct bookings are the usual path.",
     description:
       "What happens between a Starlink kit arriving in Victoria and VINCONNECT completing the installation. Two deliveries, sealed box, booking scope.",
     crumbs: crumbs("Delivery and installation"),
@@ -161,6 +161,7 @@ export const RESOURCE_GUIDES: Article[] = [
       },
     ],
     related: [
+      { href: "/starlink-offer", label: "One month of Starlink free" },
       { href: "/service-areas/nyora", label: "Nyora" },
       { href: "/service-areas/caldermeade", label: "Caldermeade" },
       { href: "/service-areas/red-hill", label: "Red Hill" },
@@ -275,6 +276,73 @@ export const RESOURCE_GUIDES: Article[] = [
       { href: "/rural-connections", label: "Rural Connections" },
       { href: "/rural-connections/info-hub", label: "Info hub" },
       { href: "/starlink/rural-properties", label: "Rural Starlink guide" },
+    ],
+  }),
+  page({
+    path: "/resources/starlink-referral-free-month",
+    slug: "starlink-referral-free-month",
+    kicker: "Guides",
+    title: "How the Starlink free-month referral offer works",
+    lede: "The offer is one month of Starlink service credit for an eligible new customer. It is not a free dish, and it is not a discount on VINCONNECT installation.",
+    description:
+      "How the Starlink free-month referral works in Australia: who may qualify, why a shop-bought kit may not, and how VINCONNECT installation fits after you order.",
+    crumbs: crumbs("Starlink free-month referral"),
+    image: "/scenes/starlink-home.webp",
+    imageAlt: "Starlink dish on a Victorian home, used as an illustrative install scene.",
+    cta: {
+      primary: { label: "Get one month free", href: "/starlink-offer" },
+      secondary: { label: "Check My Install Price", href: "/estimate" },
+    },
+    sections: [
+      {
+        heading: "What the offer is",
+        copy: [
+          "If you order through the VINCONNECT referral link, Starlink may apply one month of service credit to an eligible new Residential or Roam subscription. You still buy the kit and you still pay the first service invoice. The credit, when it is accepted, is applied later under Starlink’s rules.",
+          "VINCONNECT does not issue that credit. Starlink shows the current offer at checkout. If the checkout page does not show it, do not assume it applies.",
+        ],
+      },
+      {
+        heading: "Who may qualify",
+        copy: [
+          "Starlink’s published referral terms say the customer needs to be new to Starlink, ordering on starlink.com through that specific link, on a qualifying plan. Existing and returning customers are excluded. Plans outside the Residential and Roam list Starlink publishes may not qualify. Waitlisted addresses can also be excluded.",
+          "A kit from a retailer, reseller or account transfer is a common reason a referral is refused, even if the link was opened. Order on starlink.com if the credit matters to you.",
+        ],
+      },
+      {
+        heading: "Ordering Starlink and booking the install are two steps",
+        copy: [
+          "Starlink supplies the hardware, the account and the monthly service. VINCONNECT mounts the dish, routes the cable, places the router and can extend the network to the rest of the property. You can book the install once the kit is on the way, or once it has arrived.",
+          "Direct customers do not need a Circl allocation. If your paperwork already says Circl arranged the visit, use the Circl help pages for delivery and booking instead of this offer.",
+        ],
+      },
+      {
+        heading: "After the hardware arrives",
+        copy: [
+          "Leave the kit accessible, know where the power and the router wall should be, and tell us about storeys, tile or Colorbond, and any second building. The delivery guide covers the sequence. The install terms cover what a standard visit includes.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Is the Starlink kit free?",
+        a: "No. The referral is a service credit on an eligible plan, not free hardware.",
+      },
+      {
+        q: "Does VINCONNECT guarantee the free month?",
+        a: "No. Starlink decides eligibility, timing and whether the credit is applied.",
+      },
+      {
+        q: "Can I use a kit I bought at a shop?",
+        a: "You can still book VINCONNECT to install it. The referral credit often will not apply to retailer or transferred kits.",
+      },
+    ],
+    related: [
+      { href: "/starlink-offer", label: "Open the referral offer" },
+      { href: "/services/starlink-installation", label: "Starlink installation" },
+      { href: "/estimate", label: "Check My Install Price" },
+      { href: "/resources/starlink-delivery-installation", label: "Delivery and installation" },
+      { href: "/starlink/roof-wall-and-tripod", label: "Mounts" },
+      { href: "/install-terms-and-conditions", label: "Install terms" },
     ],
   }),
 ];

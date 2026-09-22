@@ -39,9 +39,7 @@ function AboutPage() {
           availability are confirmed with quotes. One point of contact for the enquiry.
         </p>
         <p className="mt-4 text-muted">
-          VINCONNECT is independent. We install Starlink, TP-Link Omada and HiLook hardware, and we
-          perform Circl-allocated Starlink labour. We are not those companies, and we are not
-          officially endorsed by them.
+          VINCONNECT is an independent installer. Starlink supplies the hardware, the subscription and any referral offer. We mount, cable and configure the installation, and we can extend it across the property. We are not Starlink, and we are not endorsed by them.
         </p>
         <p className="mt-4 text-sm">
           {SOCIALS.map((s, i) => (

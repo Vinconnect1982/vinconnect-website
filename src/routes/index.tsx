@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { AppLink } from "@/components/app-link";
 import { EstimateWizard } from "@/components/estimate-wizard";
+import { StarlinkOfferCta } from "@/components/starlink-offer-cta";
 import { JsonLd, LOCAL_BUSINESS_LD } from "@/components/json-ld";
 import { ServiceNetworkMap } from "@/components/service-network-map";
 import { SiteShell } from "@/components/site-shell";
@@ -305,19 +306,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="note p-6 sm:p-8">
-          <h2 className="font-display text-2xl">Thinking about Starlink?</h2>
-          <p className="mt-2 max-w-2xl text-muted">
-            Check your eligibility for one month free. Open our Starlink referral offer before
-            ordering. Eligible plans and the benefit must be confirmed at Starlink checkout.
-            VINCONNECT may receive a referral payment.
-          </p>
-          <Button asChild className="mt-5" variant="ghost">
-            <Link to="/starlink-offer">View the Starlink referral offer →</Link>
-          </Button>
-        </div>
-      </section>
+      <StarlinkOfferCta />
     </SiteShell>
   );
 }

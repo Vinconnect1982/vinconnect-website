@@ -18,7 +18,7 @@ function PrivacyPage() {
         </p>
         <h2 className="mt-8 font-display text-2xl">What is sent</h2>
         <p className="mt-3 text-muted">
-          Enquiry forms, the install estimator and the property planner are submitted to VINCONNECT. They are delivered by email to vince@vinconnect.com.au and stored as a Netlify form submission on the site host. If email delivery is configured, a copy is also sent through our email provider. The estimator reference is saved in your browser so you can return to it. That browser copy is not the quote we work from.
+          Enquiry forms, the install estimator and the property planner are submitted to VINCONNECT. Netlify hosts this website and stores the form submission. When email delivery is configured, Resend sends a copy to vince@vinconnect.com.au. The estimator reference is also saved in your browser so you can return to it. That browser copy is not the quote we work from.
         </p>
         <p className="mt-3 text-muted">
           The estimator does not upload photos. If we ask for roof or property photos, email them or send them when we call. Do not include passwords, payment card numbers or copies of other people’s paperwork.

@@ -36,15 +36,15 @@ export const CUSTOMER_HELP: Article[] = [
     slug: "index",
     kicker: "Customer help",
     title: "Your installation, from booking to handover",
-    lede: "Whether you booked VINCONNECT directly or Circl allocated the visit, this is the journey: what to have ready, what a standard install includes, and who to call if something is off.",
+    lede: "Booked VINCONNECT directly? This is the path from estimate to handover. If Circl arranged the installation and allocated it to us, the Circl notes at the bottom explain delivery and booking. You do not need Circl to hire VINCONNECT.",
     description:
       "VINCONNECT customer help for Starlink installation in Victoria. Before the visit, on the day, after handover, standard scope, cancellations and Circl-allocated jobs.",
     image: "/scenes/starlink-home.webp",
     imageAlt: "Starlink dish installed on a Victorian home.",
     crumbs: [{ label: "Customer help" }],
     points: [
-      "Standard scope is written down so the SMS and the visit match",
-      "Circl customers have a separate hub — kit logistics stay with Circl",
+      "Direct bookings start with Check My Install Price",
+      "Circl-arranged installs have a separate help page for delivery and booking",
       "Double-storey, conduit and cabinet router placement are not assumed",
       "One phone number for VINCONNECT labour: 0408 559 555",
     ],

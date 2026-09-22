@@ -4,6 +4,7 @@ import { CoverageMap } from "@/components/coverage-map";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
+import { StarlinkOfferCta } from "@/components/starlink-offer-cta";
 import { Button } from "@/components/ui/button";
 import { areaBySlug, areaFaqs, nearbyAreas, regionBySlug } from "@/lib/areas";
 import { LOCAL_NOTES, FIXED_WIRELESS_JOBS } from "@/lib/local-notes";
@@ -200,6 +201,7 @@ function AreaPage() {
             ))}
           </dl>
         </div>
+        <StarlinkOfferCta suburb={area.name} />
 
         {nearby.length > 0 && (
           <div className="mt-12">

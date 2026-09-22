@@ -17,8 +17,8 @@ import {
   type StoreyId,
 } from "@/lib/pricing";
 import { plannerHref, useSiteSession } from "@/lib/site-session";
-import { formatAud } from "@/lib/utils";
-import { cn } from "@/lib/utils";
+import { REFERRAL_NOTE, STARLINK_REFERRAL_URL, trackEvent } from "@/lib/referral";
+import { cn, formatAud } from "@/lib/utils";
 
 type Contact = { name: string; email: string; phone: string };
 
@@ -348,6 +348,24 @@ export function EstimateWizard() {
             <p className="mt-2 text-xs text-muted-ink">
               Labour range only. Starlink hardware, mounts, kits and electrician work are separately itemised.
             </p>
+            {(service === "starlink" || service === "unsure") && (
+              <div className="mt-6 max-w-xl rounded-lg border border-line-ink p-4">
+                <p className="font-display text-lg">Haven’t ordered your kit yet?</p>
+                <p className="mt-2 text-sm text-muted-ink">
+                  Check the VINCONNECT Starlink referral offer before you buy. If you already have the equipment, you can ignore this.
+                </p>
+                <a
+                  href={STARLINK_REFERRAL_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-block text-sm text-mint underline"
+                  onClick={() => trackEvent("starlink_referral_click")}
+                >
+                  Get one month free
+                </a>
+                <p className="mt-2 text-xs text-muted-ink">{REFERRAL_NOTE}</p>
+              </div>
+            )}
             <div className="mt-8 border border-line-ink p-4">
               <h4 className="font-display">Want us to confirm it faster?</h4>
               <p className="mt-1 text-sm text-muted-ink">
