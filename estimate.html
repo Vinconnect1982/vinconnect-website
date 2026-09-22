@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Check Your Starlink Installation Price | VINCONNECT</title><meta name="description" content="Address-based Starlink installation estimate for Victoria."><link rel="icon" href="/assets/logo.svg"><link rel="stylesheet" href="/assets/styles.css"></head><body><nav class="nav"><div class="wrap navin"><a class="brand" href="/"><img src="/assets/logo.svg" alt="VINCONNECT"></a><div class="links"><a href="/estimate.html">Estimate</a><a href="/services.html">Services</a><a href="/property-planner.html">Property planner</a><a href="/projects.html">Projects</a><a href="/service-areas.html">Service areas</a><a href="/about.html">About</a><a class="btn" href="tel:0408559555">0408 559 555</a></div></div></nav><main><section class="pagehero"><div class="wrap"><div class="eyebrow">VINCONNECT · Connecting Victoria</div><h1>Check my install price.</h1><p>A quick address-based estimate for Starlink installation. No public travel calculations or technical guesswork.</p></div></section><section class="section"><div class="wrap split"><div class="formbox"><div class="field"><label for="address">Installation address</label><input id="address" autocomplete="street-address" placeholder="Start typing your Victorian address"><div id="address-status" class="status">Enter the full property address. Address suggestions activate when a Google Maps browser key is configured.</div></div><div class="field"><label>Building height</label><div class="choice-grid"><label class="choice"><input type="radio" name="height" value="single" checked> Single storey — from $300</label><label class="choice"><input type="radio" name="height" value="double"> Double storey — from $550</label></div></div><div class="field"><label>Common extras</label><label class="choice"><input type="checkbox" id="conduit"> Conduit (+$120)</label><label class="choice" style="margin-top:10px"><input type="checkbox" id="router"> Router in data cabinet / garage (+$150)</label></div><button class="btn" id="calculate" type="button">Check My Install Price</button><div id="result" class="result"><div class="eyebrow">Indicative estimate</div><div id="price" class="price"></div><p id="result-note" class="note"></p></div></div><div><div class="eyebrow">What happens next?</div><h2>Simple first. Site-specific second.</h2><p class="lede">The estimate uses the choices you provide. When server-side Google routing is configured, location is included automatically without showing the travel formula to customers.</p><div class="checklist"><div class="check">VINCONNECT reviews access and mounting</div><div class="check">Cable route and router location confirmed</div><div class="check">Any unusual access equipment quoted before work</div><div class="check">Final price confirmed before booking</div></div></div></div></section></main><footer class="footer"><div class="wrap"><div class="footergrid"><div><img src="/assets/logo.svg" alt="VINCONNECT" style="width:260px"><p>Practical connections for the places you live, work and look after.</p><p><a href="tel:0408559555">0408 559 555</a><br><a href="mailto:vince@vinconnect.com.au">vince@vinconnect.com.au</a></p></div><div><strong>Installations</strong><div class="mini-nav"><a href="/services/starlink-installation.html">Starlink</a><a href="/services/whole-property-wifi.html">Wi-Fi</a><a href="/services/wireless-links.html">Wireless links</a><a href="/services/cctv.html">CCTV</a></div></div><div><strong>Plan & prepare</strong><div class="mini-nav"><a href="/estimate.html">Installation estimate</a><a href="/property-planner.html">Property planner</a><a href="/service-areas.html">Service areas</a><a href="/contact.html">Contact</a></div></div></div><div class="copyright">VINCONNECT © <span data-year></span> · ACMA Registered Open Cabler · Victoria</div></div></footer><script src="/assets/config.js"></script><script src="/assets/app.js"></script><script src="/assets/estimator.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Check Your Starlink Installation Price | VINCONNECT</title>
+<meta name="description" content="Address-based Starlink installation estimate for Victoria.">
+<link rel="icon" href="/assets/logo.svg">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap navin"><a class="brand" href="/"><img src="/assets/logo.svg" alt="VINCONNECT"></a></div></nav>
+<main>
+<section class="pagehero estimate-intro">
+  <div class="wrap">
+    <div class="eyebrow">Start with a simple estimate</div>
+    <h1>Check your likely install price.</h1>
+    <p>Enter the property address and answer a few practical questions. Location is included automatically, with no travel formula or technical terms to work through.</p>
+  </div>
+</section>
+
+<section class="section estimator-section">
+  <div class="wrap">
+    <div class="estimator-card">
+      <div class="estimator-card-head">
+        <div>
+          <div class="eyebrow">Installation estimator</div>
+          <h2>Check what your installation is likely to cost.</h2>
+        </div>
+        <div id="step-label" class="step-label">Step 1 of 4</div>
+      </div>
+      <div class="progress-track"><div id="estimate-progress" class="progress-fill"></div></div>
+
+      <section data-est-step="1" class="estimate-step">
+        <div class="step-number">01</div>
+        <h3>Where is the installation?</h3>
+        <p>Start typing and choose your address. Your location is included automatically in the estimate.</p>
+
+        <label>Installation address</label>
+        <div id="address-autocomplete" class="address-autocomplete"></div>
+        <div id="address-status" class="status">Start typing your Victorian address.</div>
+        <button id="manual-address-toggle" class="text-button" type="button">Enter address manually</button>
+        <div id="address-manual-wrap" hidden>
+          <input id="address-manual" autocomplete="street-address" placeholder="Full street address, suburb VIC postcode">
+        </div>
+        <div id="address-selected" class="selected-address"></div>
+
+        <div class="estimate-actions">
+          <span></span>
+          <button id="address-next" class="btn" type="button">Use this address</button>
+        </div>
+      </section>
+
+      <section data-est-step="2" class="estimate-step" hidden>
+        <div class="step-number">02</div>
+        <h3>How high is the installation?</h3>
+        <p>Select the building height so the base installation can be calculated correctly.</p>
+        <div class="choice-grid">
+          <label class="choice large-choice"><input type="radio" name="height" value="single" checked><span><strong>Single storey</strong><small>Base installation from $300</small></span></label>
+          <label class="choice large-choice"><input type="radio" name="height" value="double"><span><strong>Double storey</strong><small>Base installation from $550</small></span></label>
+        </div>
+        <div class="estimate-actions">
+          <button id="height-back" class="btn2" type="button">Back</button>
+          <button id="height-next" class="btn" type="button">Continue</button>
+        </div>
+      </section>
+
+      <section data-est-step="3" class="estimate-step" hidden>
+        <div class="step-number">03</div>
+        <h3>Any common installation extras?</h3>
+        <p>Select only the items that apply. Site-specific work is confirmed before booking.</p>
+        <div class="estimate-options">
+          <label class="choice large-choice"><input type="checkbox" id="conduit"><span><strong>Conduit</strong><small>Flat extra $120</small></span></label>
+          <label class="choice large-choice"><input type="checkbox" id="router"><span><strong>Router in data cabinet or garage</strong><small>Flat extra $150</small></span></label>
+        </div>
+        <div class="estimate-actions">
+          <button id="extras-back" class="btn2" type="button">Back</button>
+          <button id="calculate" class="btn" type="button">Check My Install Price</button>
+        </div>
+      </section>
+
+      <section data-est-step="4" class="estimate-step" hidden>
+        <div class="step-number">04</div>
+        <div class="eyebrow">Indicative estimate</div>
+        <h3 id="price" class="price">Checking…</h3>
+        <p id="result-address" class="selected-address"></p>
+        <p id="result-note"></p>
+        <div class="estimate-actions">
+          <button id="result-back" class="btn2" type="button">Change options</button>
+          <a class="btn" href="tel:0408559555">Call 0408 559 555</a>
+        </div>
+      </section>
+
+      <div class="step-dots" aria-hidden="true">
+        <span data-step-dot="1"></span>
+        <span data-step-dot="2"></span>
+        <span data-step-dot="3"></span>
+        <span data-step-dot="4"></span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="wrap"></div></footer>
+<script src="/assets/config.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/estimator.js"></script>
+</body>
+</html>
