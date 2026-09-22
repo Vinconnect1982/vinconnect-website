@@ -13,6 +13,10 @@ export const SOCIALS = [
     label: "Facebook",
     href: "https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/",
   },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/vinconnectsolutions/",
+  },
 ] as const;
 
 export type NavChild = { label: string; href: string };

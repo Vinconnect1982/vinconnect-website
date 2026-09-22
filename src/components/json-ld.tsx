@@ -37,5 +37,6 @@ export const LOCAL_BUSINESS_LD = {
   sameAs: [
     "https://share.google/trFzHOI7IVQMK9Gmf",
     "https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/",
+    "https://www.instagram.com/vinconnectsolutions/",
   ],
 };
