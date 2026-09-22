@@ -2,7 +2,18 @@
   publish = "."
   functions = "netlify/functions"
 
+# Clean URLs and dynamic live-site page families.
 [[redirects]]
-  from = "/services/starlink-installation"
-  to = "/services/starlink-installation.html"
+  from = "/projects/*"
+  to = "/projects.html"
+  status = 200
+[[redirects]]
+  from = "/service-areas/*"
+  to = "/service-areas.html"
+  status = 200
+
+# Keep the estimator function available exactly where the recovered frontend expects it.
+[[redirects]]
+  from = "/api/estimate"
+  to = "/.netlify/functions/estimate"
   status = 200
