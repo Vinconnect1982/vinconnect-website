@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/site-shell";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "VINCONNECT";
-const BUILD_ID = "2026-09-23-w";
+const BUILD_ID = "2026-09-23-x";
 
 export const Route = createRootRoute({
   notFoundComponent: () => (

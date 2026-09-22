@@ -19,7 +19,7 @@ function ProjectsIndex() {
         <p className="mt-4 max-w-2xl text-muted">
           Recent Starlink, Wi-Fi and CCTV installations across South East Melbourne, the Peninsula
           and Gippsland. These are completed jobs — not proposals, and not Circl work-order records.
-          The photographs are cropped from the original job images. Marketing text has been removed. The hardware has not been redrawn.
+          The photographs are reconstructed from the original job photos. The building and the installed hardware stay as they were. Sky, yard and framing have been cleaned so the page is not a social-media crop.
         </p>
         <p className="mt-3 text-sm">
           <AppLink to="/solutions" className="text-mint">
