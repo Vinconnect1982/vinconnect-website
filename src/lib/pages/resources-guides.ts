@@ -62,7 +62,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "Plain-language explanation of a VINCONNECT standard Starlink installation in Victoria, including optional conduit and cabinet extras.",
     crumbs: crumbs("Standard install explained"),
-    image: "/media/botanic-ridge-double-storey.webp",
+    image: "/media/projects/botanic-ridge-double-storey.webp",
     sections: [
       {
         heading: "The five parts",

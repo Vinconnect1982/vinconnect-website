@@ -52,7 +52,7 @@ function ProjectPage() {
       />
       <article>
         <div className="relative overflow-hidden">
-          <img src={project.image} alt="" className="absolute inset-0 h-full min-h-[22rem] w-full object-cover object-[center_30%] sm:min-h-[28rem]" />
+          <img src={project.image} alt={`${project.title} in ${project.place}. Cropped from the original VINCONNECT job photograph.`} className="absolute inset-0 h-full min-h-[22rem] w-full bg-ink object-contain object-center sm:min-h-[28rem]" />
           <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/25" />
           <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
             <Breadcrumbs

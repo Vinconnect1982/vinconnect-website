@@ -133,7 +133,7 @@ export const SOLUTIONS: Article[] = [
     description:
       "Starlink, Wi-Fi and CCTV for small commercial sites, workshops and community clubs in South East Victoria.",
     crumbs: crumbs("Businesses and clubs"),
-    image: "/media/cranbourne-cricket-club.webp",
+    image: "/media/projects/cranbourne-cricket-club.webp",
     sections: [
       {
         heading: "Examples already on the site",
@@ -189,7 +189,7 @@ export const SOLUTIONS: Article[] = [
     description:
       "Starlink for new estate homes in Clyde, Cranbourne and Casey South East while NBN or OptiComm is not yet available.",
     crumbs: crumbs("New estates"),
-    image: "/media/clyde-new-estate-home.webp",
+    image: "/media/projects/clyde-new-estate-home.webp",
     sections: [
       {
         heading: "What we need to know",

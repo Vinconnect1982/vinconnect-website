@@ -186,7 +186,7 @@ export const CUSTOMER_HELP: Article[] = [
     description:
       "What happens during a VINCONNECT Starlink installation visit in Victoria, including time on site and decisions we will not make for you.",
     crumbs: crumbs("On the day"),
-    image: "/media/somerville-starlink-install.webp",
+    image: "/media/projects/somerville-starlink-install.webp",
     sections: [
       {
         heading: "Order of work",
@@ -311,7 +311,7 @@ export const CUSTOMER_HELP: Article[] = [
     description:
       "VINCONNECT double-storey Starlink bookings, roof access, pets, horses and when a visit is paused.",
     crumbs: crumbs("Double-storey and access"),
-    image: "/media/botanic-ridge-double-storey.webp",
+    image: "/media/projects/botanic-ridge-double-storey.webp",
     sections: [
       {
         heading: "Book the storey you have",
