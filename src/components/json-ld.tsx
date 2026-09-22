@@ -11,6 +11,7 @@ export const LOCAL_BUSINESS_LD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "VINCONNECT",
+  alternateName: "Vinconnect Starlink Solutions",
   url: "https://vinconnect.com.au",
   telephone: "+61408559555",
   email: "vince@vinconnect.com.au",
@@ -33,5 +34,8 @@ export const LOCAL_BUSINESS_LD = {
   ],
   description:
     "Professional Starlink installation, whole-property Wi-Fi, wireless links and HiLook CCTV across South East Melbourne, the Peninsula, Bass Coast and Gippsland. Independent installer based in Cranbourne. Standard Starlink labour from $300 in the local work area.",
-  sameAs: ["https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/"],
+  sameAs: [
+    "https://share.google/trFzHOI7IVQMK9Gmf",
+    "https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/",
+  ],
 };

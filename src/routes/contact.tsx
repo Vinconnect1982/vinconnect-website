@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteShell } from "@/components/site-shell";
-import { EMAIL, EMAIL_MAILTO, PHONE, PHONE_TEL } from "@/lib/content";
+import { EMAIL, EMAIL_MAILTO, PHONE, PHONE_TEL, SOCIALS } from "@/lib/content";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -35,6 +35,13 @@ function ContactPage() {
             <a href={EMAIL_MAILTO} className="mt-1 block text-muted">
               {EMAIL}
             </a>
+            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              {SOCIALS.map((s) => (
+                <a key={s.href} href={s.href} className="text-mint hover:underline" target="_blank" rel="noreferrer">
+                  {s.label}
+                </a>
+              ))}
+            </p>
             <ol className="mt-6 list-decimal space-y-2 pl-5 text-sm text-muted">
               <li>Tell us about the property and your priorities.</li>
               <li>We clarify access, equipment and the proposed scope.</li>

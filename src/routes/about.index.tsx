@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppLink } from "@/components/app-link";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
+import { SOCIALS } from "@/lib/content";
 
 export const Route = createFileRoute("/about/")({
   component: AboutPage,
@@ -41,6 +42,17 @@ function AboutPage() {
           VINCONNECT is independent. We install Starlink, TP-Link Omada and HiLook hardware, and we
           perform Circl-allocated Starlink labour. We are not those companies, and we are not
           officially endorsed by them.
+        </p>
+        <p className="mt-4 text-sm">
+          {SOCIALS.map((s, i) => (
+            <span key={s.href}>
+              {i > 0 ? " · " : "Find us on "}
+              <a href={s.href} className="text-mint hover:underline" target="_blank" rel="noreferrer">
+                {s.label}
+              </a>
+            </span>
+          ))}
+          .
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild>

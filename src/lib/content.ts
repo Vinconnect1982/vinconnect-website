@@ -6,6 +6,10 @@ export const SITE_URL = "https://vinconnect.com.au";
 
 export const SOCIALS = [
   {
+    label: "Google",
+    href: "https://share.google/trFzHOI7IVQMK9Gmf",
+  },
+  {
     label: "Facebook",
     href: "https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/",
   },

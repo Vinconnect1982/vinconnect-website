@@ -17,6 +17,13 @@ export function SiteFooter() {
           <a href={EMAIL_MAILTO} className="mt-1 block text-muted">
             {EMAIL}
           </a>
+          <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            {SOCIALS.map((s) => (
+              <a key={s.href} href={s.href} className="text-mint hover:underline" target="_blank" rel="noreferrer">
+                {s.label}
+              </a>
+            ))}
+          </p>
           <Button asChild className="mt-6">
             <Link to="/estimate">Check My Install Price →</Link>
           </Button>
