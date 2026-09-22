@@ -9,7 +9,7 @@ export type NavItem = { label: string; href: string; children?: NavChild[] };
 
 export const NAV: NavItem[] = [
   {
-    label: "Starlink Installation",
+    label: "Starlink",
     href: "/services/starlink-installation",
     children: [
       { label: "Book an install", href: "/services/starlink-installation" },
@@ -21,7 +21,7 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    label: "Property Networks",
+    label: "Networks",
     href: "/property-networks",
     children: [
       { label: "Property network guides", href: "/property-networks" },
@@ -34,7 +34,7 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    label: "CCTV & Data",
+    label: "CCTV",
     href: "/security",
     children: [
       { label: "CCTV guides", href: "/security" },
@@ -62,16 +62,24 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    label: "Rural & events",
-    href: "/rural-connections",
+    label: "Event Link",
+    href: "/event-link",
     children: [
-      { label: "Rural Connections", href: "/rural-connections" },
-      { label: "Roadshow hub", href: "/rural-connections/roadshow" },
-      { label: "Visiting the hub", href: "/rural-connections/visiting-the-hub" },
-      { label: "Info hub", href: "/rural-connections/info-hub" },
       { label: "Event Link pilot", href: "/event-link" },
       { label: "Event Link Mini", href: "/event-link/mini" },
       { label: "For organisers", href: "/event-link/organisers" },
+      { label: "What is included", href: "/event-link/what-is-included" },
+      { label: "Rural Connections", href: "/rural-connections" },
+      { label: "Roadshow hub", href: "/rural-connections/roadshow" },
+    ],
+  },
+  {
+    label: "VIN Gear",
+    href: "/vingear",
+    children: [
+      { label: "VIN Gear", href: "/vingear" },
+      { label: "Pulse", href: "/vingear/pulse" },
+      { label: "Early access", href: "/vingear/early-access" },
     ],
   },
   { label: "Projects", href: "/projects" },
@@ -83,7 +91,6 @@ export const NAV: NavItem[] = [
       { label: "Install terms", href: "/install-terms-and-conditions" },
       { label: "Circl installations", href: "/circl-starlink-installations" },
       { label: "Guides & answers", href: "/resources" },
-      { label: "VIN Gear", href: "/vingear" },
       { label: "How we work", href: "/about/how-we-work" },
     ],
   },

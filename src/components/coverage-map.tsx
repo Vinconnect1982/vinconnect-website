@@ -2,13 +2,13 @@ import { useEffect, useRef } from "react";
 import { AREAS, REGIONS } from "@/lib/areas";
 
 const REGION_COLOUR: Record<string, string> = {
-  "casey-south-east": "#62dfc8",
-  cardinia: "#2fb9a8",
-  "mornington-peninsula": "#9ad9ee",
-  "western-port-bass-coast": "#62dfc8",
-  "south-gippsland": "#2fb9a8",
-  "west-gippsland-latrobe": "#9ad9ee",
-  "inner-south-east": "#c5d5d8",
+  "casey-south-east": "#0d7a6e",
+  cardinia: "#1f6f8b",
+  "mornington-peninsula": "#2f5d8a",
+  "western-port-bass-coast": "#0d7a6e",
+  "south-gippsland": "#1f6f8b",
+  "west-gippsland-latrobe": "#2f5d8a",
+  "inner-south-east": "#5a6b70",
 };
 
 const REGION_RADIUS: Record<string, number> = {
@@ -33,8 +33,9 @@ export function CoverageMap({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let map: { remove: () => void } | null = null;
+    let map: { remove: () => void; invalidateSize: () => void } | null = null;
     let cancelled = false;
+    let ro: ResizeObserver | null = null;
 
     void (async () => {
       const L = await import("leaflet");
@@ -44,49 +45,59 @@ export function CoverageMap({
         [centre.lat, centre.lng],
         centre.zoom ?? 8,
       );
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
         attribution: "&copy; OpenStreetMap &copy; CARTO",
         subdomains: "abcd",
         maxZoom: 18,
       }).addTo(instance);
 
       for (const region of REGIONS) {
-        const colour = REGION_COLOUR[region.slug] ?? "#62dfc8";
+        const colour = REGION_COLOUR[region.slug] ?? "#0d7a6e";
         L.circle([region.lat, region.lng], {
           radius: REGION_RADIUS[region.slug] ?? 16000,
           color: colour,
-          weight: 1,
+          weight: 2,
           fillColor: colour,
-          fillOpacity: 0.08,
+          fillOpacity: 0.18,
         }).addTo(instance);
       }
 
       for (const area of AREAS) {
-        const colour = REGION_COLOUR[area.region] ?? "#62dfc8";
+        const colour = REGION_COLOUR[area.region] ?? "#0d7a6e";
         const marker = L.circleMarker([area.lat, area.lng], {
-          radius: 6,
-          color: colour,
+          radius: 7,
+          color: "#071112",
           weight: 1,
           fillColor: colour,
-          fillOpacity: 0.95,
+          fillOpacity: 1,
         }).addTo(instance);
         marker.bindTooltip(area.name, { direction: "top", offset: [0, -8] });
         marker.bindPopup(
-          `<a href="/service-areas/${area.slug}" style="color:#62dfc8;font-weight:600">${area.name}</a><br/><span style="color:#9aadb4">${area.postcode} · Starlink, Wi-Fi, CCTV</span>`,
+          `<a href="/service-areas/${area.slug}" style="color:#0d7a6e;font-weight:600">${area.name}</a><br/><span style="color:#52636b">${area.postcode} · Starlink, Wi-Fi, CCTV</span>`,
         );
       }
       map = instance;
+      const resize = () => instance.invalidateSize();
+      requestAnimationFrame(resize);
+      setTimeout(resize, 250);
+      ro = new ResizeObserver(resize);
+      ro.observe(el);
     })();
 
     return () => {
       cancelled = true;
+      ro?.disconnect();
       map?.remove();
     };
   }, [focus?.lat, focus?.lng, focus?.zoom]);
 
   return (
-    <div className="coverage-map overflow-hidden rounded-xl border border-line">
-      <div ref={ref} style={{ height }} className="w-full bg-ink-2" />
+    <div className="coverage-map overflow-hidden rounded-xl border border-line bg-paper">
+      <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2.5">
+        <p className="text-sm font-medium text-fg">Work areas map</p>
+        <p className="text-xs text-muted">Click a suburb</p>
+      </div>
+      <div ref={ref} style={{ height }} className="w-full bg-paper-2" />
       <div className="flex flex-wrap gap-3 border-t border-line bg-surface px-4 py-3 text-xs text-muted">
         {REGIONS.map((r) => (
           <span key={r.slug} className="inline-flex items-center gap-2">

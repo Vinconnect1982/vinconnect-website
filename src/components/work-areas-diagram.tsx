@@ -29,20 +29,18 @@ function node(slug: string) {
 export function WorkAreasDiagram() {
   return (
     <div className="overflow-hidden rounded-xl border border-line bg-ink-2">
+      <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
+        <p className="text-sm font-medium text-fg">Work regions</p>
+        <p className="text-xs text-muted">Cranbourne home base</p>
+      </div>
       <svg
         viewBox="0 0 820 460"
-        className="h-auto w-full text-mint"
+        className="h-auto w-full"
         role="img"
         aria-label="VINCONNECT work regions from Cranbourne across the Peninsula, Bass Coast and Gippsland"
       >
-        <defs>
-          <radialGradient id="glow" cx="42%" cy="38%" r="55%">
-            <stop offset="0%" stopColor="currentColor" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <rect width="820" height="460" className="fill-ink-2" />
-        <circle cx="338" cy="168" r="220" fill="url(#glow)" />
+        <rect width="820" height="460" fill="#0d181c" />
+        <circle cx="338" cy="168" r="220" fill="#62dfc8" fillOpacity="0.08" />
         {EDGES.map(([a, b]) => {
           const from = node(a);
           const to = node(b);
@@ -53,9 +51,9 @@ export function WorkAreasDiagram() {
               y1={from.y}
               x2={to.x}
               y2={to.y}
-              className="stroke-mint"
-              strokeOpacity="0.35"
-              strokeWidth="1.5"
+              stroke="#62dfc8"
+              strokeOpacity="0.7"
+              strokeWidth="2"
             />
           );
         })}
@@ -65,17 +63,18 @@ export function WorkAreasDiagram() {
               <circle
                 cx={n.x}
                 cy={n.y}
-                r={n.home ? 11 : 8}
-                className={n.home ? "fill-mint stroke-mint" : "fill-surface stroke-mint"}
-                strokeWidth="2"
+                r={n.home ? 14 : 10}
+                fill={n.home ? "#62dfc8" : "#122026"}
+                stroke="#62dfc8"
+                strokeWidth="2.5"
               />
               <text
                 x={n.x}
-                y={n.y + 26}
+                y={n.y + 32}
                 textAnchor="middle"
-                className="fill-fg"
+                fill="#eef3f4"
                 fontFamily="Outfit, sans-serif"
-                fontSize="13"
+                fontSize="15"
                 fontWeight="600"
               >
                 {n.label}
@@ -85,13 +84,13 @@ export function WorkAreasDiagram() {
         ))}
         <text
           x="338"
-          y="198"
+          y="204"
           textAnchor="middle"
-          className="fill-muted"
+          fill="#9aadb4"
           fontFamily="Source Sans 3, sans-serif"
-          fontSize="11"
+          fontSize="12"
         >
-          Cranbourne home base
+          Cranbourne
         </text>
       </svg>
       <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-line px-4 py-3 text-xs text-muted">

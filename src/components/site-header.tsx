@@ -5,6 +5,54 @@ import { Button } from "@/components/ui/button";
 import { NAV, PHONE, PHONE_TEL } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+function NavItems({ onNavigate, compact }: { onNavigate?: () => void; compact?: boolean }) {
+  return (
+    <>
+      {NAV.map((item) =>
+        item.children ? (
+          <div key={item.label} className="group relative">
+            <AppLink
+              to={item.href}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-full text-fg/85 hover:text-mint",
+                compact ? "h-10 px-2.5 text-[13px]" : "min-h-11 py-2 text-base",
+              )}
+              onClick={onNavigate}
+            >
+              {item.label}
+              <ChevronDown className="size-3.5 opacity-60" />
+            </AppLink>
+            <div className="invisible absolute left-0 top-full z-50 min-w-56 rounded-lg border border-line bg-surface p-2 opacity-0 shadow-soft transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              {item.children.map((child) => (
+                <AppLink
+                  key={child.href}
+                  to={child.href}
+                  className="block rounded-md px-3 py-2.5 text-sm text-fg/90 hover:bg-raised hover:text-mint"
+                  onClick={onNavigate}
+                >
+                  {child.label}
+                </AppLink>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <AppLink
+            key={item.href}
+            to={item.href}
+            className={cn(
+              "inline-flex items-center rounded-full text-fg/85 hover:text-mint",
+              compact ? "h-10 px-2.5 text-[13px]" : "min-h-11 py-2 text-base",
+            )}
+            onClick={onNavigate}
+          >
+            {item.label}
+          </AppLink>
+        ),
+      )}
+    </>
+  );
+}
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
@@ -21,45 +69,10 @@ export function SiteHeader() {
           />
         </AppLink>
 
-        <nav className="ml-4 hidden items-center gap-0.5 lg:flex" aria-label="Primary">
-          {NAV.map((item) =>
-            item.children ? (
-              <div key={item.label} className="group relative">
-                <AppLink
-                  to={item.href}
-                  className="inline-flex h-11 items-center gap-1 rounded-full px-2.5 text-[13px] text-fg/85 hover:text-mint"
-                >
-                  {item.label}
-                  <ChevronDown className="size-3.5 opacity-60" />
-                </AppLink>
-                <div className="invisible absolute left-0 top-full z-50 min-w-56 rounded-lg border border-line bg-surface p-2 opacity-0 shadow-soft transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  {item.children.map((child) => (
-                    <AppLink
-                      key={child.href}
-                      to={child.href}
-                      className="block rounded-md px-3 py-2.5 text-sm text-fg/90 hover:bg-raised hover:text-mint"
-                    >
-                      {child.label}
-                    </AppLink>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <AppLink
-                key={item.href}
-                to={item.href}
-                className="inline-flex h-11 items-center rounded-full px-2.5 text-[13px] text-fg/85 hover:text-mint"
-              >
-                {item.label}
-              </AppLink>
-            ),
-          )}
-        </nav>
-
         <div className="ml-auto flex items-center gap-2">
           <AppLink
             to="/property-planner"
-            className="hidden h-11 items-center px-2 text-sm text-fg/80 hover:text-mint xl:inline-flex"
+            className="hidden h-11 items-center px-2 text-sm text-fg/80 hover:text-mint md:inline-flex"
           >
             Plan My Property
           </AppLink>
@@ -77,6 +90,15 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
+
+      <nav
+        className="hidden border-t border-line/70 lg:block"
+        aria-label="Primary"
+      >
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-0.5 px-4 sm:px-6">
+          <NavItems compact />
+        </div>
+      </nav>
 
       <div
         className={cn(
