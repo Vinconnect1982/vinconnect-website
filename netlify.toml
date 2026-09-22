@@ -1,8 +1,88 @@
 [build]
-  publish = "."
-  functions = "netlify/functions"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NITRO_PRESET = "netlify"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+    Pragma = "no-cache"
+    Clear-Site-Data = '"cache"'
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
-  from = "/services/starlink-installation"
-  to = "/services/starlink-installation.html"
-  status = 200
+  from = "/starlink-installation"
+  to = "/services/starlink-installation"
+  status = 301
+
+[[redirects]]
+  from = "/wifi"
+  to = "/services/whole-property-wifi"
+  status = 301
+
+[[redirects]]
+  from = "/cctv"
+  to = "/services/cctv"
+  status = 301
+
+[[redirects]]
+  from = "/quote"
+  to = "/estimate"
+  status = 301
+
+[[redirects]]
+  from = "/gallery"
+  to = "/projects"
+  status = 301
+
+[[redirects]]
+  from = "/about-us"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/starlink-install-information"
+  to = "/resources/starlink-delivery-installation"
+  status = 301
+
+[[redirects]]
+  from = "/eventlink"
+  to = "/event-link"
+  status = 301
+
+[[redirects]]
+  from = "/rural-connections-roadshow"
+  to = "/rural-connections/roadshow"
+  status = 301
+
+[[redirects]]
+  from = "/vin-gear"
+  to = "/vingear"
+  status = 301
+
+[[redirects]]
+  from = "/help"
+  to = "/customer-help"
+  status = 301
+
+[[redirects]]
+  from = "/install-terms"
+  to = "/install-terms-and-conditions"
+  status = 301
+
+[[redirects]]
+  from = "/circle-starlink-installations"
+  to = "/circl-starlink-installations"
+  status = 301

@@ -1,0 +1,17 @@
+node_modules
+.vercel
+.netlify
+dist
+screenshots
+artifacts
+attachments
+.tanstack
+.output
+*.log
+.grok/preview.log
+.grok/references
+.grok/skills
+.grok/status
+.grok/*.png
+.grok/*.jpg
+VINCONNECT_AI_CHANGELOG.md

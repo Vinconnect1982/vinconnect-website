@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-ink: #071112;
+  --color-ink-2: #0d181c;
+  --color-surface: #122026;
+  --color-raised: #182830;
+  --color-paper: #f3f1eb;
+  --color-paper-2: #e7e4db;
+  --color-fg: #eef3f4;
+  --color-ink-fg: #122026;
+  --color-muted: #9aadb4;
+  --color-muted-ink: #52636b;
+  --color-mint: #62dfc8;
+  --color-mint-deep: #2fb9a8;
+  --color-ember: #ff6a00;
+  --color-line: #2a3d45;
+  --color-line-ink: #d5d1c6;
+  --color-danger: #d45b4a;
+  --color-ok: #3c9a72;
+
+  --font-sans: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --shadow-soft: 0 18px 40px -24px rgb(7 17 18 / 0.55);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-ink);
+    color: var(--color-fg);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mint);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-mint) 40%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.planner-sat-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  object-fit: fill;
+  filter: grayscale(1) contrast(1.08) brightness(1.18);
+  opacity: 0.4;
+}
+
+.leaflet-container {
+  background: #e7e4db;
+  font-family: var(--font-sans);
+}
+
+.coverage-map .leaflet-container {
+  background: var(--color-ink-2);
+  font-family: var(--font-sans);
+}
+
+.coverage-map .leaflet-popup-content-wrapper,
+.coverage-map .leaflet-popup-tip {
+  background: var(--color-surface);
+  color: var(--color-fg);
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+.coverage-map .leaflet-popup-content {
+  margin: 10px 14px;
+  font-size: 14px;
+}
+
+.coverage-map .leaflet-tooltip {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  border: 1px solid var(--color-line);
+  box-shadow: none;
+}
+
+.planner-sketch-tiles {
+  filter: grayscale(0.25) sepia(0.18) contrast(0.94) brightness(1.06);
+}
+
+.planner-measure {
+  display: inline-block;
+  background: #071112;
+  color: #eef3f4;
+  font: 12px/1.2 Outfit, sans-serif;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.planner-pin {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #071112;
+  border-radius: 4px;
+  background: #f3f1eb;
+  color: #071112;
+  font: 700 11px/1 Outfit, sans-serif;
+  box-shadow: 3px 4px 0 rgb(7 17 18 / 0.28);
+}
+
+.planner-pin.is-source {
+  background: #62dfc8;
+}
+
+.planner-pin.is-selected {
+  outline: 2px solid #2fb9a8;
+  outline-offset: 2px;
+}
+
+.planner-stage {
+  position: relative;
+  height: 100%;
+}
+.planner-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mint);
+}

@@ -1,0 +1,279 @@
+import type { Article } from "./types";
+import { HELP_CTA, PLAN_CTA } from "./types";
+
+const crumbs = (label: string): Article["crumbs"] => [
+  { label: "Guides", href: "/resources" },
+  { label },
+];
+
+function page(partial: Omit<Article, "cluster" | "form"> & { cta?: Article["cta"] }): Article {
+  return {
+    cluster: "resources",
+    cta: partial.cta ?? HELP_CTA,
+    form: { type: "contact", package: partial.title, button: "Ask VINCONNECT", messageLabel: "What do you want to understand?" },
+    ...partial,
+  };
+}
+
+export const RESOURCE_GUIDES: Article[] = [
+  page({
+    path: "/resources/starlink-delivery-installation",
+    slug: "starlink-delivery-installation",
+    kicker: "Guides",
+    title: "Starlink delivery and installation",
+    lede: "The kit arrives. The mount may arrive separately. The visit is labour, not a courier. This is the sequence Circl customers and direct bookings both run into.",
+    description:
+      "What happens between a Starlink kit arriving in Victoria and VINCONNECT completing the installation. Two deliveries, sealed box, booking scope.",
+    crumbs: crumbs("Delivery and installation"),
+    image: "/scenes/starlink-home.webp",
+    sections: [
+      {
+        heading: "Delivery is not installation",
+        copy: [
+          "Starlink (or Circl) can put a carton on the verandah. VINCONNECT puts it on the building. If the carton is late, the visit moves. Photograph boxes. Leave the Starlink carton sealed.",
+        ],
+      },
+      {
+        heading: "Circl versus direct",
+        copy: [
+          "Circl jobs often have two deliveries and Circl tracking on 1800 950 493. Direct jobs usually mean you purchased the kit yourself. The physical install is similar. The phone tree is not.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "The courier left it in the rain.",
+        a: "Photograph it, dry it, and tell whoever sent the kit. Tell us if the appointment is close. Do not power a wet carton.",
+      },
+    ],
+    related: [
+      { href: "/circl-starlink-installations/two-deliveries", label: "Circl two deliveries" },
+      { href: "/customer-help/before-your-install", label: "Before your install" },
+      { href: "/starlink", label: "Starlink guides" },
+      { href: "/install-terms-and-conditions", label: "Install terms" },
+    ],
+  }),
+  page({
+    path: "/resources/standard-install-explained",
+    slug: "standard-install-explained",
+    kicker: "Guides",
+    title: "Standard Starlink install, explained",
+    lede: "A longer plain-language version of the scope: visible cable, one hole, router at the wall. Use it with the terms page, not instead of it.",
+    description:
+      "Plain-language explanation of a VINCONNECT standard Starlink installation in Victoria, including optional conduit and cabinet extras.",
+    crumbs: crumbs("Standard install explained"),
+    image: "/media/botanic-ridge-double-storey.webp",
+    sections: [
+      {
+        heading: "The five parts",
+        copy: [],
+        list: [
+          "A mount the building can live with",
+          "A visible clipped outdoor cable",
+          "One sealed penetration",
+          "A brush plate inside",
+          "The router on that wall, near power",
+        ],
+      },
+      {
+        heading: "The two common extras",
+        copy: [
+          "Conduit $120. Garage or cabinet router $150. Direct bookings only, and only when agreed. Circl jobs follow the work order, not these extras, unless they are separately quoted.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Why is the cable visible?",
+        a: "Because concealing it is different labour. We will hide it when that labour is in the booking.",
+      },
+    ],
+    related: [
+      { href: "/customer-help/standard-install-scope", label: "Standard scope" },
+      { href: "/install-terms-and-conditions", label: "Install terms" },
+      { href: "/starlink/cable-entry-and-router", label: "Cable entry" },
+    ],
+  }),
+  page({
+    path: "/resources/wifi-calling",
+    slug: "wifi-calling",
+    kicker: "Guides",
+    title: "Wi-Fi calling after Starlink",
+    lede: "Once the internet is reliable, many mobiles will make calls over Wi-Fi. That is a handset and carrier setting, not a VINCONNECT product, and not a replacement we can guarantee for every number.",
+    description:
+      "Wi-Fi calling on a Starlink connection in rural Victoria. What VINCONNECT can set up, and what sits with your mobile carrier.",
+    crumbs: crumbs("Wi-Fi calling"),
+    image: "/scenes/whole-home-wifi.webp",
+    sections: [
+      {
+        heading: "What we can do",
+        copy: [
+          "Give you a working indoor service and, on a whole-property job, coverage in the rooms you named. We can check that a phone on site places a Wi-Fi call if your carrier and handset already support it.",
+        ],
+      },
+      {
+        heading: "What we cannot do",
+        copy: [
+          "Port your landline, promise every handset, or argue with a carrier about a number that will not register. Confirm Wi-Fi calling with your mobile provider.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Will this replace the copper phone?",
+        a: "For some households, yes, once they confirm with their carrier. We will not tell you to cancel copper until you have tested it.",
+      },
+    ],
+    related: [
+      { href: "/services/whole-property-wifi", label: "Whole-property Wi-Fi" },
+      { href: "/starlink/existing-nbn", label: "Starlink and NBN" },
+      { href: "/customer-help/after-your-install", label: "After your install" },
+    ],
+  }),
+  page({
+    path: "/resources/fixed-wireless-vs-starlink",
+    slug: "fixed-wireless-vs-starlink",
+    kicker: "Guides",
+    title: "Fixed wireless versus Starlink",
+    lede: "Tired fixed wireless is a common reason we are called. This page is a practical comparison for a Victorian property, not a speed-test war.",
+    description:
+      "When rural Victorian households move from NBN fixed wireless to Starlink, and when they should not. Independent installer notes.",
+    crumbs: crumbs("Fixed wireless vs Starlink"),
+    image: "/media/nyora-fixed-wireless-upgrade.webp",
+    sections: [
+      {
+        heading: "The usual complaint",
+        copy: [
+          "Evening slowdown, dropouts in weather, and a tower you can see that still does not serve the house. Completed jobs in Nyora, Caldermeade and Red Hill started there.",
+        ],
+      },
+      {
+        heading: "What Starlink does not fix",
+        copy: [
+          "A house with dead Wi-Fi rooms. A shed 180 metres away. A camera plan with no recorder. Those are property-network jobs on top of the dish.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Should I keep fixed wireless as backup?",
+        a: "Sometimes, for a business that cannot be off-air. Most homes do not. It is extra monthly cost for a reason you should be able to name.",
+      },
+    ],
+    related: [
+      { href: "/starlink/rural-properties", label: "Rural Starlink" },
+      { href: "/starlink/existing-nbn", label: "Existing NBN" },
+      { href: "/projects", label: "Completed jobs" },
+    ],
+  }),
+  page({
+    path: "/resources/planning-a-property-network",
+    slug: "planning-a-property-network",
+    kicker: "Guides",
+    title: "Planning a property network",
+    lede: "Mark the buildings. Write the distances. Name the jobs each building has to do. Then we talk hardware. The planner exists so this conversation is not a guess.",
+    description:
+      "How to plan a whole-property network in Victoria before buying Starlink accessories or cameras. VINCONNECT property planner.",
+    crumbs: crumbs("Planning a property network"),
+    cta: PLAN_CTA,
+    image: "/scenes-new/acreage-network.jpg",
+    sections: [
+      {
+        heading: "A usable sketch",
+        copy: [
+          "House, shed, stables, gate, power at each, and a note if trees sit in the path. That is enough to quote a first stage. Photos from each end of a proposed link help.",
+        ],
+      },
+      {
+        heading: "Do not start in the shopping cart",
+        copy: [
+          "Cameras, mesh nodes and a dish bought on three different weekends is how you end up with four passwords and no recorder. Plan, then buy, then we install.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Do I have to use the planner?",
+        a: "No. A marked aerial printout or a phone video walking the place is fine. The planner just makes the distances honest.",
+      },
+    ],
+    related: [
+      { href: "/property-planner", label: "Property planner" },
+      { href: "/property-networks", label: "Property networks" },
+      { href: "/resources/downloads/property-wifi-checklist", label: "Wi-Fi checklist PDF" },
+    ],
+  }),
+  page({
+    path: "/resources/cctv-on-starlink",
+    slug: "cctv-on-starlink",
+    kicker: "Guides",
+    title: "CCTV on a Starlink connection",
+    lede: "Cameras need a network, a recorder, power and an upstream that stays up. Starlink can be that upstream. It is not a camera system by itself.",
+    description:
+      "Running HiLook CCTV over Starlink on Victorian rural properties. Recording on site, remote view, and why the network plan comes first.",
+    crumbs: crumbs("CCTV on Starlink"),
+    image: "/scenes-new/property-cctv.jpg",
+    sections: [
+      {
+        heading: "Record locally",
+        copy: [
+          "Remote view is a bonus. Recording should still happen on the property if the sky or the app has a bad night. Retention and a recorder that stays powered are part of the camera conversation.",
+        ],
+      },
+      {
+        heading: "Bandwidth is not the first question",
+        copy: [
+          "Views, power and the link to the recorder are. We can talk remote playback once those exist. Do not point eight cameras at a house mesh and a residential dish and call it designed.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you supply HiLook?",
+        a: "Packages are specified with hardware and labour starting prices. We are not Hikvision or HiLook, and we are not officially endorsed by them.",
+      },
+    ],
+    related: [
+      { href: "/security", label: "CCTV cluster" },
+      { href: "/security/hilook-cctv-packages", label: "HiLook packages" },
+      { href: "/property-networks", label: "Property networks" },
+    ],
+  }),
+  page({
+    path: "/resources/rural-connectivity-options",
+    slug: "rural-connectivity-options",
+    kicker: "Guides",
+    title: "Rural connectivity options",
+    lede: "Fibre, fixed wireless, mobile, and LEO satellite each have a job. VINCONNECT installs Starlink and the network behind it. We do not pretend satellite replaces every other build.",
+    description:
+      "Rural internet options in Victoria in plain language: where Starlink fits, and where fibre, mobile or fixed wireless still matter.",
+    crumbs: crumbs("Rural connectivity options"),
+    image: "/scenes-new/gippsland-farm.jpg",
+    sections: [
+      {
+        heading: "A toolkit, not a religion",
+        copy: [
+          "If fibre is at the gate, that conversation is different. If the tower does not serve the house, Starlink is often the practical path. Mobile remains the backup a lot of properties already have in their pocket.",
+        ],
+      },
+      {
+        heading: "After the internet arrives",
+        copy: [
+          "On-farm networking is the part people skip. Sheds, cameras and a gate hut do not get online because the dish is pretty. Rural Connections is the community side of the same observation.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Can you get me a grant?",
+        a: "No. We can point at published programs as information. Eligibility sits with the program. Grants are not the public story of Rural Connections.",
+      },
+    ],
+    related: [
+      { href: "/services/rural-connectivity", label: "Rural connectivity service" },
+      { href: "/rural-connections", label: "Rural Connections" },
+      { href: "/rural-connections/info-hub", label: "Info hub" },
+      { href: "/starlink/rural-properties", label: "Rural Starlink guide" },
+    ],
+  }),
+];
