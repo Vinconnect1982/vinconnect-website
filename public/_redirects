@@ -6,6 +6,7 @@
 /wifi-calling                     /resources/wifi-calling                  301
 /wireless                         /services/wireless-links                 301
 /point-to-point                   /services/wireless-links                 301
+/services/point-to-point-links    /services/wireless-links                 301
 /cctv                             /services/cctv                           301
 /cameras                          /services/cctv                           301
 /hilook                           /security/hilook-cctv-packages           301
@@ -28,7 +29,7 @@
 /home                             /                                        301
 /faq                              /customer-help                           301
 /faqs                             /customer-help                           301
-/blog                             /resources                               301
+/blog                             /journal                                 301
 /downloads                        /resources/downloads                     301
 /guides                           /resources                               301
 /capability                       /about/capability                        301

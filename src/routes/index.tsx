@@ -31,15 +31,15 @@ const FEATURES = [
     title: "Country living. Connected.",
     copy: "A considered Starlink installation brings work, calls and everyday life back within reach.",
     image: "/scenes/starlink-home.webp",
-    cta: "Explore starlink installation",
+    cta: "Explore Starlink installation",
   },
   {
     href: "/services/whole-property-wifi",
     kicker: "Whole-Property Wi-Fi",
     title: "Room to live. Room to connect.",
-    copy: "From the home office to the back veranda, give every space a reliable Wi-Fi plan.",
+    copy: "From the home office to the back verandah, give every space a reliable Wi-Fi plan.",
     image: "/scenes/whole-home-wifi.webp",
-    cta: "Explore whole-property wi-fi",
+    cta: "Explore whole-property Wi-Fi",
   },
   {
     href: "/services/wireless-links",
@@ -47,7 +47,7 @@ const FEATURES = [
     title: "Take the connection further.",
     copy: "Keep the workshop, stable or second building connected with a dedicated wireless link.",
     image: "/scenes/building-links.webp",
-    cta: "Explore tp-link omada wireless links",
+    cta: "Explore wireless links",
   },
   {
     href: "/services/cctv",
@@ -131,18 +131,18 @@ function Home() {
 
       <section className="border-y border-line bg-ink-2">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <p className="kicker">Find the right door</p>
-          <h2 className="mt-3 font-display text-3xl">Help, Circl, events and the rest of the property.</h2>
+          <p className="kicker">Where to start</p>
+          <h2 className="mt-3 font-display text-3xl">Pick the job you actually have.</h2>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { href: "/customer-help", title: "Customer help", copy: "Before, during and after the visit." },
-              { href: "/circl-starlink-installations", title: "Circl customers", copy: "Two deliveries. Sealed box. Circl tracking." },
-              { href: "/starlink", title: "Starlink guides", copy: "Mounts, cable, Mini, rural and home." },
-              { href: "/property-networks", title: "Property networks", copy: "Wi-Fi, sheds, cabinets, horse properties." },
-              { href: "/security", title: "CCTV", copy: "Views first. Packages when they fit." },
-              { href: "/event-link", title: "Event Link", copy: "Shows, trials and community hubs." },
-              { href: "/rural-connections", title: "Rural Connections", copy: "People first. Roadshow and info hub." },
-              { href: "/vingear", title: "VIN Gear", copy: "Products in development. Interest only." },
+              { href: "/customer-help", title: "Customer help", copy: "What to have ready, what the visit includes, and who to call afterwards." },
+              { href: "/circl-starlink-installations", title: "Circl customers", copy: "The kit and the mounts often arrive separately. Leave the Starlink box sealed until we are there." },
+              { href: "/starlink", title: "Starlink guides", copy: "How the dish goes on a home, rural property or caravan, and what the labour includes." },
+              { href: "/property-networks", title: "Property networks", copy: "Wi-Fi through the house, and a proper link to the shed, stable or second building." },
+              { href: "/security", title: "CCTV", copy: "Camera views planned first. A package only when it fits the property." },
+              { href: "/event-link", title: "Event Link", copy: "Temporary Starlink and Wi-Fi for shows, trials and club days. A 2026–27 pilot." },
+              { href: "/rural-connections", title: "Rural Connections", copy: "A travelling hub at rural shows — shade, free Wi-Fi and useful information." },
+              { href: "/vingear", title: "VIN Gear", copy: "Products we are still developing. Register interest. Nothing is for sale yet." },
             ].map((item) => (
               <AppLink key={item.href} to={item.href} className="rounded-xl border border-line bg-surface p-4 hover:border-mint">
                 <h3 className="font-display text-lg">{item.title}</h3>
@@ -164,7 +164,7 @@ function Home() {
           </div>
           <div className="px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
             <p className="kicker">Whole-property connectivity</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">Designed beyond the router.</h2>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">The internet is only the start.</h2>
             <p className="mt-4 text-muted">
               Homes and rural properties rarely fail because of the internet service alone. The weak
               point is often Wi-Fi placement, building materials, distance, cabling or a network that
@@ -199,7 +199,7 @@ function Home() {
           <AppLink to="/security/stable-cctv" className="overflow-hidden rounded-xl border border-line">
             <img src="/visuals/stable-cctv.webp" alt="" className="h-56 w-full object-cover" />
             <div className="p-5">
-              <h3 className="font-display text-2xl">A closer eye on the stable.</h3>
+              <h3 className="font-display text-2xl">Check the stable from the house.</h3>
               <p className="mt-2 text-sm text-muted">
                 Plan cameras, recording and remote access for your horse property.
               </p>
@@ -295,7 +295,7 @@ function Home() {
             <div className="p-5">
               <h3 className="font-display text-2xl">Event Link pilot</h3>
               <p className="mt-2 text-sm text-muted">
-                Packed so it can stand up in a paddock. No retail SKU yet — organisers can register.
+                Packed so it can stand up in a paddock. A 2026–27 pilot — organisers can register.
               </p>
               <span className="mt-3 inline-block text-sm text-mint">Event Link brief →</span>
             </div>

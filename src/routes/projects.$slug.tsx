@@ -88,9 +88,7 @@ function ProjectPage() {
           )}
 
           <p className="mt-8 text-sm text-muted">
-            Completed installation in {project.place}. Scope, mounting and cable routes are always
-            confirmed on site — this page is a record of finished work, not a quote. Customer names,
-            street addresses, phone numbers and work-order references are not published.
+            Completed installation in {project.place}. The photos show finished work, not a quote. We do not list the customer’s name, street address or phone number.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

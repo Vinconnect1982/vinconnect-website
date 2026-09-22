@@ -30,13 +30,13 @@ export const EVENT_LINK_PAGES: Article[] = [
     slug: "mini",
     kicker: "Event Link Mini",
     title: "Event Link Mini",
-    lede: "A smaller, rapidly deployable Starlink and Wi-Fi kit for club days, trials and committee areas. Mini is a design we can discuss — it is not a certified product SKU, and it is not a completed showgrounds network.",
+    lede: "A smaller Starlink and Wi-Fi kit for club days, trials and committee areas. We can plan it with you. It is not a finished showgrounds network, and it is not something you can buy off the shelf.",
     description:
       "VINCONNECT Event Link Mini: compact event connectivity for rural clubs and smaller gatherings. Design and proposal examples only. Not a certified product.",
     image: "/scenes-new/event-link-kit.jpg",
     crumbs: crumbs("Mini"),
     status:
-      "Event Link Mini is a deployment approach inside the 2026–27 Event Link pilot. There is no retail SKU, published price list, or certification claim. A Barham-style layout, if mentioned in conversation, is a design example — not a completed install and not a public quote.",
+      "Event Link Mini is the smaller end of the 2026–27 pilot. There is no public price list and no certification claim. A layout drawn for a particular event stays private until that event is booked and delivered.",
     points: [
       "Starlink upstream, usually a Mini or residential kit as scoped",
       "A short guest Wi-Fi umbrella for the hub or committee area",
@@ -53,8 +53,8 @@ export const EVENT_LINK_PAGES: Article[] = [
       {
         heading: "What Mini is not",
         copy: [
-          "It is not a promise to cover an entire showgrounds. It is not a substitute for a venue’s existing paid Wi-Fi contract. It is not a certified, type-approved ‘product’ with an IP rating, a launch date or a public price.",
-          "Design sketches prepared for a particular event remain proposals until that event is booked and delivered. They will not be published here as completed work.",
+          "It is not a promise to cover an entire showgrounds. It is not a substitute for a venue’s existing paid Wi-Fi contract. It is not a finished product with a waterproof rating, a launch date or a public price.",
+          "A layout prepared for one event stays a proposal until that event is booked and delivered. We will not show it here as a finished job.",
         ],
       },
       {
@@ -67,11 +67,11 @@ export const EVENT_LINK_PAGES: Article[] = [
     faqs: [
       {
         q: "Can you quote Mini for our show?",
-        a: "Yes, as a scoped activation. There is no public price card. Tell us dates, people and what has to stay online.",
+        a: "Yes, as a scoped job for that event. There is no public price card. Tell us the dates, how many people, and what has to stay online.",
       },
       {
-        q: "Is Barham a completed VINCONNECT job?",
-        a: "No. Any Barham layout you may have seen in a private discussion is a design example only. It is not published as a finished install and draft pricing is not on this site.",
+        q: "Is Mini a product I can order?",
+        a: "Not yet. It is part of the 2026–27 pilot. We quote it for a specific event. We do not sell it as a boxed product.",
       },
     ],
     related: [
@@ -96,9 +96,9 @@ export const EVENT_LINK_PAGES: Article[] = [
       "Development concept only. No certification, IP rating, launch date, price or availability is claimed. The 2026–27 pilot and organiser register are the live conversation.",
     sections: [
       {
-        heading: "Why it is on the website",
+        heading: "Not a product yet",
         copy: [
-          "Organisers ask whether Event Link becomes a product. The honest answer is: not yet. The pilot is how we learn what a Victorian showground actually needs. Publishing a fictional storefront would be the wrong kind of useful.",
+          "Organisers ask whether Event Link becomes something you can buy. Not yet. The pilot is how we learn what a Victorian showground actually needs.",
         ],
       },
       {

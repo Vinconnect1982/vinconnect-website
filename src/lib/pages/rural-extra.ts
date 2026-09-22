@@ -95,7 +95,7 @@ export const RURAL_EXTRA: Article[] = [
     slug: "community-wifi",
     kicker: "Rural Connections",
     title: "Community Wi-Fi at the hub",
-    lede: "Free, no marketing opt-in, sized for the hub — not a promise to cover the whole showgrounds. That distinction matters and we will keep repeating it.",
+    lede: "Free, no marketing opt-in, and sized for the hub. It is not a promise to cover the whole showgrounds.",
     description:
       "Community Wi-Fi at VINCONNECT Rural Connection Hubs. No email capture. Not a showgrounds-wide network.",
     crumbs: crumbs("Community Wi-Fi"),

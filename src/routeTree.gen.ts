@@ -17,6 +17,7 @@ import { Route as CustomerHelpRouteImport } from './routes/customer-help'
 import { Route as EstimateRouteImport } from './routes/estimate'
 import { Route as EventLinkRouteImport } from './routes/event-link'
 import { Route as InstallTermsAndConditionsRouteImport } from './routes/install-terms-and-conditions'
+import { Route as JournalRouteImport } from './routes/journal'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PropertyNetworksRouteImport } from './routes/property-networks'
 import { Route as PropertyPlannerRouteImport } from './routes/property-planner'
@@ -37,6 +38,8 @@ import { Route as CustomerHelpSlugRouteImport } from './routes/customer-help.$sl
 import { Route as EventLinkIndexRouteImport } from './routes/event-link.index'
 import { Route as EventLinkSlugRouteImport } from './routes/event-link.$slug'
 import { Route as EventLinkOrganisersRouteImport } from './routes/event-link.organisers'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as PropertyNetworksIndexRouteImport } from './routes/property-networks.index'
@@ -104,6 +107,11 @@ const InstallTermsAndConditionsRoute =
     path: '/install-terms-and-conditions',
     getParentRoute: () => rootRouteImport,
   } as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -207,6 +215,16 @@ const EventLinkOrganisersRoute = EventLinkOrganisersRouteImport.update({
   id: '/organisers',
   path: '/organisers',
   getParentRoute: () => EventLinkRoute,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => JournalRoute,
+} as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
@@ -338,6 +356,7 @@ export interface FileRoutesByFullPath {
   '/estimate': typeof EstimateRoute
   '/event-link': typeof EventLinkRouteWithChildren
   '/install-terms-and-conditions': typeof InstallTermsAndConditionsRoute
+  '/journal': typeof JournalRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/property-networks': typeof PropertyNetworksRouteWithChildren
   '/property-planner': typeof PropertyPlannerRoute
@@ -354,6 +373,7 @@ export interface FileRoutesByFullPath {
   '/customer-help/$slug': typeof CustomerHelpSlugRoute
   '/event-link/$slug': typeof EventLinkSlugRoute
   '/event-link/organisers': typeof EventLinkOrganisersRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/property-networks/$slug': typeof PropertyNetworksSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -368,6 +388,7 @@ export interface FileRoutesByFullPath {
   '/circl-starlink-installations/': typeof CirclStarlinkInstallationsIndexRoute
   '/customer-help/': typeof CustomerHelpIndexRoute
   '/event-link/': typeof EventLinkIndexRoute
+  '/journal/': typeof JournalIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/property-networks/': typeof PropertyNetworksIndexRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -400,6 +421,7 @@ export interface FileRoutesByTo {
   '/customer-help/$slug': typeof CustomerHelpSlugRoute
   '/event-link/$slug': typeof EventLinkSlugRoute
   '/event-link/organisers': typeof EventLinkOrganisersRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/property-networks/$slug': typeof PropertyNetworksSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -414,6 +436,7 @@ export interface FileRoutesByTo {
   '/circl-starlink-installations': typeof CirclStarlinkInstallationsIndexRoute
   '/customer-help': typeof CustomerHelpIndexRoute
   '/event-link': typeof EventLinkIndexRoute
+  '/journal': typeof JournalIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/property-networks': typeof PropertyNetworksIndexRoute
   '/resources': typeof ResourcesIndexRoute
@@ -439,6 +462,7 @@ export interface FileRoutesById {
   '/estimate': typeof EstimateRoute
   '/event-link': typeof EventLinkRouteWithChildren
   '/install-terms-and-conditions': typeof InstallTermsAndConditionsRoute
+  '/journal': typeof JournalRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/property-networks': typeof PropertyNetworksRouteWithChildren
   '/property-planner': typeof PropertyPlannerRoute
@@ -455,6 +479,7 @@ export interface FileRoutesById {
   '/customer-help/$slug': typeof CustomerHelpSlugRoute
   '/event-link/$slug': typeof EventLinkSlugRoute
   '/event-link/organisers': typeof EventLinkOrganisersRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/property-networks/$slug': typeof PropertyNetworksSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
@@ -469,6 +494,7 @@ export interface FileRoutesById {
   '/circl-starlink-installations/': typeof CirclStarlinkInstallationsIndexRoute
   '/customer-help/': typeof CustomerHelpIndexRoute
   '/event-link/': typeof EventLinkIndexRoute
+  '/journal/': typeof JournalIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/property-networks/': typeof PropertyNetworksIndexRoute
   '/resources/': typeof ResourcesIndexRoute
@@ -495,6 +521,7 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/event-link'
     | '/install-terms-and-conditions'
+    | '/journal'
     | '/privacy'
     | '/property-networks'
     | '/property-planner'
@@ -511,6 +538,7 @@ export interface FileRouteTypes {
     | '/customer-help/$slug'
     | '/event-link/$slug'
     | '/event-link/organisers'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/property-networks/$slug'
     | '/resources/$slug'
@@ -525,6 +553,7 @@ export interface FileRouteTypes {
     | '/circl-starlink-installations/'
     | '/customer-help/'
     | '/event-link/'
+    | '/journal/'
     | '/projects/'
     | '/property-networks/'
     | '/resources/'
@@ -557,6 +586,7 @@ export interface FileRouteTypes {
     | '/customer-help/$slug'
     | '/event-link/$slug'
     | '/event-link/organisers'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/property-networks/$slug'
     | '/resources/$slug'
@@ -571,6 +601,7 @@ export interface FileRouteTypes {
     | '/circl-starlink-installations'
     | '/customer-help'
     | '/event-link'
+    | '/journal'
     | '/projects'
     | '/property-networks'
     | '/resources'
@@ -595,6 +626,7 @@ export interface FileRouteTypes {
     | '/estimate'
     | '/event-link'
     | '/install-terms-and-conditions'
+    | '/journal'
     | '/privacy'
     | '/property-networks'
     | '/property-planner'
@@ -611,6 +643,7 @@ export interface FileRouteTypes {
     | '/customer-help/$slug'
     | '/event-link/$slug'
     | '/event-link/organisers'
+    | '/journal/$slug'
     | '/projects/$slug'
     | '/property-networks/$slug'
     | '/resources/$slug'
@@ -625,6 +658,7 @@ export interface FileRouteTypes {
     | '/circl-starlink-installations/'
     | '/customer-help/'
     | '/event-link/'
+    | '/journal/'
     | '/projects/'
     | '/property-networks/'
     | '/resources/'
@@ -650,6 +684,7 @@ export interface RootRouteChildren {
   EstimateRoute: typeof EstimateRoute
   EventLinkRoute: typeof EventLinkRouteWithChildren
   InstallTermsAndConditionsRoute: typeof InstallTermsAndConditionsRoute
+  JournalRoute: typeof JournalRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   PropertyNetworksRoute: typeof PropertyNetworksRouteWithChildren
   PropertyPlannerRoute: typeof PropertyPlannerRoute
@@ -731,6 +766,13 @@ declare module '@tanstack/react-router' {
       path: '/install-terms-and-conditions'
       fullPath: '/install-terms-and-conditions'
       preLoaderRoute: typeof InstallTermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -872,6 +914,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/event-link/organisers'
       preLoaderRoute: typeof EventLinkOrganisersRouteImport
       parentRoute: typeof EventLinkRoute
+    }
+    '/journal/': {
+      id: '/journal/'
+      path: '/'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof JournalRoute
+    }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
     }
     '/projects/': {
       id: '/projects/'
@@ -1110,6 +1166,19 @@ const EventLinkRouteWithChildren = EventLinkRoute._addFileChildren(
   EventLinkRouteChildren,
 )
 
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+  JournalIndexRoute: typeof JournalIndexRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+  JournalIndexRoute: JournalIndexRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
+
 interface PropertyNetworksRouteChildren {
   PropertyNetworksSlugRoute: typeof PropertyNetworksSlugRoute
   PropertyNetworksIndexRoute: typeof PropertyNetworksIndexRoute
@@ -1173,6 +1242,7 @@ const rootRouteChildren: RootRouteChildren = {
   EstimateRoute: EstimateRoute,
   EventLinkRoute: EventLinkRouteWithChildren,
   InstallTermsAndConditionsRoute: InstallTermsAndConditionsRoute,
+  JournalRoute: JournalRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   PropertyNetworksRoute: PropertyNetworksRouteWithChildren,
   PropertyPlannerRoute: PropertyPlannerRoute,

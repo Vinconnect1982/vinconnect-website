@@ -56,7 +56,7 @@ function EventLinkPage() {
             </ul>
           </section>
           <section>
-            <h2 className="font-display text-2xl">Where it is for</h2>
+            <h2 className="font-display text-2xl">Where it is used</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-muted">
               {EVENT_LINK.useCases.map((i) => (
                 <li key={i}>{i}</li>
@@ -109,8 +109,7 @@ function EventLinkPage() {
           <div>
             <h2 className="font-display text-2xl">Register interest for 2026–27.</h2>
             <p className="mt-3 text-muted">
-              No retail SKU yet. Tell us the event, dates and whether you need a public hub, a
-              committee office, or both.
+              Tell us the event, the dates, and whether you need Wi-Fi for the public, the committee, or both. There is no set price list yet.
             </p>
           </div>
           <EnquiryForm type="event-link" selectedPackage="Event Link pilot" buttonLabel="Request Event Connectivity" />

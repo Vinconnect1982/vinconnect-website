@@ -88,13 +88,13 @@ export const VINGEAR: Article[] = [
       {
         heading: "The idea",
         copy: [
-          "Rural setups and event kits spend a lot of time being handled in the dark. A cable that shows where it is — without becoming a product claim we cannot stand behind — is the brief. Modular versus integrated construction, lighting colour and how the cable is powered are still design questions, not published facts.",
+          "Rural setups and event kits get handled in the dark. Pulse is a cable you can see at night. How it is built, how it lights, and how it is powered are still being worked out. Those details are not specifications yet.",
         ],
       },
       {
         heading: "What we will not say yet",
         copy: [
-          "We will not publish an IP rating, a wattage, a USB power figure, a length as a confirmed SKU, a price, or a week it ships. Internal working notes stay internal until they survive the same standard we use on install claims.",
+          "There is no waterproof rating, power figure, confirmed length, price or shipping date on this page. We will only put those here once they are confirmed the same way we confirm an install.",
         ],
       },
       {
@@ -107,7 +107,7 @@ export const VINGEAR: Article[] = [
     faqs: [
       {
         q: "I saw a length and a price in a private document.",
-        a: "Working figures in an internal strategy note are not public offers. If it is not on this page, it is not a published specification.",
+        a: "Anything you have seen privately is not a price or a specification. If it is not written here, it is not confirmed.",
       },
     ],
     related: [
@@ -136,7 +136,7 @@ export const VINGEAR: Article[] = [
       {
         heading: "What you are not signing up for",
         copy: [
-          "A guaranteed unit, a discount we have not published, or a specification that does not exist yet.",
+          "A guaranteed unit, a discount, or a specification we have not finished yet.",
         ],
       },
     ],

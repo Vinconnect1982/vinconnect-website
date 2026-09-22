@@ -1,3 +1,4 @@
+import { ArticleVisual } from "@/components/infographics";
 import { AppLink } from "@/components/app-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { EnquiryForm } from "@/components/enquiry-form";
@@ -21,6 +22,7 @@ const CLUSTER_LABEL: Record<string, string> = {
   about: "About",
   resources: "Guides",
   rural: "Rural Connections",
+  journal: "Field notes",
   legal: "Terms",
 };
 
@@ -144,6 +146,19 @@ export function ArticlePage({ page }: { page: Article }) {
               </li>
             ))}
           </ul>
+        )}
+
+        {page.visual && <ArticleVisual name={page.visual} />}
+
+        {page.gallery && page.gallery.length > 0 && (
+          <div className="mt-10 grid gap-3 sm:grid-cols-2">
+            {page.gallery.map((g) => (
+              <figure key={g.src} className="overflow-hidden rounded-xl border border-line">
+                <img src={g.src} alt={g.alt} className="h-56 w-full object-cover sm:h-64" />
+                <figcaption className="px-3 py-2 text-xs text-muted">{g.alt}</figcaption>
+              </figure>
+            ))}
+          </div>
         )}
 
         {page.children && page.children.length > 0 && (

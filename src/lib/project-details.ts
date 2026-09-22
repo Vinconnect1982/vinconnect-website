@@ -38,7 +38,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       "FrogBox streaming integrated with the existing rack",
       "Replaced a Telstra 4G connection that had been carrying the club",
     ],
-    note: "A community venue, not a house. Guest and operations traffic need to stay apart — the same thinking as Event Link, at a permanent site. Names of committee members are not published.",
+    note: "A community venue, not a house. Guest Wi-Fi and the club’s own network stay apart — the same idea as Event Link, on a permanent site.",
     guides: [
       { href: "/solutions/businesses-and-clubs", label: "Businesses and clubs" },
       { href: "/services/community-connectivity", label: "Community networks" },

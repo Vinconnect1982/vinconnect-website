@@ -4,6 +4,13 @@ export const EMAIL = "vince@vinconnect.com.au";
 export const EMAIL_MAILTO = "mailto:vince@vinconnect.com.au";
 export const SITE_URL = "https://vinconnect.com.au";
 
+export const SOCIALS = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/",
+  },
+] as const;
+
 export type NavChild = { label: string; href: string };
 export type NavItem = { label: string; href: string; children?: NavChild[] };
 
@@ -88,6 +95,7 @@ export const NAV: NavItem[] = [
     href: "/customer-help",
     children: [
       { label: "Customer help", href: "/customer-help" },
+      { label: "Field notes", href: "/journal" },
       { label: "Install terms", href: "/install-terms-and-conditions" },
       { label: "Circl installations", href: "/circl-starlink-installations" },
       { label: "Guides & answers", href: "/resources" },
@@ -136,7 +144,11 @@ export const SERVICES: ServicePage[] = [
       },
       {
         heading: "Starting labour, not a Starlink sale",
-        copy: "VINCONNECT prices installation labour. Starlink hardware, mounts and subscriptions are separately itemised. Confirm current Starlink offers at checkout before you pay.",
+        copy: "VINCONNECT prices installation labour. Standard single-storey Starlink labour is $300 in the local Cranbourne work area. Starlink hardware, mounts and subscriptions are separately itemised. Travel is added automatically when the address sits outside that local band. Confirm current Starlink offers at checkout before you pay.",
+      },
+      {
+        heading: "What the $300 includes",
+        copy: "Sky view and a mount the building can live with, a visible clipped outdoor cable, one sealed penetration and a brush plate, the router on the backing interior wall near power, commissioning and a short handover. Conduit ($120), garage or cabinet router ($150), double-storey access and extra Wi-Fi areas are extras when they are agreed.",
       },
     ],
   },
@@ -145,7 +157,7 @@ export const SERVICES: ServicePage[] = [
     group: "network",
     kicker: "Whole-property Wi-Fi",
     title: "Room to live. Room to connect.",
-    lede: "From the home office to the back veranda, give every space a reliable Wi-Fi plan — not another consumer mesh dropped in a cupboard.",
+    lede: "From the home office to the back verandah, give every space a reliable Wi-Fi plan — not another consumer mesh dropped in a cupboard.",
     image: "/scenes/whole-home-wifi.webp",
     points: [
       "Coverage mapped to how the property is actually used",
@@ -186,6 +198,10 @@ export const SERVICES: ServicePage[] = [
         heading: "When trenching is the wrong answer",
         copy: "Long trenches across driveways and paddocks are expensive, slow and easy to damage. A clean line-of-sight link is often the tidier, faster path.",
       },
+      {
+        heading: "Point-to-point is the same job with a longer name",
+        copy: "If the shed is 80 metres away and house Wi-Fi dies at the clothesline, this is the page. We survey line of sight, specify managed radios, and plan grounding and mounting for Victorian weather. The property planner is the fastest way to drop both buildings before anyone quotes a cable length.",
+      },
     ],
   },
   {
@@ -206,6 +222,10 @@ export const SERVICES: ServicePage[] = [
       {
         heading: "One system, built in stages",
         copy: "Start with the connection, then extend it cleanly to the house, shed, stable, arena, gate, cameras and accommodation. You do not have to do everything on day one.",
+      },
+      {
+        heading: "The dish only gets internet to one building",
+        copy: "Starlink or NBN gets internet to one building. House Wi-Fi, a wireless link to the shed, and cameras are separate hops. Pearcedale, Tooradin and Caldermeade jobs all started with that conversation.",
       },
     ],
   },
@@ -245,6 +265,10 @@ export const SERVICES: ServicePage[] = [
       {
         heading: "Cameras live on the network",
         copy: "A camera that cannot reach a recorder or the internet is just a box on a wall. We treat CCTV as part of the property network, not a separate afterthought.",
+      },
+      {
+        heading: "Views first, kit second",
+        copy: "HiLook packages exist when they fit — Home Watch 4, Property Guard 6, Acreage 8, Stable & Yard. If the views you need do not match a kit, we plan cameras, power and recording instead of forcing a box count.",
       },
     ],
   },
@@ -302,8 +326,8 @@ export const SERVICES: ServicePage[] = [
     slug: "equestrian-connectivity",
     group: "network",
     kicker: "Equestrian connectivity",
-    title: "A closer eye on the stable.",
-    lede: "Plan cameras, recording and remote access for your horse property — with Wi-Fi that reaches the arena, tack room and house.",
+    title: "The horse property, connected.",
+    lede: "Wi-Fi that reaches the arena, tack room and house, with cameras and recording planned around how the property is actually used.",
     image: "/scenes-new/horse-property.jpg",
     points: [
       "Stable and arena camera views",
@@ -312,7 +336,7 @@ export const SERVICES: ServicePage[] = [
     ],
     body: [
       {
-        heading: "Built around the horses, not the brochure",
+        heading: "Built around the horses",
         copy: "Dust, metal sheds, long runs and odd power points are normal on a horse property. The design starts there.",
       },
     ],
@@ -322,9 +346,14 @@ export const SERVICES: ServicePage[] = [
     group: "network",
     kicker: "Point-to-point",
     title: "A dedicated path between buildings.",
-    lede: "When the shed is 80 metres away and the house Wi-Fi dies at the clothesline, a dedicated link is the grown-up answer.",
+    lede: "When the shed is 80 metres away and the house Wi-Fi dies at the clothesline, a dedicated link is the grown-up answer. This is the same work as our wireless building links — one page, one job type.",
+    image: "/scenes/building-links.webp",
     points: ["Line-of-sight survey", "Omada or equivalent managed radios", "Grounding and mounting for Victorian weather"],
     body: [
+      {
+        heading: "Same job as wireless building links",
+        copy: "We keep this page so older bookmarks still work. The current guide, planner and quote path live on wireless building links. Use that page unless you arrived here from a printed note.",
+      },
       {
         heading: "Measured, not guessed",
         copy: "Use the property planner to drop the house and the second building, then we will check whether a link, a trench or a hybrid is the honest recommendation.",
@@ -407,7 +436,7 @@ export const SECURITY: ServicePage[] = [
     body: [
       {
         heading: "Part of the property network",
-        copy: "Stable cameras only help if the link back to the house is reliable. Dust, metal sheds and odd power points are normal — the design starts there, not with a four-camera brochure.",
+        copy: "Stable cameras only help if the link back to the house is reliable. Dust, metal sheds and odd power points are normal — the design starts there, not with a camera count from a catalogue.",
       },
       {
         heading: "Overnight is the point",

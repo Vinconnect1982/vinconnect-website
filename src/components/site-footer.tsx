@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { AppLink } from "@/components/app-link";
 import { Button } from "@/components/ui/button";
-import { AREAS, EMAIL, EMAIL_MAILTO, FOOTER_AREAS, PHONE, PHONE_TEL } from "@/lib/content";
+import { AREAS, EMAIL, EMAIL_MAILTO, FOOTER_AREAS, PHONE, PHONE_TEL, SOCIALS } from "@/lib/content";
 
 export function SiteFooter() {
   return (
@@ -59,8 +59,16 @@ export function SiteFooter() {
               <li><Link to="/rural-connections" className="hover:text-fg">Rural Connections</Link></li>
               <li><Link to="/event-link" className="hover:text-fg">Event Link</Link></li>
               <li><AppLink to="/vingear" className="hover:text-fg">VIN Gear</AppLink></li>
+              <li><Link to="/journal" className="hover:text-fg">Field notes</Link></li>
               <li><Link to="/contact" className="hover:text-fg">Contact us</Link></li>
               <li><Link to="/privacy" className="hover:text-fg">Privacy</Link></li>
+              {SOCIALS.map((s) => (
+                <li key={s.href}>
+                  <a href={s.href} className="hover:text-fg" target="_blank" rel="noreferrer">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

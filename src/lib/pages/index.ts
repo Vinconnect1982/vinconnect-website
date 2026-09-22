@@ -3,6 +3,7 @@ import { CIRCL } from "./circl";
 import { CUSTOMER_HELP } from "./customer-help";
 import { EVENT_LINK_PAGES } from "./event-link-pages";
 import { INSTALL_TERMS } from "./install-terms";
+import { JOURNAL } from "./journal";
 import { PROPERTY_NETWORKS } from "./property-networks";
 import { RESOURCE_GUIDES } from "./resources-guides";
 import { RURAL_EXTRA } from "./rural-extra";
@@ -17,6 +18,7 @@ export { COMMERCIAL_RELATED } from "./commercial-related";
 
 export const ARTICLES: Article[] = [
   INSTALL_TERMS,
+  ...JOURNAL,
   ...CUSTOMER_HELP,
   ...CIRCL,
   ...STARLINK,

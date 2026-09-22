@@ -73,7 +73,7 @@ const DOCS = [
       <h2>Power</h2>
       <p>Is there a power point at each building you want covered? Is the shed on the same switchboard? Do you want a UPS on the router and recorder?</p>
       <h2>Who uses what</h2>
-      <p>Work from home, cameras, guests, machinery telemetry, kids on the back veranda — say so. Traffic types change the design.</p>
+      <p>Work from home, cameras, guests, machinery telemetry, kids on the back verandah — say so. Traffic types change the design.</p>
       <h2>Existing kit</h2>
       <p>NBN, OptiComm, Starlink already on site, mesh nodes, a data cabinet, CCTV that must stay. Photos of the rack save a conversation.</p>
       <p class="foot">Planner: vinconnect.com.au/property-planner</p>
@@ -127,7 +127,7 @@ const DOCS = [
     title: "Event Link one-pager",
     kicker: "Pilot product · 2026–27",
     body: `
-      <p class="lede">VINCONNECT Event Link is a rapidly deployable Starlink and managed Wi-Fi kit for agricultural shows, field days, clubs and rural community events. There is no retail SKU yet.</p>
+      <p class="lede">VINCONNECT Event Link is a rapidly deployable Starlink and managed Wi-Fi kit for agricultural shows, field days, clubs and rural community events. It is a 2026–27 pilot, not a product you can buy off the shelf.</p>
       <h2>What stands up in the paddock</h2>
       <ul>
         <li>Starlink as the upstream internet (organiser plan, or included in the activation quote)</li>
@@ -141,7 +141,7 @@ const DOCS = [
         <li>A substitute for an existing paid venue Wi-Fi contract unless scoped</li>
         <li>A marketing list — community Wi-Fi does not require a marketing opt-in</li>
       </ul>
-      <p>Drawn from VINCONNECT’s Rural Connections discussion paper. No separate Event Link brochure was on file; this is the public brief.</p>
+      <p>Organisers can register interest. Coverage is the area we agree, not an entire showgrounds.</p>
       <p class="foot">vinconnect.com.au/event-link · organisers: vinconnect.com.au/event-link/organisers</p>
     `,
   },

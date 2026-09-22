@@ -29,8 +29,8 @@ export const STARLINK: Article[] = [
     path: "/starlink",
     slug: "index",
     kicker: "Starlink, explained",
-    title: "Starlink installation in Victoria, without the brochure language",
-    lede: "How a dish actually goes on a Victorian home, rural property or caravan — mounts, cable entry, double-storey, Mini kits and what VINCONNECT will and will not claim.",
+    title: "How a Starlink install actually goes on a Victorian property",
+    lede: "How a dish goes on a Victorian home, rural property or caravan — mounts, cable entry, double-storey and Mini kits.",
     description:
       "Independent Starlink installation guides for Victoria: home and rural installs, roof versus tripod, cable entry, double-storey, Mini and caravan. VINCONNECT is not Starlink or SpaceX.",
     image: "/scenes/starlink-home.webp",
@@ -118,7 +118,7 @@ export const STARLINK: Article[] = [
         ],
       },
       {
-        heading: "The dish is only the front door",
+        heading: "The dish only reaches one building",
         copy: [
           "If the workshop, stable or gate hut also needs the service, that is a property network — wireless links, not a longer Starlink cable. Plan the property before we drill the house.",
         ],
@@ -309,7 +309,7 @@ export const STARLINK: Article[] = [
     slug: "existing-nbn",
     kicker: "Starlink",
     title: "Starlink beside an existing NBN service",
-    lede: "Some households replace copper the same afternoon. Some keep NBN for failover. Neither is a moral position. It is a routing conversation.",
+    lede: "Some households replace copper the same afternoon. Some keep NBN as a backup. Either way, we set it up so you know which service is doing what.",
     description:
       "Using Starlink with existing NBN or OptiComm: replace, failover, or run them apart. Independent installer advice in Victoria.",
     crumbs: crumbs("Existing NBN"),

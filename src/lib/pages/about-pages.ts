@@ -61,7 +61,7 @@ export const ABOUT_PAGES: Article[] = [
     slug: "support",
     kicker: "About",
     title: "Support",
-    lede: "Call 0408 559 555 for VINCONNECT labour. Circl tracking is 1800 950 493. Starlink accounts stay with Starlink. This page is the directory, not a ticket portal.",
+    lede: "Call 0408 559 555 for VINCONNECT labour. Circl tracking is 1800 950 493. Starlink accounts stay with Starlink.",
     description:
       "VINCONNECT support directory: installer labour, Circl tracking, Starlink accounts, Event Link organisers and VIN Gear interest.",
     crumbs: [
@@ -107,7 +107,7 @@ export const ABOUT_PAGES: Article[] = [
     title: "Business information",
     lede: "VINCONNECT is a Victorian installation business based in Cranbourne. Independent. Insured. Not Starlink, SpaceX, TP-Link, Hikvision, HiLook or Circl.",
     description:
-      "VINCONNECT business information: who we are, where we work, independence from brands we install, and how to reach us. Licence numbers are not published here.",
+      "VINCONNECT business information: who we are, where we work, independence from brands we install, and how to reach us.",
     crumbs: [
       { label: "About", href: "/about" },
       { label: "Business information" },
@@ -120,9 +120,9 @@ export const ABOUT_PAGES: Article[] = [
         ],
       },
       {
-        heading: "Credentials, without the numbers",
+        heading: "Credentials",
         copy: [
-          "ACMA registered open cabler, working at heights, White Card, public liability and WorkCover. Certificates are available on request with a quote. We do not publish licence or policy numbers on this website.",
+          "ACMA registered open cabler, working at heights, White Card, public liability and WorkCover. Ask with a quote and we will send the current certificates. Licence and policy numbers stay off the public site.",
         ],
       },
       {

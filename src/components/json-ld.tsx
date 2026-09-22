@@ -32,5 +32,6 @@ export const LOCAL_BUSINESS_LD = {
     "Latrobe Valley",
   ],
   description:
-    "Professional Starlink installation, whole-property Wi-Fi, wireless links and HiLook CCTV across South East Melbourne, the Peninsula, Bass Coast and Gippsland.",
+    "Professional Starlink installation, whole-property Wi-Fi, wireless links and HiLook CCTV across South East Melbourne, the Peninsula, Bass Coast and Gippsland. Independent installer based in Cranbourne. Standard Starlink labour from $300 in the local work area.",
+  sameAs: ["https://www.facebook.com/people/Vinconnect-Starlink-Solutions/61589183530269/"],
 };

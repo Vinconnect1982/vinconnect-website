@@ -66,9 +66,9 @@ export const EVENT_LINK = {
   lede: "A rapidly deployable Starlink and managed Wi-Fi kit for agricultural shows, field days, clubs and rural community events. The same thinking as a property network — packed so it can stand up in a paddock.",
   image: "/scenes-new/event-link-kit.jpg",
   status:
-    "Event Link is in pilot. There is no retail SKU yet. Organisers can register interest for 2026–27 activations. The public-facing information here is drawn from VINCONNECT’s Rural Connections discussion paper. No separate Event Link brochure was on file — this page is the public brief.",
+    "Event Link is a 2026–27 pilot. Organisers can register interest. It is not for sale as a product, and it is not a promise to cover an entire showgrounds.",
   includes: [
-    "Starlink as the upstream internet (organizer supplies an eligible plan, or we include it in the activation quote)",
+    "Starlink as the upstream internet (organiser supplies an eligible plan, or we include it in the activation quote)",
     "Managed outdoor-capable Wi-Fi for the hub, committee area or public seating",
     "A labelled network case, not a tangle of consumer routers",
     "Guest network kept apart from operations",

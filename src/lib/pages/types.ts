@@ -35,6 +35,8 @@ export type Article = {
   description: string;
   image?: string;
   imageAlt?: string;
+  visual?: "install-steps" | "network-stack" | "price-path" | "diy-vs-pro" | "funnel" | "mounts" | "compare" | "doors";
+  gallery?: { src: string; alt: string }[];
   status?: string;
   points?: string[];
   sections: ArticleSection[];

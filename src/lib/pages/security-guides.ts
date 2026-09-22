@@ -157,7 +157,7 @@ export const SECURITY_GUIDES: Article[] = [
       {
         heading: "When it is not",
         copy: [
-          "If we can cable it, we should. Batteries and winter sun on a Gippsland south face are a design problem, not a brochure feature.",
+          "If we can cable it, we should. Batteries and winter sun on a Gippsland south face are a design problem, not a selling point.",
         ],
       },
     ],

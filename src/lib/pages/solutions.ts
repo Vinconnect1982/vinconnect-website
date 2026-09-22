@@ -138,7 +138,7 @@ export const SOLUTIONS: Article[] = [
       {
         heading: "Examples already on the site",
         copy: [
-          "Cranbourne Cricket Club — Starlink and Wi-Fi into an existing rack, FrogBox streaming. Pakenham factory — rooftop dish, cable, commissioning. Those are completed jobs, not a brochure set.",
+          "Cranbourne Cricket Club — Starlink and Wi-Fi into an existing rack, FrogBox streaming. Pakenham factory — rooftop dish, cable, commissioning. Those are completed jobs.",
         ],
       },
       {
