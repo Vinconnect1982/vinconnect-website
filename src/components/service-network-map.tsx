@@ -198,7 +198,23 @@ function useNarrow() {
   return narrow;
 }
 
-export function ServiceNetworkMap() {
+export function ServiceNetworkMap({
+  kicker = "Our service area",
+  heading = "Connecting South East Melbourne, the Peninsula, Bass Coast & Gippsland.",
+  lede = "VINCONNECT is based in Cranbourne and provides Starlink installation, whole-property Wi-Fi, wireless links and CCTV across South East Melbourne, Western Port, Mornington Peninsula, Bass Coast and Gippsland, with regional work available by arrangement.",
+  headingLevel = "h2",
+  secondaryHref = "/service-areas",
+  secondaryLabel = "View all service areas",
+  showDirectory = true,
+}: {
+  kicker?: string;
+  heading?: string;
+  lede?: string;
+  headingLevel?: "h1" | "h2";
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  showDirectory?: boolean;
+} = {}) {
   const [active, setActive] = useState<string | null>(null);
   const narrow = useNarrow();
   const region = MAP_REGIONS.find((r) => r.id === active) ?? null;
@@ -214,20 +230,30 @@ export function ServiceNetworkMap() {
       <div className="lg:grid lg:min-h-[88vh] lg:grid-cols-[minmax(18rem,26rem)_minmax(0,1fr)]">
         <div className="relative z-10 px-4 pb-2 pt-14 sm:px-6 lg:flex lg:flex-col lg:justify-center lg:px-10 lg:py-16">
           <div className="max-w-xl">
-            <p className="kicker">Our service area</p>
-            <h2 id="service-network-heading" className="mt-3 font-display text-3xl tracking-tight sm:text-5xl">
-              Connecting South East Melbourne, the Peninsula, Bass Coast & Gippsland.
-            </h2>
-            <p className="mt-4 max-w-lg text-sm text-muted sm:text-base">
-              VINCONNECT is based in Cranbourne and provides Starlink installation, whole-property Wi-Fi, wireless links and CCTV across South East Melbourne, Western Port, Mornington Peninsula, Bass Coast and Gippsland, with regional work available by arrangement.
-            </p>
+            <p className="kicker">{kicker}</p>
+            {headingLevel === "h1" ? (
+              <h1 id="service-network-heading" className="mt-3 font-display text-4xl tracking-tight sm:text-5xl">
+                {heading}
+              </h1>
+            ) : (
+              <h2 id="service-network-heading" className="mt-3 font-display text-3xl tracking-tight sm:text-5xl">
+                {heading}
+              </h2>
+            )}
+            <p className="mt-4 max-w-lg text-sm text-muted sm:text-base">{lede}</p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <Button asChild>
                 <Link to="/estimate">Check My Install Price</Link>
               </Button>
-              <Link to="/service-areas" className="text-sm text-mint">
-                View all service areas
-              </Link>
+              {secondaryHref.startsWith("#") ? (
+                <a href={secondaryHref} className="text-sm text-mint">
+                  {secondaryLabel}
+                </a>
+              ) : (
+                <Link to={secondaryHref} className="text-sm text-mint">
+                  {secondaryLabel}
+                </Link>
+              )}
             </div>
             <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label="Service corridors">
               {MAP_REGIONS.map((item) => (
@@ -352,6 +378,7 @@ export function ServiceNetworkMap() {
         </svg>
       </div>
 
+      {showDirectory && (
       <div className="relative mx-auto max-w-6xl px-4 pb-14 sm:px-6">
         <details className="group border-t border-line pt-4">
           <summary className="cursor-pointer list-none font-display text-lg">
@@ -375,6 +402,7 @@ export function ServiceNetworkMap() {
           </div>
         </details>
       </div>
+      )}
     </section>
   );
 }

@@ -6,9 +6,8 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { areaBySlug, areaFaqs, nearbyAreas, regionBySlug } from "@/lib/areas";
-import { LOCAL_NOTES } from "@/lib/local-notes";
+import { LOCAL_NOTES, FIXED_WIRELESS_JOBS } from "@/lib/local-notes";
 import { PROJECTS, SITE_URL } from "@/lib/content";
-import { HILOOK_PACKAGES } from "@/lib/packages";
 
 export const Route = createFileRoute("/service-areas/$slug")({
   component: AreaPage,
@@ -65,7 +64,7 @@ function AreaPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="kicker">
           <Link to="/service-areas" className="hover:text-mint">
-            Work areas
+            Service areas
           </Link>
           {region && (
             <>
@@ -164,25 +163,31 @@ function AreaPage() {
           </div>
         )}
 
-        <div className="mt-12">
-          <h2 className="font-display text-2xl">Camera packages that fit {area.name}</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {HILOOK_PACKAGES.map((pkg) => (
-              <li key={pkg.slug}>
-                <Link
-                  to="/security/packages/$slug"
-                  params={{ slug: pkg.slug }}
-                  className="link-card rounded-xl border border-line bg-surface px-4 py-3"
-                >
-                  <span className="font-display text-lg">{pkg.name}</span>
-                  <span className="mt-1 block text-sm text-muted">
-                    From ${pkg.packageFrom.toLocaleString("en-AU")} supply and install
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-12 max-w-2xl">
+          <h2 className="font-display text-2xl">Property networking in {area.name}</h2>
+          <p className="mt-3 text-muted">
+            Sheds, stables, workshops and gates need their own plan. A wireless link carries the connection to the building. Indoor Wi-Fi and cameras are a separate step. {area.focus}
+          </p>
+          <p className="mt-3 text-sm">
+            <AppLink to="/services/wireless-links" className="text-mint">Wireless links</AppLink>
+            {" · "}
+            <AppLink to="/services/whole-property-wifi" className="text-mint">Whole-property Wi-Fi</AppLink>
+            {" · "}
+            <Link to="/security" className="text-mint">CCTV</Link>
+          </p>
         </div>
+
+        {FIXED_WIRELESS_JOBS.has(area.slug) && (
+          <div className="note mt-10 max-w-2xl p-5">
+            <h2 className="font-display text-xl">Current connection not working for you?</h2>
+            <p className="mt-3 text-sm text-muted">
+              A completed VINCONNECT job in {area.name} replaced an unreliable fixed-wireless connection at that property. nbn technology still varies by address, so check the individual property. Starlink is an alternative some properties consider when the current service drops out or cannot do the job. It is not automatically faster, and it is not a claim that the whole suburb is on fixed wireless.
+            </p>
+            <AppLink to="/resources/fixed-wireless-vs-starlink" className="mt-3 inline-block text-sm text-mint">
+              Compare Starlink and nbn Fixed Wireless
+            </AppLink>
+          </div>
+        )}
 
         <div className="mt-12">
           <h2 className="font-display text-2xl">Questions people ask about {area.name}</h2>

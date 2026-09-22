@@ -63,10 +63,10 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    label: "Work areas",
+    label: "Service areas",
     href: "/service-areas",
     children: [
-      { label: "Map & regions", href: "/service-areas" },
+      { label: "All service areas", href: "/service-areas" },
       { label: "Casey & South East", href: "/service-areas/region/casey-south-east" },
       { label: "Cardinia", href: "/service-areas/region/cardinia" },
       { label: "Mornington Peninsula", href: "/service-areas/region/mornington-peninsula" },

@@ -144,7 +144,7 @@ export const RESOURCE_GUIDES: Article[] = [
       {
         heading: "The usual complaint",
         copy: [
-          "Evening slowdown, dropouts in weather, and a tower you can see that still does not serve the house. Completed jobs in Nyora, Caldermeade and Red Hill started there.",
+          "nbn technology is not a suburb label. Check the nbn address checker and Starlink availability for the same property. Evening slowdown and weather dropouts are the usual complaint. Completed jobs in Nyora, Caldermeade and Red Hill started with unreliable fixed wireless at those properties — not a claim that the whole town is on fixed wireless.",
         ],
       },
       {
@@ -161,9 +161,10 @@ export const RESOURCE_GUIDES: Article[] = [
       },
     ],
     related: [
-      { href: "/starlink/rural-properties", label: "Rural Starlink" },
-      { href: "/starlink/existing-nbn", label: "Existing NBN" },
-      { href: "/projects", label: "Completed jobs" },
+      { href: "/service-areas/nyora", label: "Nyora" },
+      { href: "/service-areas/caldermeade", label: "Caldermeade" },
+      { href: "/service-areas/red-hill", label: "Red Hill" },
+      { href: "/estimate", label: "Check My Install Price" },
     ],
   }),
   page({

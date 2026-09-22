@@ -1,13 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { CoverageMap } from "@/components/coverage-map";
 import { EnquiryForm } from "@/components/enquiry-form";
-import { RelatedLinks } from "@/components/related-links";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { areasInRegion, regionBySlug } from "@/lib/areas";
 import { PROJECTS, SITE_URL } from "@/lib/content";
-import { REGION_RELATED } from "@/lib/project-details";
+import { REGION_STORIES } from "@/lib/region-stories";
 
 export const Route = createFileRoute("/service-areas/region/$slug")({
   component: RegionPage,
@@ -36,54 +34,37 @@ export const Route = createFileRoute("/service-areas/region/$slug")({
 
 function RegionPage() {
   const { region, areas, projects } = Route.useLoaderData();
-  const related = REGION_RELATED[region.slug] ?? [
-    { href: "/starlink", label: "Starlink guides" },
-    { href: "/customer-help", label: "Customer help" },
-    { href: "/estimate", label: "Check My Install Price" },
-  ];
   return (
     <SiteShell>
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-        <Breadcrumbs items={[{ label: "Work areas", href: "/service-areas" }, { label: region.short }]} />
-        <h1 className="mt-6 max-w-3xl font-display text-4xl sm:text-5xl">{region.name}.</h1>
+        <Breadcrumbs items={[{ label: "Service areas", href: "/service-areas" }, { label: region.short }]} />
+        <h1 className="mt-6 max-w-3xl font-display text-4xl sm:text-5xl">{region.name}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted">{region.blurb}</p>
-        <img
-          src={region.image}
-          alt=""
-          className="mt-8 h-64 w-full rounded-xl object-cover sm:h-80"
-        />
+        <div className="mt-6 max-w-2xl space-y-4 text-muted">
+          {(REGION_STORIES[region.slug] ?? []).map((paragraph) => (
+            <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+          ))}
+        </div>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild>
             <Link to="/estimate">Check My Install Price</Link>
           </Button>
           <Button asChild variant="ghost">
-            <Link to="/property-planner">Plan My Property</Link>
-          </Button>
-          <Button asChild variant="ghost">
-            <Link to="/service-areas">All regions</Link>
+            <Link to="/service-areas">All service areas</Link>
           </Button>
         </div>
-        <div className="mt-10">
-          <CoverageMap focus={{ lat: region.lat, lng: region.lng, zoom: region.zoom }} height={360} />
-        </div>
 
-        <RelatedLinks items={related} title="Start with the job, not the suburb list" />
-
-        <h2 className="mt-12 font-display text-2xl">Suburbs we work in {region.short}</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {areas.map((a) => (
-            <Link
-              key={a.slug}
-              to="/service-areas/$slug"
-              params={{ slug: a.slug }}
-              className="link-card rounded-xl border border-line bg-surface p-5"
-            >
-              <p className="text-xs text-mint">{a.postcode}</p>
-              <h3 className="mt-1 font-display text-xl">{a.name}</h3>
-              <p className="mt-2 text-sm text-muted">{a.focus}</p>
-            </Link>
+        <h2 className="mt-14 font-display text-2xl">Suburbs in {region.short}</h2>
+        <p className="mt-5 max-w-3xl text-sm leading-7">
+          {areas.map((a, i) => (
+            <span key={a.slug}>
+              {i > 0 && <span className="text-muted"> · </span>}
+              <Link to="/service-areas/$slug" params={{ slug: a.slug }} className="text-fg hover:text-mint">
+                {a.name}
+              </Link>
+            </span>
           ))}
-        </div>
+        </p>
         {projects.length > 0 && (
           <div className="mt-12">
             <h2 className="font-display text-2xl">Projects in this region</h2>

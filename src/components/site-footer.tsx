@@ -52,7 +52,7 @@ export function SiteFooter() {
               <li><AppLink to="/install-terms-and-conditions" className="hover:text-fg">Install terms</AppLink></li>
               <li><Link to="/resources" className="hover:text-fg">Guides & answers</Link></li>
               <li><Link to="/resources/downloads" className="hover:text-fg">Downloads</Link></li>
-              <li><Link to="/service-areas" className="hover:text-fg">Work areas map</Link></li>
+              <li><Link to="/service-areas" className="hover:text-fg">Service areas</Link></li>
               <li><Link to="/projects" className="hover:text-fg">Completed installations</Link></li>
             </ul>
           </div>

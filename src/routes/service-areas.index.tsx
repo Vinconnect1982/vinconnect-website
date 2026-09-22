@@ -1,108 +1,108 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CoverageMap } from "@/components/coverage-map";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { ServiceNetworkMap } from "@/components/service-network-map";
 import { SiteShell } from "@/components/site-shell";
-import { WorkAreasDiagram } from "@/components/work-areas-diagram";
-import { AREAS, REGIONS } from "@/lib/areas";
-import { PROJECTS } from "@/lib/content";
+import { areaBySlug } from "@/lib/areas";
 
 export const Route = createFileRoute("/service-areas/")({
   component: AreasIndex,
   head: () => ({
     meta: [
-      { title: "Starlink installation areas | Cranbourne, Peninsula & Gippsland | VINCONNECT" },
+      { title: "Service areas | Starlink installation from Cranbourne to Gippsland | VINCONNECT" },
       {
         name: "description",
         content:
-          "VINCONNECT installs Starlink, Wi-Fi, wireless links and CCTV across Casey, Cardinia, Mornington Peninsula, Bass Coast, South Gippsland and the Latrobe Valley. Map the suburbs we work.",
+          "VINCONNECT service areas from Cranbourne across South East Melbourne, Mornington Peninsula, Western Port, Bass Coast, South Gippsland and West Gippsland. Regional Victorian work by arrangement.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://vinconnect.com.au/service-areas" }],
   }),
 });
+
+const GROUPS: { title: string; region: string; copy: string; slugs: string[] }[] = [
+  {
+    title: "South East Melbourne",
+    region: "casey-south-east",
+    copy: "VINCONNECT is based in Cranbourne. The work here is estate homes, double-storey houses, club sites and the first acreage south of the freeway. A completed club job at Cranbourne Cricket Club replaced a Telstra 4G connection with Starlink and Wi-Fi into the existing rack.",
+    slugs: ["cranbourne", "cranbourne-east", "cranbourne-west", "clyde", "clyde-north", "berwick", "officer", "pakenham", "langwarrin", "frankston"],
+  },
+  {
+    title: "Mornington Peninsula",
+    region: "mornington-peninsula",
+    copy: "Coastal homes, concealed cable routes and the hinterland behind Red Hill. Completed jobs include a tripod at Somerville, a concealed-gutter install at Safety Beach, a multi-level home at Red Hill and a coastal house at Sorrento. Mounts are chosen for the roof and the weather, not from a default kit.",
+    slugs: ["mornington", "mount-martha", "safety-beach", "red-hill", "dromana", "rosebud", "blairgowrie", "sorrento", "somerville", "frankston"],
+  },
+  {
+    title: "Western Port & South Gippsland",
+    region: "south-gippsland",
+    copy: "Acreage, farms and horse properties, with sheds and gates a long way from the house. Nyora has completed Starlink work, including one job that replaced an unreliable fixed-wireless connection at that property. Korumburra and Warragul are also proposed Rural Connections stops. That program is separate from booking an installation.",
+    slugs: ["tooradin", "koo-wee-rup", "lang-lang", "nyora", "poowong", "korumburra", "leongatha", "caldermeade"],
+  },
+  {
+    title: "Bass Coast & Phillip Island",
+    region: "western-port-bass-coast",
+    copy: "Coastal wind, holiday homes and the farms behind Wonthaggi and Inverloch. Phillip Island work, including Cowes, is quoted from Cranbourne and includes the trip. Salt air is part of the mount choice. Cameras and venue Wi-Fi come up as often as a straight home install.",
+    slugs: ["wonthaggi", "inverloch", "grantville", "bass", "san-remo", "cowes", "phillip-island"],
+  },
+  {
+    title: "West Gippsland & Latrobe",
+    region: "west-gippsland-latrobe",
+    copy: "Farms, acreage and highway towns from Drouin and Warragul through Trafalgar to the Latrobe Valley. A house in town and a shed across a paddock are different jobs. Location is included when you enter the address. It is not the same conversation as a Cranbourne estate.",
+    slugs: ["drouin", "warragul", "trafalgar", "yarragon", "moe", "morwell", "traralgon", "pakenham"],
+  },
+];
 
 function AreasIndex() {
   return (
     <SiteShell>
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="kicker">Work areas</p>
-        <h1 className="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">
-          South East Melbourne, the Peninsula, Bass Coast and Gippsland.
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted">
-          Based in Cranbourne. Every suburb below has its own page for Starlink installation, Wi-Fi
-          and cameras. Travel is calculated from the address you enter in the estimator — you do
-          not work out kilometres.
-        </p>
+      <ServiceNetworkMap
+        kicker="VINCONNECT · Connecting Victoria"
+        heading="From Cranbourne to the coast and Gippsland."
+        lede="Professional Starlink installation, whole-property Wi-Fi, wireless links and CCTV across South East Melbourne, Mornington Peninsula, Western Port, Bass Coast, South Gippsland and West Gippsland, with regional work available by arrangement."
+        headingLevel="h1"
+        secondaryHref="#coverage"
+        secondaryLabel="Find my area"
+        showDirectory={false}
+      />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <WorkAreasDiagram />
-          <CoverageMap height={420} />
-        </div>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {REGIONS.map((r) => (
-            <Link
-              key={r.slug}
-              to="/service-areas/region/$slug"
-              params={{ slug: r.slug }}
-              className="overflow-hidden rounded-xl border border-line bg-surface hover:border-mint"
-            >
-              <img src={r.image} alt="" className="h-40 w-full object-cover" />
-              <div className="p-5">
-                <p className="text-xs uppercase tracking-[0.16em] text-mint">{r.short}</p>
-                <h2 className="mt-2 font-display text-2xl">{r.name}</h2>
-                <p className="mt-2 text-sm text-muted">{r.blurb}</p>
-                <p className="mt-3 text-sm text-mint">
-                  {AREAS.filter((a) => a.region === r.slug).length} suburbs →
-                </p>
-              </div>
-            </Link>
+      <div id="coverage" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+        <p className="kicker">Our coverage</p>
+        <h2 className="mt-3 font-display text-3xl sm:text-4xl">The corridors we actually work.</h2>
+        <div className="mt-14 space-y-14">
+          {GROUPS.map((group) => (
+            <section key={group.title} className="border-t border-line pt-8">
+              <h3 className="font-display text-2xl sm:text-3xl">
+                <Link to="/service-areas/region/$slug" params={{ slug: group.region }} className="hover:text-mint">
+                  {group.title}
+                </Link>
+              </h3>
+              <p className="mt-4 text-muted">{group.copy}</p>
+              <p className="mt-5 text-sm leading-7">
+                {group.slugs.map((slug, i) => {
+                  const area = areaBySlug(slug);
+                  if (!area) return null;
+                  return (
+                    <span key={`${group.title}-${slug}`}>
+                      {i > 0 && <span className="text-muted"> · </span>}
+                      <Link to="/service-areas/$slug" params={{ slug }} className="text-fg hover:text-mint">
+                        {area.name}
+                      </Link>
+                    </span>
+                  );
+                })}
+              </p>
+            </section>
           ))}
         </div>
 
-        <h2 className="mt-16 font-display text-3xl">All suburbs</h2>
-        <p className="mt-2 max-w-2xl text-muted">
-          Each page is written for people searching Starlink installation, rural Wi-Fi or cameras
-          in that place — and links to nearby jobs and neighbouring suburbs.
-        </p>
-        <div className="mt-8 columns-1 gap-8 sm:columns-2 lg:columns-3">
-          {REGIONS.map((r) => (
-            <div key={r.slug} className="mb-8 break-inside-avoid">
-              <p className="kicker mb-3">{r.short}</p>
-              <ul className="space-y-2 text-sm">
-                {AREAS.filter((a) => a.region === r.slug).map((a) => (
-                  <li key={a.slug}>
-                    <Link
-                      to="/service-areas/$slug"
-                      params={{ slug: a.slug }}
-                      className="text-fg/90 hover:text-mint"
-                    >
-                      {a.name}{" "}
-                      <span className="text-muted">{a.postcode}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8">
-          <p className="text-sm text-muted">
-            {PROJECTS.length} completed projects on the books, each tied back to its suburb page.
+        <div className="mt-16 border-t border-line pt-10">
+          <h2 className="font-display text-2xl">Not sure if we come to you?</h2>
+          <p className="mt-3 text-muted">
+            Enter the address in the estimator and location is included. If the property is further out — Wilsons Prom, East Gippsland, the high country — say so. Some jobs are a day trip. We will tell you before anyone drives.
           </p>
-        </div>
-
-        <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-          <div>
-            <h2 className="font-display text-2xl">Not sure if we come to you?</h2>
-            <p className="mt-3 text-muted">
-              If your place is on the map, we quote it. If it is further — Wilsons Prom, East
-              Gippsland, the high country — say so. Some jobs are a fair day trip; we will tell you
-              before anyone drives.
-            </p>
+          <div className="mt-8 max-w-md">
+            <EnquiryForm selectedPackage="Service area enquiry" buttonLabel="Ask about my suburb" />
           </div>
-          <EnquiryForm selectedPackage="Service area enquiry" buttonLabel="Ask about my suburb" />
         </div>
       </div>
     </SiteShell>

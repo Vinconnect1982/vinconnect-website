@@ -29,7 +29,7 @@ const GUIDES = [
   { href: "/about/capability", title: "Capability statement", copy: "Credentials, regions and how we quote." },
   { href: "/about/safety-and-credentials", title: "Safety & credentials", copy: "Open cabler, heights, White Card, insurance." },
   { href: "/starlink-offer", title: "Starlink referral offer", copy: "Confirm eligibility at Starlink checkout." },
-  { href: "/service-areas", title: "Work areas map", copy: "Casey, Peninsula, Bass Coast and Gippsland suburbs." },
+  { href: "/service-areas", title: "Service areas", copy: "South East Melbourne, the Peninsula, Bass Coast and Gippsland." },
 ];
 
 function ResourcesPage() {

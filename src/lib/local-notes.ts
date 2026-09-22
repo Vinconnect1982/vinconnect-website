@@ -1,4 +1,5 @@
-/** Extra local copy for priority suburbs. Facts already on the site — no invented job counts. */
+/** Completed jobs where the previous service was fixed wireless at that property. Not a town-wide nbn claim. */
+export const FIXED_WIRELESS_JOBS = new Set(["nyora", "caldermeade", "red-hill"]);
 export const LOCAL_NOTES: Record<string, string> = {
   cranbourne:
     "VINCONNECT is based in Cranbourne. The work here is a mix of estate homes, club sites and the acreage on the edge of town. The Cranbourne Cricket Club job replaced a Telstra 4G connection with Starlink and Ubiquiti Wi-Fi, including FrogBox streaming into the existing data rack. That is a completed installation, not a concept.",

@@ -52,9 +52,9 @@ function ProjectPage() {
       />
       <article>
         <div className="relative overflow-hidden">
-          <img src={project.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/35" />
-          <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+          <img src={project.image} alt="" className="absolute inset-0 h-full min-h-[22rem] w-full object-cover object-[center_30%] sm:min-h-[28rem]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/25" />
+          <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
             <Breadcrumbs
               items={[
                 { label: "Projects", href: "/projects" },
@@ -62,8 +62,9 @@ function ProjectPage() {
                 { label: project.title },
               ]}
             />
-            <p className="kicker mt-6">{project.place}</p>
-            <h1 className="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">{project.title}</h1>
+            <p className="kicker mt-8">Completed project</p>
+            <h1 className="mt-3 max-w-3xl font-display text-4xl sm:text-6xl">{project.title}</h1>
+            <p className="mt-3 text-sm uppercase tracking-[0.16em] text-fg/80">{project.place}, Victoria</p>
             <p className="mt-4 max-w-2xl text-lg text-fg/85">{project.summary}</p>
           </div>
         </div>
