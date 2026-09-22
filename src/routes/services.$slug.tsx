@@ -8,6 +8,36 @@ import { Button } from "@/components/ui/button";
 import { SERVICES, SITE_URL, findService } from "@/lib/content";
 import { COMMERCIAL_RELATED } from "@/lib/pages";
 
+const GUIDE_LINKS: Record<string, { href: string; label: string; copy?: string }[]> = {
+  "starlink-installation": [
+    { href: "/resources/choosing-a-starlink-mount", label: "Choosing a mount" },
+    { href: "/resources/where-should-the-router-go", label: "Where the router should go" },
+    { href: "/resources/starlink-power-outage", label: "Starlink in a power outage" },
+    { href: "/resources/fixed-wireless-vs-starlink", label: "Fixed wireless or Starlink" },
+  ],
+  "whole-property-wifi": [
+    { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+    { href: "/resources/mesh-vs-wireless-bridge", label: "Mesh or a wireless bridge?" },
+  ],
+  "wireless-links": [
+    { href: "/resources/point-to-point-wireless", label: "Point-to-point, explained" },
+    { href: "/resources/mesh-vs-wireless-bridge", label: "Mesh or a wireless bridge?" },
+    { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+  ],
+  "equestrian-connectivity": [
+    { href: "/resources/connected-horse-property", label: "The connected horse property" },
+    { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed or stable" },
+    { href: "/security/stable-cctv", label: "Stable cameras" },
+  ],
+  "starlink-caravan-installation": [
+    { href: "/resources/caravan-internet-guide", label: "Caravan internet and Starlink" },
+  ],
+  "cctv": [
+    { href: "/resources/rural-cctv", label: "CCTV for rural properties" },
+    { href: "/resources/cctv-on-starlink", label: "CCTV on Starlink" },
+  ],
+};
+
 export const Route = createFileRoute("/services/$slug")({
   component: ServicePage,
   loader: ({ params }) => {
@@ -87,7 +117,7 @@ function ServicePage() {
         {["starlink-installation", "starlink-caravan-installation", "starlink-mini-installation", "rural-connectivity"].includes(page.slug) && (
           <StarlinkOfferCta />
         )}
-        <RelatedLinks items={related} title="Keep reading" />
+        <RelatedLinks items={[...related, ...(GUIDE_LINKS[page.slug] ?? [])]} title="Helpful guides" />
       </div>
     </SiteShell>
   );

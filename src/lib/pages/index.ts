@@ -5,6 +5,7 @@ import { EVENT_LINK_PAGES } from "./event-link-pages";
 import { INSTALL_TERMS } from "./install-terms";
 import { JOURNAL } from "./journal";
 import { PROPERTY_NETWORKS } from "./property-networks";
+import { LIBRARY } from "./library";
 import { RESOURCE_GUIDES } from "./resources-guides";
 import { RURAL_EXTRA } from "./rural-extra";
 import { SECURITY_GUIDES } from "./security-guides";
@@ -29,6 +30,7 @@ export const ARTICLES: Article[] = [
   ...VINGEAR,
   ...ABOUT_PAGES,
   ...RESOURCE_GUIDES,
+  ...LIBRARY,
   ...RURAL_EXTRA,
 ];
 

@@ -10,6 +10,26 @@ import { areaBySlug, areaFaqs, nearbyAreas, regionBySlug } from "@/lib/areas";
 import { LOCAL_NOTES, FIXED_WIRELESS_JOBS } from "@/lib/local-notes";
 import { PROJECTS, SITE_URL } from "@/lib/content";
 
+const AREA_GUIDES: Record<string, { href: string; label: string }[]> = {
+  nyora: [
+    { href: "/resources/fixed-wireless-vs-starlink", label: "Starlink or nbn Fixed Wireless" },
+    { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+    { href: "/resources/connected-horse-property", label: "Horse property connectivity" },
+  ],
+  "red-hill": [
+    { href: "/resources/choosing-a-starlink-mount", label: "Choosing a mount" },
+    { href: "/resources/where-should-the-router-go", label: "Router placement" },
+  ],
+  pearcedale: [
+    { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
+    { href: "/resources/point-to-point-wireless", label: "Point-to-point wireless" },
+  ],
+  wonthaggi: [
+    { href: "/resources/caravan-internet-guide", label: "Caravan internet" },
+    { href: "/resources/rural-cctv", label: "Rural CCTV" },
+  ],
+};
+
 export const Route = createFileRoute("/service-areas/$slug")({
   component: AreaPage,
   loader: ({ params }) => {
@@ -202,6 +222,18 @@ function AreaPage() {
           </dl>
         </div>
         <StarlinkOfferCta suburb={area.name} />
+        {AREA_GUIDES[area.slug] && (
+          <div className="mt-8">
+            <h2 className="font-display text-xl">Useful for {area.name}</h2>
+            <ul className="mt-3 space-y-2 text-sm">
+              {AREA_GUIDES[area.slug].map((g) => (
+                <li key={g.href}>
+                  <AppLink to={g.href} className="text-mint">{g.label}</AppLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {nearby.length > 0 && (
           <div className="mt-12">

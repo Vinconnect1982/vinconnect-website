@@ -139,7 +139,8 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "When rural Victorian households move from NBN fixed wireless to Starlink, and when they should not. Independent installer notes.",
     crumbs: crumbs("Fixed wireless vs Starlink"),
-    image: "/media/nyora-fixed-wireless-upgrade.webp",
+    image: "/guides/vinconnect-starlink-fixed-wireless-comparison.webp",
+    imageAlt: "Illustrative comparison of fixed wireless and Starlink at a rural property.",
     sections: [
       {
         heading: "The usual complaint",

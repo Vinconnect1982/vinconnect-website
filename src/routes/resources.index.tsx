@@ -8,6 +8,18 @@ export const Route = createFileRoute("/resources/")({
   head: () => ({ meta: [{ title: "Guides & answers | VINCONNECT" }] }),
 });
 
+const LIBRARY = [
+  { href: "/resources/wifi-into-a-shed", title: "Wi-Fi into a shed", copy: "When the house signal stops at the Colorbond." },
+  { href: "/resources/mesh-vs-wireless-bridge", title: "Mesh or a wireless bridge?", copy: "One building, or two." },
+  { href: "/resources/point-to-point-wireless", title: "Point-to-point wireless", copy: "A link instead of a trench." },
+  { href: "/resources/connected-horse-property", title: "The connected horse property", copy: "House, stables, arena and gate on one network." },
+  { href: "/resources/caravan-internet-guide", title: "Caravan internet and Starlink", copy: "Park Wi-Fi, mobile, and a Roam setup." },
+  { href: "/resources/choosing-a-starlink-mount", title: "Choosing a Starlink mount", copy: "Fascia, tripod, pole or roof." },
+  { href: "/resources/where-should-the-router-go", title: "Where the router should go", copy: "Open room, not a shut metal cupboard." },
+  { href: "/resources/starlink-power-outage", title: "Starlink in a power outage", copy: "What a small UPS can and cannot keep on." },
+  { href: "/resources/rural-cctv", title: "CCTV for rural properties", copy: "Record locally. Reach the shed on purpose." },
+];
+
 const GUIDES = [
   { href: "/customer-help", title: "Customer help", copy: "The booking journey, from confirm to handover." },
   { href: "/install-terms-and-conditions", title: "Install terms", copy: "The stable page linked from booking SMS." },
@@ -43,7 +55,17 @@ function ResourcesPage() {
           Practical pages for people planning a Starlink, Wi-Fi or camera job in Victoria — plus
           PDFs you can take to a committee meeting.
         </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <h2 className="mt-10 font-display text-2xl">Property guides</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {LIBRARY.map((g) => (
+            <AppLink key={g.href} to={g.href} className="link-card rounded-xl border border-line bg-surface p-5">
+              <h3 className="font-display text-xl">{g.title}</h3>
+              <p className="mt-2 text-sm text-muted">{g.copy}</p>
+            </AppLink>
+          ))}
+        </div>
+        <h2 className="mt-14 font-display text-2xl">More answers</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {GUIDES.map((g) => (
             <AppLink key={g.href} to={g.href} className="link-card rounded-xl border border-line bg-surface p-5">
               <h2 className="font-display text-xl">{g.title}</h2>
