@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/site-shell";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "VINCONNECT";
-const BUILD_ID = "2026-09-23-f";
+const BUILD_ID = "2026-09-23-g";
 
 const CACHE_BUST = `(function(){
   try {
