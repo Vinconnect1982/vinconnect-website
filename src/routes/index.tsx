@@ -1,14 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { AppLink } from "@/components/app-link";
-import { CoverageMap } from "@/components/coverage-map";
 import { EstimateWizard } from "@/components/estimate-wizard";
 import { JsonLd, LOCAL_BUSINESS_LD } from "@/components/json-ld";
+import { ServiceNetworkMap } from "@/components/service-network-map";
 import { SiteShell } from "@/components/site-shell";
-import { WorkAreasDiagram } from "@/components/work-areas-diagram";
 import { Button } from "@/components/ui/button";
 import { PHONE, PHONE_TEL, PROJECTS } from "@/lib/content";
-import { REGIONS } from "@/lib/areas";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -237,38 +235,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-ink-2">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <p className="kicker">Work areas</p>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl sm:text-4xl">
-            From Cranbourne out through the Peninsula, Bass Coast and Gippsland.
-          </h2>
-          <p className="mt-3 max-w-2xl text-muted">
-            Every suburb on the map has its own page for Starlink, Wi-Fi and cameras. Travel is
-            calculated from the address you enter — you do not work out kilometres.
-          </p>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-            <WorkAreasDiagram />
-            <CoverageMap height={340} />
-          </div>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {REGIONS.map((r) => (
-              <Link
-                key={r.slug}
-                to="/service-areas/region/$slug"
-                params={{ slug: r.slug }}
-                className="link-card rounded-xl border border-line bg-surface p-4"
-              >
-                <p className="text-xs uppercase tracking-[0.16em] text-mint">{r.short}</p>
-                <p className="mt-2 font-display text-lg">{r.name}</p>
-              </Link>
-            ))}
-          </div>
-          <Link to="/service-areas" className="mt-6 inline-block text-sm text-mint">
-            Open the full suburb map →
-          </Link>
-        </div>
-      </section>
+      <ServiceNetworkMap />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="kicker">Rural Connections</p>

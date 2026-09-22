@@ -269,3 +269,26 @@ a.text-mint {
 a.text-mint:hover {
   text-decoration-color: var(--color-mint);
 }
+
+.hub-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hub-pulse 4.8s ease-in-out infinite;
+}
+
+@keyframes hub-pulse {
+  0%,
+  100% { opacity: 0.28; }
+  50% { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-ring {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
