@@ -60,9 +60,9 @@ function ServicePage() {
             />
           </div>
         )}
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+        <ul className="facts mt-10 grid sm:grid-cols-2 sm:gap-x-10">
           {page.points.map((p) => (
-            <li key={p} className="rounded-lg border border-line bg-surface px-4 py-3 text-sm">
+            <li key={p} className="text-sm">
               {p}
             </li>
           ))}

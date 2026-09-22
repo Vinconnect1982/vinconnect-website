@@ -69,9 +69,9 @@ function PackagePage() {
             <section>
               <h2 className="font-display text-2xl">Suitable uses</h2>
               <p className="mt-2 text-sm text-muted">{pkg.bestFor}</p>
-              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              <ul className="facts mt-4 grid sm:grid-cols-2 sm:gap-x-10">
                 {pkg.uses.map((u) => (
-                  <li key={u} className="rounded-lg border border-line bg-surface px-4 py-3 text-sm">
+                  <li key={u} className="text-sm">
                     {u}
                   </li>
                 ))}
@@ -114,7 +114,7 @@ function PackagePage() {
                     <Link
                       to="/security/packages/$slug"
                       params={{ slug: o.slug }}
-                      className="block rounded-lg border border-line p-4 hover:border-mint"
+                      className="link-card rounded-xl border border-line bg-surface p-4"
                     >
                       <span className="font-display">{o.name}</span>
                       <span className="mt-1 block text-sm text-muted">{aud(o.packageFrom)}</span>

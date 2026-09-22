@@ -43,9 +43,9 @@ function RuralRoute() {
         <h1 className="mt-3 max-w-3xl font-display text-4xl sm:text-5xl">{page.title}.</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted">{page.lede}</p>
         <img src={page.image} alt="" className="mt-8 h-72 w-full rounded-xl object-cover sm:h-96" />
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+        <ul className="facts mt-8 grid sm:grid-cols-2 sm:gap-x-10">
           {page.points.map((p) => (
-            <li key={p} className="rounded-lg border border-line bg-surface px-4 py-3 text-sm">
+            <li key={p} className="text-sm">
               {p}
             </li>
           ))}
@@ -60,7 +60,7 @@ function RuralRoute() {
             </p>
             <ol className="mt-6 space-y-3">
               {ROADSHOW_DATES.map((d) => (
-                <li key={d.where} className="grid gap-1 rounded-xl border border-line bg-surface px-4 py-3 sm:grid-cols-[7rem_minmax(0,1fr)]">
+                <li key={d.where} className="grid gap-1 border-b border-line py-3 sm:grid-cols-[7rem_minmax(0,1fr)]">
                   <span className="text-sm text-mint">{d.when}</span>
                   <span>
                     <span className="font-display">{d.where}</span>

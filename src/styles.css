@@ -193,3 +193,79 @@
   text-transform: uppercase;
   color: var(--color-mint);
 }
+
+/* Static information. Not a control. */
+.note {
+  border-left: 3px solid var(--color-mint);
+  border-radius: 0;
+  background: color-mix(in oklab, var(--color-mint) 8%, transparent);
+  padding: 0.9rem 1rem;
+  color: var(--color-fg);
+}
+
+ul.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.facts > li {
+  position: relative;
+  margin: 0;
+  padding: 0.6rem 0 0.6rem 1.15rem;
+  border: 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-line) 90%, transparent);
+  border-radius: 0;
+  background: transparent;
+}
+
+ul.facts > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--color-mint);
+}
+
+.faq > * {
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem 0;
+}
+
+/* A box you can open. Arrow marks it as a link. */
+a.link-card {
+  position: relative;
+  display: block;
+  padding-right: 2.5rem;
+}
+
+a.link-card::after {
+  content: "→";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: var(--color-mint);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+a.link-card:hover {
+  border-color: var(--color-mint);
+  background: color-mix(in oklab, var(--color-mint) 7%, var(--color-surface));
+}
+
+a.text-mint {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, var(--color-mint) 55%, transparent);
+}
+
+a.text-mint:hover {
+  text-decoration-color: var(--color-mint);
+}

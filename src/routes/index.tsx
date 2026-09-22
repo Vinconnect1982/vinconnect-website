@@ -144,7 +144,7 @@ function Home() {
               { href: "/rural-connections", title: "Rural Connections", copy: "A travelling hub at rural shows — shade, free Wi-Fi and useful information." },
               { href: "/vingear", title: "VIN Gear", copy: "Products we are still developing. Register interest. Nothing is for sale yet." },
             ].map((item) => (
-              <AppLink key={item.href} to={item.href} className="rounded-xl border border-line bg-surface p-4 hover:border-mint">
+              <AppLink key={item.href} to={item.href} className="link-card rounded-xl border border-line bg-surface p-4">
                 <h3 className="font-display text-lg">{item.title}</h3>
                 <p className="mt-1 text-sm text-muted">{item.copy}</p>
               </AppLink>
@@ -257,7 +257,7 @@ function Home() {
                 key={r.slug}
                 to="/service-areas/region/$slug"
                 params={{ slug: r.slug }}
-                className="rounded-xl border border-line bg-surface p-4 hover:border-mint"
+                className="link-card rounded-xl border border-line bg-surface p-4"
               >
                 <p className="text-xs uppercase tracking-[0.16em] text-mint">{r.short}</p>
                 <p className="mt-2 font-display text-lg">{r.name}</p>
@@ -336,7 +336,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <div className="rounded-xl border border-line bg-surface p-6 sm:p-8">
+        <div className="note p-6 sm:p-8">
           <h2 className="font-display text-2xl">Thinking about Starlink?</h2>
           <p className="mt-2 max-w-2xl text-muted">
             Check your eligibility for one month free. Open our Starlink referral offer before

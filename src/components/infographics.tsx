@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const box = "rounded-xl border border-line bg-surface p-5 sm:p-6";
+const box = "border border-line/80 bg-transparent p-5 sm:p-6";
 
 export function InstallStepsGraphic({ className }: { className?: string }) {
   const steps = [

@@ -96,7 +96,7 @@ function RuralHub() {
             </p>
             <ul className="mt-4 space-y-4">
               {GRANT_NOTES.map((g) => (
-                <li key={g.title} className="rounded-xl border border-line bg-surface p-4">
+                <li key={g.title} className="border-b border-line py-4">
                   <p className="font-display text-lg">{g.title}</p>
                   <p className="mt-2 text-sm text-muted">{g.copy}</p>
                 </li>

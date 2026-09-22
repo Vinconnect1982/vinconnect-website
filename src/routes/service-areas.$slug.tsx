@@ -101,7 +101,7 @@ function AreaPage() {
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
-          <section className="rounded-xl border border-line bg-surface p-5">
+          <section>
             <h2 className="font-display text-xl">Starlink in {area.name}</h2>
             <p className="mt-2 text-sm text-muted">
               Sky view, mount choice, sealed cable entry and a router that actually covers the
@@ -116,7 +116,7 @@ function AreaPage() {
               </AppLink>
             </p>
           </section>
-          <section className="rounded-xl border border-line bg-surface p-5">
+          <section>
             <h2 className="font-display text-xl">Wi-Fi & building links</h2>
             <p className="mt-2 text-sm text-muted">
               Sheds, stables, granny flats and offices get a dedicated path — not a mesh node
@@ -127,7 +127,7 @@ function AreaPage() {
               Wireless links →
             </Link>
           </section>
-          <section className="rounded-xl border border-line bg-surface p-5">
+          <section>
             <h2 className="font-display text-xl">Cameras</h2>
             <p className="mt-2 text-sm text-muted">
               HiLook kits specified around the views you need in {area.name}, with recording and
@@ -169,7 +169,7 @@ function AreaPage() {
                 <Link
                   to="/security/packages/$slug"
                   params={{ slug: pkg.slug }}
-                  className="block rounded-lg border border-line bg-surface px-4 py-3 hover:border-mint"
+                  className="link-card rounded-xl border border-line bg-surface px-4 py-3"
                 >
                   <span className="font-display text-lg">{pkg.name}</span>
                   <span className="mt-1 block text-sm text-muted">
@@ -183,9 +183,9 @@ function AreaPage() {
 
         <div className="mt-12">
           <h2 className="font-display text-2xl">Questions people ask about {area.name}</h2>
-          <dl className="mt-5 space-y-4">
+          <dl className="faq mt-2">
             {faqs.map((f) => (
-              <div key={f.q} className="rounded-xl border border-line bg-surface p-5">
+              <div key={f.q}>
                 <dt className="font-display text-lg">{f.q}</dt>
                 <dd className="mt-2 text-sm text-muted">{f.a}</dd>
               </div>

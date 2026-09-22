@@ -30,7 +30,7 @@ function EstimatePage() {
         <div className="mt-10">
           <EstimateWizard />
         </div>
-        <div className="mt-8 rounded-lg border border-line bg-surface p-5 text-sm text-muted">
+        <div className="note mt-8 text-sm">
           <p className="font-display text-fg">What happens next?</p>
           <p className="mt-2">
             Your result is an indicative range based on the selected address and answers. Upload

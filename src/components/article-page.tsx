@@ -135,13 +135,13 @@ export function ArticlePage({ page }: { page: Article }) {
 
       <article className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         {page.status && (
-          <p className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">{page.status}</p>
+          <p className="note text-sm">{page.status}</p>
         )}
 
         {page.points && page.points.length > 0 && (
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2">
+          <ul className="facts mt-8 grid sm:grid-cols-2 sm:gap-x-10">
             {page.points.map((p) => (
-              <li key={p} className="rounded-lg border border-line bg-surface px-4 py-3 text-sm">
+              <li key={p} className="text-sm">
                 {p}
               </li>
             ))}
@@ -169,7 +169,7 @@ export function ArticlePage({ page }: { page: Article }) {
                 <li key={child.href}>
                   <AppLink
                     to={child.href}
-                    className="block h-full rounded-xl border border-line bg-surface p-5 hover:border-mint"
+                    className="link-card h-full rounded-xl border border-line bg-surface p-5"
                   >
                     <h3 className="font-display text-xl">{child.title}</h3>
                     <p className="mt-2 text-sm text-muted">{child.copy}</p>
@@ -204,9 +204,9 @@ export function ArticlePage({ page }: { page: Article }) {
             {page.faqs && page.faqs.length > 0 && (
               <section>
                 <h2 className="font-display text-2xl">Questions we are asked</h2>
-                <dl className="mt-5 space-y-4">
+                <dl className="faq mt-2">
                   {page.faqs.map((f) => (
-                    <div key={f.q} className="rounded-xl border border-line bg-surface p-5">
+                    <div key={f.q}>
                       <dt className="font-display text-lg">{f.q}</dt>
                       <dd className="mt-2 text-sm text-muted">{f.a}</dd>
                     </div>

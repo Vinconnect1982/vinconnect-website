@@ -17,7 +17,7 @@ export function RelatedLinks({
           <li key={item.href}>
             <AppLink
               to={item.href}
-              className="block rounded-xl border border-line bg-surface p-4 hover:border-mint"
+              className="link-card rounded-xl border border-line bg-surface p-4"
             >
               <p className="font-display text-lg">{item.label}</p>
               {item.copy && <p className="mt-1 text-sm text-muted">{item.copy}</p>}

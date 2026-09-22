@@ -70,7 +70,7 @@ function ProjectPage() {
 
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
           {detail?.mount && (
-            <p className="rounded-xl border border-line bg-surface px-4 py-3 text-sm">
+            <p className="note text-sm">
               Mount / approach: <span className="text-mint">{detail.mount}</span>
             </p>
           )}

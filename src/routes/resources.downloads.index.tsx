@@ -32,7 +32,7 @@ function DownloadsIndex() {
               key={d.slug}
               to="/resources/downloads/$slug"
               params={{ slug: d.slug }}
-              className="rounded-xl border border-line bg-surface p-5 hover:border-mint"
+              className="link-card rounded-xl border border-line bg-surface p-5"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="font-display text-2xl">{d.title}</h2>

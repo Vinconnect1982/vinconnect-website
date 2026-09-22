@@ -44,7 +44,7 @@ function ResourcesPage() {
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {GUIDES.map((g) => (
-            <AppLink key={g.href} to={g.href} className="rounded-xl border border-line bg-surface p-5 hover:border-mint">
+            <AppLink key={g.href} to={g.href} className="link-card rounded-xl border border-line bg-surface p-5">
               <h2 className="font-display text-xl">{g.title}</h2>
               <p className="mt-2 text-sm text-muted">{g.copy}</p>
             </AppLink>

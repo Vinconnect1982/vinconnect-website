@@ -28,7 +28,7 @@ function SafetyPage() {
         </p>
         <ul className="mt-8 space-y-4">
           {ITEMS.map((item) => (
-            <li key={item.title} className="rounded-lg border border-line bg-surface p-5">
+            <li key={item.title} className="border-b border-line py-4">
               <h2 className="font-display text-xl">{item.title}</h2>
               <p className="mt-2 text-sm text-muted">{item.copy}</p>
             </li>

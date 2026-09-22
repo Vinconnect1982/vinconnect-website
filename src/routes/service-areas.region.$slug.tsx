@@ -76,7 +76,7 @@ function RegionPage() {
               key={a.slug}
               to="/service-areas/$slug"
               params={{ slug: a.slug }}
-              className="rounded-xl border border-line bg-surface p-5 hover:border-mint"
+              className="link-card rounded-xl border border-line bg-surface p-5"
             >
               <p className="text-xs text-mint">{a.postcode}</p>
               <h3 className="mt-1 font-display text-xl">{a.name}</h3>

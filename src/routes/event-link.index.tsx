@@ -44,7 +44,7 @@ function EventLinkPage() {
       </div>
 
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="rounded-xl border border-line bg-surface p-5 text-sm text-muted">{EVENT_LINK.status}</p>
+        <p className="note text-sm">{EVENT_LINK.status}</p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <section>
@@ -67,9 +67,9 @@ function EventLinkPage() {
 
         <section className="mt-12">
           <h2 className="font-display text-2xl">What it is not</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          <ul className="facts mt-4">
             {EVENT_LINK.not.map((i) => (
-              <li key={i} className="rounded-xl border border-line bg-surface p-4 text-sm text-muted">
+              <li key={i} className="text-sm text-muted">
                 {i}
               </li>
             ))}
