@@ -110,7 +110,7 @@ export function EstimateWizard() {
       setEnquiryId(id);
       setStep(5);
       try {
-        await submitLead({
+        const sent = await submitLead({
           data: {
             type: "estimate",
             name: contact.name,
@@ -130,7 +130,11 @@ export function EstimateWizard() {
             ].join("\n"),
           },
         });
-        setMailNote("VINCONNECT has been emailed this estimate request.");
+        setMailNote(
+          sent.emailed
+            ? "VINCONNECT has been emailed this estimate request."
+            : "Your price is saved. The email notification did not send — please call 0408 559 555.",
+        );
       } catch {
         setMailNote("Your price is ready. We could not email VINCONNECT automatically — please call 0408 559 555.");
       }

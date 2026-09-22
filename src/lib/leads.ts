@@ -14,14 +14,15 @@ export type LeadPayload = {
 };
 
 function subject(lead: LeadPayload) {
-  if (lead.type === "estimate") return `VINCONNECT estimate request — ${lead.suburb || lead.address || lead.name}`;
-  if (lead.type === "property-plan") return `VINCONNECT property plan — ${lead.suburb || lead.address || lead.name}`;
-  if (lead.type === "download") return `VINCONNECT download — ${lead.package || lead.name}`;
-  if (lead.type === "circl") return `VINCONNECT Circl support — ${lead.suburb || lead.name}`;
-  if (lead.type === "event-link") return `VINCONNECT Event Link — ${lead.suburb || lead.name}`;
-  if (lead.type === "vingear") return `VINCONNECT VIN Gear interest — ${lead.name}`;
-  if (lead.type === "support") return `VINCONNECT customer help — ${lead.suburb || lead.name}`;
-  return `VINCONNECT enquiry — ${lead.name}`;
+  const place = lead.suburb || lead.address || "Victoria";
+  const pack = `${lead.package || ""} ${lead.type}`.toLowerCase();
+  if (lead.type === "estimate") return `VINCONNECT Estimate — ${place}`;
+  if (lead.type === "property-plan") return `VINCONNECT Property Plan — ${place}`;
+  if (pack.includes("caravan")) return `VINCONNECT Caravan Enquiry — ${place}`;
+  if (pack.includes("cctv") || pack.includes("camera")) return `VINCONNECT CCTV Enquiry — ${place}`;
+  if (pack.includes("starlink")) return `VINCONNECT Starlink Quote — ${place}`;
+  if (lead.type === "support" || lead.type === "circl") return `VINCONNECT Customer Help — ${place}`;
+  return `VINCONNECT Website Enquiry — ${place}`;
 }
 
 function asText(lead: LeadPayload) {
@@ -87,6 +88,8 @@ async function postFormSubmit(lead: LeadPayload) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     },
     body: JSON.stringify({
       _subject: subject(lead),
@@ -120,14 +123,26 @@ export const submitLead = createServerFn({ method: "POST" })
     }
     const lead = { ...data, name, email, phone, message };
 
-    const results = await Promise.allSettled([
-      postNetlify(lead),
-      env("RESEND_API_KEY") ? postResend(lead, env("RESEND_API_KEY") as string) : Promise.reject(new Error("no-resend")),
-      postFormSubmit(lead),
-    ]);
-
-    if (results.some((r) => r.status === "fulfilled")) {
-      return { ok: true as const };
+    let stored = false;
+    try {
+      await postNetlify(lead);
+      stored = true;
+    } catch (error) {
+      console.error("Netlify form store failed", error);
     }
-    throw new Error("Could not send the enquiry. Please call 0408 559 555.");
+    if (!stored) {
+      throw new Error("Could not save the enquiry. Please call 0408 559 555.");
+    }
+
+    let emailed = false;
+    const key = env("RESEND_API_KEY");
+    try {
+      if (key) await postResend(lead, key);
+      else await postFormSubmit(lead);
+      emailed = true;
+    } catch (error) {
+      console.error("Enquiry email failed", error instanceof Error ? error.message : error);
+    }
+
+    return { ok: true as const, emailed };
   });

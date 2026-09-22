@@ -25,6 +25,7 @@ export function EnquiryForm({
 }) {
   const siteAddress = useSiteSession((s) => s.address);
   const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [emailed, setEmailed] = useState(true);
   const [error, setError] = useState("");
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -35,7 +36,7 @@ export function EnquiryForm({
     setStatus("saving");
     setError("");
     try {
-      await submitLead({
+      const sent = await submitLead({
         data: {
           type,
           name: String(fd.get("name") || ""),
@@ -47,6 +48,7 @@ export function EnquiryForm({
           message: String(fd.get("message") || ""),
         },
       });
+      setEmailed(sent.emailed);
       form.reset();
       setStatus("done");
     } catch (err) {
@@ -105,7 +107,11 @@ export function EnquiryForm({
         {status === "saving" ? "Sending…" : buttonLabel}
       </Button>
       {status === "done" && (
-        <p className="text-sm text-ok">Thanks — that has been emailed to VINCONNECT. We’ll be in touch shortly.</p>
+        <p className="text-sm text-ok">
+          {emailed
+            ? "Thanks. That enquiry is saved and VINCONNECT has been emailed."
+            : "Thanks. The enquiry is saved. If you do not hear back shortly, call 0408 559 555."}
+        </p>
       )}
       {status === "error" && (
         <p role="alert" className="text-sm text-danger">

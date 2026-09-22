@@ -36,9 +36,10 @@ export function SiteFooter() {
               <li><AppLink to="/services/starlink-installation" className="hover:text-fg">Home Starlink</AppLink></li>
               <li><Link to="/estimate" className="hover:text-fg">Check My Install Price</Link></li>
               <li><AppLink to="/starlink" className="hover:text-fg">Starlink guides</AppLink></li>
-              <li><AppLink to="/property-networks" className="hover:text-fg">Property networks</AppLink></li>
-              <li><AppLink to="/security" className="hover:text-fg">CCTV & cameras</AppLink></li>
-              <li><AppLink to="/security/hilook-cctv-packages" className="hover:text-fg">HiLook CCTV packages</AppLink></li>
+              <li><AppLink to="/services/whole-property-wifi" className="hover:text-fg">Whole-property Wi-Fi</AppLink></li>
+              <li><AppLink to="/services/wireless-links" className="hover:text-fg">Building-to-building links</AppLink></li>
+              <li><AppLink to="/services/equestrian-connectivity" className="hover:text-fg">Horse properties</AppLink></li>
+              <li><AppLink to="/security/stable-cctv" className="hover:text-fg">Stable CCTV</AppLink></li>
               <li><AppLink to="/services/starlink-caravan-installation" className="hover:text-fg">Caravan Starlink</AppLink></li>
               <li><Link to="/services" className="hover:text-fg">All services</Link></li>
             </ul>
@@ -47,10 +48,11 @@ export function SiteFooter() {
             <p className="kicker mb-3">Plan & prepare</p>
             <ul className="space-y-2 text-muted">
               <li><Link to="/property-planner" className="hover:text-fg">Property planner</Link></li>
-              <li><AppLink to="/customer-help" className="hover:text-fg">Customer help</AppLink></li>
+              <li><Link to="/resources" className="hover:text-fg">Guides and advice</Link></li>
               <li><Link to="/starlink-offer" className="hover:text-fg">Starlink referral offer</Link></li>
+              <li><AppLink to="/customer-help" className="hover:text-fg">Customer help</AppLink></li>
               <li><AppLink to="/install-terms-and-conditions" className="hover:text-fg">Install terms</AppLink></li>
-              <li><Link to="/resources" className="hover:text-fg">Guides & answers</Link></li>
+              <li><AppLink to="/circl-starlink-installations" className="hover:text-fg">If Circl arranged your install</AppLink></li>
               <li><Link to="/resources/downloads" className="hover:text-fg">Downloads</Link></li>
               <li><Link to="/service-areas" className="hover:text-fg">Service areas</Link></li>
               <li><Link to="/projects" className="hover:text-fg">Completed installations</Link></li>
@@ -69,7 +71,6 @@ export function SiteFooter() {
               <li><Link to="/journal" className="hover:text-fg">Field notes</Link></li>
               <li><Link to="/contact" className="hover:text-fg">Contact us</Link></li>
               <li><Link to="/privacy" className="hover:text-fg">Privacy</Link></li>
-              <li><AppLink to="/circl-starlink-installations" className="hover:text-fg">If Circl arranged your install</AppLink></li>
               {SOCIALS.map((s) => (
                 <li key={s.href}>
                   <a href={s.href} className="hover:text-fg" target="_blank" rel="noreferrer">
