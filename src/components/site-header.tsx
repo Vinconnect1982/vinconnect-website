@@ -61,7 +61,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:h-[4.25rem] sm:px-6">
         <AppLink to="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
           <img
-            src="/media/logo.webp"
+            src="/media/logo.webp?v=2"
             alt="VINCONNECT"
             className="h-9 w-auto sm:h-10"
             width={180}
