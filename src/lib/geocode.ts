@@ -6,6 +6,7 @@ export type AddressHit = {
   lng: number;
   suburb: string;
   postcode: string;
+  located: boolean;
 };
 
 type PhotonFeature = {
@@ -24,6 +25,29 @@ type PhotonFeature = {
     countrycode?: string;
   };
 };
+
+export function manualVictorianAddress(q: string): AddressHit | null {
+  const address = q.trim().replace(/\s+/g, " ");
+  if (address.length < 8) return null;
+  const postcode = address.match(/\b(3\d{3})\b/);
+  const vic = /\bvic(?:toria)?\b/i.test(address) || Boolean(postcode);
+  if (!vic) return null;
+  const suburb = address
+    .split(",")
+    .slice(1)
+    .join(" ")
+    .replace(/\b(victoria|vic|australia|\d{4})\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return {
+    address,
+    lat: 0,
+    lng: 0,
+    suburb,
+    postcode: postcode?.[1] ?? "",
+    located: false,
+  };
+}
 
 function formatPhoton(f: PhotonFeature): AddressHit | null {
   const p = f.properties ?? {};
@@ -47,6 +71,7 @@ function formatPhoton(f: PhotonFeature): AddressHit | null {
     lng: coords[0],
     suburb: p.district || p.suburb || p.town || p.city || "",
     postcode: p.postcode || "",
+    located: true,
   };
 }
 
@@ -63,19 +88,27 @@ export const searchAddresses = createServerFn({ method: "POST" })
       lat: "-38.106",
       lon: "145.283",
     });
-    const res = await fetch(`https://photon.komoot.io/api/?${params}`, {
-      headers: { Accept: "application/json" },
-    });
-    if (!res.ok) throw new Error("Address search is temporarily unavailable.");
-    const body = (await res.json()) as { features?: PhotonFeature[] };
-    const hits = (body.features ?? [])
-      .map(formatPhoton)
-      .filter((h): h is AddressHit => Boolean(h));
-
-    const seen = new Set<string>();
-    return hits.filter((h) => {
-      if (seen.has(h.address)) return false;
-      seen.add(h.address);
-      return true;
-    });
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    try {
+      const res = await fetch(`https://photon.komoot.io/api/?${params}`, {
+        headers: { Accept: "application/json" },
+        signal: ctrl.signal,
+      });
+      if (!res.ok) throw new Error("unavailable");
+      const body = (await res.json()) as { features?: PhotonFeature[] };
+      const hits = (body.features ?? [])
+        .map(formatPhoton)
+        .filter((h): h is AddressHit => Boolean(h));
+      const seen = new Set<string>();
+      return hits.filter((h) => {
+        if (seen.has(h.address)) return false;
+        seen.add(h.address);
+        return true;
+      });
+    } catch {
+      throw new Error("Address suggestions are unavailable. You can still use a full Victorian address.");
+    } finally {
+      clearTimeout(timer);
+    }
   });

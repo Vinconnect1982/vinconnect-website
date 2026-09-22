@@ -154,7 +154,7 @@ export function PropertyPlanner({
         nextId.current = (seeded.at(-1)?.id ?? 0) + 1;
       } catch {
         setTrace(null);
-        setError("Could not trace this property yet. You can still drop points on the plan.");
+        setError("Map not working? Use sketch planner. You can still drop points on the plan.");
       } finally {
         setTracing(false);
       }
@@ -172,6 +172,7 @@ export function PropertyPlanner({
             lng: incoming.lng,
             suburb: stored?.suburb || "",
             postcode: stored?.postcode || "",
+            located: true,
           }
         : stored;
     if (fromUrl) {

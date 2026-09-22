@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /netlify-form.html
 
 Sitemap: https://vinconnect.com.au/sitemap.xml

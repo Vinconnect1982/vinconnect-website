@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { searchAddresses, type AddressHit } from "@/lib/geocode";
+import { searchAddresses, manualVictorianAddress, type AddressHit } from "@/lib/geocode";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,7 @@ export function AddressSearch({
   const [hits, setHits] = useState<AddressHit[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [manual, setManual] = useState(false);
   const [open, setOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
   const dark = variant === "dark";
@@ -42,10 +43,15 @@ export function AddressSearch({
         .then((rows) => {
           setHits(rows);
           setOpen(true);
-          if (!rows.length) setError("No matching Australian address. Add the street number, suburb and postcode.");
+          if (!rows.length) {
+            setManual(true);
+            setError("No matching address yet. Add the street number, suburb and postcode, or use the address as typed.");
+          }
         })
-        .catch((err: unknown) => {
-          setError(err instanceof Error ? err.message : "Address search is unavailable.");
+        .catch(() => {
+          setHits([]);
+          setManual(true);
+          setError("Address suggestions are unavailable. You can still use a full Victorian address.");
         })
         .finally(() => setBusy(false));
     }, 350);
@@ -65,6 +71,7 @@ export function AddressSearch({
     setQuery(hit.address);
     setOpen(false);
     setError("");
+    setManual(false);
   }
 
   function useTyped() {
@@ -81,9 +88,24 @@ export function AddressSearch({
     searchAddresses({ data: { q } })
       .then((rows) => {
         if (rows[0]) pick(rows[0]);
-        else setError("We could not confirm that address. Add the street number, suburb and postcode.");
+        else {
+          const typed = manualVictorianAddress(q);
+          if (typed) {
+            pick(typed);
+            return;
+          }
+          setManual(true);
+          setError("We could not confirm that address. Include suburb and a Victorian postcode, then use the address as typed.");
+        }
       })
-      .catch(() => setError("We could not confirm that address. Add the street number, suburb and postcode."))
+      .catch(() => {
+        const typed = manualVictorianAddress(query.trim());
+        if (typed) pick(typed);
+        else {
+          setManual(true);
+          setError("We could not confirm that address. Include suburb and a Victorian postcode, then use the address as typed.");
+        }
+      })
       .finally(() => setBusy(false));
   }
 
@@ -140,6 +162,20 @@ export function AddressSearch({
         </Button>
         {busy && <span className={cn("text-sm", dark ? "text-muted" : "text-muted-ink")}>Loading address suggestions…</span>}
       </div>
+      {manual && manualVictorianAddress(query) && (
+        <Button
+          type="button"
+          variant={dark ? "ghost" : "ink"}
+          size="sm"
+          className="mt-2"
+          onClick={() => {
+            const typed = manualVictorianAddress(query);
+            if (typed) pick(typed);
+          }}
+        >
+          Use this address
+        </Button>
+      )}
       {selected && <p className="mt-3 text-sm text-ok">Selected: {selected.address}</p>}
       {error && (
         <p role="alert" className="mt-2 text-sm text-danger">

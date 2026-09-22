@@ -138,6 +138,7 @@ export function SiteSketch({
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [aerial, setAerial] = useState<string | null>(null);
+  const [aerialFailed, setAerialFailed] = useState(false);
 
   const layout = useMemo(() => {
     if (!origin) return null;
@@ -181,10 +182,16 @@ export function SiteSketch({
     const t = window.setTimeout(() => {
       fetchSiteAerial({ data: layout.geo })
         .then((res) => {
-          if (!cancelled) setAerial(res.dataUrl);
+          if (!cancelled) {
+            setAerial(res.dataUrl);
+            setAerialFailed(false);
+          }
         })
         .catch(() => {
-          if (!cancelled) setAerial(null);
+          if (!cancelled) {
+            setAerial(null);
+            setAerialFailed(true);
+          }
         });
     }, 180);
     return () => {
@@ -222,6 +229,11 @@ export function SiteSketch({
     <div className="relative h-full min-h-80 w-full overflow-hidden bg-paper">
       {aerial && (
         <img src={aerial} alt="" className="planner-sat-watermark" decoding="async" />
+      )}
+      {aerialFailed && !aerial && (
+        <p className="absolute left-3 top-3 z-[3] max-w-xs bg-paper/95 px-3 py-2 text-sm text-ink-fg">
+          Map not working? Use sketch planner. Drop the house and buildings on this plan.
+        </p>
       )}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-paper/20" />
 

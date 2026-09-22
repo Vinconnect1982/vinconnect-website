@@ -8,10 +8,10 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { PHONE_TEL } from "@/lib/content";
 import { submitLead } from "@/lib/leads";
+import { quoteInstall } from "@/lib/pricing.server";
 import {
   ESTIMATE_SERVICES,
   STOREYS,
-  priceEstimate,
   type EstimateResult,
   type ServiceId,
   type StoreyId,
@@ -32,6 +32,7 @@ export function EstimateWizard() {
   const [service, setService] = useState<ServiceId | "">("");
   const [storeys, setStoreys] = useState<StoreyId>("single");
   const [conduit, setConduit] = useState(false);
+  const [cabinet, setCabinet] = useState(false);
   const [extension, setExtension] = useState(false);
   const [internal, setInternal] = useState(false);
   const [mesh, setMesh] = useState(0);
@@ -40,8 +41,6 @@ export function EstimateWizard() {
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<EstimateResult | null>(null);
   const [enquiryId, setEnquiryId] = useState("");
-  const [photos, setPhotos] = useState<File[]>([]);
-  const [photoNote, setPhotoNote] = useState("");
   const [mailNote, setMailNote] = useState("");
 
   const rec = useMemo(
@@ -52,7 +51,7 @@ export function EstimateWizard() {
   function next() {
     setError("");
     if (step === 1 && !address) {
-      setError("Choose your address from the live suggestions.");
+      setError("Choose a suggested address, or use the address you typed.");
       return;
     }
     if (step === 2 && !service) {
@@ -73,16 +72,20 @@ export function EstimateWizard() {
     setError("");
     setMailNote("");
     try {
-      const pricing = priceEstimate({
-        service,
-        storeys,
-        conduit,
-        extension,
-        internal,
-        mesh,
-        lat: address.lat,
-        lng: address.lng,
-        address: address.address,
+      const pricing = await quoteInstall({
+        data: {
+          service,
+          storeys,
+          conduit,
+          cabinet,
+          extension,
+          internal,
+          mesh,
+          lat: address.lat,
+          lng: address.lng,
+          address: address.address,
+          located: address.located !== false,
+        },
       });
       const id = `VC-${Date.now().toString(36).toUpperCase()}`;
       const record = {
@@ -94,6 +97,7 @@ export function EstimateWizard() {
         service,
         storeys,
         conduit,
+        cabinet,
         extension,
         internal,
         mesh,
@@ -121,7 +125,8 @@ export function EstimateWizard() {
               `Storeys: ${storeys}`,
               `Range: ${formatAud(pricing.estimatedLow)}–${formatAud(pricing.estimatedHigh)}`,
               pricing.travelNote,
-              `Conduit: ${conduit ? "yes" : "no"}; extension: ${extension ? "yes" : "no"}; concealed: ${internal ? "yes" : "no"}; extra Wi-Fi areas: ${mesh}.`,
+              `Conduit: ${conduit ? "yes" : "no"}; cabinet router: ${cabinet ? "yes" : "no"}; extension: ${extension ? "yes" : "no"}; concealed: ${internal ? "yes" : "no"}; extra Wi-Fi areas: ${mesh}.`,
+              address.located === false ? "Address was typed manually. Confirm the pin before quoting travel." : `Approx distance for internal quoting only: ${pricing.km.toFixed(0)} km.`,
             ].join("\n"),
           },
         });
@@ -239,7 +244,11 @@ export function EstimateWizard() {
             <div className="mt-3 grid gap-3">
               <label className="flex min-h-11 items-center gap-3 text-sm">
                 <input type="checkbox" checked={conduit} onChange={(e) => setConduit(e.target.checked)} className="size-4 accent-mint-deep" />
-                External conduit may be needed
+                External conduit may be needed (+$120)
+              </label>
+              <label className="flex min-h-11 items-center gap-3 text-sm">
+                <input type="checkbox" checked={cabinet} onChange={(e) => setCabinet(e.target.checked)} className="size-4 accent-mint-deep" />
+                Router in the garage or data cabinet (+$150)
               </label>
               <label className="flex min-h-11 items-center gap-3 text-sm">
                 <input type="checkbox" checked={extension} onChange={(e) => setExtension(e.target.checked)} className="size-4 accent-mint-deep" />
@@ -339,33 +348,16 @@ export function EstimateWizard() {
             <p className="mt-2 text-xs text-muted-ink">
               Labour range only. Starlink hardware, mounts, kits and electrician work are separately itemised.
             </p>
-            <div className="mt-8 rounded-lg border border-line-ink bg-paper-2/50 p-4">
+            <div className="mt-8 border border-line-ink p-4">
               <h4 className="font-display">Want us to confirm it faster?</h4>
               <p className="mt-1 text-sm text-muted-ink">
-                Attach a few photos of the building, proposed dish or equipment location, roof access and router area.
+                Email a few photos of the building, the proposed dish or equipment location, roof access and the router area. Quote reference {enquiryId}.
               </p>
-              <input
-                aria-label="Site photos"
-                type="file"
-                accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-                multiple
-                className="mt-3 block w-full text-sm"
-                onChange={(e) => setPhotos(Array.from(e.target.files || []).slice(0, 6))}
-              />
-              <Button
-                className="mt-3"
-                variant="ink"
-                type="button"
-                disabled={!photos.length}
-                onClick={() =>
-                  setPhotoNote(
-                    `${photos.length} photo${photos.length === 1 ? "" : "s"} added to your request.`,
-                  )
-                }
-              >
-                Upload {photos.length || ""} photo{photos.length === 1 ? "" : "s"}
+              <Button asChild className="mt-3" variant="ink">
+                <a href={`mailto:vince@vinconnect.com.au?subject=${encodeURIComponent(`Photos for ${enquiryId}`)}`}>
+                  Email photos for this estimate
+                </a>
               </Button>
-              {photoNote && <p role="status" className="mt-2 text-sm text-ok">{photoNote}</p>}
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
