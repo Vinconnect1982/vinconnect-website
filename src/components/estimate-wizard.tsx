@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { PHONE_TEL } from "@/lib/content";
 import { submitLead } from "@/lib/leads";
-import { quoteInstall } from "@/lib/pricing.server";
+import { quoteInstall } from "@/lib/quote";
 import {
   ESTIMATE_SERVICES,
   STOREYS,

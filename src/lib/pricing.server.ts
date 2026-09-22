@@ -1,4 +1,3 @@
-import { createServerFn } from "@tanstack/react-start";
 import { haversineKm } from "./utils";
 import {
   DEPOT,
@@ -72,7 +71,3 @@ export function priceEstimate(input: EstimateInput): EstimateResult {
     lines,
   };
 }
-
-export const quoteInstall = createServerFn({ method: "POST" })
-  .validator((input: EstimateInput) => input)
-  .handler(async ({ data }) => priceEstimate(data));

@@ -66,7 +66,7 @@ function Home() {
       <section className="relative overflow-hidden">
         <img
           src="/roadshow/paddocks.webp"
-          alt="Original VINCONNECT rural roadshow artwork."
+          alt="Rural Connections Roadshow at a country show."
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/25" />
