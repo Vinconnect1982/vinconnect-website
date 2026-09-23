@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitLead } from "@/lib/leads";
+import { deliverLeadEmail } from "@/lib/lead-mail";
 import { PHONE, PHONE_TEL, SITE_URL } from "@/lib/content";
 
 export const Route = createFileRoute("/vinready")({
@@ -256,8 +257,7 @@ function BuilderForm() {
     setStatus("saving");
     setError("");
     try {
-      await submitLead({
-        data: {
+    const payload = {
           type: "vinready",
           name,
           email,
@@ -273,8 +273,9 @@ function BuilderForm() {
           ]
             .filter(Boolean)
             .join("\n"),
-        },
-      });
+        };
+      const sent = await submitLead({ data: payload });
+      if (!sent.emailed) await deliverLeadEmail(payload);
       e.currentTarget.reset();
       setStatus("done");
     } catch (err) {

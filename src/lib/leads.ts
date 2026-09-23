@@ -83,35 +83,6 @@ async function postResend(lead: LeadPayload, key: string) {
   if (!res.ok) throw new Error("Resend failed");
 }
 
-async function postFormSubmit(lead: LeadPayload) {
-  const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    },
-    body: JSON.stringify({
-      _subject: subject(lead),
-      _template: "table",
-      _captcha: "false",
-      _replyto: lead.email,
-      name: lead.name,
-      email: lead.email,
-      phone: lead.phone,
-      suburb: lead.suburb,
-      address: lead.address || "",
-      type: lead.type,
-      package: lead.package || "",
-      message: lead.message,
-    }),
-  });
-  const body = (await res.json().catch(() => ({}))) as { success?: string | boolean; message?: string };
-  const ok = body.success === true || body.success === "true" || res.ok;
-  if (!ok) throw new Error(body.message || "FormSubmit failed");
-}
-
 export const submitLead = createServerFn({ method: "POST" })
   .validator((input: LeadPayload) => input)
   .handler(async ({ data }) => {
@@ -137,12 +108,13 @@ export const submitLead = createServerFn({ method: "POST" })
 
     let emailed = false;
     const key = env("RESEND_API_KEY");
-    try {
-      if (key) await postResend(lead, key);
-      else await postFormSubmit(lead);
-      emailed = true;
-    } catch (error) {
-      console.error("Enquiry email failed", error instanceof Error ? error.message : error);
+    if (key) {
+      try {
+        await postResend(lead, key);
+        emailed = true;
+      } catch (error) {
+        console.error("Enquiry email failed", error instanceof Error ? error.message : error);
+      }
     }
 
     return { ok: true as const, emailed };

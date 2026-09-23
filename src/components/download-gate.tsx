@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { submitLead } from "@/lib/leads";
+import { deliverLeadEmail } from "@/lib/lead-mail";
 import type { DownloadDoc } from "@/lib/downloads";
 import { PHONE, PHONE_TEL } from "@/lib/content";
 
@@ -18,8 +19,7 @@ export function DownloadGate({ doc }: { doc: DownloadDoc }) {
     setStatus("saving");
     setError("");
     try {
-      await submitLead({
-        data: {
+      const payload = {
           type: "download",
           name: String(fd.get("name") || ""),
           email: String(fd.get("email") || ""),
@@ -27,8 +27,9 @@ export function DownloadGate({ doc }: { doc: DownloadDoc }) {
           suburb: String(fd.get("suburb") || ""),
           package: doc.title,
           message: `Requested download: ${doc.title} (${doc.file})`,
-        },
-      });
+        };
+      await submitLead({ data: payload });
+      await deliverLeadEmail(payload);
       setStatus("done");
     } catch (err) {
       setStatus("error");

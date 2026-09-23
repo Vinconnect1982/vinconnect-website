@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitLead } from "@/lib/leads";
+import { deliverLeadEmail } from "@/lib/lead-mail";
 import { PHONE, PHONE_TEL } from "@/lib/content";
 import { useSiteSession } from "@/lib/site-session";
 
@@ -36,8 +37,7 @@ export function EnquiryForm({
     setStatus("saving");
     setError("");
     try {
-      const sent = await submitLead({
-        data: {
+      const payload = {
           type,
           name: String(fd.get("name") || ""),
           email: String(fd.get("email") || ""),
@@ -46,9 +46,10 @@ export function EnquiryForm({
           address: siteAddress?.address || "",
           package: selectedPackage,
           message: String(fd.get("message") || ""),
-        },
-      });
-      setEmailed(sent.emailed);
+        };
+      const sent = await submitLead({ data: payload });
+      const emailed = sent.emailed || (await deliverLeadEmail(payload));
+      setEmailed(emailed);
       form.reset();
       setStatus("done");
     } catch (err) {

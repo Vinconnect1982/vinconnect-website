@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { PHONE_TEL } from "@/lib/content";
 import { submitLead } from "@/lib/leads";
+import { deliverLeadEmail } from "@/lib/lead-mail";
 import { quoteInstall } from "@/lib/quote";
 import {
   ESTIMATE_SERVICES,
@@ -110,8 +111,7 @@ export function EstimateWizard() {
       setEnquiryId(id);
       setStep(5);
       try {
-        const sent = await submitLead({
-          data: {
+        const payload = {
             type: "estimate",
             name: contact.name,
             email: contact.email,
@@ -128,10 +128,11 @@ export function EstimateWizard() {
               `Conduit: ${conduit ? "yes" : "no"}; cabinet router: ${cabinet ? "yes" : "no"}; extension: ${extension ? "yes" : "no"}; concealed: ${internal ? "yes" : "no"}; extra Wi-Fi areas: ${mesh}.`,
               address.located === false ? "Address was typed manually. Confirm the pin before quoting travel." : `Approx distance for internal quoting only: ${pricing.km.toFixed(0)} km.`,
             ].join("\n"),
-          },
-        });
+          };
+        const sent = await submitLead({ data: payload });
+        const emailed = sent.emailed || (await deliverLeadEmail(payload));
         setMailNote(
-          sent.emailed
+          emailed
             ? "VINCONNECT has been emailed this estimate request."
             : "Your price is saved. The email notification did not send — please call 0408 559 555.",
         );
