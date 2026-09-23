@@ -8,12 +8,20 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { PHONE_TEL } from "@/lib/content";
 import { submitLead } from "@/lib/leads";
-import { deliverLeadEmail } from "@/lib/lead-mail";
+import { deliverEstimatePdf, deliverLeadEmail } from "@/lib/lead-mail";
+import { emailEstimate } from "@/lib/estimate-mail";
+import { buildEstimatePdf, estimateEmailHtml } from "@/lib/estimate-pdf";
 import { quoteInstall } from "@/lib/quote";
 import {
   ESTIMATE_SERVICES,
+  MOUNT_HOCKEY,
+  MOUNT_TRIPOD,
+  MOUNT_WALL,
   STOREYS,
   type EstimateResult,
+  type MountNeed,
+  type MountStyle,
+  type RoofId,
   type ServiceId,
   type StoreyId,
 } from "@/lib/pricing";
@@ -24,6 +32,14 @@ import { cn, formatAud } from "@/lib/utils";
 type Contact = { name: string; email: string; phone: string };
 
 const STORAGE_KEY = "vinconnect-estimates";
+
+function bytesToBase64(bytes: Uint8Array) {
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return btoa(binary);
+}
 
 export function EstimateWizard() {
   const setSiteAddress = useSiteSession((s) => s.setAddress);
@@ -37,12 +53,16 @@ export function EstimateWizard() {
   const [extension, setExtension] = useState(false);
   const [internal, setInternal] = useState(false);
   const [mesh, setMesh] = useState(0);
+  const [mountNeed, setMountNeed] = useState<MountNeed | "">("");
+  const [roof, setRoof] = useState<RoofId | "">("");
+  const [mountStyle, setMountStyle] = useState<MountStyle | "">("");
   const [contact, setContact] = useState<Contact>({ name: "", email: "", phone: "" });
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<EstimateResult | null>(null);
   const [enquiryId, setEnquiryId] = useState("");
   const [mailNote, setMailNote] = useState("");
+  const [pdfUrl, setPdfUrl] = useState("");
 
   const rec = useMemo(
     () => ESTIMATE_SERVICES.find((s) => s.id === service)?.note,
@@ -59,12 +79,27 @@ export function EstimateWizard() {
       setError("Choose the option that best matches your job.");
       return;
     }
+    if (step === 3) {
+      if (!mountNeed) {
+        setError("Tell us whether you need a mount.");
+        return;
+      }
+      if (!roof) {
+        setError("Tell us whether the roof is Colorbond / metal or tile.");
+        return;
+      }
+      if (mountNeed === "yes" && !mountStyle) {
+        setError("Choose the roof mount or the wall mount.");
+        return;
+      }
+    }
     setStep((s) => Math.min(4, s + 1));
   }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!address || !service) return;
+    if (!address || !service || !roof || !mountNeed) return;
+    if (mountNeed === "yes" && !mountStyle) return;
     if (!contact.name.trim() || !contact.email.trim() || !contact.phone.trim()) {
       setError("Add your name, email and mobile so we can send the estimate.");
       return;
@@ -82,6 +117,9 @@ export function EstimateWizard() {
           extension,
           internal,
           mesh,
+          roof,
+          mountNeed,
+          mountStyle: mountNeed === "yes" ? mountStyle || "roof" : "roof",
           lat: address.lat,
           lng: address.lng,
           address: address.address,
@@ -109,36 +147,87 @@ export function EstimateWizard() {
       setSiteAddress(address);
       setResult(pricing);
       setEnquiryId(id);
-      setStep(5);
-      try {
-        const payload = {
-            type: "estimate",
-            name: contact.name,
-            email: contact.email,
-            phone: contact.phone,
-            suburb: address.suburb,
-            address: address.address,
-            package: service,
-            message: [
-              `Estimate ${id}`,
-              `Service: ${service}`,
-              `Storeys: ${storeys}`,
-              `Range: ${formatAud(pricing.estimatedLow)}–${formatAud(pricing.estimatedHigh)}`,
-              pricing.travelNote,
-              `Conduit: ${conduit ? "yes" : "no"}; cabinet router: ${cabinet ? "yes" : "no"}; extension: ${extension ? "yes" : "no"}; concealed: ${internal ? "yes" : "no"}; extra Wi-Fi areas: ${mesh}.`,
-              address.located === false ? "Address was typed manually. Confirm the pin before quoting travel." : `Approx distance for internal quoting only: ${pricing.km.toFixed(0)} km.`,
-            ].join("\n"),
-          };
-        const sent = await submitLead({ data: payload });
-        const emailed = sent.emailed || (await deliverLeadEmail(payload));
-        setMailNote(
-          emailed
-            ? "VINCONNECT has been emailed this estimate request."
-            : "Your price is saved. The email notification did not send — please call 0408 559 555.",
-        );
-      } catch {
-        setMailNote("Your price is ready. We could not email VINCONNECT automatically — please call 0408 559 555.");
-      }
+        setStep(5);
+        const doc = {
+          id,
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          address: address.address,
+          result: pricing,
+        };
+        const summary = [
+          `Estimate ${id}`,
+          `Roof: ${pricing.roofLabel}`,
+          `Mount: ${pricing.mountLabel}`,
+          `Range: ${formatAud(pricing.estimatedLow)}–${formatAud(pricing.estimatedHigh)}`,
+          pricing.travelNote,
+          pricing.lines.map((line) => `${line.label}: ${formatAud(line.amount)}`).join("\n"),
+        ].join("\n");
+        try {
+          const pdf = await buildEstimatePdf(doc);
+          const filename = `VINCONNECT-${id}.pdf`;
+          setPdfUrl(URL.createObjectURL(new Blob([Uint8Array.from(pdf)], { type: "application/pdf" })));
+          const html = estimateEmailHtml(doc);
+          let emailed = false;
+          try {
+            const branded = await emailEstimate({
+              data: {
+                to: contact.email,
+                subject: `VINCONNECT estimate ${id}`,
+                html,
+                pdfBase64: bytesToBase64(pdf),
+                filename,
+              },
+            });
+            emailed = branded.emailed;
+          } catch {
+            emailed = false;
+          }
+          if (!emailed) {
+            emailed = await deliverEstimatePdf({
+              id,
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              address: address.address,
+              suburb: address.suburb,
+              summary,
+              pdf,
+            });
+          }
+          if (!emailed) {
+            emailed = await deliverLeadEmail({
+              type: "estimate",
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              suburb: address.suburb,
+              address: address.address,
+              package: service,
+              message: summary,
+            });
+          }
+          await submitLead({
+            data: {
+              type: "estimate",
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              suburb: address.suburb,
+              address: address.address,
+              package: service,
+              message: summary,
+            },
+          });
+          setMailNote(
+            emailed
+              ? "A copy of this estimate, with the PDF attached, has been emailed to you and to VINCONNECT."
+              : "Your price is saved and the PDF is ready to download. The email did not send — please call 0408 559 555.",
+          );
+        } catch {
+          setMailNote("Your price is ready. We could not email the estimate automatically — please call 0408 559 555.");
+        }
     } catch {
       setError("Unable to calculate your estimate. Please try again.");
     } finally {
@@ -245,6 +334,94 @@ export function EstimateWizard() {
                 </button>
               ))}
             </div>
+            <h4 className="mt-8 font-display text-base">Do you need a mount?</h4>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <button
+                type="button"
+                aria-pressed={mountNeed === "no"}
+                onClick={() => setMountNeed("no")}
+                className={cn(
+                  "rounded-lg border px-4 py-4 text-left",
+                  mountNeed === "no" ? "border-mint-deep bg-mint/20" : "border-line-ink hover:border-ink-fg",
+                )}
+              >
+                <strong className="block font-display">No, I already have one</strong>
+                <span className="mt-1 block text-sm text-muted-ink">We still need the roof type for the installation.</span>
+              </button>
+              <button
+                type="button"
+                aria-pressed={mountNeed === "yes"}
+                onClick={() => setMountNeed("yes")}
+                className={cn(
+                  "rounded-lg border px-4 py-4 text-left",
+                  mountNeed === "yes" ? "border-mint-deep bg-mint/20" : "border-line-ink hover:border-ink-fg",
+                )}
+              >
+                <strong className="block font-display">Yes</strong>
+                <span className="mt-1 block text-sm text-muted-ink">We supply the mount and a pole adaptor.</span>
+              </button>
+            </div>
+            <h4 className="mt-8 font-display text-base">What sort of roof is it?</h4>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {(
+                [
+                  ["metal", "Colorbond / metal"],
+                  ["tile", "Tile"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={roof === id}
+                  onClick={() => setRoof(id)}
+                  className={cn(
+                    "rounded-lg border px-4 py-4 text-left",
+                    roof === id ? "border-mint-deep bg-mint/20" : "border-line-ink hover:border-ink-fg",
+                  )}
+                >
+                  <strong className="block font-display">{label}</strong>
+                </button>
+              ))}
+            </div>
+            {mountNeed === "yes" && (
+              <>
+                <h4 className="mt-8 font-display text-base">Which mount should we supply?</h4>
+                <div className="mt-3 grid gap-3">
+                  <button
+                    type="button"
+                    aria-pressed={mountStyle === "roof"}
+                    onClick={() => setMountStyle("roof")}
+                    className={cn(
+                      "rounded-lg border px-4 py-4 text-left",
+                      mountStyle === "roof" ? "border-mint-deep bg-mint/20" : "border-line-ink hover:border-ink-fg",
+                    )}
+                  >
+                    <strong className="block font-display">
+                      {roof === "tile" ? "Hockey stick mount and pole adaptor" : "Tripod mount and pole adaptor"}
+                    </strong>
+                    <span className="mt-1 block text-sm text-muted-ink">
+                      {roof === "tile"
+                        ? `For a tile roof. Adds ${formatAud(MOUNT_HOCKEY)}.`
+                        : roof === "metal"
+                          ? `For a Colorbond or metal roof. Adds ${formatAud(MOUNT_TRIPOD)}.`
+                          : "Choose the roof type first."}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={mountStyle === "wall"}
+                    onClick={() => setMountStyle("wall")}
+                    className={cn(
+                      "rounded-lg border px-4 py-4 text-left",
+                      mountStyle === "wall" ? "border-mint-deep bg-mint/20" : "border-line-ink hover:border-ink-fg",
+                    )}
+                  >
+                    <strong className="block font-display">Wall mount and pole adaptor</strong>
+                    <span className="mt-1 block text-sm text-muted-ink">Adds {formatAud(MOUNT_WALL)}.</span>
+                  </button>
+                </div>
+              </>
+            )}
             <h4 className="mt-8 font-display text-base">Anything else we should allow for?</h4>
             <div className="mt-3 grid gap-3">
               <label className="flex min-h-11 items-center gap-3 text-sm">
@@ -339,6 +516,9 @@ export function EstimateWizard() {
               {formatAud(result.estimatedLow)}–{formatAud(result.estimatedHigh)}
             </p>
             <p className="mt-3 max-w-xl text-muted-ink">{result.travelNote}</p>
+            <p className="mt-3 text-sm">
+              Roof: {result.roofLabel}. Mount: {result.mountLabel}.
+            </p>
             <ul className="mt-5 divide-y divide-line-ink rounded-lg border border-line-ink text-sm">
               {result.lines.map((line) => (
                 <li key={line.label} className="flex items-center justify-between px-4 py-2.5">
@@ -351,8 +531,15 @@ export function EstimateWizard() {
               Enquiry #{enquiryId} is saved. {mailNote || "VINCONNECT has been emailed this request."}
             </p>
             <p className="mt-2 text-xs text-muted-ink">
-              Labour range only. Starlink hardware, mounts, kits and electrician work are separately itemised.
+              The Starlink dish, router and monthly plan are not included. This is an estimate, not a tax invoice.
             </p>
+            {pdfUrl && (
+              <Button asChild className="mt-4" variant="ink">
+                <a href={pdfUrl} download={`VINCONNECT-${enquiryId}.pdf`}>
+                  Download the estimate PDF
+                </a>
+              </Button>
+            )}
             {(service === "starlink" || service === "unsure") && (
               <div className="mt-6 max-w-xl rounded-lg border border-line-ink p-4">
                 <p className="font-display text-lg">Haven’t ordered your kit yet?</p>

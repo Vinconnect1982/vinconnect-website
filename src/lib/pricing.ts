@@ -4,6 +4,9 @@ export const LOCAL_STARLINK_LABOUR = 300;
 export const DOUBLE_STOREY_STARLINK = 550;
 export const EXTRA_CONDUIT = 120;
 export const EXTRA_CABINET_ROUTER = 150;
+export const MOUNT_TRIPOD = 170;
+export const MOUNT_HOCKEY = 160;
+export const MOUNT_WALL = 130;
 
 export const ESTIMATE_SERVICES = [
   {
@@ -45,6 +48,38 @@ export const ESTIMATE_SERVICES = [
 
 export type ServiceId = (typeof ESTIMATE_SERVICES)[number]["id"];
 export type StoreyId = "single" | "double" | "commercial";
+export type RoofId = "metal" | "tile";
+export type MountNeed = "no" | "yes";
+export type MountStyle = "roof" | "wall";
+
+export function mountQuote(input: { roof: RoofId; mountNeed: MountNeed; mountStyle: MountStyle }) {
+  const roofLabel = input.roof === "tile" ? "Tile" : "Colorbond / metal";
+  if (input.mountNeed === "no") {
+    return { roofLabel, mountLabel: "You already have a mount", amount: 0, line: "" };
+  }
+  if (input.mountStyle === "wall") {
+    return {
+      roofLabel,
+      mountLabel: "Wall mount and pole adaptor",
+      amount: MOUNT_WALL,
+      line: "Wall mount and pole adaptor",
+    };
+  }
+  if (input.roof === "tile") {
+    return {
+      roofLabel,
+      mountLabel: "Hockey stick mount and pole adaptor",
+      amount: MOUNT_HOCKEY,
+      line: "Hockey stick mount and pole adaptor",
+    };
+  }
+  return {
+    roofLabel,
+    mountLabel: "Tripod mount and pole adaptor",
+    amount: MOUNT_TRIPOD,
+    line: "Tripod mount and pole adaptor",
+  };
+}
 
 export const STOREYS: { id: StoreyId; title: string; hint: string }[] = [
   { id: "single", title: "Single storey", hint: "Home, shed or small building" },
@@ -60,6 +95,9 @@ export type EstimateInput = {
   extension: boolean;
   internal: boolean;
   mesh: number;
+  roof: RoofId;
+  mountNeed: MountNeed;
+  mountStyle: MountStyle;
   lat: number;
   lng: number;
   address: string;
@@ -77,4 +115,6 @@ export type EstimateResult = {
   km: number;
   travelNote: string;
   lines: LineItem[];
+  roofLabel: string;
+  mountLabel: string;
 };

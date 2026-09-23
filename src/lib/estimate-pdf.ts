@@ -1,0 +1,159 @@
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import type { EstimateResult } from "@/lib/pricing";
+import { formatAud } from "@/lib/utils";
+
+export type EstimateDoc = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  result: EstimateResult;
+};
+
+const INK = rgb(0.07, 0.08, 0.09);
+const PAPER = rgb(0.96, 0.95, 0.93);
+const MUTED = rgb(0.33, 0.35, 0.37);
+const CYAN = rgb(0.18, 0.62, 0.66);
+
+export async function buildEstimatePdf(doc: EstimateDoc): Promise<Uint8Array> {
+  const pdf = await PDFDocument.create();
+  const page = pdf.addPage([595, 842]);
+  const font = await pdf.embedFont(StandardFonts.Helvetica);
+  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
+  page.drawRectangle({ x: 0, y: 0, width: 595, height: 842, color: PAPER });
+  page.drawRectangle({ x: 0, y: 742, width: 595, height: 100, color: INK });
+
+  try {
+    const res = await fetch("/media/logo-email.jpg");
+    const bytes = await res.arrayBuffer();
+    const logo = await pdf.embedJpg(bytes);
+    const width = 210;
+    const height = (logo.height / logo.width) * width;
+    page.drawImage(logo, { x: 40, y: 792 - height / 2, width, height });
+  } catch {
+    page.drawText("VINCONNECT", { x: 40, y: 786, size: 18, font: bold, color: PAPER });
+  }
+
+  page.drawText("INSTALLATION ESTIMATE", { x: 360, y: 786, size: 11, font: bold, color: PAPER });
+  page.drawText(doc.id, { x: 360, y: 768, size: 10, font, color: rgb(0.75, 0.78, 0.8) });
+
+  let y = 700;
+  page.drawText(doc.name, { x: 40, y, size: 16, font: bold, color: INK });
+  y -= 18;
+  for (const line of [doc.address, doc.email, doc.phone]) {
+    page.drawText(line, { x: 40, y, size: 10, font, color: MUTED });
+    y -= 14;
+  }
+
+  y -= 10;
+  page.drawText("Roof", { x: 40, y, size: 9, font, color: MUTED });
+  page.drawText(doc.result.roofLabel, { x: 140, y, size: 11, font: bold, color: INK });
+  y -= 16;
+  page.drawText("Mount", { x: 40, y, size: 9, font, color: MUTED });
+  page.drawText(doc.result.mountLabel, { x: 140, y, size: 11, font: bold, color: INK });
+  y -= 28;
+
+  page.drawRectangle({ x: 40, y: y - 8, width: 515, height: 22, color: rgb(0.9, 0.89, 0.86) });
+  page.drawText("Item", { x: 48, y, size: 9, font: bold, color: MUTED });
+  page.drawText("Amount", { x: 470, y, size: 9, font: bold, color: MUTED });
+  y -= 24;
+  for (const line of doc.result.lines) {
+    page.drawText(line.label, { x: 48, y, size: 11, font, color: INK });
+    page.drawText(formatAud(line.amount), { x: 470, y, size: 11, font, color: INK });
+    y -= 20;
+  }
+
+  y -= 12;
+  page.drawText("Likely range", { x: 40, y, size: 11, font, color: MUTED });
+  y -= 26;
+  page.drawText(`${formatAud(doc.result.estimatedLow)} – ${formatAud(doc.result.estimatedHigh)}`, {
+    x: 40,
+    y,
+    size: 22,
+    font: bold,
+    color: CYAN,
+  });
+  y -= 28;
+  const note = wrap(doc.result.travelNote, 90);
+  for (const line of note) {
+    page.drawText(line, { x: 40, y, size: 9, font, color: MUTED });
+    y -= 13;
+  }
+
+  page.drawText("VINCONNECT  ·  vinconnect.com.au  ·  0408 559 555", {
+    x: 40,
+    y: 36,
+    size: 9,
+    font,
+    color: MUTED,
+  });
+  page.drawText("This is an installation estimate, not a tax invoice. We confirm the price before work starts.", {
+    x: 40,
+    y: 22,
+    size: 8,
+    font,
+    color: MUTED,
+  });
+  return pdf.save();
+}
+
+function wrap(text: string, width: number) {
+  const words = text.split(" ");
+  const lines: string[] = [];
+  let current = "";
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > width) {
+      if (current) lines.push(current);
+      current = word;
+    } else current = next;
+  }
+  if (current) lines.push(current);
+  return lines;
+}
+
+export function estimateEmailHtml(doc: EstimateDoc) {
+  const rows = doc.result.lines
+    .map(
+      (line) =>
+        `<tr><td style="padding:10px 0;border-bottom:1px solid #e4e0d8;">${escapeHtml(line.label)}</td><td style="padding:10px 0;border-bottom:1px solid #e4e0d8;text-align:right;">${formatAud(line.amount)}</td></tr>`,
+    )
+    .join("");
+  return `<!doctype html><html><body style="margin:0;background:#eceae4;font-family:Georgia,serif;color:#14181c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eceae4;padding:24px 12px;">
+    <tr><td align="center">
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;">
+        <tr><td style="background:#12161a;padding:28px 32px;">
+          <img src="https://vinconnect.com.au/media/logo-email.jpg" alt="VINCONNECT" width="220" style="display:block;border:0;max-width:220px;height:auto;" />
+          <p style="margin:18px 0 0;letter-spacing:.16em;text-transform:uppercase;font-family:Arial,sans-serif;font-size:12px;color:#8fd8d4;">Installation estimate</p>
+        </td></tr>
+        <tr><td style="padding:28px 32px;">
+          <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:13px;color:#667;">${escapeHtml(doc.id)}</p>
+          <h1 style="margin:0 0 8px;font-size:28px;font-weight:normal;">${escapeHtml(doc.name)}</h1>
+          <p style="margin:0 0 18px;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#3c4144;">
+            ${escapeHtml(doc.address)}<br>${escapeHtml(doc.email)} · ${escapeHtml(doc.phone)}
+          </p>
+          <p style="margin:0 0 18px;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;">
+            <strong>Roof:</strong> ${escapeHtml(doc.result.roofLabel)}<br>
+            <strong>Mount:</strong> ${escapeHtml(doc.result.mountLabel)}
+          </p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;font-size:14px;">${rows}</table>
+          <p style="margin:22px 0 0;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#667;">Likely range</p>
+          <p style="margin:4px 0 12px;font-size:32px;color:#1c8f93;">${formatAud(doc.result.estimatedLow)} – ${formatAud(doc.result.estimatedHigh)}</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.55;color:#3c4144;">${escapeHtml(doc.result.travelNote)}</p>
+          <p style="margin:18px 0 0;font-family:Arial,sans-serif;font-size:14px;line-height:1.55;">The PDF attached is the same estimate. Reply to this email or call 0408 559 555 if you want us to book it in.</p>
+        </td></tr>
+        <tr><td style="padding:16px 32px 28px;font-family:Arial,sans-serif;font-size:12px;color:#667;">VINCONNECT · vinconnect.com.au · This is an estimate, not a tax invoice.</td></tr>
+      </table>
+    </td></tr>
+  </table></body></html>`;
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "\u0026amp;")
+    .replaceAll("<", "\u0026lt;")
+    .replaceAll(">", "\u0026gt;")
+    .replaceAll('"', "\u0026quot;");
+}

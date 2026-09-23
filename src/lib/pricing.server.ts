@@ -6,6 +6,7 @@ import {
   EXTRA_CABINET_ROUTER,
   EXTRA_CONDUIT,
   LOCAL_STARLINK_LABOUR,
+  mountQuote,
   type EstimateInput,
   type EstimateResult,
   type LineItem,
@@ -46,6 +47,9 @@ export function priceEstimate(input: EstimateInput): EstimateResult {
     });
   }
 
+  const mount = mountQuote(input);
+  if (mount.amount > 0 && mount.line) lines.push({ label: mount.line, amount: mount.amount });
+
   let travel = 0;
   let km = 0;
   if (input.located) {
@@ -56,9 +60,13 @@ export function priceEstimate(input: EstimateInput): EstimateResult {
 
   const labour = lines.filter((l) => !l.label.startsWith("Location")).reduce((s, l) => s + l.amount, 0);
   const mid = lines.reduce((s, l) => s + l.amount, 0);
-  const travelNote = input.located
-    ? "Location is included in this range. Hardware, mounts and the Starlink plan are separate."
-    : "We’ll confirm location from the address you typed before this price is final. Hardware and the Starlink plan are separate.";
+  const travelNote = [
+    input.located
+      ? "Location is included in this range."
+      : "We’ll confirm location from the address you typed before this price is final.",
+    mount.amount > 0 ? "The mount listed is included." : "You already have a mount, so no mount is added.",
+    "The Starlink dish, router and monthly plan are supplied separately by Starlink.",
+  ].join(" ");
 
   return {
     estimatedLow: roundTen(mid * 0.9),
@@ -69,5 +77,7 @@ export function priceEstimate(input: EstimateInput): EstimateResult {
     km,
     travelNote,
     lines,
+    roofLabel: mount.roofLabel,
+    mountLabel: mount.mountLabel,
   };
 }
