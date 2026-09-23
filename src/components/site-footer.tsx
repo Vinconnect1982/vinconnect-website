@@ -35,7 +35,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-muted">
               <li><AppLink to="/services/starlink-installation" className="hover:text-fg">Home Starlink</AppLink></li>
               <li><Link to="/estimate" className="hover:text-fg">Check My Install Price</Link></li>
-              <li><AppLink to="/starlink" className="hover:text-fg">Starlink guides</AppLink></li>
+              <li><AppLink to="/vinready" className="hover:text-fg">VINREADY for builders</AppLink></li>
               <li><AppLink to="/services/whole-property-wifi" className="hover:text-fg">Whole-property Wi-Fi</AppLink></li>
               <li><AppLink to="/services/wireless-links" className="hover:text-fg">Building-to-building links</AppLink></li>
               <li><AppLink to="/services/equestrian-connectivity" className="hover:text-fg">Horse properties</AppLink></li>

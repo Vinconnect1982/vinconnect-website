@@ -10,6 +10,7 @@ import { COMMERCIAL_RELATED } from "@/lib/pages";
 
 const GUIDE_LINKS: Record<string, { href: string; label: string; copy?: string }[]> = {
   "starlink-installation": [
+    { href: "/vinready", label: "VINREADY for new homes", copy: "Starlink-ready infrastructure during construction." },
     { href: "/resources/choosing-a-starlink-mount", label: "Choosing a mount" },
     { href: "/resources/where-should-the-router-go", label: "Where the router should go" },
     { href: "/resources/starlink-power-outage", label: "Starlink in a power outage" },

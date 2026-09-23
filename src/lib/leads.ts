@@ -16,6 +16,7 @@ export type LeadPayload = {
 function subject(lead: LeadPayload) {
   const place = lead.suburb || lead.address || "Victoria";
   const pack = `${lead.package || ""} ${lead.type}`.toLowerCase();
+  if (lead.type === "vinready") return `VINCONNECT VINREADY — ${lead.suburb || lead.name}`;
   if (lead.type === "estimate") return `VINCONNECT Estimate — ${place}`;
   if (lead.type === "property-plan") return `VINCONNECT Property Plan — ${place}`;
   if (pack.includes("caravan")) return `VINCONNECT Caravan Enquiry — ${place}`;

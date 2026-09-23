@@ -153,6 +153,27 @@ function Home() {
         </div>
       </section>
 
+      <section className="relative overflow-hidden border-y border-line">
+        <img
+          src="/vinready/vinready-estate-hero.webp"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-ink/75" />
+        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <p className="kicker">VINREADY by VINCONNECT</p>
+          <h2 className="mt-3 max-w-xl font-display text-3xl sm:text-5xl">Build VINREADY homes.</h2>
+          <p className="mt-4 max-w-xl text-fg/90">
+            Give buyers another connectivity option before they move in. VINREADY integrates Starlink-ready infrastructure during construction, so builders can add a simple technology upgrade to new homes.
+          </p>
+          <p className="mt-3 max-w-xl text-sm text-muted">Built ready. Connected when you are.</p>
+          <Button asChild className="mt-7">
+            <AppLink to="/vinready">Add VINREADY to your homes →</AppLink>
+          </Button>
+        </div>
+      </section>
+
       <section className="bg-ink-2">
         <div className="mx-auto grid max-w-6xl lg:grid-cols-2 lg:items-stretch">
           <div className="relative min-h-[22rem] overflow-hidden bg-ink lg:min-h-[32rem]">

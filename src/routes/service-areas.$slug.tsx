@@ -25,6 +25,12 @@ const AREA_GUIDES: Record<string, { href: string; label: string }[]> = {
     { href: "/resources/wifi-into-a-shed", label: "Wi-Fi into a shed" },
     { href: "/resources/point-to-point-wireless", label: "Point-to-point wireless" },
   ],
+  clyde: [{ href: "/vinready", label: "VINREADY for new homes" }],
+  "clyde-north": [{ href: "/vinready", label: "VINREADY for new homes" }],
+  cranbourne: [{ href: "/vinready", label: "VINREADY for builders" }],
+  "botanic-ridge": [{ href: "/vinready", label: "VINREADY for new homes" }],
+  officer: [{ href: "/vinready", label: "VINREADY for new estates" }],
+  pakenham: [{ href: "/vinready", label: "VINREADY for new homes" }],
   wonthaggi: [
     { href: "/resources/caravan-internet-guide", label: "Caravan internet" },
     { href: "/resources/rural-cctv", label: "Rural CCTV" },

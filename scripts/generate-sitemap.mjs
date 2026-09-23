@@ -36,6 +36,7 @@ const staticPaths = [
   "/event-link",
   "/event-link/organisers",
   "/privacy",
+  "/vinready",
   "/property-planner",
   "/starlink-offer",
   "/projects",

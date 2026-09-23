@@ -37,6 +37,15 @@ export const NAV: NavItem[] = [
     ],
   },
   {
+    label: "VINREADY",
+    href: "/vinready",
+    children: [
+      { label: "For builders", href: "/vinready" },
+      { label: "How it works", href: "/vinready#process" },
+      { label: "Request builder information", href: "/vinready#builder" },
+    ],
+  },
+  {
     label: "Networks",
     href: "/property-networks",
     children: [

@@ -461,13 +461,13 @@ export const LIBRARY: Article[] = [
       {
         heading: "Order and install are still separate",
         copy: [
-          "Starlink supplies the kit and the service. VINCONNECT mounts and cables it. If you have not ordered yet, check the referral offer before you buy. Then use the estimator for the labour.",
+          "Starlink supplies the kit and the service. VINCONNECT mounts and cables it. Builders who want the cabling and mount prepared during construction can offer VINREADY as a variation instead of a retrofit.",
         ],
       },
     ],
     related: [
       { href: "/projects/clyde-new-estate-home", label: "Clyde new estate", copy: "A completed job." },
-      { href: "/starlink-offer", label: "One month free" },
+      { href: "/vinready", label: "VINREADY for builders", copy: "Prepared during construction." },
       { href: "/services/starlink-installation", label: "Starlink installation" },
       { href: "/estimate", label: "Check My Install Price" },
     ],

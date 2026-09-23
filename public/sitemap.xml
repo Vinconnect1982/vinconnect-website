@@ -984,4 +984,8 @@
     <loc>https://vinconnect.com.au/vingear/pulse</loc>
     <changefreq>weekly</changefreq>
   </url>
+  <url>
+    <loc>https://vinconnect.com.au/vinready</loc>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset>

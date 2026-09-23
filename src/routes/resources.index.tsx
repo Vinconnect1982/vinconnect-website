@@ -19,6 +19,7 @@ const GROUPS: { title: string; items: { href: string; title: string; copy: strin
       { href: "/resources/starlink-delivery-installation", title: "Equipment and delivery", copy: "What happens between the carton and the visit." },
       { href: "/resources/trees-and-starlink", title: "Trees and obstructions", copy: "Clear sky matters more than a tidy spot.", image: "/guides/vinconnect-trees-and-starlink.webp" },
       { href: "/resources/new-home-starlink-ready", title: "New homes", copy: "Leave a cable path before the plaster is finished.", image: "/guides/vinconnect-new-home-starlink.webp" },
+      { href: "/vinready", title: "VINREADY for builders", copy: "Offer Starlink-ready homes as a variation.", image: "/vinready/vinready-estate-hero.webp" },
       { href: "/resources/starlink-for-acreage", title: "Farms and acreage", copy: "The dish is the start. The shed is the rest.", image: "/guides/vinconnect-starlink-acreage.webp" },
       { href: "/resources/house-or-shed", title: "House or shed?", copy: "Where the dish should actually sit.", image: "/guides/vinconnect-house-or-shed.webp" },
       { href: "/resources/external-or-concealed-cabling", title: "External or concealed cable", copy: "A visible clipped run, or a hidden one you ask for.", image: "/guides/vinconnect-starlink-cable-route.webp" },

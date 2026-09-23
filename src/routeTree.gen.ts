@@ -25,6 +25,7 @@ import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as StarlinkRouteImport } from './routes/starlink'
 import { Route as StarlinkOfferRouteImport } from './routes/starlink-offer'
 import { Route as VingearRouteImport } from './routes/vingear'
+import { Route as VinreadyRouteImport } from './routes/vinready'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as AboutBusinessInformationRouteImport } from './routes/about.business-information'
 import { Route as AboutCapabilityRouteImport } from './routes/about.capability'
@@ -145,6 +146,11 @@ const StarlinkOfferRoute = StarlinkOfferRouteImport.update({
 const VingearRoute = VingearRouteImport.update({
   id: '/vingear',
   path: '/vingear',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VinreadyRoute = VinreadyRouteImport.update({
+  id: '/vinready',
+  path: '/vinready',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutIndexRoute = AboutIndexRouteImport.update({
@@ -364,6 +370,7 @@ export interface FileRoutesByFullPath {
   '/starlink': typeof StarlinkRouteWithChildren
   '/starlink-offer': typeof StarlinkOfferRoute
   '/vingear': typeof VingearRouteWithChildren
+  '/vinready': typeof VinreadyRoute
   '/about/business-information': typeof AboutBusinessInformationRoute
   '/about/capability': typeof AboutCapabilityRoute
   '/about/how-we-work': typeof AboutHowWeWorkRoute
@@ -412,6 +419,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/property-planner': typeof PropertyPlannerRoute
   '/starlink-offer': typeof StarlinkOfferRoute
+  '/vinready': typeof VinreadyRoute
   '/about/business-information': typeof AboutBusinessInformationRoute
   '/about/capability': typeof AboutCapabilityRoute
   '/about/how-we-work': typeof AboutHowWeWorkRoute
@@ -470,6 +478,7 @@ export interface FileRoutesById {
   '/starlink': typeof StarlinkRouteWithChildren
   '/starlink-offer': typeof StarlinkOfferRoute
   '/vingear': typeof VingearRouteWithChildren
+  '/vinready': typeof VinreadyRoute
   '/about/business-information': typeof AboutBusinessInformationRoute
   '/about/capability': typeof AboutCapabilityRoute
   '/about/how-we-work': typeof AboutHowWeWorkRoute
@@ -529,6 +538,7 @@ export interface FileRouteTypes {
     | '/starlink'
     | '/starlink-offer'
     | '/vingear'
+    | '/vinready'
     | '/about/business-information'
     | '/about/capability'
     | '/about/how-we-work'
@@ -577,6 +587,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/property-planner'
     | '/starlink-offer'
+    | '/vinready'
     | '/about/business-information'
     | '/about/capability'
     | '/about/how-we-work'
@@ -634,6 +645,7 @@ export interface FileRouteTypes {
     | '/starlink'
     | '/starlink-offer'
     | '/vingear'
+    | '/vinready'
     | '/about/business-information'
     | '/about/capability'
     | '/about/how-we-work'
@@ -692,6 +704,7 @@ export interface RootRouteChildren {
   StarlinkRoute: typeof StarlinkRouteWithChildren
   StarlinkOfferRoute: typeof StarlinkOfferRoute
   VingearRoute: typeof VingearRouteWithChildren
+  VinreadyRoute: typeof VinreadyRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   RuralConnectionsSlugRoute: typeof RuralConnectionsSlugRoute
@@ -822,6 +835,13 @@ declare module '@tanstack/react-router' {
       path: '/vingear'
       fullPath: '/vingear'
       preLoaderRoute: typeof VingearRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vinready': {
+      id: '/vinready'
+      path: '/vinready'
+      fullPath: '/vinready'
+      preLoaderRoute: typeof VinreadyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about/': {
@@ -1250,6 +1270,7 @@ const rootRouteChildren: RootRouteChildren = {
   StarlinkRoute: StarlinkRouteWithChildren,
   StarlinkOfferRoute: StarlinkOfferRoute,
   VingearRoute: VingearRouteWithChildren,
+  VinreadyRoute: VinreadyRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
   RuralConnectionsSlugRoute: RuralConnectionsSlugRoute,
