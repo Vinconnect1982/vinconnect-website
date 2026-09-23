@@ -11,7 +11,7 @@ export const INSTALL_TERMS: Article = {
   description:
     "VINCONNECT Starlink installation terms: standard scope, optional extras, double-storey booking, cancellations, weekends and what is not included. Independent installer based in Cranbourne, Victoria.",
   crumbs: [{ label: "Customer help", href: "/customer-help" }, { label: "Install terms" }],
-  image: "/media/projects/botanic-ridge-double-storey-hero-v3.webp",
+  image: "/media/projects/botanic-ridge-double-storey-hero-v4.webp",
   cta: HELP_CTA,
   form: {
     type: "contact",

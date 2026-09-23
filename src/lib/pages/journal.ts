@@ -29,7 +29,7 @@ export const JOURNAL: Article[] = [
     lede: "Longer versions of the jobs and questions VINCONNECT actually talks about — mounts, $300 local installs, Circl prep, and why house Wi-Fi never reaches the shed. Written from completed work and the install scope we already publish. Not a newsroom, and not invented case studies.",
     description:
       "VINCONNECT field notes from Starlink, Wi-Fi and CCTV jobs across Cranbourne, the Peninsula and Gippsland. Practical articles from completed installs.",
-    image: "/media/projects/cranbourne-cricket-club-hero-v3.webp",
+    image: "/media/projects/cranbourne-cricket-club-hero-v4.webp",
     imageAlt: "Cranbourne Cricket Club installation.",
     visual: "funnel",
     crumbs: [{ label: "Field notes" }],
@@ -79,8 +79,8 @@ export const JOURNAL: Article[] = [
     image: "/scenes/starlink-home.webp",
     visual: "install-steps",
     gallery: [
-      { src: "/media/projects/clyde-new-estate-home-hero-v3.webp", alt: "Clyde estate Starlink install." },
-      { src: "/media/projects/cranbourne-east-upgrade-hero-v3.webp", alt: "Cranbourne East mounted Starlink." },
+      { src: "/media/projects/clyde-new-estate-home-hero-v4.webp", alt: "Clyde estate Starlink install." },
+      { src: "/media/projects/cranbourne-east-upgrade-hero-v4.webp", alt: "Cranbourne East mounted Starlink." },
     ],
     sections: [
       {
@@ -130,11 +130,11 @@ export const JOURNAL: Article[] = [
     description:
       "Completed VINCONNECT Starlink installation in Somerville using an Astrogear tripod mount without roof penetrations.",
     crumbs: crumbs("Somerville tripod"),
-    image: "/media/projects/somerville-tripod-install-hero-v3.webp",
+    image: "/media/projects/somerville-tripod-install-hero-v4.webp",
     visual: "diy-vs-pro",
     gallery: [
-      { src: "/media/projects/somerville-starlink-install-hero-v3.webp", alt: "Completed Somerville Starlink installation." },
-      { src: "/media/projects/cranbourne-west-roof-mount-hero-v3.webp", alt: "Cranbourne West double-storey tripod mount." },
+      { src: "/media/projects/somerville-starlink-install-hero-v4.webp", alt: "Completed Somerville Starlink installation." },
+      { src: "/media/projects/cranbourne-west-roof-mount-hero-v4.webp", alt: "Cranbourne West double-storey tripod mount." },
     ],
     sections: [
       {
@@ -172,7 +172,7 @@ export const JOURNAL: Article[] = [
     description:
       "Completed VINCONNECT Starlink and Wi-Fi installation at Cranbourne Cricket Club, including FrogBox streaming into the existing data rack.",
     crumbs: crumbs("Cranbourne Cricket Club"),
-    image: "/media/projects/cranbourne-cricket-club-hero-v3.webp",
+    image: "/media/projects/cranbourne-cricket-club-hero-v4.webp",
     visual: "network-stack",
     sections: [
       {
@@ -204,10 +204,10 @@ export const JOURNAL: Article[] = [
     description:
       "Completed VINCONNECT Starlink installation at a Nyora new home using a non-penetrating mount and connection to existing CCTV.",
     crumbs: crumbs("Nyora new home"),
-    image: "/media/projects/nyora-new-home-cctv-hero-v3.webp",
+    image: "/media/projects/nyora-new-home-cctv-hero-v4.webp",
     gallery: [
-      { src: "/media/projects/nyora-fixed-wireless-upgrade-hero-v3.webp", alt: "Separate Nyora rural home that moved off fixed wireless." },
-      { src: "/media/projects/clyde-new-estate-home-hero-v3.webp", alt: "Clyde new estate home waiting on NBN." },
+      { src: "/media/projects/nyora-fixed-wireless-upgrade-hero-v4.webp", alt: "Separate Nyora rural home that moved off fixed wireless." },
+      { src: "/media/projects/clyde-new-estate-home-hero-v4.webp", alt: "Clyde new estate home waiting on NBN." },
     ],
     sections: [
       {
@@ -239,7 +239,7 @@ export const JOURNAL: Article[] = [
     description:
       "Completed VINCONNECT Starlink and extended Wi-Fi on a Pearcedale five-acre property connecting home, shed and workshop.",
     crumbs: crumbs("Pearcedale five-acre"),
-    image: "/media/projects/pearcedale-five-acre-property-hero-v3.webp",
+    image: "/media/projects/pearcedale-five-acre-property-hero-v4.webp",
     visual: "network-stack",
     gallery: [
       { src: "/scenes-new/acreage-network.webp", alt: "Acreage network scene." },
@@ -311,11 +311,11 @@ export const JOURNAL: Article[] = [
     description:
       "Starlink mount choices for Victorian Colorbond and tile roofs from VINCONNECT: fascia, wall, pole and non-penetrating tripods.",
     crumbs: crumbs("Colorbond vs tile"),
-    image: "/media/projects/botanic-ridge-double-storey-hero-v3.webp",
+    image: "/media/projects/botanic-ridge-double-storey-hero-v4.webp",
     visual: "diy-vs-pro",
     gallery: [
-      { src: "/media/projects/bittern-copper-nbn-upgrade-hero-v3.webp", alt: "Roof-mounted Starlink at Bittern." },
-      { src: "/media/projects/safety-beach-concealed-install-hero-v3.webp", alt: "Safety Beach tripod on a flat roof." },
+      { src: "/media/projects/bittern-copper-nbn-upgrade-hero-v4.webp", alt: "Roof-mounted Starlink at Bittern." },
+      { src: "/media/projects/safety-beach-concealed-install-hero-v4.webp", alt: "Safety Beach tripod on a flat roof." },
     ],
     sections: [
       {
@@ -385,10 +385,10 @@ export const JOURNAL: Article[] = [
     description:
       "Common DIY Starlink cable-entry mistakes VINCONNECT sees in Victoria, and how a standard install is finished.",
     crumbs: crumbs("DIY cable entry"),
-    image: "/media/projects/lyndhurst-rental-home-hero-v3.webp",
+    image: "/media/projects/lyndhurst-rental-home-hero-v4.webp",
     visual: "diy-vs-pro",
     gallery: [
-      { src: "/media/projects/lyndhurst-rental-home-hero-v3.webp", alt: "Lyndhurst rental with cabinet entry." },
+      { src: "/media/projects/lyndhurst-rental-home-hero-v4.webp", alt: "Lyndhurst rental with cabinet entry." },
       { src: "/scenes/starlink-home.webp", alt: "Residential Starlink scene." },
     ],
     sections: [
@@ -420,7 +420,7 @@ export const JOURNAL: Article[] = [
     description:
       "Completed VINCONNECT factory rooftop Starlink installation in Pakenham, from mounting and cable runs through commissioning.",
     crumbs: crumbs("Pakenham factory"),
-    image: "/media/projects/pakenham-commercial-factory-hero-v3.webp",
+    image: "/media/projects/pakenham-commercial-factory-hero-v4.webp",
     sections: [
       {
         heading: "Access is the quote",

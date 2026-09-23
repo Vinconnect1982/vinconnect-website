@@ -78,7 +78,7 @@ export const STARLINK: Article[] = [
     description:
       "Starlink installation for suburban and estate homes across Casey, Cardinia and the Peninsula. Independent VINCONNECT labour, not a Starlink store.",
     crumbs: crumbs("Home installation"),
-    image: "/media/projects/clyde-new-estate-home-hero-v3.webp",
+    image: "/media/projects/clyde-new-estate-home-hero-v4.webp",
     sections: [
       {
         heading: "Where this is the right conversation",
@@ -146,7 +146,7 @@ export const STARLINK: Article[] = [
     description:
       "Starlink mount choices VINCONNECT actually uses: roof, fascia, wall and Astrogear tripod. Non-penetrating options for rentals and brittle roofs.",
     crumbs: crumbs("Roof, wall and tripod"),
-    image: "/media/projects/somerville-tripod-install-hero-v3.webp",
+    image: "/media/projects/somerville-tripod-install-hero-v4.webp",
     sections: [
       {
         heading: "What we look at",
@@ -177,7 +177,7 @@ export const STARLINK: Article[] = [
     description:
       "How VINCONNECT enters a building with a Starlink cable: visible clipped route, one penetration, brush plate, and standard router placement.",
     crumbs: crumbs("Cable entry and router"),
-    image: "/media/projects/lyndhurst-rental-home-hero-v3.webp",
+    image: "/media/projects/lyndhurst-rental-home-hero-v4.webp",
     sections: [
       {
         heading: "Visible on purpose",
@@ -208,7 +208,7 @@ export const STARLINK: Article[] = [
     description:
       "Double-storey Starlink installation in Victoria. Why VINCONNECT requires the booking to match the building, with examples from Botanic Ridge and Safety Beach.",
     crumbs: crumbs("Double-storey"),
-    image: "/media/projects/safety-beach-concealed-install-hero-v3.webp",
+    image: "/media/projects/safety-beach-concealed-install-hero-v4.webp",
     sections: [
       {
         heading: "Why we are blunt about it",
@@ -313,7 +313,7 @@ export const STARLINK: Article[] = [
     description:
       "Using Starlink with existing NBN or OptiComm: replace, failover, or run them apart. Independent installer advice in Victoria.",
     crumbs: crumbs("Existing NBN"),
-    image: "/media/projects/bittern-copper-nbn-upgrade-hero-v3.webp",
+    image: "/media/projects/bittern-copper-nbn-upgrade-hero-v4.webp",
     sections: [
       {
         heading: "Replace",
@@ -344,7 +344,7 @@ export const STARLINK: Article[] = [
     description:
       "VINCONNECT Starlink installer credentials, service area and independence from Starlink, SpaceX, TP-Link, Hikvision and Circl.",
     crumbs: crumbs("Who installs"),
-    image: "/media/projects/cranbourne-cricket-club-hero-v3.webp",
+    image: "/media/projects/cranbourne-cricket-club-hero-v4.webp",
     sections: [
       {
         heading: "The work",
