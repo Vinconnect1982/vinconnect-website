@@ -19,9 +19,9 @@ PAPER = HexColor("#F6F4F0")
 LINE = HexColor("#D9D4CC")
 NAVY = HexColor("#16324A")
 
-COVER = "/workspace/artifacts/imagine_images/b7126b1a-a7a8-45f5-a06b-cd9186f99df9.jpg"
+COVER = "/workspace/artifacts/imagine_images/af6a835a-d7d0-4406-983d-dc11e6d38d10.jpg"
 FRAME = "/workspace/artifacts/imagine_images/5d66141d-1b3b-414d-9cfd-f424b603da36.jpg"
-HOME = "/workspace/artifacts/imagine_images/e24b030c-1c60-4ff3-b9cf-855516b68416.jpg"
+HOME = "/workspace/artifacts/imagine_images/86758865-bc30-459a-84ee-2a7e01270382.jpg"
 PROCESS = "/workspace/artifacts/imagine_images/c03fb0ab-7a9a-42e4-a673-5b39fe03e43b.jpg"
 PATH = "/workspace/artifacts/imagine_images/e785e70d-43b3-48a3-833a-20c2faed7d4f.jpg"
 COMPARE = "/workspace/artifacts/imagine_images/527e6245-49e0-4dcf-a650-12e542a9df59.jpg"
