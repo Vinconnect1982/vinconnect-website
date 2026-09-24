@@ -18,57 +18,41 @@ export const Route = createFileRoute("/vinready")({
       {
         name: "description",
         content:
-          "Offer Starlink as an upgrade or standard inclusion on your new homes. Your buyers activate on move-in day and you add your own margin on top.",
+          "Offer Starlink as an upgrade or standard inclusion on your new homes. Your buyers activate on move-in day. Builder pricing is in the pack.",
       },
       { property: "og:title", content: "VinReady: Starlink ready from day one" },
       {
         property: "og:description",
-        content: "Your buyers can activate Starlink on move-in day, with no waiting on an NBN lead-in.",
+        content: "The builder offer your buyers ask for. Activate on move-in day.",
       },
-      { property: "og:image", content: `${SITE_URL}/vinready/vinready-estate-hero.webp` },
+      { property: "og:image", content: `${SITE_URL}/vinready/pack/cover.webp` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/vinready` }],
   }),
 });
 
-const BUSINESS = [
-  ["A new margin line.", "A strong margin opportunity. You set the price your buyers see."],
-  ["Upgrade or inclusion.", "Sell it as an upgrade, or make it standard on every home."],
-  ["A point of difference.", "Starlink is what buyers are asking about. It sets your homes apart."],
-  ["Scheduled to your build.", "Our scheduling software ties installs to your build dates."],
-  ["Fewer post-handover calls.", "The handover pack answers activation questions. Install or activation queries come to us on 0408 559 555."],
-  ["Less lead-in hassle.", "Knockdown rebuilds skip lead-in reinstatement. On new builds, a forgotten conduit, a missing pull cord or a late NBN rollout will not hold up move-in."],
+const WHY = [
+  ["01", "A new margin line.", "You set the price your buyers see. Your cost and a worked example are in the builder pack."],
+  ["02", "Upgrade or inclusion.", "Sell it as an upgrade, or make it standard on every home."],
+  ["03", "Online on move-in day.", "Your buyers can activate Starlink the day they move in."],
+  ["04", "No lead-in wait.", "Nobody waits on an NBN lead-in, or for the estate rollout to catch up."],
+  ["05", "Scheduled to your build.", "Installs are tied to your build dates, not squeezed in after handover."],
+  ["06", "Handover pack included.", "Every buyer gets a VinReady home-buyer handover pack."],
 ];
 
-const BUYERS = [
-  ["No lead-in wait.", "Nobody waits on an NBN lead-in, or for NBN or Opticomm to reach the estate."],
-  ["Live at switch-on.", "The full kit is live the moment it is powered up, activated in the Starlink app."],
-  ["Their choice.", "Starlink Ready homes can be NBN ready too."],
-  ["Rural blocks covered.", "It works where there is no NBN or fibre."],
-  ["Smoother settlement.", "Internet is sorted at handover, so there is nothing to chase before move-in."],
-  ["Handover pack included.", "Every buyer gets a VinReady home-buyer handover pack."],
-];
-
-const STEPS = [
-  ["01", "You add it.", "Upgrade or standard inclusion. Tell us the lot and the option."],
-  ["02", "We schedule it.", "Our software ties the install to your build dates."],
-  ["03", "We do the work.", "Starlink work is done during the build, through your site contact."],
-  ["04", "Handover.", "Your buyer gets the handover pack. Option 1 is a final fit-off. Option 2 is self-activate."],
+const STAGES = [
+  ["1  Frame", "Mark the cable path while the frame is still open."],
+  ["2  Lock-up", "Mount point and a weatherproof entry. No dish yet."],
+  ["3  Near handover", "Rectangular dish on the roof. Router at the point inside."],
 ];
 
 const FAQS = [
-  ["What does it cost us?", "Your builder cost depends on the option and the home, and you add your own margin on top. The full pricing is in the builder pack. Leave your details and we will send it through."],
+  ["What does it cost us?", "Your builder cost depends on the option and the home, and you add your own margin. The ranges and a worked example are in the builder pack, not on this page."],
   ["Upgrade or standard inclusion?", "Either. Sell it as an upgrade, or make it standard on every home."],
   ["Who orders Starlink?", "Option 1: your buyer orders direct from Starlink and contacts us for final fit-off. Option 2: we supply a full hardware kit, dish included, and your buyer self-activates."],
-  ["When can buyers get online?", "On move-in day, with no waiting on an NBN lead-in. With the full kit, your buyer taps Activate Starlink in the Starlink app and it is live the moment the dish is powered up."],
-  ["How does it compare with NBN?", "It is another way to get online. Starlink is price-competitive with NBN plans, with no lead-in or estate rollout to wait on."],
-  ["How do you fit in with our program?", "Our scheduling software ties installs to your build dates and manages build calendars for volume builders."],
-  ["What does the buyer get at handover?", "A VinReady home-buyer handover pack, included."],
-  ["Do you guarantee speeds?", "No. We do not quote speeds. Performance depends on Starlink's service at the address."],
-  ["Is VINCONNECT part of Starlink or NBN?", "No. VINCONNECT is an independent installer. VinReady is our builder offer."],
-  ["Our estate already has NBN or fibre.", "Starlink Ready works alongside NBN readiness. It adds a choice for your buyers and does not replace anything."],
-  ["It is another trade to manage.", "It is one local installer, booked against your build calendar. Your supervisors do not chase an extra trade."],
-  ["What about the roof?", "On tile roofs we use an under-tile J-pole (hockey-stick) mount. The bracket fixes to the side of a roof truss and the tile slides back over it, so no tiles are drilled. On Colorbond roofs we use a tripod tied down to the roof's existing screws, so there are no new holes. We never use ridge mounts. Talk to us about your roofing supplier's requirements."],
+  ["When can buyers get online?", "On move-in day. With the full kit, they tap Activate Starlink in the app and it is live when the dish is powered up."],
+  ["How does it compare with NBN?", "It is another way to get online. It does not replace NBN. Buyers can still choose NBN when it suits them."],
+  ["What about the roof?", "Tile roofs use an under-tile J-pole. Colorbond uses a tripod on the existing screws. We do not use ridge mounts. Talk to us about your roofing supplier."],
 ];
 
 function VinreadyPage() {
@@ -86,172 +70,185 @@ function VinreadyPage() {
         }}
       />
 
-      <section className="relative min-h-[28rem] overflow-hidden">
-        <img
-          src="/vinready/vinready-estate-hero.webp"
-          alt="Illustrative new-home estate."
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/30" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-          <p className="kicker">VinReady · For builders</p>
-          <h1 className="mt-3 max-w-3xl font-display text-4xl tracking-tight sm:text-6xl">Starlink ready from day one</h1>
-          <p className="mt-4 max-w-xl text-lg text-fg/90">
-            The builder offer your buyers ask for, with margin built in. Your buyers can activate Starlink on move-in day.
-          </p>
+      <section className="relative min-h-[34rem] overflow-hidden text-white">
+        <img src="/vinready/pack/cover.webp" alt="Dusk street of new Australian homes, one rectangular Starlink dish on the nearest roof." className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#071018]/80 via-[#071018]/35 to-[#071018]/70" />
+        <div className="relative mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end px-4 py-16 sm:px-6 sm:py-20">
+          <p className="text-xs font-semibold tracking-[0.18em] text-[#7fd4d0]">VINREADY · FOR BUILDERS</p>
+          <h1 className="mt-3 max-w-3xl font-display text-5xl tracking-tight sm:text-7xl">Starlink ready<br />from day one</h1>
+          <p className="mt-4 max-w-xl text-lg text-white/90">The builder offer your buyers ask for, with margin built in.</p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Button asChild>
               <a href="#pack">Get the builder pack</a>
             </Button>
-            <a className="text-sm text-fg/80" href={PHONE_TEL}>Prefer to talk? Call {PHONE}</a>
+            <a className="text-sm text-white/80" href={PHONE_TEL}>Prefer to talk? Call {PHONE}</a>
           </div>
-          <p className="mt-6 text-xs text-muted">Image: illustrative</p>
+          <p className="mt-8 text-xs text-white/70">Cranbourne to Gippsland · Image: illustrative</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl sm:text-4xl">Why builders add VinReady</h2>
-        <p className="mt-3 text-muted">Internet stops being a build cost and starts earning.</p>
-        <h3 className="mt-8 font-display text-xl">For your business</h3>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BUSINESS.map(([title, copy]) => (
-            <li key={title} className="rounded-xl border border-line bg-surface p-5">
-              <h3 className="font-display text-lg">{title}</h3>
-              <p className="mt-2 text-sm text-muted">{copy}</p>
-            </li>
-          ))}
-        </ul>
-        <h3 className="mt-10 font-display text-xl">For your buyers</h3>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BUYERS.map(([title, copy]) => (
-            <li key={title} className="rounded-xl border border-line bg-surface p-5">
-              <h3 className="font-display text-lg">{title}</h3>
-              <p className="mt-2 text-sm text-muted">{copy}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <h2 className="font-display text-3xl">A strong margin opportunity</h2>
-          <p className="mt-3 max-w-2xl text-muted">
-            You set the price your buyers see. Your builder cost and a worked example are in the builder pack, not on this page.
-          </p>
-          <a href="#pack" className="mt-4 inline-block text-mint">Get the builder pack for pricing</a>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl sm:text-4xl">Two ways to offer it</h2>
-        <p className="mt-3 text-muted">Offer one option or both.</p>
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <article className="rounded-xl border border-line bg-surface p-5">
-            <h3 className="font-display text-2xl">Option 1 · Starlink Ready</h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted">
-              <li>We make the home Starlink ready.</li>
-              <li>Your buyer orders direct from Starlink.</li>
-              <li>Your buyer contacts us for final fit-off.</li>
-              <li>Activate on move-in day, with no NBN lead-in wait.</li>
-              <li>Suits buyers who want to order their own Starlink, with the home NBN ready too.</li>
-            </ul>
-          </article>
-          <article className="rounded-xl border border-line bg-surface p-5">
-            <h3 className="font-display text-2xl">Option 2 · Full hardware kit</h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted">
-              <li>We supply a full hardware kit, dish included.</li>
-              <li>Hardware is supplied by us.</li>
-              <li>Your buyer self-activates.</li>
-              <li>Live the moment it is powered up, with no NBN lead-in wait.</li>
-              <li>Suits buyers who want it all in place, ready to switch on.</li>
-            </ul>
-          </article>
-        </div>
-        <p className="mt-4 max-w-2xl text-sm text-muted">
-          Builder pricing for both options is in the builder pack. The Starlink subscription is always between your buyer and Starlink.
-        </p>
-      </section>
-
-      <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
-          <img src="/vinready/vinready-prewire.webp" alt="Illustrative new home at frame stage." className="h-80 w-full rounded-xl object-cover" loading="lazy" />
+      <section id="why" className="bg-[#F6F4F0] text-[#102033]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <h2 className="font-display text-3xl">Built into your program</h2>
-            <p className="mt-3 text-muted">Scheduled to your build dates, not squeezed in after.</p>
-            <ol className="mt-6 space-y-4">
-              {STEPS.map(([n, title, copy]) => (
+            <p className="text-xs font-semibold tracking-[0.16em] text-[#149C9C]">WHY VINREADY</p>
+            <h2 className="mt-2 font-display text-4xl">Why builders add VinReady</h2>
+            <p className="mt-3 text-[#5C6770]">Internet stops being a build cost and starts earning.</p>
+            <ol className="mt-8 grid gap-6 sm:grid-cols-2">
+              {WHY.map(([n, title, copy]) => (
                 <li key={n}>
-                  <p className="font-display text-mint">{n}</p>
+                  <p className="font-display text-[#149C9C]">{n}</p>
                   <h3 className="font-display text-xl">{title}</h3>
-                  <p className="text-sm text-muted">{copy}</p>
+                  <p className="mt-1 text-sm text-[#5C6770]">{copy}</p>
                 </li>
               ))}
             </ol>
-            <p className="mt-6 text-sm text-muted">Building at volume? Our scheduling software manages build calendars across your homes. Access and timing are set by your site team.</p>
+          </div>
+          <figure>
+            <img src="/vinready/pack/frame.webp" alt="Australian volume-builder home at timber frame stage." className="h-full max-h-[36rem] w-full object-cover" />
+            <figcaption className="mt-2 text-xs text-[#5C6770]">Frame stage. The cable path goes in while the house is still open. Image: illustrative.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="border-y border-[#D9D4CC] bg-white text-[#102033]">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#149C9C]">THE MARGIN</p>
+          <h2 className="mt-2 font-display text-4xl">Your cost. Your margin.</h2>
+          <p className="mt-3 max-w-2xl text-[#5C6770]">You set the price your buyers see. The builder cost, the margin range and a worked example are in the pack. They are not listed on this page.</p>
+          <a href="#pack" className="mt-5 inline-block font-semibold text-[#0E7C7C]">Get the builder pack for pricing</a>
+        </div>
+      </section>
+
+      <section id="options" className="bg-[#F6F4F0] text-[#102033]">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#149C9C]">TWO OPTIONS</p>
+          <h2 className="mt-2 font-display text-4xl">Two ways to offer it</h2>
+          <p className="mt-3 text-[#5C6770]">Offer one option or both.</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <article className="bg-[#16324A] p-6 text-white">
+              <p className="text-xs tracking-[0.14em] text-[#7fd4d0]">OPTION 1</p>
+              <h3 className="mt-2 font-display text-3xl">Starlink Ready</h3>
+              <ul className="mt-5 space-y-3 text-sm text-white/85">
+                <li>We make the home Starlink ready.</li>
+                <li>Your buyer orders direct from Starlink.</li>
+                <li>Your buyer contacts us for final fit-off.</li>
+                <li>Activate on move-in day. No lead-in wait.</li>
+                <li>Suits buyers who want their own dish, with NBN still open.</li>
+              </ul>
+            </article>
+            <article className="bg-[#149C9C] p-6 text-[#062226]">
+              <p className="text-xs tracking-[0.14em]">OPTION 2</p>
+              <h3 className="mt-2 font-display text-3xl">Full hardware kit</h3>
+              <ul className="mt-5 space-y-3 text-sm">
+                <li>We supply a full hardware kit, dish included.</li>
+                <li>Hardware is supplied by us.</li>
+                <li>Your buyer self-activates.</li>
+                <li>Live when it is powered up. No lead-in wait.</li>
+                <li>Suits buyers who want it in place, ready to switch on.</li>
+              </ul>
+            </article>
+          </div>
+          <p className="mt-4 text-sm text-[#5C6770]">Builder pricing for both options is in the pack. The Starlink subscription stays between your buyer and Starlink.</p>
+        </div>
+      </section>
+
+      <section id="program" className="bg-white text-[#102033]">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#149C9C]">HOW IT WORKS</p>
+          <h2 className="mt-2 font-display text-4xl">Built into your program</h2>
+          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["1", "You add it", "Upgrade or inclusion. Tell us the lot and the option."],
+              ["2", "We schedule it", "The install is tied to your build dates."],
+              ["3", "We do the work", "Done during the build, through your site contact."],
+              ["4", "Handover", "Pack included. Option 1 is fit-off. Option 2 is self-activate."],
+            ].map(([n, title, copy]) => (
+              <li key={n}>
+                <p className="font-display text-2xl text-[#149C9C]">{n}</p>
+                <h3 className="font-display text-xl">{title}</h3>
+                <p className="mt-1 text-sm text-[#5C6770]">{copy}</p>
+              </li>
+            ))}
+          </ol>
+          <ol className="mt-10 grid gap-3 md:grid-cols-3">
+            {STAGES.map(([title, copy]) => (
+              <li key={title} className="bg-[#F6F4F0] p-5">
+                <h3 className="font-display text-xl">{title}</h3>
+                <p className="mt-2 text-sm text-[#5C6770]">{copy}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <figure>
+              <img src="/vinready/pack/frame.webp" alt="Timber frame on a new Australian estate." className="h-64 w-full object-cover" />
+              <figcaption className="mt-2 text-xs text-[#5C6770]">Frame. Image: illustrative.</figcaption>
+            </figure>
+            <figure>
+              <img src="/vinready/pack/home.webp" alt="Finished Australian project home with a rectangular Starlink dish on the roof." className="h-64 w-full object-cover" />
+              <figcaption className="mt-2 text-xs text-[#5C6770]">Finished roof, rectangular dish. Image: illustrative.</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
-        <img src="/vinready/vinready-builder-buyer.webp" alt="Illustrative conversation at a display home." className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-ink/75" />
+      <section className="relative min-h-[28rem] overflow-hidden text-white">
+        <img src="/vinready/pack/home.webp" alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-[#071018]/72" />
         <div className="relative mx-auto max-w-3xl px-4 py-20 sm:px-6">
-          <h2 className="font-display text-3xl">Your go-to Starlink answer</h2>
-          <p className="mt-2 text-muted">When a buyer asks, your sales team has the answer.</p>
-          <blockquote className="mt-6 font-display text-2xl leading-snug">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#7fd4d0]">THE SALES ANSWER</p>
+          <h2 className="mt-3 font-display text-4xl">Your go-to Starlink answer</h2>
+          <blockquote className="mt-6 font-display text-2xl leading-snug sm:text-3xl">
             “Yes. This home can be VinReady. It is set up for Starlink during the build, so you can activate it on the day you move in, with no waiting for an NBN lead-in.”
           </blockquote>
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2">
-        <div>
-          <h2 className="font-display text-3xl sm:text-4xl">Keys in. Online today.</h2>
-          <p className="mt-3 text-muted">Your buyers can activate Starlink the day they move in.</p>
-        </div>
-        <ul className="space-y-3 text-sm text-muted">
-          <li>Starlink is an alternative to NBN at move-in.</li>
-          <li>Full kit: buyers tap Activate Starlink in the Starlink app. It is live the moment it is powered up.</li>
-          <li>The handover pack explains activation. Install or activation questions: {PHONE}.</li>
-          <li>Starlink Ready leaves NBN open, so the buyer decides.</li>
-          <li>It suits rural addresses without NBN or fibre.</li>
-          <li>No guaranteed speeds. Performance depends on Starlink’s service at the address.</li>
-        </ul>
-      </section>
-
-      <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <h2 className="font-display text-2xl">Where we work</h2>
-          <ul className="mt-4 flex flex-wrap gap-2 text-sm">
-            {["Cranbourne", "Southeast Melbourne", "Western Port", "Mornington Peninsula", "Phillip Island and Bass Coast", "Gippsland"].map((place) => (
-              <li key={place} className="rounded-full border border-line px-3 py-2">{place}</li>
-            ))}
+          <ul className="mt-8 space-y-4 text-sm text-white/85">
+            <li><strong className="text-white">How does it compare with NBN?</strong> Another way to get online. It does not replace NBN.</li>
+            <li><strong className="text-white">Which option?</strong> Option 1: they order Starlink, we fit off. Option 2: the kit is supplied and they activate it.</li>
+            <li><strong className="text-white">At handover?</strong> A VinReady home-buyer pack. Install questions come to {PHONE}.</li>
           </ul>
-          <ul className="mt-4 flex flex-wrap gap-2 text-sm">
+        </div>
+      </section>
+
+      <section className="bg-[#F6F4F0] text-[#102033]">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-semibold tracking-[0.16em] text-[#149C9C]">MOVE-IN DAY</p>
+          <h2 className="mt-2 font-display text-4xl">Keys in. Online today.</h2>
+          <p className="mt-3 max-w-2xl text-[#5C6770]">Your buyers can activate Starlink the day they move in. With the full kit, it is live when the dish is powered up.</p>
+          <img src="/vinready/pack/compare.webp" alt="VinReady during the build compared with a retrofit after handover." className="mt-8 w-full bg-white" />
+          <p className="mt-2 text-xs text-[#5C6770]">Illustrative comparison. Not a promise about a particular estate.</p>
+          <ul className="mt-6 max-w-2xl space-y-2 text-sm text-[#5C6770]">
+            <li>Starlink is an alternative at move-in. NBN can stay available.</li>
+            <li>No guaranteed speeds. Performance depends on Starlink at that address.</li>
+            <li>VINCONNECT is an independent installer. Not part of Starlink or NBN.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="bg-white text-[#102033]">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <img src="/vinready/pack/pathway.webp" alt="Diagram of a cable path through an Australian timber frame, from the roof mount zone to an indoor point." className="w-full" />
+          <p className="mt-2 text-xs text-[#5C6770]">Frame-stage pathway. Illustrative. One cable route, marked before the walls close.</p>
+          <h2 className="mt-10 font-display text-3xl">Where we work</h2>
+          <p className="mt-3 text-[#5C6770]">Cranbourne · Southeast Melbourne · Western Port · Mornington Peninsula · Phillip Island and Bass Coast · Gippsland</p>
+          <ul className="mt-4 flex flex-wrap gap-3 text-sm">
             {[
               ["clyde-north", "Clyde North"],
               ["clyde", "Clyde"],
-              ["cranbourne-east", "Cranbourne East"],
               ["officer", "Officer"],
               ["pakenham", "Pakenham"],
             ].map(([slug, label]) => (
               <li key={slug}>
-                <Link to="/service-areas/$slug" params={{ slug }} className="text-mint">{label}</Link>
+                <Link to="/service-areas/$slug" params={{ slug }} className="text-[#0E7C7C]">{label}</Link>
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <h2 className="font-display text-3xl">Common questions</h2>
-        <div className="mt-6 divide-y divide-line border-y border-line">
-          {FAQS.map(([q, a]) => (
-            <details key={q} className="py-3">
-              <summary className="cursor-pointer font-display text-lg">{q}</summary>
-              <p className="mt-2 text-sm text-muted">{a}</p>
-            </details>
-          ))}
+          <div className="mt-10 divide-y divide-[#D9D4CC] border-y border-[#D9D4CC]">
+            {FAQS.map(([q, a]) => (
+              <details key={q} className="py-3">
+                <summary className="cursor-pointer font-display text-lg">{q}</summary>
+                <p className="mt-2 text-sm text-[#5C6770]">{a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -264,7 +261,7 @@ function VinreadyPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl">Add VinReady to your homes</h2>
-            <p className="mt-3 text-muted">Tell us where you build. We will show you how it fits. The builder pack, including pricing, is sent after this form.</p>
+            <p className="mt-3 text-muted">Tell us where you build. We will show you how it fits. Pricing stays in the pack, which opens after this form.</p>
           </div>
           <BuilderForm />
         </div>
@@ -330,9 +327,7 @@ function BuilderForm() {
   return (
     <form onSubmit={submit} className="grid gap-4 rounded-xl border border-line bg-surface p-5">
       <h3 className="font-display text-2xl">Get the VinReady builder pack</h3>
-      <p className="text-sm text-muted">
-        Eight pages on the two options, your cost and margin, how it compares with NBN, scheduling, the handover pack and common builder questions. Leave your details and we will send it through.
-      </p>
+      <p className="text-sm text-muted">Eight pages: the two options, how it fits the build, and the pricing. Leave your details and the pack opens here.</p>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <fieldset className="grid gap-2 text-sm">
         <legend className="font-display">What are you after?</legend>
