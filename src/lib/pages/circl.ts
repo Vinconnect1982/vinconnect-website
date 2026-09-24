@@ -253,7 +253,7 @@ export const CIRCL: Article[] = [
       {
         heading: "Usually not included",
         copy: [
-          "Conduit, concealed cable, garage or cabinet router placement, extra storeys that were not in the order, wireless links and CCTV. Those are quoted or sent back to Circl. Direct VINCONNECT extras (conduit $120, cabinet router $150) are a different booking path and are not assumed on Circl jobs.",
+          "Conduit, concealed cable, a data rack, extra storeys that were not in the order, wireless links and CCTV. Those are quoted or sent back to Circl. Direct VINCONNECT extras (internal walls from $150, data rack or cabinet $120, double storey $250, Saturday $150, plus a mount if we supply it) are a different booking path and are not assumed on Circl jobs.",
         ],
       },
       {

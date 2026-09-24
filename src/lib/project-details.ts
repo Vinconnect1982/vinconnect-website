@@ -70,7 +70,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     kind: "commercial",
     mount: "Factory rooftop",
     works: ["Rooftop Starlink mount", "Cable runs through commissioning", "A working commercial connection, not a consumer router on a windowsill"],
-    note: "Commercial roofs have wind, access and existing plant to respect. This page records the completed labour, not a rate card.",
+    note: "Commercial roofs have wind, access and existing plant to work around. This page is the finished job, not a price list.",
     guides: [
       { href: "/solutions/businesses-and-clubs", label: "Businesses and clubs" },
       { href: "/services/starlink-installation", label: "Starlink installation" },
@@ -79,7 +79,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   },
   "pearcedale-five-acre-property": {
     kind: "rural",
-    mount: "Starlink at the home, then the rest of the property",
+    mount: "Starlink on the house verandah beam, then the rest of the property",
     works: ["Starlink at the house", "Extended Wi-Fi to the shed and workshop", "Five-acre distances treated as a network, not a bigger mesh kit"],
     note: "Acreage fails at the second building, not at the dish. The planner is how we talk about that before anyone quotes a radio.",
     guides: RURAL,
@@ -93,9 +93,9 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   },
   "red-hill-multi-level-home": {
     kind: "coastal",
-    mount: "Mounted Starlink on a large multi-level home",
+    mount: "Tripod on the metal roof, looking over the bay",
     works: ["Replaced unreliable fixed wireless", "Sky view over a bay-facing multi-level home"],
-    note: "Fixed wireless that looks fine on a map often is not fine on a hill. The install is still labour on a kit — not a promise about every tree on the ridge.",
+    note: "Fixed wireless that looks fine on a map is often not fine on a hill. This was the installation at that house. It is not a promise about every tree on the ridge.",
     guides: [
       { href: "/resources/fixed-wireless-vs-starlink", label: "Fixed wireless vs Starlink" },
       ...COASTAL,
@@ -138,9 +138,9 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   },
   "clyde-new-estate-home": {
     kind: "home",
-    mount: "New-estate Starlink while street infrastructure catches up",
+    mount: "Pole mount on the concrete tile roof",
     works: ["Connected a new home", "NBN and OptiComm were not yet available"],
-    note: "Estates in Clyde and Cranbourne East often need a working connection before the street is finished. That is labour, not a claim about when NBN will arrive.",
+    note: "Estates in Clyde and Cranbourne East often need a working connection before the street is finished. That is the installation. It is not a date for when NBN will arrive.",
     guides: [
       { href: "/solutions/new-estates", label: "New estates" },
       ...HOME,
@@ -148,7 +148,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   },
   "lyndhurst-rental-home": {
     kind: "home",
-    mount: "Rental-friendly mount, cable entry through an existing Hills Home Hub",
+    mount: "Fascia bracket under the gutter, cable into the existing cabinet",
     works: ["Non-destructive mounting approach", "Internal finish into an existing cabinet"],
     note: "Rentals and body corporate rules belong in the enquiry, not as a surprise on the ladder.",
     guides: [
@@ -176,23 +176,23 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   },
   "cranbourne-east-upgrade": {
     kind: "home",
-    mount: "Mounted Starlink on an estate home",
+    mount: "Gable mount on the metal roof",
     works: ["Addressed intermittent dropouts", "Removed a bottleneck in the previous connection"],
     note: "Dropouts in a new estate are often the service, the Wi-Fi, or both. The visit is how we tell the difference.",
     guides: HOME,
   },
   "somerville-starlink-install": {
     kind: "home",
-    mount: "Completed Starlink installation",
+    mount: "Fascia mount on the alfresco",
     works: ["Starlink installed in Somerville"],
-    note: "Mount and cable details were confirmed on site. This page is a photographic record — we do not invent a longer story than the job file supports.",
+    note: "The mount and cable were confirmed on site. This page shows that installation.",
     guides: HOME,
   },
   "cranbourne-west-roof-mount": {
     kind: "home",
-    mount: "Astrogear tripod roof mount on a double-storey — no roof penetrations",
-    works: ["Double-storey access", "Non-penetrating tripod on the roof"],
-    note: "A tripod on a roof is still a roof job. Double-storey has to be booked as double-storey.",
+    mount: "Pole mount on the concrete tile roof",
+    works: ["Double-storey access", "Pole mount on the tile roof"],
+    note: "The photograph shows a pole on the tiles, not a tripod. Double-storey still has to be booked as double-storey.",
     guides: [
       { href: "/starlink/double-storey", label: "Double-storey" },
       { href: "/starlink/roof-wall-and-tripod", label: "Roof, wall and tripod" },

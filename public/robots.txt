@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /netlify-form.html
+Disallow: /admin
+Disallow: /downloads/vinready-builder-pack.pdf
 
 Sitemap: https://vinconnect.com.au/sitemap.xml

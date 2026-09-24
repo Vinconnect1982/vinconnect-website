@@ -45,7 +45,7 @@ export const CUSTOMER_HELP: Article[] = [
     points: [
       "Direct bookings start with Check My Install Price",
       "Circl-arranged installs have a separate help page for delivery and booking",
-      "Double-storey, conduit and cabinet router placement are not assumed",
+      "Double storey, internal walls and a data cabinet are not assumed",
       "One phone number for VINCONNECT labour: 0408 559 555",
     ],
     children: [
@@ -186,7 +186,7 @@ export const CUSTOMER_HELP: Article[] = [
     description:
       "What happens during a VINCONNECT Starlink installation visit in Victoria, including time on site and decisions we will not make for you.",
     crumbs: crumbs("On the day"),
-    image: "/media/projects/somerville-starlink-install-hero-v4.webp",
+    image: "/media/projects/somerville-starlink-install-hero-v5.webp",
     sections: [
       {
         heading: "Order of work",
@@ -260,13 +260,13 @@ export const CUSTOMER_HELP: Article[] = [
     title: "Standard install scope",
     lede: "Wall or roof mount, visible clipped cable, one penetration, brush plate, router on the internal wall backing the exterior near power. That is the job unless the booking says more.",
     description:
-      "VINCONNECT standard Starlink installation scope: mount, visible cable, one penetration, router placement, and the optional extras of conduit and garage or cabinet router.",
+      "VINCONNECT standard Starlink installation scope: mount, visible cable, one penetration, wall plate, and optional internal walls or a data cabinet.",
     crumbs: crumbs("Standard install scope"),
     points: [
       "Visible clipped external cable on the agreed route",
       "One sealed penetration and an internal brush plate",
       "Router on the internal wall backing the exterior, near power",
-      "Conduit $120 and garage or cabinet router $150 only if agreed",
+      "Internal walls from $150, which can vary. Data rack or cabinet $120. Only if agreed",
     ],
     sections: [
       {
@@ -311,7 +311,7 @@ export const CUSTOMER_HELP: Article[] = [
     description:
       "VINCONNECT double-storey Starlink bookings, roof access, pets, horses and when a visit is paused.",
     crumbs: crumbs("Double-storey and access"),
-    image: "/media/projects/botanic-ridge-double-storey-hero-v4.webp",
+    image: "/media/projects/botanic-ridge-double-storey-hero-v5.webp",
     sections: [
       {
         heading: "Book the storey you have",
@@ -335,7 +335,7 @@ export const CUSTOMER_HELP: Article[] = [
     faqs: [
       {
         q: "The estimator did not ask how many storeys.",
-        a: "Tell us in the notes or on the call. The estimator is a labour range, not a substitute for describing the building.",
+        a: "The full quote does. Single storey is in the $300. Double storey adds $250. If you only took the quick quote, tell us before the day is booked.",
       },
     ],
   }),

@@ -24,7 +24,7 @@ export function InstallStepsGraphic({ className }: { className?: string }) {
         ))}
       </ol>
       <figcaption className="mt-4 text-xs text-muted">
-        Hardware, mounts, Starlink plans, conduit, cabinet router placement and travel outside the local area are extra.
+        Hardware, the Starlink plan, a mount, internal walls, a data cabinet, double storey, Saturday and travel are extra.
       </figcaption>
     </figure>
   );
@@ -68,9 +68,9 @@ export function PricePathGraphic({ className }: { className?: string }) {
       <h3 className="mt-2 font-display text-2xl">Enter the address. We do the rest.</h3>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
         {[
-          { t: "Local labour", d: "Standard Starlink install is $300 in the Cranbourne work area." },
-          { t: "Your property", d: "Double-storey, conduit, cabinet router and extra Wi-Fi areas are added if you tick them." },
-          { t: "Your address", d: "Travel from Cranbourne is included in the range automatically. You do not work out kilometres." },
+          { t: "Local labour", d: "Standard Starlink install is $300. Weekday, down an external wall to a wall plate." },
+          { t: "Your property", d: "Double storey adds $250. The mount follows the roof. Internal walls start at $150. A data cabinet is $120." },
+          { t: "Your address", d: "Travel is added from the address. You do not work out the kilometres." },
         ].map((c) => (
           <div key={c.t} className="rounded-lg border border-line bg-ink px-4 py-4">
             <p className="font-display text-lg text-mint">{c.t}</p>
@@ -113,7 +113,7 @@ export function DiyVsProGraphic({ className }: { className?: string }) {
 
 export function FunnelGraphic({ className }: { className?: string }) {
   const steps = [
-    { n: "1", t: "Check the price", d: "Address in, labour range out. Local Starlink from $300." },
+    { n: "1", t: "Check the price", d: "Address in, quote out. Standard Starlink install $300, then travel and extras." },
     { n: "2", t: "Send photos", d: "Roof, intended mount wall and the router room." },
     { n: "3", t: "Confirm the scope", d: "We write what is included before anyone books a day." },
     { n: "4", t: "Install & handover", d: "Working service, isolation, and a record of the job." },

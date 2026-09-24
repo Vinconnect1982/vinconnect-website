@@ -1,11 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { EnquiryForm } from "@/components/enquiry-form";
+import { AppLink } from "@/components/app-link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { areasInRegion, regionBySlug } from "@/lib/areas";
 import { PROJECTS, SITE_URL } from "@/lib/content";
-import { REGION_STORIES } from "@/lib/region-stories";
+import { REGION_LINKS, REGION_STORIES } from "@/lib/region-stories";
 
 export const Route = createFileRoute("/service-areas/region/$slug")({
   component: RegionPage,
@@ -53,6 +54,20 @@ function RegionPage() {
             <Link to="/service-areas">All service areas</Link>
           </Button>
         </div>
+        {(REGION_LINKS[region.slug] ?? []).length > 0 && (
+          <div className="mt-8">
+            <h2 className="font-display text-xl">Related</h2>
+            <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+              {REGION_LINKS[region.slug].map((item) => (
+                <li key={item.href}>
+                  <AppLink to={item.href} className="inline-flex rounded-full border border-line px-3 py-2 hover:border-mint">
+                    {item.label}
+                  </AppLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <h2 className="mt-14 font-display text-2xl">Suburbs in {region.short}</h2>
         <p className="mt-5 max-w-3xl text-sm leading-7">

@@ -18,8 +18,8 @@ function EstimatePage() {
           Check my install price.
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          A quick, address-based estimate for Starlink installation, better Wi-Fi, building links,
-          CCTV and data work. No travel calculations or technical guesswork.
+          A Starlink installation quote for the address. Standard labour is $300, then travel and any
+          extras you add. Commercial properties are quoted personally. Payment is due on the day.
         </p>
         <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs uppercase tracking-[0.16em] text-muted">
           <li>ACMA Registered Open Cabler</li>
@@ -33,9 +33,9 @@ function EstimatePage() {
         <div className="note mt-8 text-sm">
           <p className="font-display text-fg">What happens next?</p>
           <p className="mt-2">
-            Your result is an indicative range based on the selected address and answers. Upload
-            photos to help us confirm access, mounting and cable routes. VINCONNECT reviews the
-            request before any work is booked.
+            The quote lists the standard install and the extras you select. The Starlink kit and
+            monthly plan are separate. Payment is due on the day of installation. Photos help us
+            confirm access, the mount and the cable route before the day is booked.
           </p>
         </div>
       </div>

@@ -60,9 +60,9 @@ export const RESOURCE_GUIDES: Article[] = [
     title: "Standard Starlink install, explained",
     lede: "A longer plain-language version of the scope: visible cable, one hole, router at the wall. Use it with the terms page, not instead of it.",
     description:
-      "Plain-language explanation of a VINCONNECT standard Starlink installation in Victoria, including optional conduit and cabinet extras.",
+      "Plain-language explanation of a VINCONNECT standard Starlink installation in Victoria, including optional internal walls and a data cabinet.",
     crumbs: crumbs("Standard install explained"),
-    image: "/media/projects/botanic-ridge-double-storey-hero-v4.webp",
+    image: "/media/projects/botanic-ridge-double-storey-hero-v5.webp",
     sections: [
       {
         heading: "The five parts",
@@ -78,7 +78,7 @@ export const RESOURCE_GUIDES: Article[] = [
       {
         heading: "The two common extras",
         copy: [
-          "Conduit $120. Garage or cabinet router $150. Direct bookings only, and only when agreed. Circl jobs follow the work order, not these extras, unless they are separately quoted.",
+          "Internal walls from $150, and that figure can vary with the property. Cable to a data rack or cabinet $120. Double storey adds $250. Saturday adds $150. Direct bookings only, and only when agreed. Circl jobs follow the work order, not these extras, unless they are separately quoted.",
         ],
       },
     ],
@@ -145,7 +145,7 @@ export const RESOURCE_GUIDES: Article[] = [
       {
         heading: "The usual complaint",
         copy: [
-          "nbn technology is not a suburb label. Check the nbn address checker and Starlink availability for the same property. Evening slowdown and weather dropouts are the usual complaint. Completed jobs in Nyora, Caldermeade and Red Hill started with unreliable fixed wireless at those properties — not a claim that the whole town is on fixed wireless.",
+          "nbn technology is not the same for every house in a suburb. Check the nbn address checker and Starlink availability for the property. Evening slowdowns and dropouts in bad weather are the usual complaint. Finished jobs in Nyora, Caldermeade and Red Hill started with unreliable fixed wireless at those houses. That does not mean the whole town is on fixed wireless.",
         ],
       },
       {

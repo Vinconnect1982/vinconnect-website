@@ -24,7 +24,7 @@ const GROUPS: { title: string; region: string; copy: string; slugs: string[] }[]
     title: "South East Melbourne",
     region: "casey-south-east",
     copy: "VINCONNECT is based in Cranbourne. The work here is estate homes, double-storey houses, club sites and the first acreage south of the freeway. A completed club job at Cranbourne Cricket Club replaced a Telstra 4G connection with Starlink and Wi-Fi into the existing rack.",
-    slugs: ["cranbourne", "cranbourne-east", "cranbourne-west", "clyde", "clyde-north", "berwick", "officer", "pakenham", "langwarrin", "frankston"],
+    slugs: ["cranbourne", "cranbourne-east", "cranbourne-west", "clyde", "clyde-north", "narre-warren", "narre-warren-south", "berwick", "officer", "pakenham", "langwarrin", "frankston"],
   },
   {
     title: "Mornington Peninsula",

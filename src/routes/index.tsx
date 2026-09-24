@@ -13,11 +13,11 @@ export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "Starlink Installation, Wi-Fi & CCTV | Cranbourne & Gippsland | VINCONNECT" },
+      { title: "Starlink Installation Melbourne, Cranbourne & Gippsland | VINCONNECT" },
       {
         name: "description",
         content:
-          "Starlink installation, whole-property Wi-Fi, wireless links and CCTV across South East Melbourne, Mornington Peninsula, Bass Coast and Gippsland. Based in Cranbourne. Regional Victorian work by arrangement.",
+          "Professional Starlink installation across Melbourne's south-east, Cranbourne, Casey, Cardinia and Gippsland. Whole-property Wi-Fi, shed links and CCTV. Based in Cranbourne.",
       },
     ],
   }),
@@ -77,9 +77,9 @@ function Home() {
             Starlink installed properly. Every important place connected.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-fg/85">
-            Professional Starlink installation and whole-property connectivity across South East
-            Melbourne, Mornington Peninsula, Bass Coast and Gippsland, with regional Victorian
-            projects available by arrangement.
+            Professional Starlink installation across Melbourne's south-east and Gippsland, from the
+            Cranbourne base through Casey, Cardinia, Western Port and the Peninsula. Whole-property
+            Wi-Fi, shed links and CCTV on the same visit when you need them.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
@@ -299,7 +299,7 @@ function Home() {
             </div>
           </AppLink>
           <AppLink to="/event-link" className="overflow-hidden rounded-xl border border-line">
-            <img src="/scenes-new/event-link-kit.webp" alt="" className="h-56 w-full object-cover" loading="lazy" decoding="async" />
+            <img src="/media/event-link/show.webp" alt="Design concept of an Event Link trailer at a country show." className="h-56 w-full object-cover" loading="lazy" decoding="async" />
             <div className="p-5">
               <h3 className="font-display text-2xl">Event Link pilot</h3>
               <p className="mt-2 text-sm text-muted">
@@ -313,13 +313,13 @@ function Home() {
 
       <section className="bg-ink-2">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <p className="kicker">Start with a simple estimate</p>
+          <p className="kicker">Start with a simple quote</p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl sm:text-4xl">
-            Check your likely install price.
+            Check your install price.
           </h2>
           <p className="mt-3 max-w-2xl text-muted">
-            Enter the property address and answer a few practical questions. Location is included
-            automatically, with no travel formula or technical terms to work through.
+            Enter the address for a standard $300 install plus travel. Add the mount, storeys or a
+            Saturday if you want the full quote. Payment is due on the day.
           </p>
           <div className="mt-8">
             <EstimateWizard />

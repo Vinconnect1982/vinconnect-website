@@ -7,6 +7,7 @@ import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import { SERVICES, SITE_URL, findService } from "@/lib/content";
 import { COMMERCIAL_RELATED } from "@/lib/pages";
+import { PRIORITY_SUBURB_LINKS } from "@/lib/suburb-seo";
 
 const GUIDE_LINKS: Record<string, { href: string; label: string; copy?: string }[]> = {
   "starlink-installation": [
@@ -122,6 +123,23 @@ function ServicePage() {
           <StarlinkOfferCta />
         )}
         <RelatedLinks items={[...related, ...(GUIDE_LINKS[page.slug] ?? [])]} title="Helpful guides" />
+        {page.slug === "starlink-installation" && (
+          <section className="mt-12">
+            <h2 className="font-display text-2xl">Starlink installation by suburb</h2>
+            <p className="mt-3 max-w-2xl text-sm text-muted">
+              Priority areas across Casey, Cardinia, Western Port and Gippsland. Each page is written for that place, not a copied suburb list.
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {PRIORITY_SUBURB_LINKS.map((area) => (
+                <li key={area.slug}>
+                  <Link to="/service-areas/$slug" params={{ slug: area.slug }} className="inline-flex rounded-full border border-line px-3 py-2 text-sm hover:border-mint">
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </SiteShell>
   );

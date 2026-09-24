@@ -1,6 +1,7 @@
 import { AppLink } from "@/components/app-link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { NAV, PHONE, PHONE_TEL } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -22,7 +23,8 @@ function NavItems({ onNavigate, compact }: { onNavigate?: () => void; compact?: 
               {item.label}
               <ChevronDown className="size-3.5 opacity-60" />
             </AppLink>
-            <div className="invisible absolute left-0 top-full z-50 min-w-56 rounded-lg border border-line bg-surface p-2 opacity-0 shadow-soft transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="min-w-56 rounded-lg border border-line bg-surface p-2 shadow-soft">
               {item.children.map((child) => (
                 <AppLink
                   key={child.href}
@@ -33,6 +35,7 @@ function NavItems({ onNavigate, compact }: { onNavigate?: () => void; compact?: 
                   {child.label}
                 </AppLink>
               ))}
+              </div>
             </div>
           </div>
         ) : (
@@ -55,6 +58,7 @@ function NavItems({ onNavigate, compact }: { onNavigate?: () => void; compact?: 
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const vinready = useRouterState({ select: (s) => s.location.pathname.startsWith("/vinready") });
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-ink/90 backdrop-blur-md">
@@ -77,7 +81,9 @@ export function SiteHeader() {
             Plan My Property
           </AppLink>
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <AppLink to="/estimate">Check My Install Price</AppLink>
+            <AppLink to={vinready ? "/vinready" : "/estimate"} hash={vinready ? "pack" : undefined}>
+              {vinready ? "Get the builder pack" : "Check My Install Price"}
+            </AppLink>
           </Button>
           <button
             type="button"
@@ -136,11 +142,12 @@ export function SiteHeader() {
             Property Planner
           </AppLink>
           <AppLink
-            to="/estimate"
+            to={vinready ? "/vinready" : "/estimate"}
+            hash={vinready ? "pack" : undefined}
             className="flex min-h-11 items-center py-2 text-mint"
             onClick={() => setOpen(false)}
           >
-            Check My Install Price
+            {vinready ? "Get the builder pack" : "Check My Install Price"}
           </AppLink>
           <a href={PHONE_TEL} className="flex min-h-11 items-center py-2 text-muted">
             Call {PHONE}

@@ -83,7 +83,7 @@ export const PROPERTY_NETWORKS: Article[] = [
       {
         heading: "Brick, metal and water tanks",
         copy: [
-          "Victorian rural builds are hard on indoor Wi-Fi. Sometimes the honest answer is an outdoor access point or a dedicated link, not a third mesh node in the lounge.",
+          "Victorian rural buildings are hard on indoor Wi-Fi. Sometimes the right answer is an outdoor access point or a dedicated link, not a third mesh unit in the lounge.",
         ],
       },
     ],

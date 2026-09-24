@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CirclStarlinkInstallationsRouteImport } from './routes/circl-starlink-installations'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CustomerHelpRouteImport } from './routes/customer-help'
@@ -74,6 +75,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CirclStarlinkInstallationsRoute =
@@ -356,6 +362,7 @@ const ServiceAreasRegionSlugRoute = ServiceAreasRegionSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
+  '/admin': typeof AdminRoute
   '/circl-starlink-installations': typeof CirclStarlinkInstallationsRouteWithChildren
   '/contact': typeof ContactRoute
   '/customer-help': typeof CustomerHelpRouteWithChildren
@@ -413,6 +420,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/estimate': typeof EstimateRoute
   '/install-terms-and-conditions': typeof InstallTermsAndConditionsRoute
@@ -464,6 +472,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRouteWithChildren
+  '/admin': typeof AdminRoute
   '/circl-starlink-installations': typeof CirclStarlinkInstallationsRouteWithChildren
   '/contact': typeof ContactRoute
   '/customer-help': typeof CustomerHelpRouteWithChildren
@@ -524,6 +533,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/circl-starlink-installations'
     | '/contact'
     | '/customer-help'
@@ -581,6 +591,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/contact'
     | '/estimate'
     | '/install-terms-and-conditions'
@@ -631,6 +642,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/circl-starlink-installations'
     | '/contact'
     | '/customer-help'
@@ -690,6 +702,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRouteWithChildren
+  AdminRoute: typeof AdminRoute
   CirclStarlinkInstallationsRoute: typeof CirclStarlinkInstallationsRouteWithChildren
   ContactRoute: typeof ContactRoute
   CustomerHelpRoute: typeof CustomerHelpRouteWithChildren
@@ -737,6 +750,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/circl-starlink-installations': {
@@ -1256,6 +1276,7 @@ const VingearRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRouteWithChildren,
+  AdminRoute: AdminRoute,
   CirclStarlinkInstallationsRoute: CirclStarlinkInstallationsRouteWithChildren,
   ContactRoute: ContactRoute,
   CustomerHelpRoute: CustomerHelpRouteWithChildren,

@@ -64,7 +64,7 @@ export const EVENT_LINK = {
   name: "VINCONNECT Event Link",
   kicker: "Pilot product · 2026–27",
   lede: "A rapidly deployable Starlink and managed Wi-Fi kit for agricultural shows, field days, clubs and rural community events. The same thinking as a property network — packed so it can stand up in a paddock.",
-  image: "/scenes-new/event-link-kit.webp",
+  image: "/media/event-link/platform-hero.webp",
   status:
     "Event Link is a 2026–27 pilot. Organisers can register interest. It is not for sale as a product, and it is not a promise to cover an entire showgrounds.",
   includes: [

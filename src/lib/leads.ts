@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { EMAIL } from "@/lib/content";
-import { env } from "@/lib/env.server";
 
 export type LeadPayload = {
   type: string;
@@ -57,30 +56,12 @@ function formBody(lead: LeadPayload) {
 }
 
 async function postNetlify(lead: LeadPayload) {
-  const res = await fetch("https://vinconnect-website.netlify.app/netlify-form.html", {
+  const res = await fetch("https://vinconnect.com.au/netlify-form.html", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: formBody(lead),
   });
   if (!res.ok) throw new Error("Netlify form failed");
-}
-
-async function postResend(lead: LeadPayload, key: string) {
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "VINCONNECT Website <noreply@vinconnect.com.au>",
-      to: [EMAIL],
-      reply_to: lead.email,
-      subject: subject(lead),
-      text: asText(lead),
-    }),
-  });
-  if (!res.ok) throw new Error("Resend failed");
 }
 
 export const submitLead = createServerFn({ method: "POST" })
@@ -102,19 +83,46 @@ export const submitLead = createServerFn({ method: "POST" })
     } catch (error) {
       console.error("Netlify form store failed", error);
     }
+    try {
+      const { saveSubmission } = await import("./submissions.server");
+      await saveSubmission({
+        id: `EN-${Date.now().toString(36).toUpperCase()}`,
+        createdAt: new Date().toISOString(),
+        kind: "enquiry",
+        name: lead.name,
+        email: lead.email,
+        phone: lead.phone,
+        address: lead.address || "",
+        suburb: lead.suburb,
+        type: lead.type,
+        summary: [lead.package, lead.message].filter(Boolean).join("\n"),
+      });
+      stored = true;
+    } catch (error) {
+      console.error("Enquiry record failed", error);
+    }
     if (!stored) {
       throw new Error("Could not save the enquiry. Please call 0408 559 555.");
     }
 
     let emailed = false;
-    const key = env("RESEND_API_KEY");
-    if (key) {
-      try {
-        await postResend(lead, key);
-        emailed = true;
-      } catch (error) {
-        console.error("Enquiry email failed", error instanceof Error ? error.message : error);
-      }
+    try {
+      const { sendSiteMail } = await import("./mailbox.server");
+      const mailed = await sendSiteMail({
+        to: lead.email,
+        replyTo: EMAIL,
+        subject: subject(lead),
+        text: [
+          `Thanks ${lead.name}. VINCONNECT has your enquiry and will be in touch on ${lead.phone}.`,
+          "",
+          asText(lead),
+          "",
+          "VINCONNECT · 0408 559 555 · vinconnect.com.au",
+        ].join("\n"),
+      });
+      emailed = mailed.emailed;
+    } catch (error) {
+      console.error("Enquiry email failed", error instanceof Error ? error.message : error);
     }
 
     return { ok: true as const, emailed };

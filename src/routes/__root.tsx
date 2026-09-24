@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/site-shell";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "VINCONNECT";
-const BUILD_ID = "2026-09-23-z";
+const BUILD_ID = "2026-09-23-mail";
 
 export const Route = createRootRoute({
   notFoundComponent: () => (
@@ -46,10 +46,12 @@ export const Route = createRootRoute({
       { name: "vinconnect-build", content: BUILD_ID },
     ],
     links: [
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

@@ -78,6 +78,7 @@ export const NAV: NavItem[] = [
     ],
   },
   { label: "Projects", href: "/projects" },
+  { label: "Event Link", href: "/event-link" },
   {
     label: "Guides",
     href: "/resources",
@@ -495,7 +496,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Business CCTV",
     title: "Operations you can review.",
     lede: "Small commercial sites, workshops and clubs need cameras that survive the working day and a recorder that is not sitting on the floor.",
-    image: "/media/projects/pakenham-commercial-factory-hero-v4.webp",
+    image: "/media/projects/pakenham-commercial-factory-hero-v5.webp",
     points: ["Rack or cabinet placement", "Staff and public areas distinguished", "Retention to match the site"],
     body: [
       {
@@ -559,25 +560,26 @@ export type Project = {
   title: string;
   summary: string;
   image: string;
+  imageAlt?: string;
 };
 
 export const PROJECTS: Project[] = [
-  { slug: "cranbourne-cricket-club", place: "Cranbourne", areaSlug: "cranbourne", title: "Cranbourne Cricket Club", summary: "Starlink and Ubiquiti Wi-Fi replaced the club’s Telstra 4G connection, with FrogBox streaming and integration into the existing data rack.", image: "/media/projects/cranbourne-cricket-club-hero-v4.webp" },
-  { slug: "somerville-tripod-install", place: "Somerville", areaSlug: "somerville", title: "Somerville Tripod Installation", summary: "An Astrogear tripod mount provided a secure Starlink installation without roof penetrations.", image: "/media/projects/somerville-tripod-install-hero-v4.webp" },
+  { slug: "cranbourne-cricket-club", place: "Cranbourne", areaSlug: "cranbourne", title: "Cranbourne Cricket Club", summary: "Starlink and Ubiquiti Wi-Fi replaced the club’s Telstra 4G connection, with FrogBox streaming and integration into the existing data rack.", image: "/media/projects/cranbourne-cricket-club-hero-v5.webp", imageAlt: "Cranbourne Cricket Club pavilion and oval." },
+  { slug: "somerville-tripod-install", place: "Somerville", areaSlug: "somerville", title: "Somerville Tripod Installation", summary: "An Astrogear tripod mount provided a secure Starlink installation without roof penetrations.", image: "/media/projects/somerville-tripod-install-hero-v5.webp", imageAlt: "Starlink tripod on the Somerville metal roof." },
   { slug: "nyora-new-home-cctv", place: "Nyora", areaSlug: "nyora", title: "Nyora New Home & CCTV", summary: "Starlink was installed at a newly occupied home using a mount without roof penetrations and connected to the existing CCTV.", image: "/media/projects/nyora-new-home-cctv-hero-v4.webp" },
-  { slug: "pakenham-commercial-factory", place: "Pakenham", areaSlug: "pakenham", title: "Pakenham Commercial Factory", summary: "A factory rooftop Starlink installation, from mounting and cable runs through commissioning.", image: "/media/projects/pakenham-commercial-factory-hero-v4.webp" },
-  { slug: "pearcedale-five-acre-property", place: "Pearcedale", areaSlug: "pearcedale", title: "Pearcedale Five-Acre Property", summary: "Starlink and extended Wi-Fi connected the home, shed and workshop on a five-acre property.", image: "/media/projects/pearcedale-five-acre-property-hero-v4.webp" },
-  { slug: "safety-beach-concealed-install", place: "Safety Beach", areaSlug: "safety-beach", title: "Safety Beach Concealed Install", summary: "An Astrogear tripod installation on a double-storey, flat-roof home with concealed gutters.", image: "/media/projects/safety-beach-concealed-install-hero-v4.webp" },
-  { slug: "red-hill-multi-level-home", place: "Red Hill", areaSlug: "red-hill", title: "Red Hill Multi-Level Home", summary: "Starlink replaced unreliable fixed wireless at a large multi-level home overlooking the bay.", image: "/media/projects/red-hill-multi-level-home-hero-v4.webp" },
-  { slug: "botanic-ridge-double-storey", place: "Botanic Ridge", areaSlug: "botanic-ridge", title: "Botanic Ridge Double Storey", summary: "A double-storey fascia installation with Starlink connected to the customer’s existing UPS.", image: "/media/projects/botanic-ridge-double-storey-hero-v4.webp" },
+  { slug: "pakenham-commercial-factory", place: "Pakenham", areaSlug: "pakenham", title: "Pakenham Commercial Factory", summary: "A factory rooftop Starlink installation, from mounting and cable runs through commissioning.", image: "/media/projects/pakenham-commercial-factory-hero-v5.webp", imageAlt: "Starlink tripod mounted on the Pakenham factory metal roof." },
+  { slug: "pearcedale-five-acre-property", place: "Pearcedale", areaSlug: "pearcedale", title: "Pearcedale Five-Acre Property", summary: "Starlink and extended Wi-Fi connected the home, shed and workshop on a five-acre property.", image: "/media/projects/pearcedale-five-acre-property-hero-v5.webp", imageAlt: "Starlink mounted on the Pearcedale house verandah, terracotta roof behind." },
+  { slug: "safety-beach-concealed-install", place: "Safety Beach", areaSlug: "safety-beach", title: "Safety Beach Concealed Install", summary: "An Astrogear tripod installation on a double-storey, flat-roof home with concealed gutters.", image: "/media/projects/safety-beach-concealed-install-hero-v5.webp", imageAlt: "Starlink tripod on the Safety Beach flat roof parapet." },
+  { slug: "red-hill-multi-level-home", place: "Red Hill", areaSlug: "red-hill", title: "Red Hill Multi-Level Home", summary: "Starlink replaced unreliable fixed wireless at a large multi-level home overlooking the bay.", image: "/media/projects/red-hill-multi-level-home-hero-v5.webp", imageAlt: "Starlink tripod on the Red Hill metal roof, looking over the bay." },
+  { slug: "botanic-ridge-double-storey", place: "Botanic Ridge", areaSlug: "botanic-ridge", title: "Botanic Ridge Double Storey", summary: "A double-storey fascia installation with Starlink connected to the customer’s existing UPS.", image: "/media/projects/botanic-ridge-double-storey-hero-v5.webp", imageAlt: "Starlink fascia mount on the Botanic Ridge double-storey home." },
   { slug: "bittern-copper-nbn-upgrade", place: "Bittern", areaSlug: "bittern", title: "Bittern Copper NBN Upgrade", summary: "A professionally roof-mounted Starlink installation replaced an ageing copper NBN service.", image: "/media/projects/bittern-copper-nbn-upgrade-hero-v4.webp" },
   { slug: "sorrento-coastal-home", place: "Sorrento", areaSlug: "sorrento", title: "Sorrento Coastal Home", summary: "A mounted Starlink system replaced an unreliable copper connection at an architectural coastal home.", image: "/media/projects/sorrento-coastal-home-hero-v4.webp" },
   { slug: "caldermeade-rural-property", place: "Caldermeade", areaSlug: "caldermeade", title: "Caldermeade Rural Property", summary: "Starlink installed after the customer experienced slow fixed wireless and frequent dropouts.", image: "/media/projects/caldermeade-rural-property-hero-v4.webp" },
-  { slug: "clyde-new-estate-home", place: "Clyde", areaSlug: "clyde", title: "Clyde New Estate Home", summary: "A new home was connected where NBN and OptiComm infrastructure was not yet available.", image: "/media/projects/clyde-new-estate-home-hero-v4.webp" },
-  { slug: "lyndhurst-rental-home", place: "Lyndhurst", areaSlug: "lyndhurst", title: "Lyndhurst Rental Home", summary: "A rental-friendly mounting approach and cable entry through an existing Hills Home Hub cabinet.", image: "/media/projects/lyndhurst-rental-home-hero-v4.webp" },
-  { slug: "nyora-fixed-wireless-upgrade", place: "Nyora", areaSlug: "nyora", title: "Nyora Fixed Wireless Upgrade", summary: "A roof-mounted Starlink system replaced an unreliable fixed-wireless connection at a rural home.", image: "/media/projects/nyora-fixed-wireless-upgrade-hero-v4.webp" },
+  { slug: "clyde-new-estate-home", place: "Clyde", areaSlug: "clyde", title: "Clyde New Estate Home", summary: "A new home was connected where NBN and OptiComm infrastructure was not yet available.", image: "/media/projects/clyde-new-estate-home-hero-v5.webp", imageAlt: "Starlink pole mount on the Clyde estate tile roof." },
+  { slug: "lyndhurst-rental-home", place: "Lyndhurst", areaSlug: "lyndhurst", title: "Lyndhurst Rental Home", summary: "A rental-friendly mounting approach and cable entry through an existing Hills Home Hub cabinet.", image: "/media/projects/lyndhurst-rental-home-hero-v5.webp", imageAlt: "Starlink fascia bracket under the gutter at the Lyndhurst rental." },
+  { slug: "nyora-fixed-wireless-upgrade", place: "Nyora", areaSlug: "nyora", title: "Nyora Fixed Wireless Upgrade", summary: "A roof-mounted Starlink system replaced an unreliable fixed-wireless connection at a rural home.", image: "/media/projects/nyora-fixed-wireless-upgrade-hero-v5.webp", imageAlt: "Roof-mounted Starlink on the Nyora metal roof." },
   { slug: "tooradin-rural-install", place: "Tooradin", areaSlug: "tooradin", title: "Tooradin Rural Installation", summary: "Roof-mounted Starlink brought internet to a large rural property.", image: "/media/projects/tooradin-rural-install-hero-v4.webp" },
-  { slug: "cranbourne-east-upgrade", place: "Cranbourne East", areaSlug: "cranbourne-east", title: "Cranbourne East Upgrade", summary: "A mounted Starlink system addressed intermittent dropouts and a bottleneck in the home’s previous connection.", image: "/media/projects/cranbourne-east-upgrade-hero-v4.webp" },
-  { slug: "somerville-starlink-install", place: "Somerville", areaSlug: "somerville", title: "Somerville Starlink Installation", summary: "A completed Starlink installation in Somerville.", image: "/media/projects/somerville-starlink-install-hero-v4.webp" },
-  { slug: "cranbourne-west-roof-mount", place: "Cranbourne West", areaSlug: "cranbourne-west", title: "Cranbourne West Roof Mount", summary: "A double-storey installation using an Astrogear tripod roof mount without roof penetrations.", image: "/media/projects/cranbourne-west-roof-mount-hero-v4.webp" },
+  { slug: "cranbourne-east-upgrade", place: "Cranbourne East", areaSlug: "cranbourne-east", title: "Cranbourne East Upgrade", summary: "A mounted Starlink system addressed intermittent dropouts and a bottleneck in the home’s previous connection.", image: "/media/projects/cranbourne-east-upgrade-hero-v5.webp", imageAlt: "Starlink mounted on the Cranbourne East metal gable." },
+  { slug: "somerville-starlink-install", place: "Somerville", areaSlug: "somerville", title: "Somerville Starlink Installation", summary: "A completed Starlink installation in Somerville.", image: "/media/projects/somerville-starlink-install-hero-v5.webp", imageAlt: "Starlink mounted on the Somerville alfresco fascia." },
+  { slug: "cranbourne-west-roof-mount", place: "Cranbourne West", areaSlug: "cranbourne-west", title: "Cranbourne West Roof Mount", summary: "A double-storey Starlink installation with a pole mount on the concrete tile roof.", image: "/media/projects/cranbourne-west-roof-mount-hero-v5.webp", imageAlt: "Starlink pole mount on the Cranbourne West tile roof." },
 ];
