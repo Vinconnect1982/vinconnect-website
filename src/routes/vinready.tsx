@@ -256,11 +256,15 @@ function VinreadyPage() {
       </section>
 
       <section id="pack" className="border-t border-line bg-ink-2">
+        <img
+          src="/media/downloads/vinready-pack-on-site.webp"
+          alt="The VinReady builder pack standing on a site bench, with a house frame behind it."
+          className="h-[46vh] min-h-72 w-full object-cover object-[center_30%]"
+        />
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
-            <img src="/media/downloads/vinready-builder-pack-desk.webp" alt="The VinReady builder pack printed on a desk." className="aspect-[16/10] w-full rounded-xl object-cover" />
-            <h2 className="mt-6 font-display text-3xl">Add VinReady to your homes</h2>
-            <p className="mt-3 text-muted">Tell us where you build. We will show you how it fits.</p>
+            <h2 className="font-display text-3xl">Add VinReady to your homes</h2>
+            <p className="mt-3 text-muted">Tell us where you build. We will show you how it fits. The builder pack, including pricing, is sent after this form.</p>
           </div>
           <BuilderForm />
         </div>
