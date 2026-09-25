@@ -49,6 +49,8 @@ Branch `command-centre` now has:
 
 Not live on vinconnect.com.au. Google will reject the button until `https://vinconnect.com.au` is added as an authorised origin on the existing War Room Google client.
 
+## Protected
+
 - Do not force-push `main`.
 - Do not change DNS.
 - Do not print customer records, passwords, or supplier prices into a public page.
