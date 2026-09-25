@@ -575,7 +575,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
     h1: "Starlink Installation Nyora",
     intro:
       "Nyora has two published VINCONNECT installations. One was a newly occupied home, mounted without a roof penetration and tied into the existing CCTV. The other was a roof-mounted system that replaced an unreliable fixed-wireless connection at that rural property.",
-    image: "/media/projects/nyora-fixed-wireless-upgrade-hero-v5.webp",
+    image: "/media/projects/nyora-fixed-wireless-upgrade-hero-v6.webp",
     imageAlt: "Rural Nyora property with a completed roof-mounted VINCONNECT Starlink installation.",
     vinready: false,
     sections: [

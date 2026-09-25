@@ -206,7 +206,7 @@ export const JOURNAL: Article[] = [
     crumbs: crumbs("Nyora new home"),
     image: "/media/projects/nyora-new-home-cctv-hero-v4.webp",
     gallery: [
-      { src: "/media/projects/nyora-fixed-wireless-upgrade-hero-v5.webp", alt: "Separate Nyora rural home that moved off fixed wireless." },
+      { src: "/media/projects/nyora-fixed-wireless-upgrade-hero-v6.webp", alt: "Separate Nyora rural home that moved off fixed wireless." },
       { src: "/media/projects/clyde-new-estate-home-hero-v5.webp", alt: "Clyde new estate home waiting on NBN." },
     ],
     sections: [
