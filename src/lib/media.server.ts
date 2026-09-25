@@ -1,4 +1,4 @@
-import { timingSafeEqual } from "node:crypto";
+import { acceptsAdmin } from "./admin-auth.server";
 
 export type MediaDraft = {
   id: string;
@@ -11,12 +11,7 @@ export type MediaDraft = {
 };
 
 function assertAdmin(password: string) {
-  const expected = process.env.ADMIN_PASSWORD || "VC-quotes-2026-k7";
-  const left = Buffer.from(password);
-  const right = Buffer.from(expected);
-  if (left.length !== right.length || !timingSafeEqual(left, right)) {
-    throw new Error("That password is not right.");
-  }
+  if (!acceptsAdmin(password)) throw new Error("That password is not right.");
 }
 
 async function store() {

@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { listMediaDrafts, saveMediaDraft, type MediaDraft } from "@/lib/media";
 import { WAR_NOW, WAR_PLANNED, WAR_STAGES, WAR_WAITING } from "@/lib/war-room";
 import { DOWNLOADS } from "@/lib/downloads";
 import { PROJECTS, SITE_URL, SOCIALS } from "@/lib/content";
-import { followSavedQuote, listQuotes, removeQuote, resendSavedQuote, setQuote, type Submission } from "@/lib/submissions";
+import { followSavedQuote, listQuotes, PIPELINE, removeQuote, resendSavedQuote, sendReferral, setQuote, signInWithGoogle, stageOf, type PipelineStage, type Submission } from "@/lib/submissions";
+import { GOOGLE_CLIENT_ID } from "@/lib/google-client";
 import { formatAud } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
@@ -34,11 +35,9 @@ const DESKS: { id: Desk; label: string }[] = [
   { id: "finance", label: "Finance" },
   { id: "restore", label: "Restore" },
 ];
-type Status = "open" | "won" | "lost" | "deleted";
+type Status = "open" | "won" | "lost" | "deleted" | PipelineStage;
 const TABS: { id: Status; label: string }[] = [
-  { id: "open", label: "Open" },
-  { id: "won", label: "Won" },
-  { id: "lost", label: "Not won" },
+  ...PIPELINE.map((item) => ({ id: item.id as Status, label: item.label })),
   { id: "deleted", label: "Deleted" },
 ];
 
@@ -46,13 +45,50 @@ function AdminPage() {
   const [password, setPassword] = useState("");
   const [rows, setRows] = useState<Submission[] | null>(null);
   const [desk, setDesk] = useState<Desk>("home");
-  const [tab, setTab] = useState<Status>("open");
+  const [tab, setTab] = useState<Status>("new");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const googleHost = useRef<HTMLDivElement>(null);
 
   async function load(nextPassword = password) {
     setRows(await listQuotes({ data: { password: nextPassword } }));
   }
+
+  useEffect(() => {
+    if (rows) return;
+    const host = googleHost.current;
+    if (!host) return;
+    let cancelled = false;
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.onload = () => {
+      const google = (window as Window & { google?: { accounts: { id: { initialize: (options: object) => void; renderButton: (parent: HTMLElement, options: object) => void } } } }).google;
+      if (cancelled || !google || !googleHost.current) return;
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: (response: { credential?: string }) => {
+          if (!response.credential) return;
+          setBusy(true);
+          setError("");
+          signInWithGoogle({ data: response.credential })
+            .then(async (result) => {
+              setPassword(result.session);
+              sessionStorage.setItem("vc-admin", result.session);
+              setRows(await listQuotes({ data: { password: result.session } }));
+            })
+            .catch((err: unknown) => setError(err instanceof Error ? err.message : "Google sign-in failed."))
+            .finally(() => setBusy(false));
+        },
+      });
+      googleHost.current.replaceChildren();
+      google.accounts.id.renderButton(googleHost.current, { theme: "filled_black", size: "large", width: 320, text: "continue_with" });
+    };
+    document.head.appendChild(script);
+    return () => {
+      cancelled = true;
+    };
+  }, [rows]);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -103,7 +139,7 @@ function AdminPage() {
     }
   }
 
-  const visible = (rows ?? []).filter((row) => (row.status ?? "open") === tab);
+  const visible = (rows ?? []).filter((row) => (tab === "deleted" ? row.status === "deleted" : row.status !== "deleted" && stageOf(row) === tab));
   const room = DESKS.find((item) => item.id === desk)?.label ?? "Home";
 
   if (!rows) {
@@ -111,8 +147,10 @@ function AdminPage() {
       <div className="flex min-h-dvh items-center justify-center bg-ink px-4 text-fg">
         <form onSubmit={open} className="w-full max-w-sm border border-line bg-ink-2 p-6">
           <p className="font-display text-2xl">VINCONNECT</p>
-          <p className="mt-1 text-sm text-muted">Control room</p>
-          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Dashboard password" autoComplete="current-password" className="mt-6 border-line bg-raised" />
+          <p className="mt-1 text-sm text-muted">Command Centre</p>
+          <div ref={googleHost} className="mt-6 min-h-11" />
+          <p className="mt-4 text-xs text-muted">Or use the dashboard password.</p>
+          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Dashboard password" autoComplete="current-password" className="mt-2 border-line bg-raised" />
           <Button type="submit" disabled={busy} className="mt-3 w-full">{busy ? "Opening…" : "Open"}</Button>
           {error && <p className="mt-3 text-sm text-danger">{error}</p>}
         </form>
@@ -164,7 +202,7 @@ function AdminPage() {
               <div className="flex flex-wrap gap-2">
                 {TABS.map((item) => (
                   <button key={item.id} type="button" onClick={() => setTab(item.id)} className={`border px-3 py-2 text-sm ${tab === item.id ? "border-mint-deep text-mint" : "border-line"}`}>
-                    {item.label} ({rows.filter((row) => (row.status ?? "open") === item.id).length})
+                    {item.label} ({item.id === "deleted" ? rows.filter((row) => row.status === "deleted").length : rows.filter((row) => row.status !== "deleted" && stageOf(row) === item.id).length})
                   </button>
                 ))}
               </div>
@@ -189,24 +227,37 @@ const PACKS = [
 ];
 
 function HomeRoom({ rows, onOpen }: { rows: Submission[]; onOpen: (desk: Desk) => void }) {
-  const open = rows.filter((row) => (row.status ?? "open") === "open").length;
-  const won = rows.filter((row) => row.status === "won").length;
+  const active = rows.filter((row) => row.status !== "deleted");
+  const due = active.filter((row) => row.followUpOn && row.followUpOn <= new Date().toISOString().slice(0, 10) && !["won", "lost", "closed"].includes(stageOf(row)));
+  const pipeline = PIPELINE.map((item) => {
+    const matched = active.filter((row) => stageOf(row) === item.id);
+    return { ...item, count: matched.length, value: matched.reduce((sum, row) => sum + (row.total ?? 0), 0) };
+  });
   return (
-    <div className="mt-6 grid gap-3 sm:grid-cols-2">
-      {[
-        ["Leads", `${open} open quotes. Won, not won, resend and follow-up live here.`, "leads"],
-        ["Resources", "Download the service PDFs.", "resources"],
-        ["Media", "Published jobs, captions, and links out to Facebook, Instagram and Google.", "marketing"],
-        ["War room", "VinGear actions and stages.", "war"],
-        ["Finance", "Quote pipeline from the leads already saved. Not a set of accounts.", "finance"],
-        ["Restore", "GitHub and the Google Drive restore folder.", "restore"],
-      ].map(([label, copy, id]) => (
-        <button key={id} type="button" onClick={() => onOpen(id as Desk)} className="border border-line p-4 text-left">
-          <span className="font-display text-2xl">{label}</span>
-          <span className="mt-2 block text-sm text-muted">{copy}</span>
-          {label === "Leads" && <span className="mt-2 block text-sm">{won} won</span>}
-        </button>
-      ))}
+    <div className="mt-6 grid gap-3">
+      <button type="button" onClick={() => onOpen("leads")} className="border border-line p-4 text-left">
+        <span className="font-display text-2xl">{due.length === 0 ? "No follow-ups due today" : `${due.length} follow-up${due.length === 1 ? "" : "s"} due`}</span>
+        <span className="mt-2 block text-sm text-muted">Counts and dollars are saved website quotes. This is not the bank account.</span>
+      </button>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {pipeline.map((item) => (
+          <button key={item.id} type="button" onClick={() => onOpen("leads")} className="border border-line p-4 text-left">
+            <p className="text-sm text-muted">{item.label}</p>
+            <p className="mt-2 font-display text-3xl">{item.count}</p>
+            <p className="mt-1 text-sm text-muted">{formatAud(item.value)}</p>
+          </button>
+        ))}
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <a href="https://vinconnect-media.netlify.app" target="_blank" rel="noreferrer" className="border border-line p-4 no-underline">
+          <span className="font-display text-xl">Media Hub</span>
+          <span className="mt-1 block text-sm text-muted">The live hub. Articles, photos and publishing stay there.</span>
+        </a>
+        <a href="https://vingear-war-room.netlify.app" target="_blank" rel="noreferrer" className="border border-line p-4 no-underline">
+          <span className="font-display text-xl">VinGear War Room</span>
+          <span className="mt-1 block text-sm text-muted">The live supplier and product desk. Not a copy.</span>
+        </a>
+      </div>
     </div>
   );
 }
@@ -375,14 +426,17 @@ function QuoteCard({
   const [name, setName] = useState(row.name);
   const [email, setEmail] = useState(row.email);
   const [phone, setPhone] = useState(row.phone);
+  const [followUpOn, setFollowUpOn] = useState(row.followUpOn ?? "");
+  const [lostReason, setLostReason] = useState(row.lostReason ?? "");
   const status = row.status ?? "open";
+  const stage = stageOf(row);
 
   return (
     <article className="border border-line p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="font-display text-xl">{row.id}</p>
-          <p className="text-sm text-muted">{new Date(row.createdAt).toLocaleString("en-AU")}</p>
+          <p className="text-sm text-muted">{new Date(row.createdAt).toLocaleString("en-AU")} · {PIPELINE.find((item) => item.id === stage)?.label}</p>
         </div>
         <p className="font-display text-2xl">{row.total != null ? formatAud(row.total) : "—"}</p>
       </div>
@@ -392,18 +446,34 @@ function QuoteCard({
         <Input value={email} onChange={(e) => setEmail(e.target.value)} className="border-line bg-raised" />
         <Input value={phone} onChange={(e) => setPhone(e.target.value)} className="border-line bg-raised" />
       </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-3">
+        <label className="text-sm text-muted">Stage
+          <select value={stage} onChange={(e) => onAct(row.id, () => setQuote({ data: { password, id: row.id, stage: e.target.value as PipelineStage, lostReason } }))} className="mt-1 w-full border border-line bg-raised px-3 py-2 text-fg">
+            {PIPELINE.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+          </select>
+        </label>
+        <label className="text-sm text-muted">Follow up on
+          <Input type="date" value={followUpOn} onChange={(e) => setFollowUpOn(e.target.value)} className="mt-1 border-line bg-raised" />
+        </label>
+        <label className="mt-5 flex items-center gap-2 text-sm">
+          <input type="checkbox" checked={row.hasKit === true} onChange={(e) => onAct(row.id, () => setQuote({ data: { password, id: row.id, hasKit: e.target.checked } }))} />
+          Customer already has the kit
+        </label>
+      </div>
       <p className="mt-3 text-xs text-muted">{row.photos?.length ?? 0} photos{row.followedUpAt ? ` · Followed up ${new Date(row.followedUpAt).toLocaleDateString("en-AU")}` : ""}</p>
+      {(row.activity ?? []).slice(-3).map((item) => (
+        <p key={item.at + item.kind} className="mt-1 text-xs text-muted">{new Date(item.at).toLocaleString("en-AU")} · {item.detail}</p>
+      ))}
+      <Input value={lostReason} onChange={(e) => setLostReason(e.target.value)} placeholder="Lost reason, if it is lost" className="mt-3 border-line bg-raised" />
       <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={2} placeholder="Internal note" className="mt-3 w-full border border-line bg-raised px-3 py-2 text-sm" />
       <div className="mt-3 flex flex-wrap gap-2">
-        <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, note, name, email, phone } }))}>Save</Button>
-        {status !== "won" && <Button type="button" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, status: "won" } }))}>Won</Button>}
-        {status !== "lost" && status !== "deleted" && <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, status: "lost" } }))}>Not won</Button>}
-        {status !== "open" && <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, status: "open" } }))}>Reopen</Button>}
-        <Button type="button" variant="ink" onClick={() => onAct(row.id, () => resendSavedQuote({ data: { password, id: row.id } }))}>Resend</Button>
-        {(status === "lost" || status === "open") && <Button type="button" variant="ink" onClick={() => onAct(row.id, () => followSavedQuote({ data: { password, id: row.id } }))}>Follow up</Button>}
-        {status !== "deleted" && <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, status: "deleted" } }))}>Delete</Button>}
+        <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, note, name, email, phone, followUpOn, lostReason } }))}>Save</Button>
+        <Button type="button" variant="ink" onClick={() => onAct(row.id, () => resendSavedQuote({ data: { password, id: row.id } }))}>Resend quote</Button>
+        <Button type="button" variant="ink" onClick={() => onAct(row.id, () => followSavedQuote({ data: { password, id: row.id } }))}>Follow up</Button>
+        {row.hasKit !== true && <Button type="button" onClick={() => onAct(row.id, () => sendReferral({ data: { password, id: row.id } }))}>Send kit offer</Button>}
+        {status !== "deleted" && <Button type="button" variant="ink" onClick={() => onAct(row.id, () => setQuote({ data: { password, id: row.id, status: "deleted" } }))}>Archive</Button>}
         {status === "deleted" && (
-          <Button type="button" variant="ink" onClick={() => { if (!confirm(`Permanently remove ${row.id}?`)) return; return onAct(row.id, () => removeQuote({ data: { password, id: row.id } })); }}>Purge</Button>
+          <Button type="button" variant="ink" onClick={() => { if (!confirm(`Permanently remove ${row.id}? This cannot be undone.`)) return; return onAct(row.id, () => removeQuote({ data: { password, id: row.id } })); }}>Purge</Button>
         )}
         {row.token && (
           <Button asChild variant="ink"><a href={`/quote/${row.token}`} target="_blank" rel="noreferrer">Customer link</a></Button>

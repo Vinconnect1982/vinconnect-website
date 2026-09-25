@@ -38,7 +38,16 @@ The public site and this admin share `Vinconnect1982/vinconnect-website`. Netlif
 6. Asset sync to the existing Drive restore folder. Dropbox waits until that connector is available.
 7. Switch production `/admin` only after the preview path works: form, photo, quote, email, won, job.
 
-## Protected
+## Started 25 September 2026
+
+Branch `command-centre` now has:
+
+- Google sign-in for vince@vinconnect.com.au, checked by Google. The dashboard password still works.
+- Quote pipeline on the real saved quotes: new, awaiting information, ready to quote, quoted, follow-up, won, lost, closed.
+- Follow-up date, kit flag, archive, and a referral email that uses the website link `RC-DF-12576466-54681-7`.
+- Home counts from those quotes, plus links to the live Media Hub and War Room.
+
+Not live on vinconnect.com.au. Google will reject the button until `https://vinconnect.com.au` is added as an authorised origin on the existing War Room Google client.
 
 - Do not force-push `main`.
 - Do not change DNS.
