@@ -6,6 +6,18 @@
   NITRO_PRESET = "netlify"
 
 [[headers]]
+  for = "/admin"
+  [headers.values]
+    Cache-Control = "private, no-store, max-age=0, must-revalidate"
+    Netlify-CDN-Cache-Control = "no-store"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "private, no-store, max-age=0, must-revalidate"
+    Netlify-CDN-Cache-Control = "no-store"
+
+[[headers]]
   for = "/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
