@@ -62,7 +62,7 @@ export const listQuotes = createServerFn({ method: "POST" })
   });
 
 export const setQuote = createServerFn({ method: "POST" })
-  .validator((input: { password: string; id: string; status?: QuoteStatus; stage?: PipelineStage; note?: string; name?: string; email?: string; phone?: string; followUpOn?: string; hasKit?: boolean; lostReason?: string }) => input)
+  .validator((input: { password: string; id: string; status?: QuoteStatus; stage?: PipelineStage; note?: string; name?: string; email?: string; phone?: string; followUpOn?: string; hasKit?: boolean; lostReason?: string; revision?: { reason: string; labourHours?: number } }) => input)
   .handler(async ({ data }) => {
     const { updateQuote } = await import("./submissions.server");
     const { password, id, ...patch } = data;

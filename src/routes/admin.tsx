@@ -9,6 +9,7 @@ import { PROJECTS, SITE_URL, SOCIALS } from "@/lib/content";
 import { followSavedQuote, listQuotes, PIPELINE, removeQuote, resendSavedQuote, sendReferral, setQuote, signInWithGoogle, stageOf, type PipelineStage, type Submission } from "@/lib/submissions";
 import { GOOGLE_CLIENT_ID } from "@/lib/google-client";
 import { formatAud } from "@/lib/utils";
+import { PricingExamples } from "@/components/pricing-examples";
 
 export const Route = createFileRoute("/admin")({
   component: AdminPage,
@@ -212,6 +213,10 @@ function AdminPage() {
                   <QuoteCard key={row.id} row={row} password={password} onAct={act} />
                 ))}
               </div>
+              <details className="mt-8 border border-line p-4">
+                <summary className="cursor-pointer font-display text-lg">Pricing examples, internal only</summary>
+                <PricingExamples />
+              </details>
             </>
           )}
         </main>
@@ -438,9 +443,25 @@ function QuoteCard({
           <p className="font-display text-xl">{row.id}</p>
           <p className="text-sm text-muted">{new Date(row.createdAt).toLocaleString("en-AU")} · {PIPELINE.find((item) => item.id === stage)?.label}</p>
         </div>
-        <p className="font-display text-2xl">{row.total != null ? formatAud(row.total) : "—"}</p>
+        <p className="font-display text-2xl">{row.pricing?.completeness === "range" ? `${formatAud(row.pricing.estimatedLow)} – ${formatAud(row.pricing.estimatedHigh)}` : row.pricing?.completeness === "partial" ? "Partial" : row.total != null ? formatAud(row.total) : "—"}</p>
       </div>
       <p className="mt-3">{row.address || row.suburb}</p>
+      {row.install && (
+        <details className="mt-3 border border-line p-3 text-sm">
+          <summary className="cursor-pointer">Installed calculation · {row.install.pricingVersion}</summary>
+          <p className="mt-2 text-muted">{row.install.gstLabel} Labour rate {formatAud(row.install.labourRateAud)} an hour outside the published package. Person-hours. A second technician is not assumed.</p>
+          <p className="mt-1 text-muted">{row.install.completeness === "complete" ? "Indicative installed amount." : row.install.completeness === "range" ? "Indicative range." : "Partial estimate. Remaining items require review."}</p>
+          <ul className="mt-2 space-y-1">
+            {row.install.tasks.map((task) => (
+              <li key={task.id}>{task.label}: {task.personHours} h {task.charged ? formatAud(task.amount) : "included"}{task.provisional ? " · provisional" : ""}</li>
+            ))}
+          </ul>
+          {(row.install.decisions ?? []).map((line) => (
+            <p key={line} className="mt-1">Internal: {line}</p>
+          ))}
+          <InstallRevision row={row} password={password} onAct={onAct} />
+        </details>
+      )}
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         <Input value={name} onChange={(e) => setName(e.target.value)} className="border-line bg-raised" />
         <Input value={email} onChange={(e) => setEmail(e.target.value)} className="border-line bg-raised" />
@@ -480,5 +501,35 @@ function QuoteCard({
         )}
       </div>
     </article>
+  );
+}
+
+function InstallRevision({
+  row,
+  password,
+  onAct,
+}: {
+  row: Submission;
+  password: string;
+  onAct: (id: string, run: () => Promise<unknown>) => Promise<void>;
+}) {
+  const [hours, setHours] = useState(String(row.install?.labourHours ?? ""));
+  const [reason, setReason] = useState("");
+  return (
+    <div className="mt-3 grid gap-2 sm:grid-cols-[8rem_1fr_auto]">
+      <Input value={hours} onChange={(e) => setHours(e.target.value)} inputMode="decimal" aria-label="Labour hours" className="border-line bg-raised" />
+      <Input value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Why this labour changed" className="border-line bg-raised" />
+      <Button
+        type="button"
+        variant="ink"
+        onClick={() => {
+          const labourHours = Number(hours);
+          if (!reason.trim() || !Number.isFinite(labourHours)) return;
+          return onAct(row.id, () => setQuote({ data: { password, id: row.id, revision: { reason, labourHours } } }));
+        }}
+      >
+        Revise labour
+      </Button>
+    </div>
   );
 }

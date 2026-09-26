@@ -2,7 +2,8 @@ import { mkdir, readFile, writeFile, unlink } from "node:fs/promises";
 import { randomBytes } from "node:crypto";
 import { dirname, join } from "node:path";
 import { acceptsAdmin } from "./admin-auth.server";
-import type { EstimateInput } from "./pricing";
+import type { EstimateInput, EstimateResult } from "./pricing";
+import type { InstallEstimate } from "./install-estimate";
 
 export type QuoteStatus = "open" | "won" | "lost" | "deleted";
 export type PipelineStage = "new" | "awaiting" | "ready" | "quoted" | "followup" | "won" | "lost" | "closed";
@@ -34,6 +35,9 @@ export type Submission = {
   activity?: QuoteActivity[];
   deletedAt?: string;
   quoteInput?: EstimateInput & { id?: string; name?: string; email?: string; phone?: string; token?: string };
+  pricing?: EstimateResult;
+  install?: InstallEstimate;
+  planNotes?: string;
 };
 
 const FILE = "/tmp/vinconnect-submissions.json";
@@ -135,10 +139,6 @@ async function listAll() {
   }
 }
 
-function assertAdmin(password: string) {
-  if (!acceptsAdmin(password)) throw new Error("That password is not right.");
-}
-
 export async function getSubmission(id: string) {
   try {
     const store = await blob();
@@ -206,21 +206,32 @@ export async function addQuotePhoto(token: string, file: { name: string; type: s
 export async function updateQuote(
   password: string,
   id: string,
-  patch: Partial<Pick<Submission, "status" | "stage" | "note" | "name" | "email" | "phone" | "followUpOn" | "hasKit" | "lostReason">>,
+  patch: Partial<Pick<Submission, "status" | "stage" | "note" | "name" | "email" | "phone" | "followUpOn" | "hasKit" | "lostReason">> & {
+    revision?: { reason: string; labourHours?: number };
+  },
 ) {
   assertAdmin(password);
   const row = await getSubmission(id);
   if (!row) throw new Error("Quote not found.");
   const stage = patch.stage ?? row.stage;
   const status = patch.status ?? statusForStage(stage) ?? row.status ?? "open";
+  const { revision, ...rest } = patch;
   const next: Submission = {
     ...row,
-    ...patch,
+    ...rest,
     status,
     stage: stage ?? stageForStatus(status),
     deletedAt: status === "deleted" ? row.deletedAt ?? new Date().toISOString() : undefined,
   };
-  if (patch.stage && patch.stage !== row.stage) {
+  if (revision && row.install) {
+    const { reviseInstall, applyInstall, storedSummary } = await import("./install-estimate");
+    const install = reviseInstall(row.install, revision);
+    next.install = install;
+    next.total = install.completeness === "complete" ? install.total ?? undefined : undefined;
+    next.summary = storedSummary(install);
+    if (next.pricing) next.pricing = applyInstall(next.pricing, install);
+    next.activity = logActivity(row, "revision", revision.reason);
+  } else if (patch.stage && patch.stage !== row.stage) {
     next.activity = logActivity(row, "stage", `Moved to ${patch.stage}.`);
   }
   return saveSubmission(next);
@@ -250,9 +261,31 @@ export async function purgeQuote(password: string, id: string) {
 export async function resendQuote(password: string, id: string) {
   assertAdmin(password);
   const row = await getSubmission(id);
-  if (!row?.quoteInput) throw new Error("This older quote has no saved copy to resend.");
+  if (!row?.pricing) throw new Error("This quote has no saved pricing to resend. Revise it first if the figure should change.");
   const { sendBrandedEstimate } = await import("./estimate-mail.server");
-  return sendBrandedEstimate({ ...row.quoteInput, id: row.id, email: row.email, name: row.name, phone: row.phone });
+  return sendBrandedEstimate({
+    ...(row.quoteInput ?? {
+      service: "starlink",
+      property: "residential",
+      depth: "quick",
+      storeys: "single",
+      day: "weekday",
+      internal: false,
+      cabinet: false,
+      roof: "unknown",
+      mountNeed: "unknown",
+      lat: 0,
+      lng: 0,
+      address: row.address,
+      located: false,
+    }),
+    id: row.id,
+    email: row.email,
+    name: row.name,
+    phone: row.phone,
+    frozen: row.pricing,
+    planNotes: row.planNotes,
+  });
 }
 
 export async function followUpQuote(password: string, id: string) {
@@ -297,6 +330,10 @@ export async function sendReferralOffer(password: string, id: string) {
   });
   if (!mailed.emailed) throw new Error("The referral email did not send. Call 0408 559 555.");
   return { emailed: true as const };
+}
+
+function assertAdmin(password: string) {
+  if (!acceptsAdmin(password)) throw new Error("That password is not right.");
 }
 
 function stageForStatus(status?: QuoteStatus): PipelineStage {

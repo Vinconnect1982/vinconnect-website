@@ -18,8 +18,10 @@ function EstimatePage() {
           Check my install price.
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          A Starlink installation quote for the address. Standard labour is $300, then travel and any
-          extras you add. Commercial properties are quoted personally. Payment is due on the day.
+          A Starlink installation quote for the address. The standard installation package is $300 for a
+          straightforward single-storey weekday visit once a suitable mount is confirmed. That package includes
+          basic clips, sealant and a brush plate. It is not the Starlink kit. Mounting that is still undecided
+          stays a partial estimate.
         </p>
         <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs uppercase tracking-[0.16em] text-muted">
           <li>ACMA Registered Open Cabler</li>

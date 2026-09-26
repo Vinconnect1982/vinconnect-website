@@ -1,5 +1,6 @@
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { EstimateResult } from "@/lib/pricing";
+import { quoteFigure } from "@/lib/install-estimate";
 import { formatAud } from "@/lib/utils";
 
 export type EstimateDoc = {
@@ -9,6 +10,8 @@ export type EstimateDoc = {
   phone: string;
   address: string;
   result: EstimateResult;
+  /** Property-plan notes included in this same PDF. Absent on a plain estimate. */
+  planNotes?: string;
 };
 
 const INK = rgb(0.07, 0.08, 0.09);
@@ -73,11 +76,11 @@ export async function buildEstimatePdf(doc: EstimateDoc, logoBytes?: Uint8Array)
     page.drawText("Amount", { x: 470, y, size: 9, font: bold, color: MUTED });
     y -= 24;
     for (const line of doc.result.lines) {
-      page.drawText(line.label, { x: 48, y, size: 11, font, color: INK });
+      page.drawText(pdfSafe(line.label), { x: 48, y, size: 11, font, color: INK });
       page.drawText(formatAud(line.amount), { x: 470, y, size: 11, font, color: INK });
       y -= 16;
       if (line.note) {
-        page.drawText(line.note, { x: 48, y, size: 8, font, color: MUTED });
+        page.drawText(pdfSafe(line.note), { x: 48, y, size: 8, font, color: MUTED });
         y -= 14;
       } else {
         y -= 6;
@@ -85,14 +88,35 @@ export async function buildEstimatePdf(doc: EstimateDoc, logoBytes?: Uint8Array)
     }
 
     y -= 8;
-    page.drawText("Quote", { x: 40, y, size: 11, font, color: MUTED });
+    const shown = quoteFigure(doc.result);
+    page.drawText(pdfSafe(shown.label), { x: 40, y, size: 11, font, color: MUTED });
     y -= 26;
-    page.drawText(formatAud(doc.result.total), { x: 40, y, size: 22, font: bold, color: CYAN });
-    y -= 28;
+    page.drawText(pdfSafe(shown.figure), { x: 40, y, size: shown.mode === "complete" ? 22 : 14, font: bold, color: CYAN });
+    y -= 22;
+    if (doc.result.headline) {
+      for (const line of wrap(pdfSafe(doc.result.headline), 90)) {
+        if (y < 80) break;
+        page.drawText(line, { x: 40, y, size: 9, font, color: INK });
+        y -= 12;
+      }
+      y -= 6;
+    }
+    if (doc.result.gstLabel) {
+      page.drawText(doc.result.gstLabel, { x: 40, y, size: 9, font, color: MUTED });
+      y -= 16;
+    }
+    y -= 6;
     const note = wrap(`${doc.result.travelNote} ${doc.result.paymentNote}`, 90);
     for (const line of note) {
       page.drawText(line, { x: 40, y, size: 9, font, color: MUTED });
       y -= 13;
+    }
+    for (const line of (doc.result.assumptions ?? []).slice(0, 3).map(pdfSafe)) {
+      for (const wrapped of wrap(line, 90)) {
+        if (y < 70) break;
+        page.drawText(wrapped, { x: 40, y, size: 8, font, color: MUTED });
+        y -= 12;
+      }
     }
   }
 
@@ -110,7 +134,41 @@ export async function buildEstimatePdf(doc: EstimateDoc, logoBytes?: Uint8Array)
     font,
     color: MUTED,
   });
+
+  if (doc.planNotes?.trim()) {
+    const plan = pdf.addPage([595, 842]);
+    plan.drawRectangle({ x: 0, y: 0, width: 595, height: 842, color: PAPER });
+    plan.drawRectangle({ x: 0, y: 790, width: 595, height: 52, color: INK });
+    plan.drawText("PROPERTY PLAN", { x: 40, y: 810, size: 14, font: bold, color: PAPER });
+    plan.drawText(doc.id, { x: 360, y: 810, size: 10, font, color: rgb(0.75, 0.78, 0.8) });
+    let py = 760;
+    plan.drawText("Included in this same proposal. This is not a second attachment.", { x: 40, y: py, size: 10, font, color: MUTED });
+    py -= 22;
+    for (const line of wrap(pdfSafe(doc.planNotes.trim()), 95)) {
+      if (py < 60) break;
+      plan.drawText(line, { x: 40, y: py, size: 10, font, color: INK });
+      py -= 14;
+    }
+    const exclusions = (doc.result.exclusions ?? []).slice(0, 4);
+    if (exclusions.length && py > 80) {
+      py -= 8;
+      plan.drawText("Not included", { x: 40, y: py, size: 11, font: bold, color: INK });
+      py -= 16;
+      for (const item of exclusions) {
+        for (const line of wrap(pdfSafe(item), 95)) {
+          if (py < 50) break;
+          plan.drawText(line, { x: 40, y: py, size: 9, font, color: MUTED });
+          py -= 12;
+        }
+      }
+    }
+  }
+
   return pdf.save();
+}
+
+function pdfSafe(value: string) {
+  return value.replaceAll("—", " - ").replaceAll("–", "-").replace(/[^\n\r\t\x20-\x7E]/g, "");
 }
 
 function wrap(text: string, width: number) {
@@ -136,9 +194,13 @@ export function estimateEmailHtml(doc: EstimateDoc, logoSrc = "https://vinconnec
         `<tr><td style="padding:10px 0;border-bottom:1px solid #e4e0d8;">${escapeHtml(line.label)}${line.note ? `<br><span style="color:#667;font-size:12px;">${escapeHtml(line.note)}</span>` : ""}</td><td style="padding:10px 0;border-bottom:1px solid #e4e0d8;text-align:right;vertical-align:top;">${formatAud(line.amount)}</td></tr>`,
     )
     .join("");
+  const shown = quoteFigure(doc.result);
+  const amount = shown.figure;
   const total = priced
-    ? `<p style="margin:22px 0 0;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#667;">Quote</p>
-          <p style="margin:4px 0 12px;font-size:32px;color:#1c8f93;">${formatAud(doc.result.total)}</p>`
+    ? `<p style="margin:22px 0 0;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#667;">${escapeHtml(shown.label)}</p>
+          <p style="margin:4px 0 8px;font-size:${shown.mode === "complete" ? 32 : 22}px;color:#1c8f93;">${escapeHtml(amount)}</p>
+          <p style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:13px;color:#667;">${escapeHtml(doc.result.gstLabel ?? "")}</p>
+          <p style="margin:0 0 12px;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;">${escapeHtml(doc.result.headline ?? "")}</p>`
     : "";
   const mount = priced
     ? `<p style="margin:0 0 18px;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;">

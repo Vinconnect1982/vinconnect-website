@@ -3,6 +3,7 @@ import { buildEstimatePdf, estimateEmailHtml, type EstimateDoc } from "@/lib/est
 import { sendSiteMail } from "@/lib/mailbox.server";
 import type { EstimateInput } from "@/lib/pricing";
 import { priceEstimate } from "@/lib/pricing.server";
+import { quoteFigure } from "@/lib/install-estimate";
 import { formatAud } from "@/lib/utils";
 
 export type EstimateMailInput = EstimateInput & {
@@ -10,11 +11,13 @@ export type EstimateMailInput = EstimateInput & {
   name: string;
   email: string;
   phone: string;
+  frozen?: import("@/lib/pricing").EstimateResult;
+  planNotes?: string;
 };
 
 export async function sendBrandedEstimate(input: EstimateMailInput) {
   const id = enquiryId(input.id);
-  const result = priceEstimate(input);
+  const result = input.frozen ?? priceEstimate(input);
   const doc: EstimateDoc = {
     id,
     name: input.name.trim().slice(0, 120),
@@ -22,6 +25,7 @@ export async function sendBrandedEstimate(input: EstimateMailInput) {
     phone: input.phone.trim().slice(0, 40),
     address: input.address.trim().slice(0, 200),
     result,
+    planNotes: input.planNotes?.trim().slice(0, 4000),
   };
   const logo = await logoBytes();
   const pdf = Buffer.from(await buildEstimatePdf(doc, logo));
@@ -40,7 +44,11 @@ export async function sendBrandedEstimate(input: EstimateMailInput) {
       suburb: "",
       type: "quote",
       summary: estimateText(doc),
-      total: result.total,
+      total: result.completeness === "complete" ? result.total : undefined,
+      quoteInput: (({ frozen: _frozen, ...saved }) => saved)(input),
+      pricing: result,
+      install: result.install,
+      planNotes: doc.planNotes,
     });
   } catch (error) {
     console.error("quote record failed", error instanceof Error ? error.message : error);
@@ -82,9 +90,12 @@ function estimateText(doc: EstimateDoc) {
     `Roof: ${doc.result.roofLabel}`,
     `Mount: ${doc.result.mountLabel}`,
     ...doc.result.lines.map((line) => `${line.label}: ${formatAud(line.amount)}${line.note ? ` (${line.note})` : ""}`),
-    `Quote: ${formatAud(doc.result.total)}`,
+    doc.result.gstLabel ?? "",
+    quoteFigure(doc.result).label + ": " + quoteFigure(doc.result).figure,
+    doc.result.headline ?? "",
     doc.result.travelNote,
     doc.result.paymentNote,
+    doc.planNotes ? "The property plan is included in the same PDF." : "",
     "The PDF is attached. Reply to this email or call 0408 559 555 to book.",
     "This is an installation quote, not a tax invoice.",
   ].join("\n");

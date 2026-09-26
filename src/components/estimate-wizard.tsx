@@ -10,13 +10,15 @@ import { PHONE_TEL } from "@/lib/content";
 import { emailEstimate } from "@/lib/estimate-mail";
 import { buildEstimatePdf } from "@/lib/estimate-pdf";
 import { quoteInstall } from "@/lib/quote";
+import { quoteFigure } from "@/lib/install-estimate";
 import { findQuote } from "@/lib/submissions";
 import {
-  DATA_CABINET,
+  CONDUIT_EXTRA,
   DOUBLE_STOREY_ADD,
   INTERNAL_WALLS,
   MOUNT_HOCKEY,
   MOUNT_TRIPOD,
+  ROUTER_RELOCATION,
   SATURDAY_INSTALL,
   priceEstimate,
   type EstimateInput,
@@ -26,7 +28,9 @@ import {
   type PropertyKind,
   type QuoteDepth,
   type RoofId,
+  type StarlinkSituation,
   type StoreyId,
+  type YesNoUnknown,
 } from "@/lib/pricing";
 import { plannerHref, useSiteSession } from "@/lib/site-session";
 import { REFERRAL_NOTE, STARLINK_REFERRAL_URL, trackEvent } from "@/lib/referral";
@@ -47,9 +51,12 @@ export function EstimateWizard() {
   const [day, setDay] = useState<InstallDay>("weekday");
   const [mountNeed, setMountNeed] = useState<MountNeed>("yes");
   const [roof, setRoof] = useState<RoofId | "">("");
-  const [cabinet, setCabinet] = useState(false);
   const [internal, setInternal] = useState(false);
   const [contact, setContact] = useState<Contact>({ name: "", email: "", phone: "" });
+  const [starlink, setStarlink] = useState<StarlinkSituation>("new");
+  const [routerOnEntryWall, setRouterOnEntryWall] = useState<YesNoUnknown>("yes");
+  const [conduit, setConduit] = useState(false);
+  const [powerAtRouter, setPowerAtRouter] = useState<YesNoUnknown>("yes");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<EstimateResult | null>(null);
@@ -63,11 +70,15 @@ export function EstimateWizard() {
       property: property === "commercial" ? "commercial" : "residential",
       depth: nextDepth,
       storeys: storeys === "double" ? "double" : "single",
-      day: day === "saturday" ? "saturday" : "weekday",
+      day: day === "saturday" || day === "sunday" ? day : "weekday",
       internal,
-      cabinet,
+      cabinet: false,
       roof: roof || "unknown",
       mountNeed,
+      starlink,
+      routerOnEntryWall,
+      conduit,
+      powerAtRouter,
       lat: address?.lat ?? 0,
       lng: address?.lng ?? 0,
       address: address?.address ?? "",
@@ -80,9 +91,10 @@ export function EstimateWizard() {
     [address, property, storeys],
   );
   const detailedQuote = useMemo(() => {
-    if (!address || property !== "residential" || !roof || !storeys || !day) return null;
+    if (!address || property !== "residential" || !storeys || !day) return null;
+    if (starlink === "new" && mountNeed === "yes" && !roof) return null;
     return priceEstimate(buildInput("detailed"));
-  }, [address, property, roof, mountNeed, storeys, day, internal, cabinet]);
+  }, [address, property, roof, mountNeed, storeys, day, internal, starlink, routerOnEntryWall, conduit, powerAtRouter]);
 
   function next() {
     setError("");
@@ -99,8 +111,8 @@ export function EstimateWizard() {
       setStep(5);
       return;
     }
-    if (step === 4 && !roof) {
-      setError("Tell us whether the roof is Colorbond / metal or tile.");
+    if (step === 4 && starlink === "new" && mountNeed === "yes" && !roof) {
+      setError("Tell us whether the roof is Colorbond / metal or tile, or mark the mount as not decided.");
       return;
     }
     if (step === 4) setDepth("detailed");
@@ -123,7 +135,7 @@ export function EstimateWizard() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!address || !property) return;
-    if (property === "residential" && depth === "detailed" && !roof) return;
+    if (property === "residential" && depth === "detailed" && starlink === "new" && mountNeed === "yes" && !roof) return;
     if (!contact.name.trim() || !contact.email.trim() || !contact.phone.trim()) {
       setError("Add your name, email and mobile so we can send the quote.");
       return;
@@ -239,7 +251,7 @@ export function EstimateWizard() {
         {step === 3 && quickQuote && (
           <div>
             <span className="font-display text-sm tracking-widest text-muted-ink">Quick quote</span>
-            <h3 className="mt-1 font-display text-xl">Standard install at this address</h3>
+            <h3 className="mt-1 font-display text-xl">Standard package at this address</h3>
             <StoreyToggle value={storeys} onChange={setStoreys} />
             <QuoteList result={quickQuote} />
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -251,7 +263,7 @@ export function EstimateWizard() {
               </Button>
             </div>
             <p className="mt-4 max-w-xl text-sm text-muted-ink">
-              This is the standard weekday install. Next you can add a mount, a longer cable run or a Saturday.
+              This is the standard installation package only. The mount is not confirmed, so it is a partial estimate, not the installed total. The Starlink kit is separate.
             </p>
           </div>
         )}
@@ -261,28 +273,53 @@ export function EstimateWizard() {
             <span className="font-display text-sm tracking-widest text-muted-ink">Full quote</span>
             <h3 className="mt-1 font-display text-xl">Add anything that changes the job.</h3>
             <p className="mt-2 max-w-xl text-muted-ink">
-              A standard install is already the cable down an external wall to a wall plate, on a weekday.
+              The $300 package includes the visit, basic clips, sealant and one brush plate. It is not the Starlink kit, and it is a complete installed amount only when a suitable mount is confirmed.
             </p>
             <StoreyToggle value={storeys} onChange={setStoreys} />
-            <MountToggle value={mountNeed} onChange={setMountNeed} />
+            <h4 className="mt-8 font-display text-base">Is the Starlink already on the building?</h4>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <Choice pressed={starlink === "new"} onClick={() => setStarlink("new")} title="New installation" hint="The standard installation package applies once the mount is confirmed." />
+              <Choice pressed={starlink === "existing"} onClick={() => setStarlink("existing")} title="Already installed" hint="Service visit — quote required. Not a fixed price, and not the $300 package." />
+            </div>
 
+            {starlink === "new" && (
+              <>
+            <h4 className="mt-8 font-display text-base">Who is supplying the mount?</h4>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <Choice pressed={mountNeed === "no"} onClick={() => setMountNeed("no")} title="I have a suitable mount" hint="Confirmed. No mount is added." />
+              <Choice pressed={mountNeed === "yes"} onClick={() => setMountNeed("yes")} title="Supply a standard mount" hint="Hockey-stick or tripod, chosen from the roof." />
+              <Choice pressed={mountNeed === "unknown"} onClick={() => setMountNeed("unknown")} title="Not sure or specialist" hint="Mounting assessment required. Not capped at $170." />
+            </div>
+
+            {mountNeed === "yes" && (
+              <>
             <h4 className="mt-8 font-display text-base">What sort of roof is it?</h4>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <Choice
                 pressed={roof === "metal"}
                 onClick={() => setRoof("metal")}
                 title="Colorbond / metal"
-                hint={mountNeed === "yes" ? `We supply a tripod and pole adaptor. Adds ${formatAud(MOUNT_TRIPOD)}.` : "No mount charge."}
+                hint={`Tripod with compatible adapter, ${formatAud(MOUNT_TRIPOD)}. The adapter is included once.`}
               />
               <Choice
                 pressed={roof === "tile"}
                 onClick={() => setRoof("tile")}
                 title="Tile"
-                hint={mountNeed === "yes" ? `We supply a hockey-stick mount and pole adaptor. Adds ${formatAud(MOUNT_HOCKEY)}.` : "No mount charge."}
+                hint={`Hockey-stick with compatible adapter, ${formatAud(MOUNT_HOCKEY)}. The adapter is included once.`}
               />
             </div>
-            {!roof && <p className="mt-3 text-sm text-muted-ink">Choose the roof to update the price.</p>}
-            {suppliedMount && <p className="mt-4 text-sm">We will supply: {suppliedMount}.</p>}
+            {!roof && <p className="mt-3 text-sm text-muted-ink">Choose the roof. If you are not sure, use “Not sure or specialist” above. The two standard prices are not a cap.</p>}
+            {suppliedMount && <p className="mt-4 text-sm">We will supply: {suppliedMount}. That is our sell price, not a shop promotion.</p>}
+              </>
+            )}
+              </>
+            )}
+
+            <h4 className="mt-8 font-display text-base">Where does the router sit?</h4>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <Choice pressed={routerOnEntryWall === "yes"} onClick={() => setRouterOnEntryWall("yes")} title="On the entry wall" hint="Included in a new installation." />
+              <Choice pressed={routerOnEntryWall === "no"} onClick={() => setRouterOnEntryWall("no")} title="Another room, garage or cabinet" hint={`One ${formatAud(ROUTER_RELOCATION)} extra. A data cabinet is this same line, not a second charge.`} />
+            </div>
 
             <h4 className="mt-8 font-display text-base">Does the cable need to go further than the wall plate?</h4>
             <div className="mt-3 grid gap-3">
@@ -290,19 +327,30 @@ export function EstimateWizard() {
                 <input type="checkbox" checked={internal} onChange={(e) => setInternal(e.target.checked)} className="mt-1 size-4 accent-mint-deep" />
                 <span>
                   Through internal walls — from {formatAud(INTERNAL_WALLS)}
-                  <span className="mt-1 block text-muted-ink">This price can vary with the property.</span>
+                  <span className="mt-1 block text-muted-ink">Starting allowance only. If the router is also moving off the entry wall, that is the same $150, not a second charge. Additional cabling needs review.</span>
                 </span>
               </label>
               <label className="flex min-h-11 items-start gap-3 text-sm">
-                <input type="checkbox" checked={cabinet} onChange={(e) => setCabinet(e.target.checked)} className="mt-1 size-4 accent-mint-deep" />
-                <span>To a data rack or data cabinet — {formatAud(DATA_CABINET)}</span>
+                <input type="checkbox" checked={conduit} onChange={(e) => setConduit(e.target.checked)} className="mt-1 size-4 accent-mint-deep" />
+                <span>
+                  Needs conduit
+                  <span className="mt-1 block text-muted-ink">A straightforward agreed run, {formatAud(CONDUIT_EXTRA)}. Labour and the conduit are both in that figure.</span>
+                </span>
+              </label>
+              <label className="flex min-h-11 items-start gap-3 text-sm">
+                <input type="checkbox" checked={powerAtRouter === "no"} onChange={(e) => setPowerAtRouter(e.target.checked ? "no" : "yes")} className="mt-1 size-4 accent-mint-deep" />
+                <span>
+                  There is no power at the router
+                  <span className="mt-1 block text-muted-ink">A new circuit is not included. We will say so instead of pricing it at zero.</span>
+                </span>
               </label>
             </div>
 
             <h4 className="mt-8 font-display text-base">When do you want it installed?</h4>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              <Choice pressed={day === "weekday"} onClick={() => setDay("weekday")} title="Weekday" hint="Included in the standard install." />
-              <Choice pressed={day === "saturday"} onClick={() => setDay("saturday")} title="Saturday" hint={`Adds ${formatAud(SATURDAY_INSTALL)}.`} />
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <Choice pressed={day === "weekday"} onClick={() => setDay("weekday")} title="Weekday" hint="Included. Weekend bookings attract $150." />
+              <Choice pressed={day === "saturday"} onClick={() => setDay("saturday")} title="Saturday" hint={`Adds ${formatAud(SATURDAY_INSTALL)}, once.`} />
+              <Choice pressed={day === "sunday"} onClick={() => setDay("sunday")} title="Sunday" hint={`Adds ${formatAud(SATURDAY_INSTALL)}, once. Same as Saturday.`} />
             </div>
 
             {detailedQuote && (
@@ -446,30 +494,6 @@ function progressLabel(step: number, property: PropertyKind | "") {
   return `Step ${step} of 5 · ${labels[step - 1] ?? ""}`;
 }
 
-function MountToggle({ value, onChange }: { value: MountNeed; onChange: (value: MountNeed) => void }) {
-  const supply = value !== "no";
-  return (
-    <button
-      type="button"
-      aria-pressed={supply}
-      onClick={() => onChange(supply ? "no" : "yes")}
-      className="mt-3 flex w-full items-center justify-between gap-4 rounded-lg border border-line-ink px-4 py-3 text-left"
-    >
-      <span>
-        <strong className="font-display">{supply ? "We'll supply the mount" : "I already have a mount"}</strong>
-        <span className="mt-1 block text-sm text-muted-ink">
-          {supply
-            ? "On. The mount is chosen from the roof and added to the quote. Switch off if you already have one."
-            : "Off. No mount is added. Switch on if you need us to supply one."}
-        </span>
-      </span>
-      <span className={cn("relative h-7 w-12 shrink-0 rounded-full", supply ? "bg-mint-deep" : "bg-line-ink")}>
-        <span className={cn("absolute top-0.5 size-6 rounded-full bg-paper transition-transform", supply ? "left-5" : "left-0.5")} />
-      </span>
-    </button>
-  );
-}
-
 function StoreyToggle({ value, onChange }: { value: StoreyId; onChange: (value: StoreyId) => void }) {
   const single = value !== "double";
   return (
@@ -547,9 +571,15 @@ function Choice({ pressed, onClick, title, hint }: { pressed: boolean; onClick: 
 }
 
 function QuoteList({ result }: { result: EstimateResult }) {
+  const shown = quoteFigure(result);
   return (
     <div>
-      <p className="mt-4 font-display text-4xl tracking-tight tabular-nums">{formatAud(result.total)}</p>
+      <p className="mt-4 text-xs tracking-widest text-muted-ink">{shown.label}</p>
+      <p className="font-display text-3xl tracking-tight tabular-nums sm:text-4xl">{shown.figure}</p>
+      {result.headline && <p className="mt-3 max-w-xl text-sm">{result.headline}</p>}
+      {result.rangeExplanation && result.headline?.includes(result.rangeExplanation) ? null : result.rangeExplanation && (
+        <p className="mt-2 max-w-xl text-sm text-muted-ink">{result.rangeExplanation}</p>
+      )}
       <ul className="mt-5 divide-y divide-line-ink rounded-lg border border-line-ink text-sm">
         {result.lines.map((line) => (
           <li key={line.label} className="flex items-start justify-between gap-4 px-4 py-2.5">
@@ -561,7 +591,11 @@ function QuoteList({ result }: { result: EstimateResult }) {
           </li>
         ))}
       </ul>
+      {result.gstLabel && <p className="mt-3 max-w-xl text-sm text-muted-ink">{result.gstLabel}</p>}
       <p className="mt-3 max-w-xl text-sm text-muted-ink">{result.travelNote}</p>
+      {(result.install?.reviews ?? []).slice(0, 3).map((review) => (
+        <p key={review} className="mt-2 max-w-xl text-sm">{review}</p>
+      ))}
       <p className="mt-2 text-sm">{result.paymentNote}</p>
     </div>
   );

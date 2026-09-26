@@ -1,7 +1,6 @@
 import { AppLink } from "@/components/app-link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AddressSearch } from "@/components/address-search";
-import { EnquiryForm } from "@/components/enquiry-form";
 import { SiteSketch } from "@/components/site-sketch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +8,9 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { useSiteSession } from "@/lib/site-session";
 import { traceProperty, type PropertyTrace } from "@/lib/site-trace";
-import { haversineKm } from "@/lib/utils";
+import { haversineKm, formatAud } from "@/lib/utils";
+import { emailEstimate } from "@/lib/estimate-mail";
+import { pricePropertyPlan, quoteFigure, quotePropertyPlan } from "@/lib/install-estimate";
 import { cn } from "@/lib/utils";
 import { Map as MapIcon, Plus, Trash2 } from "lucide-react";
 
@@ -131,11 +132,41 @@ export function PropertyPlanner({
   const [trace, setTrace] = useState<PropertyTrace | null>(null);
   const [tracing, setTracing] = useState(false);
   const [error, setError] = useState("");
+  const [proposalNote, setProposalNote] = useState("");
+  const [proposalBusy, setProposalBusy] = useState(false);
+  const [proposalName, setProposalName] = useState("");
+  const [proposalEmail, setProposalEmail] = useState("");
+  const [proposalPhone, setProposalPhone] = useState("");
+  const [storeys, setStoreys] = useState<"single" | "double">("single");
+  const [roof, setRoof] = useState<"metal" | "tile" | "unknown">("unknown");
+  const [mountNeed, setMountNeed] = useState<"yes" | "no" | "unknown">("unknown");
+  const [cableRoute, setCableRoute] = useState<"external" | "unknown">("unknown");
   const nextId = useRef(1);
   const booted = useRef(false);
 
   const selected = places.find((p) => p.id === selectedId) ?? null;
   const source = places.find((p) => p.id === sourceId) ?? places[0] ?? null;
+  const installed = useMemo(() => {
+    if (!address) return null;
+    return pricePropertyPlan({
+      lat: address.lat,
+      lng: address.lng,
+      located: address.located,
+      internet,
+      storeys,
+      roof,
+      mountNeed,
+      cableRoute,
+      places: places.map((place) => ({
+        label: place.label,
+        kind: place.kind,
+        lat: place.lat,
+        lng: place.lng,
+        power: place.power,
+        isSource: place.id === (source?.id ?? places[0]?.id),
+      })),
+    });
+  }, [address, internet, storeys, roof, mountNeed, cableRoute, places, source]);
 
   const applyAddress = useCallback(
     async (hit: AddressHit) => {
@@ -411,14 +442,153 @@ export function PropertyPlanner({
             ))}
           </div>
           <p className="mt-6 text-xs text-muted">{plan.summary}</p>
+          {installed && (
+            <div className="mt-8 max-w-2xl rounded-lg border border-line p-4">
+              <h3 className="font-display text-xl">
+                {quoteFigure({
+                  completeness: installed.completeness,
+                  openEnded: installed.openEnded,
+                  total: installed.total ?? installed.low,
+                  estimatedLow: installed.low,
+                  estimatedHigh: installed.high ?? installed.low,
+                }).label}
+              </h3>
+              <p className="mt-2 font-display text-3xl tabular-nums">
+                {quoteFigure({
+                  completeness: installed.completeness,
+                  openEnded: installed.openEnded,
+                  total: installed.total ?? installed.low,
+                  estimatedLow: installed.low,
+                  estimatedHigh: installed.high ?? installed.low,
+                }).figure}
+              </p>
+              <p className="mt-2 text-sm text-muted">{installed.gstLabel}</p>
+              <p className="mt-2 text-sm text-muted">{installed.customerHeadline}</p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <label className="text-sm">Storeys
+                  <select value={storeys} onChange={(e) => setStoreys(e.target.value as "single" | "double")} className="mt-1 w-full border border-line bg-transparent px-2 py-2">
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                  </select>
+                </label>
+                <label className="text-sm">Roof
+                  <select value={roof} onChange={(e) => setRoof(e.target.value as "metal" | "tile" | "unknown")} className="mt-1 w-full border border-line bg-transparent px-2 py-2">
+                    <option value="unknown">Not sure</option>
+                    <option value="metal">Colorbond / metal</option>
+                    <option value="tile">Tile</option>
+                  </select>
+                </label>
+                <label className="text-sm">Mount
+                  <select value={mountNeed} onChange={(e) => setMountNeed(e.target.value as "yes" | "no" | "unknown")} className="mt-1 w-full border border-line bg-transparent px-2 py-2">
+                    <option value="unknown">Not sure or specialist</option>
+                    <option value="yes">We supply a standard mount</option>
+                    <option value="no">I already have a suitable one</option>
+                  </select>
+                </label>
+                <label className="text-sm">Cable route
+                  <select value={cableRoute} onChange={(e) => setCableRoute(e.target.value as "external" | "unknown")} className="mt-1 w-full border border-line bg-transparent px-2 py-2">
+                    <option value="unknown">Not confirmed</option>
+                    <option value="external">Visible clipped run</option>
+                  </select>
+                </label>
+              </div>
+              <ul className="mt-4 divide-y divide-line text-sm">
+                {installed.customerLines.map((line) => (
+                  <li key={line.label} className="flex justify-between gap-3 py-2">
+                    <span>{line.label}</span>
+                    <span className="tabular-nums">{formatAud(line.amount)}</span>
+                  </li>
+                ))}
+              </ul>
+              {installed.reviews.slice(0, 4).map((review) => (
+                <p key={review} className="mt-2 text-sm">{review}</p>
+              ))}
+              <p className="mt-3 text-xs text-muted">{installed.assumptions[0]}</p>
+            </div>
+          )}
           <div className="mt-8 max-w-lg">
-            <h3 className="font-display text-xl">Request your installation quote</h3>
-            <EnquiryForm
-              type="property-plan"
-              buttonLabel="Request a quote"
-              initialMessage={plan.summary}
-              messageLabel="Anything we should know?"
-            />
+            <h3 className="font-display text-xl">Request your installation proposal</h3>
+            <p className="mt-2 text-sm text-muted">
+              One PDF includes this estimate and the property plan. Unpriced radios, brackets or cable stay marked for review. They are not a complete installed quote.
+            </p>
+            <form
+              className="mt-4 grid gap-3"
+              onSubmit={async (event) => {
+                event.preventDefault();
+                if (!address || !installed) return;
+                setProposalBusy(true);
+                setProposalNote("");
+                const notes = [plan.internetNote, plan.goalNote, ...plan.lines.map((line) => `${line.label}: ${line.title}. ${line.body}`), plan.summary]
+                  .filter(Boolean)
+                  .join("\n\n");
+                try {
+                  const frozen = quotePropertyPlan({
+                    lat: address.lat,
+                    lng: address.lng,
+                    located: address.located,
+                    internet,
+                    storeys,
+                    roof,
+                    mountNeed,
+                    cableRoute,
+                    places: places.map((place) => ({
+                      label: place.label,
+                      kind: place.kind,
+                      lat: place.lat,
+                      lng: place.lng,
+                      power: place.power,
+                      isSource: place.id === (source?.id ?? places[0]?.id),
+                    })),
+                  });
+                  const sent = await emailEstimate({
+                    data: {
+                      service: "starlink",
+                      property: "residential",
+                      depth: "detailed",
+                      storeys,
+                      day: "weekday",
+                      internal: false,
+                      cabinet: false,
+                      roof,
+                      mountNeed,
+                      cableRoute,
+                      starlink: internet === "nbn" || internet === "mobile" ? "none" : "new",
+                      lat: address.lat,
+                      lng: address.lng,
+                      address: address.address,
+                      located: address.located,
+                      id: `VC-PLAN-${crypto.randomUUID().slice(0, 8).toUpperCase()}`,
+                      name: proposalName,
+                      email: proposalEmail,
+                      phone: proposalPhone,
+                      frozen,
+                      planNotes: notes,
+                    },
+                  });
+                  setProposalNote(
+                    sent.emailed
+                      ? "One proposal PDF is on its way, with the estimate and this property plan together."
+                      : "The proposal is saved with VINCONNECT. If the email does not arrive, the plan is still on this page. Call 0408 559 555.",
+                  );
+                } catch {
+                  setProposalNote("The plan is still on this page. Call 0408 559 555 and we will send the proposal.");
+                } finally {
+                  setProposalBusy(false);
+                }
+              }}
+            >
+              <Label className="text-sm">Name
+                <Input required value={proposalName} onChange={(e) => setProposalName(e.target.value)} className="mt-1" />
+              </Label>
+              <Label className="text-sm">Email
+                <Input required type="email" value={proposalEmail} onChange={(e) => setProposalEmail(e.target.value)} className="mt-1" />
+              </Label>
+              <Label className="text-sm">Mobile
+                <Input required type="tel" value={proposalPhone} onChange={(e) => setProposalPhone(e.target.value)} className="mt-1" />
+              </Label>
+              <Button type="submit" disabled={proposalBusy || !address}>{proposalBusy ? "Sending…" : "Email my proposal"}</Button>
+              {proposalNote && <p className="text-sm text-muted">{proposalNote}</p>}
+            </form>
           </div>
         </section>
       )}
