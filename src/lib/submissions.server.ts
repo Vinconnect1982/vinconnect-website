@@ -1,8 +1,9 @@
 import { mkdir, readFile, writeFile, unlink } from "node:fs/promises";
 import { randomBytes } from "node:crypto";
 import { dirname, join } from "node:path";
-import { acceptsAdmin } from "./admin-auth.server";
+import { assertAdmin } from "./admin-auth.server.ts";
 import type { EstimateInput } from "./pricing";
+import type { PersistedPlan } from "./plan-record";
 
 export type QuoteStatus = "open" | "won" | "lost" | "deleted";
 export type PipelineStage = "new" | "awaiting" | "ready" | "quoted" | "followup" | "won" | "lost" | "closed";
@@ -34,6 +35,8 @@ export type Submission = {
   activity?: QuoteActivity[];
   deletedAt?: string;
   quoteInput?: EstimateInput & { id?: string; name?: string; email?: string; phone?: string; token?: string };
+  /** Versioned property plan. Absent on older enquiries. */
+  plan?: PersistedPlan;
 };
 
 const FILE = "/tmp/vinconnect-submissions.json";
@@ -98,7 +101,7 @@ export async function saveSubmission(item: Submission) {
 }
 
 export async function listSubmissions(password: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   try {
     const store = await blob();
     const index = ((await store.get("index", { type: "json" })) as string[] | null) ?? [];
@@ -133,10 +136,6 @@ async function listAll() {
   } catch {
     return readFileStore();
   }
-}
-
-function assertAdmin(password: string) {
-  if (!acceptsAdmin(password)) throw new Error("That password is not right.");
 }
 
 export async function getSubmission(id: string) {
@@ -208,7 +207,7 @@ export async function updateQuote(
   id: string,
   patch: Partial<Pick<Submission, "status" | "stage" | "note" | "name" | "email" | "phone" | "followUpOn" | "hasKit" | "lostReason">>,
 ) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const row = await getSubmission(id);
   if (!row) throw new Error("Quote not found.");
   const stage = patch.stage ?? row.stage;
@@ -227,7 +226,7 @@ export async function updateQuote(
 }
 
 export async function purgeQuote(password: string, id: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const row = await getSubmission(id);
   if (!row) return;
   if (row.status !== "deleted") throw new Error("Delete the quote before purging it.");
@@ -248,7 +247,7 @@ export async function purgeQuote(password: string, id: string) {
 }
 
 export async function resendQuote(password: string, id: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const row = await getSubmission(id);
   if (!row?.quoteInput) throw new Error("This older quote has no saved copy to resend.");
   const { sendBrandedEstimate } = await import("./estimate-mail.server");
@@ -256,7 +255,7 @@ export async function resendQuote(password: string, id: string) {
 }
 
 export async function followUpQuote(password: string, id: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const row = await getSubmission(id);
   if (!row) throw new Error("Quote not found.");
   if (!row.token) throw new Error("This quote has no customer link yet.");
@@ -276,7 +275,7 @@ export async function followUpQuote(password: string, id: string) {
 }
 
 export async function sendReferralOffer(password: string, id: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const row = await getSubmission(id);
   if (!row) throw new Error("Quote not found.");
   if (row.hasKit) throw new Error("This customer already has a kit.");

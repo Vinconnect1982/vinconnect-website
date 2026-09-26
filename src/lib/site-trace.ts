@@ -9,6 +9,9 @@ export type BuildingTrace = {
   kind: string;
   areaM2: number;
   heightM: number;
+  /** osm: traced from OpenStreetMap. estimated: rectangle used when no roof was found. */
+  source?: "osm" | "estimated";
+  sourceId?: string;
 };
 
 export type PropertyTrace = {
@@ -16,6 +19,8 @@ export type PropertyTrace = {
   buildings: BuildingTrace[];
   boundary: Ring | null;
   boundarySource: "mapped" | "estimated" | "none";
+  /** Vicmap property number, only when boundarySource is mapped. */
+  boundarySourceId?: string;
 };
 
 function attrs(tag: string) {
@@ -30,8 +35,10 @@ function parseOsm(xml: string) {
     const a = attrs(m[1]);
     if (a.id && a.lat && a.lon) nodes.set(a.id, [Number(a.lat), Number(a.lon)]);
   }
-  const ways: { tags: Record<string, string>; ring: Ring }[] = [];
+  const ways: { id?: string; tags: Record<string, string>; ring: Ring }[] = [];
   for (const block of xml.split(/<way\b/).slice(1)) {
+    const headerEnd = block.indexOf(">");
+    const wayId = attrs(headerEnd >= 0 ? block.slice(0, headerEnd) : "").id;
     const body = block.slice(0, block.indexOf("</way>"));
     const tags: Record<string, string> = {};
     for (const t of body.matchAll(/<tag k="([^"]+)" v="([^"]*)"/g)) tags[t[1]] = t[2];
@@ -44,7 +51,7 @@ function parseOsm(xml: string) {
       const first = ring[0];
       const last = ring[ring.length - 1];
       if (first[0] !== last[0] || first[1] !== last[1]) ring.push(first);
-      ways.push({ tags, ring });
+      ways.push({ id: wayId, tags, ring });
     }
   }
   return ways;
@@ -172,7 +179,7 @@ function toMercator(lng: number, lat: number) {
   return { x, y };
 }
 
-async function vicmapBoundary(lat: number, lng: number): Promise<Ring | null> {
+async function vicmapBoundary(lat: number, lng: number): Promise<{ ring: Ring; sourceId?: string } | null> {
   const { x, y } = toMercator(lng, lat);
   const params = new URLSearchParams({
     geometry: JSON.stringify({ x, y, spatialReference: { wkid: 3857 } }),
@@ -196,14 +203,18 @@ async function vicmapBoundary(lat: number, lng: number): Promise<Ring | null> {
     );
     if (!res.ok) return null;
     const body = (await res.json()) as {
-      features?: { geometry?: { type?: string; coordinates?: unknown } }[];
+      features?: { properties?: { prop_propnum?: string | number }; geometry?: { type?: string; coordinates?: unknown } }[];
     };
     const candidates = (body.features ?? [])
-      .flatMap((f) => fromGeoJson(f.geometry ?? {}))
-      .map((ring) => ({ ring, area: areaM2(ring) }))
-      .filter((p) => p.area > 80 && p.area < 2_000_000 && contains(p.ring, lat, lng))
+      .flatMap((feature) => {
+        const sourceId = feature.properties?.prop_propnum;
+        const id = sourceId == null || sourceId === "" ? undefined : String(sourceId);
+        return fromGeoJson(feature.geometry ?? {}).map((ring) => ({ ring, area: areaM2(ring), sourceId: id }));
+      })
+      .filter((parcel) => parcel.area > 80 && parcel.area < 2_000_000 && contains(parcel.ring, lat, lng))
       .sort((a, b) => a.area - b.area);
-    return candidates[0]?.ring ?? null;
+    const chosen = candidates[0];
+    return chosen ? { ring: chosen.ring, sourceId: chosen.sourceId } : null;
   } catch {
     return null;
   } finally {
@@ -240,6 +251,8 @@ export const traceProperty = createServerFn({ method: "POST" })
           kind,
           areaM2: area,
           heightM: buildingHeight(w.tags, area, kind),
+          source: "osm",
+          ...(w.id ? { sourceId: w.id } : {}),
         });
       }
       buildings.sort(
@@ -257,20 +270,24 @@ export const traceProperty = createServerFn({ method: "POST" })
         kind: "house",
         areaM2: areaM2(ring),
         heightM: 3.4,
+        source: "estimated",
       };
       buildings.unshift(house);
     }
 
     const others = buildings.filter((b) => b !== house);
-    let boundary = mapped;
-    let boundarySource: PropertyTrace["boundarySource"] = mapped ? "mapped" : "none";
+    let boundary = mapped?.ring ?? null;
+    let boundarySourceId = mapped?.sourceId;
+    let boundarySource: PropertyTrace["boundarySource"] = boundary ? "mapped" : "none";
     if (boundary && areaM2(boundary) > 25000 && others.some((o) => haversineKm(o.centroid, house.centroid) * 1000 < 40)) {
       // Huge mapped polygon swallowing neighbours — fall back to a house-based lot.
       boundary = null;
+      boundarySourceId = undefined;
     }
     if (!boundary) {
       boundary = estimateLot(house, others);
       boundarySource = "estimated";
+      boundarySourceId = undefined;
     }
 
     const lotM = Math.sqrt(areaM2(boundary));
@@ -284,5 +301,6 @@ export const traceProperty = createServerFn({ method: "POST" })
       buildings: onSite.slice(0, 10),
       boundary,
       boundarySource,
+      ...(boundarySource === "mapped" && boundarySourceId ? { boundarySourceId } : {}),
     };
   });

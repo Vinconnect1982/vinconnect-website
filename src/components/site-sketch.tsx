@@ -19,6 +19,7 @@ type Props = {
   placing: boolean;
   onPickGround: (lat: number, lng: number) => void;
   onSelectPlace: (id: number) => void;
+  onImageryStatus?: (status: "loaded" | "failed") => void;
 };
 
 type XY = { x: number; y: number };
@@ -135,8 +136,11 @@ export function SiteSketch({
   placing,
   onPickGround,
   onSelectPlace,
+  onImageryStatus,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
+  const onImageryStatusRef = useRef(onImageryStatus);
+  onImageryStatusRef.current = onImageryStatus;
   const [aerial, setAerial] = useState<string | null>(null);
   const [aerialFailed, setAerialFailed] = useState(false);
 
@@ -185,12 +189,14 @@ export function SiteSketch({
           if (!cancelled) {
             setAerial(res.dataUrl);
             setAerialFailed(false);
+            onImageryStatusRef.current?.(res.dataUrl ? "loaded" : "failed");
           }
         })
         .catch(() => {
           if (!cancelled) {
             setAerial(null);
             setAerialFailed(true);
+            onImageryStatusRef.current?.("failed");
           }
         });
     }, 180);

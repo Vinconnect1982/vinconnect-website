@@ -1,9 +1,11 @@
 import { EMAIL } from "@/lib/content";
 import type { LeadPayload } from "@/lib/leads";
+import { leadDeliveryFields } from "@/lib/plan-record";
 
 export async function deliverLeadEmail(lead: LeadPayload): Promise<boolean> {
   try {
     const place = lead.suburb || lead.address || "Victoria";
+    const fields = leadDeliveryFields(lead);
     const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(EMAIL)}`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -12,14 +14,7 @@ export async function deliverLeadEmail(lead: LeadPayload): Promise<boolean> {
         _template: "box",
         _captcha: "false",
         _replyto: lead.email,
-        name: lead.name,
-        email: lead.email,
-        phone: lead.phone,
-        suburb: lead.suburb,
-        address: lead.address || "",
-        type: lead.type,
-        package: lead.package || "",
-        message: lead.message,
+        ...fields,
       }),
     });
     const body = (await res.json().catch(() => ({}))) as { success?: string | boolean };

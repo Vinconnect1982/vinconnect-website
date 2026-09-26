@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { EMAIL } from "@/lib/content";
+import { acceptPersistedPlan, leadDeliveryFields, type PersistedPlan } from "@/lib/plan-record";
 
 export type LeadPayload = {
   type: string;
@@ -10,6 +11,8 @@ export type LeadPayload = {
   address?: string;
   package?: string;
   message: string;
+  /** Structured property plan. Stored on the enquiry record only. Not emailed and not posted to the public form. */
+  plan?: PersistedPlan;
 };
 
 function subject(lead: LeadPayload) {
@@ -44,14 +47,7 @@ function asText(lead: LeadPayload) {
 function formBody(lead: LeadPayload) {
   return new URLSearchParams({
     "form-name": "enquiry",
-    name: lead.name,
-    email: lead.email,
-    phone: lead.phone,
-    suburb: lead.suburb,
-    address: lead.address || "",
-    type: lead.type,
-    package: lead.package || "",
-    message: lead.message,
+    ...leadDeliveryFields(lead),
   });
 }
 
@@ -75,6 +71,12 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Add your name, email, mobile and a short message.");
     }
     const lead = { ...data, name, email, phone, message };
+    const id = `EN-${Date.now().toString(36).toUpperCase()}`;
+    const createdAt = new Date().toISOString();
+    const plan =
+      lead.type === "property-plan" && lead.plan != null
+        ? acceptPersistedPlan({ ...lead.plan, id, createdAt })
+        : undefined;
 
     let stored = false;
     try {
@@ -86,8 +88,8 @@ export const submitLead = createServerFn({ method: "POST" })
     try {
       const { saveSubmission } = await import("./submissions.server");
       await saveSubmission({
-        id: `EN-${Date.now().toString(36).toUpperCase()}`,
-        createdAt: new Date().toISOString(),
+        id,
+        createdAt,
         kind: "enquiry",
         name: lead.name,
         email: lead.email,
@@ -96,6 +98,7 @@ export const submitLead = createServerFn({ method: "POST" })
         suburb: lead.suburb,
         type: lead.type,
         summary: [lead.package, lead.message].filter(Boolean).join("\n"),
+        ...(plan ? { plan } : {}),
       });
       stored = true;
     } catch (error) {

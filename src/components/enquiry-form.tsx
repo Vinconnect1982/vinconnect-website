@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitLead } from "@/lib/leads";
 import { deliverLeadEmail } from "@/lib/lead-mail";
+import type { PersistedPlan } from "@/lib/plan-record";
 import { PHONE, PHONE_TEL } from "@/lib/content";
 import { useSiteSession } from "@/lib/site-session";
 
@@ -16,6 +17,7 @@ export function EnquiryForm({
   messageLabel = "How can we help?",
   initialMessage = "",
   ink = false,
+  plan,
 }: {
   type?: string;
   selectedPackage?: string;
@@ -23,6 +25,7 @@ export function EnquiryForm({
   messageLabel?: string;
   initialMessage?: string;
   ink?: boolean;
+  plan?: PersistedPlan;
 }) {
   const siteAddress = useSiteSession((s) => s.address);
   const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
@@ -46,6 +49,7 @@ export function EnquiryForm({
           address: siteAddress?.address || "",
           package: selectedPackage,
           message: String(fd.get("message") || ""),
+          ...(plan ? { plan } : {}),
         };
       const sent = await submitLead({ data: payload });
       const emailed = sent.emailed || (await deliverLeadEmail(payload));

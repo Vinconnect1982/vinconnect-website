@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import type { AddressHit } from "@/lib/geocode";
 import { useSiteSession } from "@/lib/site-session";
 import { traceProperty, type PropertyTrace } from "@/lib/site-trace";
+import { buildPersistedPlan } from "@/lib/plan-record";
 import { haversineKm } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { Map as MapIcon, Plus, Trash2 } from "lucide-react";
@@ -23,6 +24,8 @@ type Place = {
   power: boolean;
   sight: "clear" | "trees" | "unknown";
   camera: boolean;
+  origin: "trace" | "customer";
+  seedClass?: "mapped" | "estimated";
 };
 
 const KINDS: Kind[] = ["house", "shed", "stable", "gate", "office", "accommodation", "other"];
@@ -94,6 +97,8 @@ function placesFromTrace(trace: PropertyTrace): Place[] {
       power: true,
       sight: "unknown",
       camera: false,
+      origin: "trace",
+      seedClass: house.source === "estimated" ? "estimated" : "mapped",
     });
   }
   for (const b of trace.buildings) {
@@ -108,6 +113,8 @@ function placesFromTrace(trace: PropertyTrace): Place[] {
       power: false,
       sight: "unknown",
       camera: false,
+      origin: "trace",
+      seedClass: b.source === "estimated" ? "estimated" : "mapped",
     });
   }
   return list;
@@ -130,6 +137,7 @@ export function PropertyPlanner({
   const [review, setReview] = useState(false);
   const [trace, setTrace] = useState<PropertyTrace | null>(null);
   const [tracing, setTracing] = useState(false);
+  const [imagery, setImagery] = useState<"loaded" | "failed" | "unknown">("unknown");
   const [error, setError] = useState("");
   const nextId = useRef(1);
   const booted = useRef(false);
@@ -144,6 +152,7 @@ export function PropertyPlanner({
       setError("");
       setReview(false);
       setTracing(true);
+      setImagery("unknown");
       try {
         const next = await traceProperty({ data: { lat: hit.lat, lng: hit.lng } });
         setTrace(next);
@@ -194,6 +203,7 @@ export function PropertyPlanner({
         power: true,
         sight: "unknown",
         camera: false,
+        origin: "customer",
       };
       setSelectedId(id);
       if (list.length === 0) setSourceId(id);
@@ -217,6 +227,30 @@ export function PropertyPlanner({
     [places, sourceId, internet, goal, address],
   );
 
+  const savedPlan = useMemo(() => {
+    if (!address) return undefined;
+    try {
+      return buildPersistedPlan({
+        address: {
+          address: address.address,
+          suburb: address.suburb,
+          postcode: address.postcode,
+          lat: address.lat,
+          lng: address.lng,
+        },
+        trace,
+        places,
+        sourcePlaceId: source?.id ?? null,
+        imagery: { status: imagery },
+        internet,
+        goal,
+      });
+    } catch (error) {
+      console.error("property plan was not serialised", error instanceof Error ? error.message : error);
+      return undefined;
+    }
+  }, [address, trace, places, source, imagery, internet, goal]);
+
   const field = "h-11 rounded-md border border-line bg-raised px-3 text-fg";
 
   return (
@@ -234,6 +268,7 @@ export function PropertyPlanner({
                 placing={placing}
                 onPickGround={dropPlace}
                 onSelectPlace={setSelectedId}
+                onImageryStatus={setImagery}
               />
             ) : (
               <div className="grid h-full place-items-center bg-paper px-6 text-center text-ink-fg">
@@ -413,11 +448,17 @@ export function PropertyPlanner({
           <p className="mt-6 text-xs text-muted">{plan.summary}</p>
           <div className="mt-8 max-w-lg">
             <h3 className="font-display text-xl">Request your installation quote</h3>
+            {address && !savedPlan && (
+              <p className="mt-2 text-sm text-danger">
+                The drawing could not be saved with this enquiry. You can still send the message, or call 0408 559 555.
+              </p>
+            )}
             <EnquiryForm
               type="property-plan"
               buttonLabel="Request a quote"
               initialMessage={plan.summary}
               messageLabel="Anything we should know?"
+              plan={savedPlan}
             />
           </div>
         </section>
