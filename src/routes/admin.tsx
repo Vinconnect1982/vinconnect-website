@@ -7,7 +7,8 @@ import { WAR_NOW, WAR_PLANNED, WAR_STAGES, WAR_WAITING } from "@/lib/war-room";
 import { DOWNLOADS } from "@/lib/downloads";
 import { PROJECTS, SITE_URL, SOCIALS } from "@/lib/content";
 import { followSavedQuote, listQuotes, PIPELINE, removeQuote, resendSavedQuote, sendReferral, setQuote, signInWithGoogle, stageOf, type PipelineStage, type Submission } from "@/lib/submissions";
-import { GOOGLE_CLIENT_ID } from "@/lib/google-client";
+import { changeAdminPassword, readAdminAccess, resetAdminPassword } from "@/lib/admin-settings";
+import { GOOGLE_ACCOUNT, GOOGLE_CLIENT_ID } from "@/lib/google-client";
 import { formatAud } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/admin")({
   }),
 });
 
-type Desk = "home" | "leads" | "resources" | "marketing" | "war" | "finance" | "restore";
+type Desk = "home" | "leads" | "resources" | "marketing" | "war" | "finance" | "restore" | "settings";
 
 const DESKS: { id: Desk; label: string }[] = [
   { id: "home", label: "Home" },
@@ -34,6 +35,7 @@ const DESKS: { id: Desk; label: string }[] = [
   { id: "war", label: "War room" },
   { id: "finance", label: "Finance" },
   { id: "restore", label: "Restore" },
+  { id: "settings", label: "Settings" },
 ];
 type Status = "open" | "won" | "lost" | "deleted" | PipelineStage;
 const TABS: { id: Status; label: string }[] = [
@@ -149,6 +151,7 @@ function AdminPage() {
           <p className="font-display text-2xl">VINCONNECT</p>
           <p className="mt-1 text-sm text-muted">Command Centre</p>
           <div ref={googleHost} className="mt-6 min-h-11" />
+          <p className="mt-2 text-xs text-muted">Google sign-in is only for {GOOGLE_ACCOUNT}.</p>
           <p className="mt-4 text-xs text-muted">Or use the dashboard password.</p>
           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Dashboard password" autoComplete="current-password" className="mt-2 border-line bg-raised" />
           <Button type="submit" disabled={busy} className="mt-3 w-full">{busy ? "Opening…" : "Open"}</Button>
@@ -197,6 +200,16 @@ function AdminPage() {
           {desk === "war" && <WarRoom />}
           {desk === "finance" && <FinanceRoom rows={rows} />}
           {desk === "restore" && <RestoreRoom />}
+          {desk === "settings" && (
+            <SettingsRoom
+              password={password}
+              onPassword={(next) => {
+                setPassword(next);
+                sessionStorage.setItem("vc-admin", next);
+              }}
+              onReset={lock}
+            />
+          )}
           {desk === "leads" && (
             <>
               <div className="flex flex-wrap gap-2">
@@ -216,6 +229,94 @@ function AdminPage() {
           )}
         </main>
       </div>
+    </div>
+  );
+}
+
+function SettingsRoom({ password, onPassword, onReset }: { password: string; onPassword: (next: string) => void; onReset: () => void }) {
+  const [savedHere, setSavedHere] = useState<boolean | null>(null);
+  const [signedInWith, setSignedInWith] = useState<"google" | "password" | "">("");
+  const [next, setNext] = useState("");
+  const [again, setAgain] = useState("");
+  const [note, setNote] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    readAdminAccess({ data: { password } })
+      .then((access) => {
+        setSavedHere(access.passwordSavedHere);
+        setSignedInWith(access.signedInWith);
+      })
+      .catch((err: unknown) => setError(err instanceof Error ? err.message : "Could not read settings."));
+  }, [password]);
+
+  async function save(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    setNote("");
+    if (next !== again) {
+      setError("Those two passwords don't match.");
+      return;
+    }
+    setBusy(true);
+    try {
+      const result = await changeAdminPassword({ data: { password, next } });
+      onPassword(result.session);
+      setNext("");
+      setAgain("");
+      setSavedHere(true);
+      setSignedInWith("password");
+      setNote("Saved. This browser stays signed in. Next time, use the new password or Continue with Google.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "That password was not saved.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function reset() {
+    if (!confirm("Forget the password saved here and go back to the Netlify password?")) return;
+    setBusy(true);
+    setError("");
+    try {
+      await resetAdminPassword({ data: { password } });
+      onReset();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not reset the password.");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="grid max-w-xl gap-4">
+      <section className="border border-line bg-raised p-5">
+        <p className="text-xs uppercase tracking-wide text-mint">Google</p>
+        <h2 className="mt-1 font-display text-2xl">Sign in with Google</h2>
+        <p className="mt-3 text-sm">Only {GOOGLE_ACCOUNT} can open this control room. Any other Google account is refused.</p>
+        <p className="mt-2 text-sm text-muted">The Continue with Google button is on the lock screen. You are signed in with {signedInWith === "google" ? "Google" : "the password"}.</p>
+        <p className="mt-3 text-sm text-muted">If Google says the site is not allowed, open the existing War Room client in Google Cloud and add https://vinconnect.com.au as an authorised JavaScript origin. Do not create a second client.</p>
+      </section>
+      <form onSubmit={save} className="border border-line bg-raised p-5">
+        <p className="text-xs uppercase tracking-wide text-mint">Password</p>
+        <h2 className="mt-1 font-display text-2xl">Change password</h2>
+        <p className="mt-3 text-sm text-muted">
+          {savedHere === null ? "Checking the saved password…" : savedHere ? "A password saved here is in use. The Netlify password is ignored until you reset." : "No password has been saved here yet. The Netlify password still opens the door."}
+        </p>
+        <label className="mt-4 block text-sm" htmlFor="new-password">New password</label>
+        <Input id="new-password" type="password" value={next} onChange={(e) => setNext(e.target.value)} autoComplete="new-password" minLength={10} className="mt-1 border-line bg-ink" />
+        <label className="mt-3 block text-sm" htmlFor="confirm-password">Repeat it</label>
+        <Input id="confirm-password" type="password" value={again} onChange={(e) => setAgain(e.target.value)} autoComplete="new-password" minLength={10} className="mt-1 border-line bg-ink" />
+        <p className="mt-2 text-xs text-muted">At least 10 characters, no spaces. It is stored privately on the site, not on this page.</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Save password"}</Button>
+          {savedHere && (
+            <Button type="button" variant="ink" disabled={busy} onClick={reset}>Use the Netlify password again</Button>
+          )}
+        </div>
+        {note && <p className="mt-3 text-sm">{note}</p>}
+        {error && <p className="mt-3 text-sm text-danger">{error}</p>}
+      </form>
     </div>
   );
 }

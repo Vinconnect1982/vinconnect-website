@@ -1,4 +1,4 @@
-import { acceptsAdmin } from "./admin-auth.server";
+import { assertAdmin } from "./admin-auth.server";
 
 export type MediaDraft = {
   id: string;
@@ -10,17 +10,13 @@ export type MediaDraft = {
   status: "draft" | "posted";
 };
 
-function assertAdmin(password: string) {
-  if (!acceptsAdmin(password)) throw new Error("That password is not right.");
-}
-
 async function store() {
   const { getStore } = await import("@netlify/blobs");
   return getStore("vinconnect-media");
 }
 
 export async function listMedia(password: string) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const blob = await store();
   const index = ((await blob.get("index", { type: "json" })) as string[] | null) ?? [];
   const rows = await Promise.all(index.map(async (id) => (await blob.get(id, { type: "json" })) as MediaDraft | null));
@@ -28,7 +24,7 @@ export async function listMedia(password: string) {
 }
 
 export async function saveMedia(password: string, item: MediaDraft) {
-  assertAdmin(password);
+  await assertAdmin(password);
   const blob = await store();
   await blob.setJSON(item.id, item);
   const index = ((await blob.get("index", { type: "json" })) as string[] | null) ?? [];
