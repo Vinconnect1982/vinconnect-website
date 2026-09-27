@@ -135,7 +135,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Starlink installation",
     title: "Starlink installed properly.",
     lede: "A considered Starlink installation brings work, calls and everyday life back within reach — for homes, sheds, workshops, stables, offices, farms and businesses across South East Melbourne, the Peninsula, Bass Coast and Gippsland, with regional work by arrangement.",
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/media/starlink-ridge.webp",
     points: [
       "Sky view and mount choice before a drill goes near the roof",
       "Agreed cable route, sealed entry and strain relief",
@@ -167,7 +167,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Whole-property Wi-Fi",
     title: "Room to live. Room to connect.",
     lede: "From the home office to the back verandah, give every space a reliable Wi-Fi plan — not another consumer mesh dropped in a cupboard.",
-    image: "/scenes/whole-home-wifi.webp",
+    image: "/media/wifi-placement.webp",
     points: [
       "Coverage mapped to how the property is actually used",
       "Access points placed for building materials, not guesswork",
@@ -191,7 +191,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Building-to-building wireless links",
     title: "Take the connection further.",
     lede: "Keep the workshop, stable or second building connected with a dedicated wireless link instead of hoping the house Wi-Fi stretches across the paddock.",
-    image: "/scenes/building-links-v2.webp",
+    image: "/media/link-both-ends.webp",
     points: [
       "Point-to-point links for sheds, stables, offices and granny flats",
       "Line-of-sight check before hardware is ordered",
@@ -263,7 +263,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "CCTV & remote monitoring",
     title: "A little more peace of mind.",
     lede: "Thoughtful camera placement helps you check on home, entrances and the moments that matter — with recording and remote access that actually work off-site.",
-    image: "/scenes/home-cctv.webp",
+    image: "/media/eave-cameras.webp",
     points: [
       "Views planned before camera counts",
       "Power, cabling and network at each location",
@@ -287,7 +287,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Touring installation services",
     title: "Stay a little longer. Stay connected.",
     lede: "Starlink installation for caravans, motorhomes and touring vehicles across South East Victoria. A tidy setup for the trips you actually take.",
-    image: "/travel/caravan-river.webp",
+    image: "/media/caravan-roof.webp",
     points: [
       "Dish position with an unobstructed sky view",
       "Sealed cable entry and strain relief",
@@ -356,7 +356,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Point-to-point",
     title: "A dedicated path between buildings.",
     lede: "When the shed is 80 metres away and the house Wi-Fi dies at the clothesline, a dedicated link is the grown-up answer. This is the same work as our wireless building links — one page, one job type.",
-    image: "/scenes/building-links-v2.webp",
+    image: "/media/link-both-ends.webp",
     points: ["Line-of-sight survey", "Omada or equivalent managed radios", "Grounding and mounting for Victorian weather"],
     body: [
       {
