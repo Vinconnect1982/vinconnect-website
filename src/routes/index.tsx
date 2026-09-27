@@ -29,8 +29,7 @@ const FEATURES = [
     kicker: "Starlink Installation",
     title: "Country living. Connected.",
     copy: "A considered Starlink installation brings work, calls and everyday life back within reach.",
-    image: "/media/starlink-ridge.webp",
-    alt: "Slim Starlink panel on a ridge-cap bracket, screwed into the crests of a Colorbond roof.",
+    image: "/scenes/starlink-home-v3.webp",
     cta: "See Starlink installation",
   },
   {
@@ -38,8 +37,7 @@ const FEATURES = [
     kicker: "Whole-Property Wi-Fi",
     title: "Room to live. Room to connect.",
     copy: "From the home office to the back verandah, give every space a reliable Wi-Fi plan.",
-    image: "/media/wifi-placement.webp",
-    alt: "Access point on a verandah beam, with another on the hallway ceiling of a brick house.",
+    image: "/scenes/whole-home-wifi.webp",
     cta: "See whole-property Wi-Fi options",
   },
   {
@@ -47,8 +45,7 @@ const FEATURES = [
     kicker: "Building-to-building wireless links",
     title: "Connect the shed without trenching.",
     copy: "Connect the shed, stable, workshop or second building without digging a trench across the property.",
-    image: "/media/link-both-ends.webp",
-    alt: "A small outdoor radio on the house eave aimed at a matching radio on the shed.",
+    image: "/scenes/building-links-v2.webp",
     cta: "See how wireless links work",
   },
   {
@@ -56,8 +53,7 @@ const FEATURES = [
     kicker: "CCTV & Remote Monitoring",
     title: "A little more peace of mind.",
     copy: "Thoughtful camera placement helps you check on home, entrances and the moments that matter.",
-    image: "/media/eave-cameras.webp",
-    alt: "Two small turret cameras under the eave of a brick home.",
+    image: "/scenes/home-cctv.webp",
     cta: "Plan my cameras",
   },
 ];
@@ -68,8 +64,8 @@ function Home() {
       <JsonLd data={LOCAL_BUSINESS_LD} />
       <section className="relative overflow-hidden">
         <img
-          src="/media/hero-ridge-mount.webp"
-          alt="Small Starlink panel on the shed ridge, with one link from the house radio to the shed."
+          src="/roadshow/paddocks-v3.webp"
+          alt="Cattle country in south-east Victoria, with one link from the shed dish back to the house."
           className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
           decoding="async"
@@ -118,7 +114,7 @@ function Home() {
               to={item.href}
               className="group overflow-hidden rounded-xl border border-line bg-surface"
             >
-              <img src={item.image} alt={item.alt} className="aspect-[16/9] w-full object-cover" loading="lazy" decoding="async" />
+              <img src={item.image} alt="" className="h-52 w-full object-cover sm:h-60" loading="lazy" decoding="async" />
               <div className="p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-mint">{item.kicker}</p>
                 <h3 className="mt-2 font-display text-2xl">{item.title}</h3>
@@ -131,29 +127,8 @@ function Home() {
           ))}
         </div>
         <p className="mt-4 text-xs text-muted">
-          Hardware shown the way it is mounted. Finished jobs are in Projects.
+          Illustrative service scenes. Explore our completed projects for actual installation photography.
         </p>
-      </section>
-
-      <section className="border-y border-line bg-ink-2">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-          <p className="kicker">How the dish sits</p>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl sm:text-4xl">Low on the roof. No kickstand.</h2>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            <figure>
-              <img src="/media/starlink-ridge.webp" alt="Dual ridge-cap brackets holding a flat Starlink panel on corrugated iron." className="aspect-[4/3] w-full rounded-xl object-cover" width="1200" height="900" />
-              <figcaption className="mt-3 text-sm text-muted">Tin. Screws in the ridges only.</figcaption>
-            </figure>
-            <figure>
-              <img src="/media/mount-tile.webp" alt="Galvanized strap under a concrete roof tile, holding a flat Starlink panel." className="aspect-[4/3] w-full rounded-xl object-cover" width="1200" height="900" />
-              <figcaption className="mt-3 text-sm text-muted">Tile. The strap sits under the overlap.</figcaption>
-            </figure>
-            <figure>
-              <img src="/media/mount-fascia.webp" alt="Short fascia bracket holding a Starlink panel off a weatherboard gable." className="aspect-[4/3] w-full rounded-xl object-cover" width="1200" height="900" />
-              <figcaption className="mt-3 text-sm text-muted">No roof penetration. Fascia or a tripod.</figcaption>
-            </figure>
-          </div>
-        </div>
       </section>
 
       <section className="border-y border-line bg-ink-2">
@@ -267,7 +242,7 @@ function Home() {
       </section>
 
       <section className="relative overflow-hidden">
-        <img src="/media/caravan-roof.webp" alt="Starlink panel sitting low on a caravan roof bar, beside a farm shed." className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+        <img src="/travel/caravan-river.webp" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-ink/70" />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <p className="kicker">Take the long way home</p>
