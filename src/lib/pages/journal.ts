@@ -76,7 +76,7 @@ export const JOURNAL: Article[] = [
     description:
       "VINCONNECT local Starlink installation is $300 labour in the Cranbourne work area. What the standard scope includes and what is extra.",
     crumbs: crumbs("What $300 covers"),
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v2.webp",
     visual: "install-steps",
     gallery: [
       { src: "/media/projects/clyde-new-estate-home-hero-v5.webp", alt: "Clyde estate Starlink install." },
@@ -278,8 +278,8 @@ export const JOURNAL: Article[] = [
     image: "/scenes/building-links-v2.webp",
     visual: "network-stack",
     gallery: [
-      { src: "/scenes-new/horse-property-v3.webp", alt: "Horse property buildings." },
-      { src: "/visuals/network-cutaway-v3.webp", alt: "Property network concept illustration." },
+      { src: "/scenes-new/horse-property-v2.webp", alt: "Horse property buildings." },
+      { src: "/visuals/network-cutaway-v2.webp", alt: "Property network concept illustration." },
     ],
     sections: [
       {
@@ -353,7 +353,7 @@ export const JOURNAL: Article[] = [
     description:
       "How to prepare for a Circl-allocated VINCONNECT Starlink installation in Victoria: kit, access, power and who to call.",
     crumbs: crumbs("Night before Circl"),
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v2.webp",
     visual: "funnel",
     sections: [
       {
@@ -389,7 +389,7 @@ export const JOURNAL: Article[] = [
     visual: "diy-vs-pro",
     gallery: [
       { src: "/media/projects/lyndhurst-rental-home-hero-v5.webp", alt: "Lyndhurst rental with cabinet entry." },
-      { src: "/scenes/starlink-home-v3.webp", alt: "Residential Starlink scene." },
+      { src: "/scenes/starlink-home-v2.webp", alt: "Residential Starlink scene." },
     ],
     sections: [
       {

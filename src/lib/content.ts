@@ -135,7 +135,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Starlink installation",
     title: "Starlink installed properly.",
     lede: "A considered Starlink installation brings work, calls and everyday life back within reach — for homes, sheds, workshops, stables, offices, farms and businesses across South East Melbourne, the Peninsula, Bass Coast and Gippsland, with regional work by arrangement.",
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v2.webp",
     points: [
       "Sky view and mount choice before a drill goes near the roof",
       "Agreed cable route, sealed entry and strain relief",
@@ -219,7 +219,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Rural property connectivity",
     title: "Designed beyond the router.",
     lede: "Acreage, horse properties and farms need a network drawn around buildings, gates, arenas and the places you actually work — not a suburban floor plan.",
-    image: "/visuals/network-cutaway-v3.webp",
+    image: "/visuals/network-cutaway-v2.webp",
     points: [
       "Starlink and NBN-ready network design",
       "A wireless link when the shed is too far for house Wi-Fi",
@@ -337,7 +337,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Equestrian connectivity",
     title: "The horse property, connected.",
     lede: "Wi-Fi that reaches the arena, tack room and house, with cameras and recording planned around how the property is actually used.",
-    image: "/scenes-new/horse-property-v3.webp",
+    image: "/scenes-new/horse-property-v2.webp",
     points: [
       "Stable and arena camera views",
       "Wireless links where cabling cannot run",
@@ -440,7 +440,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Stable cameras",
     title: "A closer eye on the stable.",
     lede: "Plan cameras, recording and remote access for your horse property.",
-    image: "/scenes-new/stable-cameras-day-v3.webp",
+    image: "/scenes-new/stable-cameras-day-v2.webp",
     points: ["Stable, arena and driveway views", "Dust and lighting taken seriously", "Alerts you can check from the house"],
     body: [
       {
@@ -459,7 +459,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Solar & remote cameras",
     title: "See what’s happening at the gate.",
     lede: "Solar and mobile-connected cameras for places beyond the home network — gates, dams, far paddocks.",
-    image: "/scenes-new/gate-camera-v3.webp",
+    image: "/scenes-new/gate-camera-v2.webp",
     points: ["No trench to the front gate", "Mobile or long-range backhaul", "Power budget checked against shade"],
     body: [
       {

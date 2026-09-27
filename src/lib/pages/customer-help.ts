@@ -39,7 +39,7 @@ export const CUSTOMER_HELP: Article[] = [
     lede: "Booked VINCONNECT directly? This is the path from estimate to handover. If Circl arranged the installation and allocated it to us, the Circl notes at the bottom explain delivery and booking. You do not need Circl to hire VINCONNECT.",
     description:
       "VINCONNECT customer help for Starlink installation in Victoria. Before the visit, on the day, after handover, standard scope, cancellations and Circl-allocated jobs.",
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v2.webp",
     imageAlt: "Starlink dish installed on a Victorian home.",
     crumbs: [{ label: "Customer help" }],
     points: [

@@ -237,7 +237,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Wi-Fi, wireless links and camera planning for horse properties across Cardinia, the Peninsula and Gippsland.",
     crumbs: crumbs("Equestrian"),
-    image: "/scenes-new/horse-property-v3.webp",
+    image: "/scenes-new/horse-property-v2.webp",
     sections: [
       {
         heading: "The property is the client",

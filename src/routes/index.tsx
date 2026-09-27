@@ -29,7 +29,7 @@ const FEATURES = [
     kicker: "Starlink Installation",
     title: "Country living. Connected.",
     copy: "A considered Starlink installation brings work, calls and everyday life back within reach.",
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v2.webp",
     cta: "See Starlink installation",
   },
   {
@@ -64,7 +64,7 @@ function Home() {
       <JsonLd data={LOCAL_BUSINESS_LD} />
       <section className="relative overflow-hidden">
         <img
-          src="/roadshow/paddocks-v3.webp"
+          src="/roadshow/paddocks-v2.webp"
           alt="Cattle country in south-east Victoria, with one link from the shed dish back to the house."
           className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
@@ -177,7 +177,7 @@ function Home() {
         <div className="mx-auto grid max-w-6xl lg:grid-cols-2 lg:items-stretch">
           <div className="relative min-h-[22rem] overflow-hidden bg-ink lg:min-h-[32rem]">
             <img
-              src="/visuals/network-cutaway-v3.webp"
+              src="/visuals/network-cutaway-v2.webp"
               alt="Property network concept illustration. Equipment is selected around your buildings and coverage needs."
               className="absolute inset-0 h-full w-full object-cover object-center"
               loading="lazy"
