@@ -148,7 +148,7 @@ export function MountsGraphic({ className }: { className?: string }) {
   return (
     <div className={className}>
       <InfographicPhoto
-        src="/visuals/mount-types-v2.webp"
+        src="/visuals/mount-types.webp"
         title="Five ways a dish sits on a Victorian roof"
         caption="Tile, Colorbond fascia, Astrogear tripod, wall/gable and pole. The building decides — not the first accessory in the carton."
       />

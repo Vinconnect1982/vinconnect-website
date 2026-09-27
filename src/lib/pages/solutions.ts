@@ -24,7 +24,7 @@ export const SOLUTIONS: Article[] = [
     lede: "Homes, rural acreage, horse properties, small businesses, clubs and caravans use the same trades — Starlink, Wi-Fi, wireless links, CCTV — in different combinations. Start here if you think in property type rather than product.",
     description:
       "VINCONNECT solutions by property type: homes, rural properties, horse properties, businesses and clubs, caravans and new estates across South East Victoria.",
-    image: "/scenes-new/acreage-network-v4.webp",
+    image: "/scenes-new/acreage-network.webp",
     crumbs: [{ label: "Solutions" }],
     children: [
       { href: "/solutions/homes", title: "Homes", copy: "Estates, rentals and family houses that need the internet to work." },
@@ -108,7 +108,7 @@ export const SOLUTIONS: Article[] = [
     description:
       "Connectivity and CCTV for horse properties in Cardinia, the Peninsula, Bass Coast and Gippsland.",
     crumbs: crumbs("Horse properties"),
-    image: "/scenes-new/stable-cameras-day-v4.webp",
+    image: "/scenes-new/stable-cameras-day-v3.webp",
     sections: [
       {
         heading: "Design around the yards",

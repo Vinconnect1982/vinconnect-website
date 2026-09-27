@@ -66,7 +66,7 @@ export const SECURITY_GUIDES: Article[] = [
       "Camera planning for Victorian properties: views, power, recording and how VINCONNECT uses the property planner before quoting CCTV.",
     crumbs: crumbs("How CCTV is planned"),
     cta: PLAN_CTA,
-    image: "/scenes-new/gate-camera-v4.webp",
+    image: "/scenes-new/gate-camera-v3.webp",
     sections: [
       {
         heading: "The order we use",
@@ -96,7 +96,7 @@ export const SECURITY_GUIDES: Article[] = [
     description:
       "Home and acreage CCTV in Victoria. When Home Watch 4 is enough, when Property Guard or Acreage 8 is the honest kit.",
     crumbs: crumbs("Home and acreage"),
-    image: "/scenes-new/property-cctv-v4.webp",
+    image: "/scenes-new/property-cctv.webp",
     sections: [
       {
         heading: "Start with the packages, then deviate",

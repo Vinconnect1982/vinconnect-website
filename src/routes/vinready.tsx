@@ -25,7 +25,7 @@ export const Route = createFileRoute("/vinready")({
         property: "og:description",
         content: "The builder offer your buyers ask for. Activate on move-in day.",
       },
-      { property: "og:image", content: `${SITE_URL}/vinready/pack/cover-v4.webp` },
+      { property: "og:image", content: `${SITE_URL}/vinready/pack/cover.webp` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/vinready` }],
   }),
@@ -71,7 +71,7 @@ function VinreadyPage() {
       />
 
       <section className="relative min-h-[34rem] overflow-hidden text-white">
-        <img src="/vinready/pack/cover-v4.webp" alt="Dusk street of new Australian homes, one rectangular Starlink dish on the nearest roof." className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/vinready/pack/cover.webp" alt="Dusk street of new Australian homes, one rectangular Starlink dish on the nearest roof." className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#071018]/80 via-[#071018]/35 to-[#071018]/70" />
         <div className="relative mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end px-4 py-16 sm:px-6 sm:py-20">
           <p className="text-xs font-semibold tracking-[0.18em] text-[#7fd4d0]">VINREADY · FOR BUILDERS</p>

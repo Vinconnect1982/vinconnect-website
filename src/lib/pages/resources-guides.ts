@@ -25,7 +25,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "What happens between a Starlink kit arriving in Victoria and VINCONNECT completing the installation. Two deliveries, sealed box, booking scope.",
     crumbs: crumbs("Delivery and installation"),
-    image: "/scenes/starlink-home-v4.webp",
+    image: "/scenes/starlink-home-v3.webp",
     sections: [
       {
         heading: "Delivery is not installation",
@@ -179,7 +179,7 @@ export const RESOURCE_GUIDES: Article[] = [
       "How to plan a whole-property network in Victoria before buying Starlink accessories or cameras. VINCONNECT property planner.",
     crumbs: crumbs("Planning a property network"),
     cta: PLAN_CTA,
-    image: "/scenes-new/acreage-network-v4.webp",
+    image: "/scenes-new/acreage-network.webp",
     sections: [
       {
         heading: "A usable sketch",
@@ -215,7 +215,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "Running HiLook CCTV over Starlink on Victorian rural properties. Recording on site, remote view, and why the network plan comes first.",
     crumbs: crumbs("CCTV on Starlink"),
-    image: "/scenes-new/property-cctv-v4.webp",
+    image: "/scenes-new/property-cctv.webp",
     sections: [
       {
         heading: "Record locally",
@@ -288,7 +288,7 @@ export const RESOURCE_GUIDES: Article[] = [
     description:
       "How the Starlink free-month referral works in Australia: who may qualify, why a shop-bought kit may not, and how VINCONNECT installation fits after you order.",
     crumbs: crumbs("Starlink free-month referral"),
-    image: "/scenes/starlink-home-v4.webp",
+    image: "/scenes/starlink-home-v3.webp",
     imageAlt: "Starlink dish on a Victorian home, used as an illustrative install scene.",
     cta: {
       primary: { label: "Get one month free", href: "/starlink-offer" },

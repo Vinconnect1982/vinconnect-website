@@ -82,7 +82,7 @@ export const LIBRARY: Article[] = [
     lede: "Mesh spreads Wi-Fi through one building. A wireless bridge carries the network to another building. They are not interchangeable.",
     description:
       "When a Victorian property needs mesh Wi-Fi, and when it needs a point-to-point wireless bridge to a shed, stable or office.",
-    image: "/guides/vinconnect-mesh-vs-wireless-bridge-v2.webp",
+    image: "/guides/vinconnect-mesh-vs-wireless-bridge.webp",
     imageAlt: "Illustrative wireless link between a rural house and a shed.",
     cta: PLAN_CTA,
     sections: [
@@ -121,7 +121,7 @@ export const LIBRARY: Article[] = [
     lede: "A point-to-point link joins two buildings without a trench. It needs a line of sight, power at both ends, and a plan for what happens after the signal arrives.",
     description:
       "How a point-to-point wireless bridge connects a shed, stable, office or granny flat on a Victorian property.",
-    image: "/guides/vinconnect-mesh-vs-wireless-bridge-v2.webp",
+    image: "/guides/vinconnect-mesh-vs-wireless-bridge.webp",
     imageAlt: "Illustrative house-to-shed wireless bridge on an Australian acreage.",
     cta: PLAN_CTA,
     sections: [
@@ -248,7 +248,7 @@ export const LIBRARY: Article[] = [
     lede: "The mount is chosen for the building, the sky and whether you want a hole in the roof. There is no single correct bracket.",
     description:
       "How VINCONNECT chooses a Starlink mount in Victoria: fascia, tripod, pole, tile and Colorbond, without a default roof penetration.",
-    image: "/guides/vinconnect-starlink-mount-guide-v2.webp",
+    image: "/guides/vinconnect-starlink-mount-guide.webp",
     imageAlt: "Illustrative Starlink mount on an Australian home in late-afternoon light.",
     sections: [
       {
@@ -405,7 +405,7 @@ export const LIBRARY: Article[] = [
     lede: "Starlink needs a clear view of the sky. A tidy mount under a gum is still a bad mount if the canopy sits in the way.",
     description:
       "How trees and buildings affect a Starlink install in Victoria, and how VINCONNECT chooses a mount position before drilling.",
-    image: "/guides/vinconnect-trees-and-starlink-v2.webp",
+    image: "/guides/vinconnect-trees-and-starlink.webp",
     imageAlt: "Illustrative Starlink dish on a roof with open sky beside gum trees.",
     sections: [
       {
@@ -443,7 +443,7 @@ export const LIBRARY: Article[] = [
     lede: "If the estate is still waiting on NBN or OptiComm, the useful work is a cable path and a router wall, not a hole drilled in a hurry after you move in.",
     description:
       "How builders and new-home owners in South East Victoria can leave a property ready for a professional Starlink install.",
-    image: "/guides/vinconnect-new-home-starlink-v2.webp",
+    image: "/guides/vinconnect-new-home-starlink.webp",
     imageAlt: "Illustrative new estate home with a Starlink dish and open sky.",
     sections: [
       {
@@ -480,7 +480,7 @@ export const LIBRARY: Article[] = [
     lede: "On acreage the dish is the start. The shed, the yard and the second building are the rest of the job.",
     description:
       "How Starlink fits a Victorian farm or acreage: sky view at the house, then Wi-Fi and links to the buildings that matter.",
-    image: "/guides/vinconnect-starlink-acreage-v2.webp",
+    image: "/guides/vinconnect-starlink-acreage.webp",
     imageAlt: "Illustrative Victorian acreage with a house, shed and Starlink dish.",
     cta: PLAN_CTA,
     sections: [
