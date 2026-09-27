@@ -24,13 +24,13 @@ export const LOCAL_NOTES: Record<string, string> = {
   leongatha:
     "Leongatha is the South Gippsland hub: homes, farms and small businesses. Enter the address and the trip from Cranbourne is included in the quote. It is a longer trip than a Cranbourne estate.",
   wonthaggi:
-    "Wonthaggi is the Bass Coast centre, with homes and shops in town and farms behind it. Wind and the rural edges both affect the mount. Inverloch and Grantville are the usual neighbouring pages.",
+    "Wonthaggi is the Bass Coast centre, with homes and shops in town and farms behind it. Coastal wind and rural blocks both affect which mount we use. We also install in Inverloch and Grantville.",
   inverloch:
     "Inverloch is a mix of holiday homes and houses people live in all year. Wind off the inlet is part of choosing the mount. A tripod is often the better option when drilling the roof is a poor fit.",
   cowes:
     "Cowes is the Phillip Island base. Holiday homes, businesses and the rural parts of the island are all in scope, and the quote includes getting there. Cameras and venue Wi-Fi come up as often as a straight home install.",
   "phillip-island":
-    "Phillip Island jobs are quoted from Cranbourne, including the bridge. Cowes and San Remo have their own pages. Holiday homes and farms on the island are not treated like a suburban estate.",
+    "Phillip Island jobs are quoted from Cranbourne, including the trip across the bridge. Holiday homes in Cowes, farms on the island and houses at San Remo are planned for the property, not as one standard estate install.",
   "san-remo":
     "San Remo is the gateway to Phillip Island. The work is coastal homes and small commercial sites, with short cable runs and mounts chosen for salt air.",
   pakenham:

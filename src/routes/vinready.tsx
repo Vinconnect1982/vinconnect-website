@@ -214,7 +214,7 @@ function VinreadyPage() {
           <h2 className="mt-2 font-display text-4xl">Keys in. Online today.</h2>
           <p className="mt-3 max-w-2xl text-[#5C6770]">Your buyers can activate Starlink the day they move in. With the full kit, it is live when the dish is powered up.</p>
           <img src="/vinready/pack/compare.webp" alt="VinReady during the build compared with a retrofit after handover." className="mt-8 w-full bg-white" />
-          <p className="mt-2 text-xs text-[#5C6770]">Illustrative comparison. Not a promise about a particular estate.</p>
+          <p className="mt-2 text-xs text-[#5C6770]">Example comparison. Not a promise about a particular estate.</p>
           <ul className="mt-6 max-w-2xl space-y-2 text-sm text-[#5C6770]">
             <li>Starlink is an alternative at move-in. NBN can stay available.</li>
             <li>No guaranteed speeds. Performance depends on Starlink at that address.</li>
@@ -226,7 +226,7 @@ function VinreadyPage() {
       <section className="bg-white text-[#102033]">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <img src="/vinready/pack/pathway.webp" alt="Diagram of a cable path through an Australian timber frame, from the roof mount zone to an indoor point." className="w-full" />
-          <p className="mt-2 text-xs text-[#5C6770]">Frame-stage pathway. Illustrative. One cable route, marked before the walls close.</p>
+          <p className="mt-2 text-xs text-[#5C6770]">Frame-stage pathway. One cable route, marked before the walls close.</p>
           <h2 className="mt-10 font-display text-3xl">Where we work</h2>
           <p className="mt-3 text-[#5C6770]">Cranbourne · Southeast Melbourne · Western Port · Mornington Peninsula · Phillip Island and Bass Coast · Gippsland</p>
           <ul className="mt-4 flex flex-wrap gap-3 text-sm">

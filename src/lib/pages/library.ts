@@ -16,7 +16,7 @@ function page(partial: Omit<Article, "cluster" | "form"> & { cta?: Article["cta"
       messageLabel: "Property and what you need connected",
     },
     ...partial,
-    status: partial.status ?? "Illustrative example. Not a completed VINCONNECT installation.",
+    status: partial.status,
     cta: partial.cta ?? DEFAULT_CTA,
   };
 }
@@ -31,7 +31,7 @@ export const LIBRARY: Article[] = [
     description:
       "How to get reliable Wi-Fi into an Australian shed or workshop: when mesh fails, and when a wireless bridge is the right job.",
     image: "/guides/vinconnect-wifi-to-shed.webp",
-    imageAlt: "Illustrative view of a rural Victorian house linked to a Colorbond shed.",
+    imageAlt: "View of a rural Victorian house linked to a Colorbond shed.",
     cta: PLAN_CTA,
     sections: [
       {
@@ -83,7 +83,7 @@ export const LIBRARY: Article[] = [
     description:
       "When a Victorian property needs mesh Wi-Fi, and when it needs a point-to-point wireless bridge to a shed, stable or office.",
     image: "/guides/vinconnect-mesh-vs-wireless-bridge.webp",
-    imageAlt: "Illustrative wireless link between a rural house and a shed.",
+    imageAlt: "Wireless link between a rural house and a shed.",
     cta: PLAN_CTA,
     sections: [
       {
@@ -122,7 +122,7 @@ export const LIBRARY: Article[] = [
     description:
       "How a point-to-point wireless bridge connects a shed, stable, office or granny flat on a Victorian property.",
     image: "/guides/vinconnect-mesh-vs-wireless-bridge.webp",
-    imageAlt: "Illustrative house-to-shed wireless bridge on an Australian acreage.",
+    imageAlt: "House-to-shed wireless bridge on an Australian acreage.",
     cta: PLAN_CTA,
     sections: [
       {
@@ -160,7 +160,7 @@ export const LIBRARY: Article[] = [
     description:
       "How a Victorian horse property connects the house, stables, arena and gate: Wi-Fi, wireless links and cameras on one network.",
     image: "/guides/vinconnect-horse-property-network.webp",
-    imageAlt: "Illustrative Victorian horse property with house, stables and arena.",
+    imageAlt: "Victorian horse property with house, stables and arena.",
     cta: PLAN_CTA,
     sections: [
       {
@@ -200,7 +200,7 @@ export const LIBRARY: Article[] = [
     description:
       "A practical guide to caravan internet in Australia: park Wi-Fi, mobile data, Starlink Roam and what VINCONNECT can install.",
     image: "/guides/vinconnect-starlink-caravan-guide.webp",
-    imageAlt: "Illustrative Australian caravan camp with a Starlink dish in open sky.",
+    imageAlt: "Australian caravan camp with a Starlink dish in open sky.",
     cta: {
       primary: { label: "Ask about a caravan setup", href: "/contact" },
       secondary: { label: "Caravan installation", href: "/services/starlink-caravan-installation" },
@@ -249,7 +249,7 @@ export const LIBRARY: Article[] = [
     description:
       "How VINCONNECT chooses a Starlink mount in Victoria: fascia, tripod, pole, tile and Colorbond, without a default roof penetration.",
     image: "/guides/vinconnect-starlink-mount-guide.webp",
-    imageAlt: "Illustrative Starlink mount on an Australian home in late-afternoon light.",
+    imageAlt: "Starlink mount on an Australian home in late-afternoon light.",
     sections: [
       {
         heading: "What we are choosing",
@@ -287,7 +287,7 @@ export const LIBRARY: Article[] = [
     description:
       "Where to place a Starlink router in a Victorian home, and when a garage or data cabinet needs extra access points.",
     image: "/guides/vinconnect-router-placement-guide.webp",
-    imageAlt: "Illustrative router in an open living area rather than a closed cabinet.",
+    imageAlt: "Router in an open living area rather than a closed cabinet.",
     sections: [
       {
         heading: "A useful position",
@@ -323,7 +323,7 @@ export const LIBRARY: Article[] = [
     description:
       "What stays online when the power drops: Starlink, a small UPS, and the limits of backup for Wi-Fi and cameras.",
     image: "/guides/vinconnect-starlink-ups-power-backup.webp",
-    imageAlt: "Illustrative network cabinet with a compact UPS during a rural power outage.",
+    imageAlt: "Network cabinet with a compact UPS during a rural power outage.",
     sections: [
       {
         heading: "What has to stay powered",
@@ -365,7 +365,7 @@ export const LIBRARY: Article[] = [
     description:
       "How VINCONNECT approaches CCTV on Victorian acreage: local recording, PoE, shed links and what Starlink does and does not do for cameras.",
     image: "/guides/vinconnect-rural-cctv.webp",
-    imageAlt: "Illustrative camera on a Colorbond shed at a Victorian acreage.",
+    imageAlt: "Camera on a Colorbond shed at a Victorian acreage.",
     cta: {
       primary: { label: "Discuss my CCTV project", href: "/contact" },
       secondary: { label: "CCTV packages", href: "/security" },
@@ -406,7 +406,7 @@ export const LIBRARY: Article[] = [
     description:
       "How trees and buildings affect a Starlink install in Victoria, and how VINCONNECT chooses a mount position before drilling.",
     image: "/guides/vinconnect-trees-and-starlink.webp",
-    imageAlt: "Illustrative Starlink dish on a roof with open sky beside gum trees.",
+    imageAlt: "Starlink dish on a roof with open sky beside gum trees.",
     sections: [
       {
         heading: "What actually blocks it",
@@ -444,7 +444,7 @@ export const LIBRARY: Article[] = [
     description:
       "How builders and new-home owners in South East Victoria can leave a property ready for a professional Starlink install.",
     image: "/guides/vinconnect-new-home-starlink.webp",
-    imageAlt: "Illustrative new estate home with a Starlink dish and open sky.",
+    imageAlt: "New estate home with a Starlink dish and open sky.",
     sections: [
       {
         heading: "What to leave in the build",
@@ -481,7 +481,7 @@ export const LIBRARY: Article[] = [
     description:
       "How Starlink fits a Victorian farm or acreage: sky view at the house, then Wi-Fi and links to the buildings that matter.",
     image: "/guides/vinconnect-starlink-acreage.webp",
-    imageAlt: "Illustrative Victorian acreage with a house, shed and Starlink dish.",
+    imageAlt: "Victorian acreage with a house, shed and Starlink dish.",
     cta: PLAN_CTA,
     sections: [
       {
@@ -520,7 +520,7 @@ export const LIBRARY: Article[] = [
     description:
       "The difference between a standard external Starlink cable route and a concealed internal run on a Victorian home.",
     image: "/guides/vinconnect-starlink-cable-route.webp",
-    imageAlt: "Illustrative neat cable entry on an Australian home.",
+    imageAlt: "Neat cable entry on an Australian home.",
     sections: [
       {
         heading: "The standard route",
@@ -557,7 +557,7 @@ export const LIBRARY: Article[] = [
     description:
       "How to choose whether a Starlink dish belongs on the house or the shed at a Victorian property.",
     image: "/guides/vinconnect-house-or-shed.webp",
-    imageAlt: "Illustrative acreage with the dish on the house and a shed further away.",
+    imageAlt: "Acreage with the dish on the house and a shed further away.",
     cta: PLAN_CTA,
     sections: [
       {

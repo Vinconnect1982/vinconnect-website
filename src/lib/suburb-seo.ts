@@ -42,7 +42,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Starlink installation in Narre Warren",
         copy: [
-          "Narre Warren is an established Casey suburb, not a greenfield estate. Most jobs are finished houses: two-storey family homes, single-storey brick, and the occasional renovation with a new Colorbond section on an older tile roof. Postcode 3805 also covers Narre Warren South, which has its own page.",
+          "Narre Warren is mostly finished houses: two-storey family homes, single-storey brick, and the occasional renovation with Colorbond on an older tile roof. Narre Warren South is the family-housing part of the same postcode, closer to Cranbourne North.",
           "A standard install brings the cable down an external wall to a wall plate, on a weekday. Double storey, an internal route, a data cabinet or a Saturday are quoted as extras. The dish, router and Starlink plan stay on your account.",
         ],
       },
@@ -519,7 +519,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Town houses as well as farms",
         copy: [
-          "The township itself is a normal home install. Do not let a rural page talk you into a pole and a bridge if you live on a house block. The quote starts with the address.",
+          "Houses in the township are a standard home install: roof mount, cable and router. A pole or a shed link is only for a block where the roof cannot see the sky, or the shed is too far for the house Wi-Fi.",
         ],
       },
     ],
@@ -551,7 +551,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Mounts in open country",
         copy: [
-          "Open roofs see the sky. They also take the wind. Hardware is chosen for the roof material and the exposure, not the cheapest bracket in a kit. Horse properties should say where the dish must not become a distraction for the yards.",
+          "Open roofs see the sky, and they take the wind. We choose the mount for the roof material and how exposed it is. On a horse property, tell us where the dish can sit clear of the yards.",
         ],
       },
       {
@@ -637,7 +637,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Businesses in town",
         copy: [
-          "Shops and small commercial sites are quoted individually. Use the contact form and mark the property as commercial. The online estimator is the residential price.",
+          "Shops and small commercial sites are quoted individually. Call or send the address. The online price is for homes.",
         ],
       },
     ],
@@ -674,9 +674,9 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
         ],
       },
       {
-        heading: "No invented Drouin case study",
+        heading: "Work nearby",
         copy: [
-          "There is no published VINCONNECT project in Drouin yet. Nearby published work includes the Pakenham factory roof. That job was in Pakenham, not a Drouin house.",
+          "We have not published a Drouin project yet. The nearest published commercial job is the Pakenham factory roof.",
         ],
       },
     ],
@@ -693,7 +693,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       "Starlink installation in Wonthaggi for town homes, shops and the farms behind Bass Coast. Travel is quoted. Coastal wind is part of the mount choice.",
     h1: "Starlink Installation Wonthaggi",
     intro:
-      "Wonthaggi is the Bass Coast centre: homes and shops in town, farms behind it, and coastal weather that shows up in the hardware. Inverloch and Grantville are the neighbouring pages.",
+      "Wonthaggi is the Bass Coast centre: homes and shops in town, farms behind it, and coastal weather that affects the mount. We also install in Inverloch and Grantville.",
     image: "/scenes-new/bass-coast-bay.webp",
     imageAlt: "Bass Coast landscape, the wider setting for installation work around Wonthaggi.",
     vinready: false,
@@ -744,13 +744,13 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Salt, wind and compact roofs",
         copy: [
-          "Island roofs are often modest. A tripod or fascia mount is frequently kinder than a penetration. Hardware is specified for salt air. We do not use inland brackets and hope.",
+          "Island roofs are often modest. A tripod or fascia mount is often a better fit than a hole through the roof. We use hardware suited to salt air.",
         ],
       },
       {
-        heading: "The rest of the island",
+        heading: "Cowes, the farms and San Remo",
         copy: [
-          "Cowes is the town page. The Phillip Island page covers the wider island, including farms away from the foreshore. San Remo is the bridge end. Use the page that matches the address.",
+          "We install in Cowes, on farms away from the foreshore, and at San Remo on the mainland side of the bridge. A town house, a farm and a house at the bridge are different jobs, so the quote follows the address.",
         ],
       },
     ],
@@ -773,9 +773,9 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
     vinready: false,
     sections: [
       {
-        heading: "Where the address actually is",
+        heading: "Town, farm or the bridge",
         copy: [
-          "Use the Cowes page for the town, San Remo for the mainland side of the bridge, and this page for the wider island. The estimator uses the street address either way, so the travel figure follows the pin, not the page title.",
+          "Cowes is the main town. Farms sit on the west of the island. San Remo is on the mainland side of the bridge. Enter the street address and the quote includes the trip from Cranbourne.",
         ],
       },
       {
@@ -794,7 +794,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
     faqs: [
       {
         q: "Do you cover the whole island?",
-        a: "Yes, by address. Cowes, the rural west and San Remo each have a page so the local notes stay specific.",
+        a: "Yes. We install in Cowes, on the rural west of the island, and at San Remo. Travel follows the address.",
       },
     ],
   },
@@ -819,13 +819,13 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Farms around Leongatha",
         copy: [
-          "Korumburra, Meeniyan and Mirboo North are the neighbouring pages. Sheds, dairies and yards away from the house need a wireless link. House Wi-Fi will not reach that far, and the link does not replace Wi-Fi inside the shed.",
+          "Around Korumburra, Meeniyan and Mirboo North, sheds, dairies and yards away from the house need a wireless link. House Wi-Fi will not reach that far, and the link does not replace Wi-Fi inside the shed.",
         ],
       },
       {
-        heading: "No fake Leongatha case study",
+        heading: "Completed work nearby",
         copy: [
-          "There is no completed Leongatha project published on this site yet. Nearby published rural work includes Nyora and Caldermeade. Those pages name the suburb the job was actually in.",
+          "We have not published a Leongatha project yet. Nearby finished rural work includes Nyora and Caldermeade.",
         ],
       },
     ],
@@ -862,7 +862,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Commercial Frankston",
         copy: [
-          "Workshops and small commercial sites are quoted after a look at access and the roof. Use the commercial path on the estimator or the enquiry form.",
+          "Workshops and small commercial sites are quoted after we look at access and the roof. Call or send the address.",
         ],
       },
     ],

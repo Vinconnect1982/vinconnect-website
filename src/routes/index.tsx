@@ -127,7 +127,7 @@ function Home() {
           ))}
         </div>
         <p className="mt-4 text-xs text-muted">
-          Illustrative service scenes. Explore our completed projects for actual installation photography.
+          Finished installation photos are in Projects.
         </p>
       </section>
 
