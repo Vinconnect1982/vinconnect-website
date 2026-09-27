@@ -171,7 +171,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     kind: "rural",
     mount: "Roof-mounted Starlink on a large rural property",
     works: ["Roof-mounted Starlink", "Internet to a large rural property on Western Port"],
-    note: "A large property still starts with sky view at the dish. Sheds and gates are a separate conversation if they need coverage of their own.",
+    note: "A large property still starts with a clear view of the sky for the dish. Sheds and gates are a separate job if they need their own coverage.",
     guides: RURAL,
   },
   "cranbourne-east-upgrade": {

@@ -87,13 +87,13 @@ export const EVENT_LINK_PAGES: Article[] = [
     slug: "platform",
     kicker: "Development concept",
     title: "Event Link platform",
-    lede: "A longer-term idea: repeatable event connectivity with labelled hardware, guest and operations networks, and a pack-down that does not live in one person’s head. It is a development concept, not a certified product you can buy this week.",
+    lede: "A longer-term idea: repeatable event internet, with labelled hardware, separate guest and operations networks, and a pack-down a volunteer can repeat. It is still a concept. You cannot buy it as a product yet.",
     description:
       "VINCONNECT Event Link platform is a development concept for repeatable rural event connectivity. Not certified, not priced, not available to order as a product.",
     crumbs: crumbs("Platform"),
     image: "/media/event-link/platform-hero.webp",
     status:
-      "Development concept only. No certification, IP rating, launch date, price or availability is claimed. The 2026–27 pilot and organiser register are the live conversation.",
+      "A development concept only. No certification, weather rating, launch date, price or availability. Organisers with a 2026–27 date can register interest in the pilot.",
     sections: [
       {
         heading: "Not a product yet",
@@ -102,7 +102,7 @@ export const EVENT_LINK_PAGES: Article[] = [
         ],
       },
       {
-        heading: "What the concept includes on paper",
+        heading: "What the concept includes",
         copy: [
           "Starlink upstream, managed Wi-Fi, a guest network kept apart from operations, labelled cases, and a handover a volunteer can run. Community Wi-Fi does not require a marketing opt-in.",
         ],
@@ -111,7 +111,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     faqs: [
       {
         q: "Can we wait for the platform instead of the pilot?",
-        a: "If you have a 2026–27 date, talk to us about the pilot. Waiting on an uncertified concept is how a show day arrives with a hotspot.",
+        a: "If you have a date in 2026 or 2027, talk to us about the pilot. The platform is not ready to book.",
       },
     ],
     related: [
@@ -126,7 +126,7 @@ export const EVENT_LINK_PAGES: Article[] = [
     slug: "community-events",
     kicker: "Event Link",
     title: "Community events and field days",
-    lede: "Shows, trials, club days and rural gatherings that currently run on a phone. Event Link is the connectivity conversation. The Roadshow is the in-person hub. They are related, not the same booking.",
+    lede: "Shows, trials, club days and rural gatherings that currently run on a phone hotspot. Event Link is temporary internet for the event. The Roadshow is the in-person hub. They are related, and they are booked separately.",
     description:
       "Event connectivity for Victorian agricultural shows, field days, sheepdog trials and rural club events. VINCONNECT Event Link pilot.",
     crumbs: crumbs("Community events"),

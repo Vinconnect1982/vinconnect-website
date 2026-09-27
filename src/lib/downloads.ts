@@ -66,7 +66,7 @@ export const DOWNLOADS: DownloadDoc[] = [
   {
     slug: "event-link-onepager",
     title: "Event Link one-pager",
-    lede: "What the pilot kit is, what it is not, and how an organiser starts a conversation.",
+    lede: "What the pilot kit includes, what it does not, and how an organiser asks for a quote.",
     file: "/downloads/event-link-onepager.pdf",
     image: "/media/downloads/event-link-onepager-desk.webp",
     pages: "1 page",

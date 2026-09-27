@@ -88,7 +88,7 @@ export const SOLUTIONS: Article[] = [
       {
         heading: "Start with what must stay up",
         copy: [
-          "Office, pumps, cameras, a second dwelling, the gate. Everything else can wait a stage. Rural Connections exists if you also want the community conversation — grants are not the public story, people are.",
+          "Start with what has to stay online: the office, pumps, cameras, a second dwelling or the gate. The rest can wait. Rural Connections is the community program, separate from a property install.",
         ],
       },
     ],

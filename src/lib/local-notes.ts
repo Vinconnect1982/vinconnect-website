@@ -14,7 +14,7 @@ export const LOCAL_NOTES: Record<string, string> = {
   nyora:
     "Nyora has more than one finished VINCONNECT job: a new home connected to cameras that were already there, and a roof-mounted Starlink that replaced unreliable fixed wireless. Horse properties and new houses sit in the same postcode. House Wi-Fi will not cross a paddock to a shed. That needs its own link.",
   "lang-lang":
-    "Lang Lang is on the road toward South Gippsland. Farms, the showgrounds and houses in town often come up in the same conversation. Koo Wee Rup, Nyora and Grantville are the neighbouring areas.",
+    "Lang Lang is on the road toward South Gippsland. We install for houses in town, farms and the showgrounds. Koo Wee Rup, Nyora and Grantville are nearby.",
   "koo-wee-rup":
     "Koo Wee Rup is flat country and market gardens. The house and the shed are often a long way apart, so a wireless link works better than another Wi-Fi unit in the house. Gate cameras are a common next step.",
   poowong:

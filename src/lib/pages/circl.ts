@@ -53,7 +53,7 @@ export const CIRCL: Article[] = [
       "VINCONNECT labour on the day: 0408 559 555",
     ],
     children: [
-      { href: "/circl-starlink-installations/what-to-expect", title: "What to expect", copy: "The visit, the work order, and who is in the conversation." },
+      { href: "/circl-starlink-installations/what-to-expect", title: "What to expect", copy: "The visit, the work order, and who to call." },
       { href: "/circl-starlink-installations/two-deliveries", title: "Two deliveries", copy: "Starlink kit versus Circl mounts." },
       { href: "/circl-starlink-installations/leave-the-starlink-box-sealed", title: "Leave the Starlink box sealed", copy: "Do not unbox the dish before we arrive." },
       { href: "/circl-starlink-installations/tracking-and-support", title: "Tracking and support", copy: "Circl for freight. VINCONNECT for the visit." },

@@ -234,7 +234,7 @@ export const SERVICES: ServicePage[] = [
       },
       {
         heading: "The dish only gets internet to one building",
-        copy: "Starlink or NBN gets internet to one building. House Wi-Fi, a wireless link to the shed, and cameras are separate hops. Pearcedale, Tooradin and Caldermeade jobs all started with that conversation.",
+        copy: "Starlink or NBN gets internet to one building. House Wi-Fi, a wireless link to the shed, and cameras are separate jobs. The Pearcedale, Tooradin and Caldermeade installs were done that way.",
       },
     ],
   },

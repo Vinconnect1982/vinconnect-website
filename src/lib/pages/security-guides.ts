@@ -32,7 +32,7 @@ export const SECURITY_GUIDES: Article[] = [
       { href: "/security/home-and-acreage", title: "Home and acreage", copy: "Driveway, house and the first paddock." },
       { href: "/security/horse-properties", title: "Horse properties", copy: "Stables and yards that have to work overnight." },
       { href: "/security/solar-and-gate", title: "Solar and gate", copy: "When there is no useful power at the view." },
-      { href: "/security/recording-and-playback", title: "Recording and playback", copy: "If it is not recorded, it did not happen." },
+      { href: "/security/recording-and-playback", title: "Recording and playback", copy: "Footage is stored on a recorder at the property." },
       { href: "/security/hilook-cctv-packages", title: "HiLook packages", copy: "Four specified kits with starting prices." },
     ],
     sections: [
@@ -45,7 +45,7 @@ export const SECURITY_GUIDES: Article[] = [
       {
         heading: "Independence",
         copy: [
-          "We install HiLook. We are not Hikvision, HiLook or any camera brand, and we are not officially endorsed by them. Remote view over Starlink is a property-network conversation as much as a camera conversation.",
+          "We install HiLook cameras. VINCONNECT is not Hikvision or HiLook, and those brands do not endorse us. Watching the cameras over Starlink also needs the network planned, not just the cameras.",
         ],
       },
     ],
@@ -94,12 +94,12 @@ export const SECURITY_GUIDES: Article[] = [
     title: "Home and acreage cameras",
     lede: "A suburban house and a five-acre block are not the same camera count. Distances, lighting and the gate change the kit.",
     description:
-      "Home and acreage CCTV in Victoria. When Home Watch 4 is enough, when Property Guard or Acreage 8 is the honest kit.",
+      "Home and acreage CCTV in Victoria. Home Watch 4 for a house, and a larger kit when the gate is a long walk.",
     crumbs: crumbs("Home and acreage"),
     image: "/scenes-new/property-cctv.webp",
     sections: [
       {
-        heading: "Start with the packages, then deviate",
+        heading: "Which kit fits",
         copy: [
           "Home Watch 4 is a house. Property Guard 6 covers a larger dwelling and the first outbuilding. Acreage 8 is for places where the gate is a walk, not a step. If you are between kits, we plan rather than upsell the next number.",
         ],
@@ -149,9 +149,9 @@ export const SECURITY_GUIDES: Article[] = [
     image: "/visuals/solar-gate.webp",
     sections: [
       {
-        heading: "When solar is honest",
+        heading: "When solar is the right choice",
         copy: [
-          "A gate on a long driveway, a fuel tank, a lane that will never have power. Then we talk solar, mounting, theft, and where the footage lands.",
+          "Solar suits a gate on a long driveway, a fuel tank, or a lane that will never have power. We still plan the mount, how the camera is secured, and where the footage is stored.",
         ],
       },
       {
@@ -180,7 +180,7 @@ export const SECURITY_GUIDES: Article[] = [
       {
         heading: "On-site recording first",
         copy: [
-          "If the internet drops, the recorder should still be writing. UPS with the rest of the network is part of that conversation. Cloud-only consumer cameras are a different product and not what we spec for rural places.",
+          "If the internet drops, the recorder should still be recording. A small battery backup for the recorder and the network is part of that plan. We do not use cloud-only cameras on rural properties.",
         ],
       },
       {

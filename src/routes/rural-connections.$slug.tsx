@@ -124,8 +124,8 @@ function RuralRoute() {
             </p>
             <p>
               A 2025 Senate committee recommended considering a co-funded rural connectivity-equipment
-              program that expressly included Starlink or other LEO equipment. That is precedent for
-              the conversation, not an adopted subsidy.
+              program that included Starlink or other satellite equipment. That is a recommendation.
+              It is not a subsidy you can apply for yet.
             </p>
           </div>
         )}

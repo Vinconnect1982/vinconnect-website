@@ -115,7 +115,7 @@ function RuralHub() {
           </div>
           <EnquiryForm
             selectedPackage="Rural Connections partnership"
-            buttonLabel="Start a community conversation"
+            buttonLabel="Send a message"
           />
         </div>
       </div>

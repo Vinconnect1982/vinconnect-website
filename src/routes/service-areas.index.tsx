@@ -47,7 +47,7 @@ const GROUPS: { title: string; region: string; copy: string; slugs: string[] }[]
   {
     title: "West Gippsland & Latrobe",
     region: "west-gippsland-latrobe",
-    copy: "Farms, acreage and highway towns from Drouin and Warragul through Trafalgar to the Latrobe Valley. A house in town and a shed across a paddock are different jobs. Location is included when you enter the address. It is not the same conversation as a Cranbourne estate.",
+    copy: "Farms, acreage and highway towns from Drouin and Warragul through Trafalgar to the Latrobe Valley. A house in town and a shed across a paddock are different jobs. Travel is included when you enter the address.",
     slugs: ["drouin", "warragul", "trafalgar", "yarragon", "moe", "morwell", "traralgon", "pakenham"],
   },
 ];

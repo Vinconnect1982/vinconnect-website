@@ -39,7 +39,7 @@ export const STARLINK: Article[] = [
       "VINCONNECT installs Starlink hardware. We do not sell Starlink plans, and we are not Starlink, SpaceX or Circl. Confirm current offers at Starlink checkout.",
     children: [
       { href: "/starlink/home-installation", title: "Home installation", copy: "Estates, rentals and the ordinary suburban roof." },
-      { href: "/starlink/rural-properties", title: "Rural properties", copy: "Sheds, trees, long driveways and honest sky view." },
+      { href: "/starlink/rural-properties", title: "Rural properties", copy: "Sheds, trees, long driveways and a clear view of the sky." },
       { href: "/starlink/roof-wall-and-tripod", title: "Roof, wall and tripod", copy: "Why we do not default to a hole in the tile." },
       { href: "/starlink/cable-entry-and-router", title: "Cable entry and router", copy: "One penetration, brush plate, router at the wall." },
       { href: "/starlink/double-storey", title: "Double-storey", copy: "Book the building you actually have." },
@@ -81,22 +81,22 @@ export const STARLINK: Article[] = [
     image: "/media/projects/clyde-new-estate-home-hero-v5.webp",
     sections: [
       {
-        heading: "Where this is the right conversation",
+        heading: "Homes this suits",
         copy: [
-          "New estates waiting on NBN or OptiComm, copper services that drop in the evening, and households that need a working connection for jobs, school and calls — not a weekend hobby antenna.",
+          "New estates still waiting on NBN or OptiComm, copper services that drop out in the evening, and households that need the connection for work, school and calls.",
         ],
       },
       {
         heading: "Rentals and body corporate",
         copy: [
-          "Tripod and non-penetrating mounts exist for a reason. If the lease or the owners corporation forbids a roof hole, say so in the enquiry. A tidy visible cable is still a cable — some landlords care, some do not. That is your conversation; we will describe the mount honestly.",
+          "If the lease or the owners corporation does not allow a hole in the roof, tell us before the visit. A tripod or wall mount can keep the dish off the tiles. A visible cable is still a cable, so check that with the landlord. We will say which mount the building can take.",
         ],
       },
     ],
     faqs: [
       {
         q: "Will Starlink replace the phone line?",
-        a: "Starlink is internet. Wi-Fi calling can replace a copper voice service once the Wi-Fi is reliable. That is a configuration conversation, not a promise that every handset will behave.",
+        a: "Starlink is internet. Calls over Wi-Fi can replace a copper phone line once the Wi-Fi is reliable, if your handsets and your carrier support it. Not every phone will.",
       },
     ],
   }),
@@ -114,7 +114,7 @@ export const STARLINK: Article[] = [
       {
         heading: "Sky view is not optional",
         copy: [
-          "A picturesque tree line is a blocked dish. We will not promise a corner of the roof that looks at a cypress hedge. Tripods, a different building, or a conversation about the trees come first.",
+          "A tidy spot under trees is still a blocked dish. We will not put it on a roof that faces a cypress hedge. A tripod, another building, or trimming the view comes first.",
         ],
       },
       {
@@ -244,7 +244,7 @@ export const STARLINK: Article[] = [
       {
         heading: "Parked versus rolling",
         copy: [
-          "Most of the labour we are asked for is parked use: a site, a driveway, a farm stay. In-motion setups are a different product conversation and not a standard house-style install.",
+          "Most of the van work we do is while the van is parked: a site, a driveway or a farm stay. A setup for use while driving is a different job, and it is not a standard house install.",
         ],
       },
       {

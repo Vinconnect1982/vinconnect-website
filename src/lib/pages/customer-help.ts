@@ -210,7 +210,7 @@ export const CUSTOMER_HELP: Article[] = [
     faqs: [
       {
         q: "Will you need Wi-Fi while you work?",
-        a: "We commission Starlink on the new service. We do not need your existing NBN password. If you want the Starlink router bridged into something you already own, say so when you book — that is a different conversation.",
+        a: "We set up Starlink on the new service. We do not need your existing NBN password. If you want the Starlink router connected into a network you already own, tell us when you book. That is extra setup.",
       },
     ],
   }),
@@ -227,7 +227,7 @@ export const CUSTOMER_HELP: Article[] = [
       {
         heading: "Handover",
         copy: [
-          "We confirm a device on site can browse, show you power and isolation, and leave the install tidy. If something we fitted is not right, call VINCONNECT. If the sky is fine and the kit will not authenticate, that conversation is with Starlink — or with Circl, if they own the work order.",
+          "We check that a device on site can browse, show you the power and how to isolate the kit, and leave the install tidy. If something we fitted is not right, call VINCONNECT. If the sky is clear and the kit will not sign in, call Starlink, or Circl if they own the work order.",
         ],
       },
       {
@@ -359,7 +359,7 @@ export const CUSTOMER_HELP: Article[] = [
       {
         heading: "Changing the scope",
         copy: [
-          "Adding conduit, a cabinet router, extra penetrations or a second building is a new quote, not a conversation on the roof. We would rather rewrite the booking than argue about it at the ladder.",
+          "Conduit, a cabinet router, extra cable entries or a second building need a new quote before the day. We will not add them while we are on the roof.",
         ],
       },
     ],

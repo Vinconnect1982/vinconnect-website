@@ -27,7 +27,7 @@ export const ABOUT_PAGES: Article[] = [
       {
         heading: "Quote, then book",
         copy: [
-          "The estimator is a labour range for an address. A conversation confirms storeys, mount, extras and access. Nothing is booked until a time is agreed. Circl-allocated jobs run against the approved work order instead of a VINCONNECT labour quote.",
+          "The estimator is a labour range for an address. We then confirm the storeys, the mount, extras and access. Nothing is booked until a time is agreed. Circl-allocated jobs follow the approved work order.",
         ],
       },
       {

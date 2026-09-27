@@ -96,7 +96,7 @@ export const LIBRARY: Article[] = [
         heading: "A wireless bridge",
         copy: [
           "A bridge is a pair of outdoor radios aimed at each other. It is the stand-in for a trench. It does not, by itself, give you Wi-Fi inside the far building. That building still needs an access point, and cameras still need power and a recorder plan.",
-          "If the shed, stable or granny flat is the thing that is offline, start with a bridge conversation, not another indoor node.",
+          "If the shed, stable or granny flat has no signal, it needs a wireless link to that building, not another Wi-Fi unit inside the house.",
         ],
       },
       {
@@ -174,7 +174,7 @@ export const LIBRARY: Article[] = [
         heading: "A sensible order",
         copy: [
           "Get a reliable internet source at the house. Link the stable block if it is out of Wi-Fi range. Put coverage inside the stables for the people who actually stand there. Add cameras where you need to see a horse, a yard or the gate, recorded locally so a dropout does not wipe the night.",
-          "Cable around horses has to stay out of reach. That is a placement rule, not a slogan.",
+          "Cable around horses has to stay out of their reach.",
         ],
       },
       {
@@ -260,7 +260,7 @@ export const LIBRARY: Article[] = [
       {
         heading: "The usual options",
         copy: [
-          "A fascia or wall mount keeps the dish off the tiles when the sky allows it. A non-penetrating tripod suits some flat roofs and rentals. A short pole is for places where the roof itself is the wrong height or the wrong shape. A penetrating roof mount is used when it is the honest option, not as the default.",
+          "A fascia or wall mount keeps the dish off the tiles when the sky allows it. A non-penetrating tripod suits some flat roofs and rentals. A short pole is for places where the roof itself is the wrong height or the wrong shape. A mount that goes through the roof is used only when the sky and the building need it, not as the default.",
           "The mount hardware is itemised separately from labour. A standard install assumes a straightforward mount, not a custom fabrication.",
         ],
       },
@@ -386,7 +386,7 @@ export const LIBRARY: Article[] = [
       {
         heading: "A completed example",
         copy: [
-          "The Nyora new-home job connected Starlink and the existing cameras. That is one property, not a template for every acreage. Packages on the CCTV pages are starting points. The visit still has to match the buildings.",
+          "The Nyora new-home job connected Starlink to cameras that were already there. That was one property. The CCTV packages are starting points, and the visit still has to match your buildings.",
         ],
       },
     ],
@@ -418,7 +418,7 @@ export const LIBRARY: Article[] = [
         heading: "How we decide",
         copy: [
           "We look at the app obstruction check and at the building. Sometimes the clear sky is over the house. Sometimes it is further along the roof, or on a short pole, or on a fascia that faces the open side. We do not put a dish in a pretty spot and hope.",
-          "If the only clear sky is awkward to reach, that becomes an access conversation, not a surprise on the day.",
+          "If the only clear sky is hard to reach, we sort out access before the day, not when the ladder is already up.",
         ],
       },
       {

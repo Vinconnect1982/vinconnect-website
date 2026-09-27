@@ -39,7 +39,7 @@ export const JOURNAL: Article[] = [
       { href: "/journal/cranbourne-cricket-club-off-4g", title: "Cranbourne Cricket Club off 4G", copy: "Starlink into an existing rack, FrogBox still streaming." },
       { href: "/journal/nyora-new-home-without-a-roof-penetration", title: "Nyora new home, no roof hole", copy: "New occupancy, existing cameras, non-penetrating mount." },
       { href: "/journal/pearcedale-five-acre-network", title: "Pearcedale five-acre network", copy: "House, shed and workshop — the dish was only the start." },
-      { href: "/journal/house-wifi-will-not-reach-the-shed", title: "House Wi-Fi will not reach the shed", copy: "The conversation we have on most rural jobs." },
+      { href: "/journal/house-wifi-will-not-reach-the-shed", title: "House Wi-Fi will not reach the shed", copy: "Why a shed needs its own link." },
       { href: "/journal/colorbond-vs-tile-mounts", title: "Colorbond vs tile mounts", copy: "How we choose a mount for metal and tile." },
       { href: "/journal/night-before-a-circl-install", title: "The night before a Circl install", copy: "Sealed box, two deliveries, who to call." },
       { href: "/journal/diy-cable-entry-mistakes", title: "DIY cable-entry mistakes", copy: "The hole is the weak point. Here is why." },
@@ -219,7 +219,7 @@ export const JOURNAL: Article[] = [
       {
         heading: "If you are still building",
         copy: [
-          "A Starlink-ready new home is a conduit, a labelled wall and a conversation before plaster. That is a planning job, not a $300 standard visit on a finished facade. Read the new-homes note in the Starlink guides.",
+          "A Starlink-ready new home is a conduit and a labelled wall, planned before the plaster goes on. That is a building job, not a standard visit on a finished house. The new-home guide covers it.",
         ],
       },
     ],
@@ -271,7 +271,7 @@ export const JOURNAL: Article[] = [
     slug: "house-wifi-will-not-reach-the-shed",
     kicker: "Field notes",
     title: "House Wi-Fi will not reach the shed",
-    lede: "Brick, Colorbond, water tanks and eighty metres of driveway. Turning the lounge mesh up is not a link. This is the conversation on most rural jobs we quote.",
+    lede: "Brick, Colorbond, water tanks and eighty metres of driveway. Turning the lounge Wi-Fi up does not reach the shed. That is what most rural quotes come down to.",
     description:
       "Why VINCONNECT uses dedicated wireless links for sheds and stables instead of stretching house Wi-Fi across Victorian acreage.",
     crumbs: crumbs("Wi-Fi will not reach the shed"),

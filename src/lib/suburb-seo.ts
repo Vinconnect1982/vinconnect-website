@@ -180,7 +180,7 @@ export const SUBURB_SEO: Record<string, SuburbSeo> = {
       {
         heading: "Cabinets, clubs and small business",
         copy: [
-          "Cranbourne has more existing data cabinets than a brand-new estate. If the router needs to land in a rack, that is a quoted extra. Commercial sites are quoted after a conversation, not from the online house price.",
+          "Cranbourne has more existing data cabinets than a brand-new estate. If the router needs to land in a rack, that is a quoted extra. Shops and commercial sites are quoted separately from the online house price.",
         ],
       },
       {

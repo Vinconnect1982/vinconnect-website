@@ -25,7 +25,7 @@ function ContactPage() {
           </p>
           <div className="mt-8">
             <p className="kicker">Talk to VINCONNECT</p>
-            <h2 className="mt-2 font-display text-2xl">A practical conversation first.</h2>
+            <h2 className="mt-2 font-display text-2xl">Tell us about the property.</h2>
             <p className="mt-2 text-muted">
               For installation questions, rural Wi-Fi, CCTV or a multi-building network, start here.
             </p>

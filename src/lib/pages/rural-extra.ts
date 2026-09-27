@@ -21,7 +21,7 @@ export const RURAL_EXTRA: Article[] = [
     slug: "visiting-the-hub",
     kicker: "Roadshow",
     title: "Visiting the Rural Connection Hub",
-    lede: "Shade, a seat, free Wi-Fi and a conversation that does not start with a sales pitch. Come for the event. Stay if the information is useful.",
+    lede: "Shade, a seat and free Wi-Fi. Come for the event. The information is there if you want it. Nobody has to sit through a sales pitch.",
     description:
       "What to expect at a VINCONNECT Rural Connections Roadshow hub: free Wi-Fi, demonstrations, farmer-health resources, no marketing opt-in.",
     crumbs: crumbs("Visiting the hub"),
@@ -104,7 +104,7 @@ export const RURAL_EXTRA: Article[] = [
       {
         heading: "The rule",
         copy: [
-          "If you are sitting in the hub, you should be able to get online without handing over an email for a newsletter. If an organiser wants Event Link for a larger area, that is a scoped activation with a different conversation.",
+          "If you are at the hub, you can get online without giving an email for a newsletter. Event internet for a larger area is a separate Event Link booking.",
         ],
       },
     ],
@@ -134,7 +134,7 @@ export const RURAL_EXTRA: Article[] = [
       {
         heading: "What the hub offers",
         copy: [
-          "Printed and linked material from recognised farmer-health and community services, available without a sales conversation. Look Over the Farm Gate is one Victorian program we align with as information — not as a claim that a grant has been approved.",
+          "Printed and linked material from recognised farmer-health and community services. You do not have to talk to us to take it. Look Over the Farm Gate is one Victorian program we point to. That is not a claim that a grant has been approved.",
         ],
       },
       {

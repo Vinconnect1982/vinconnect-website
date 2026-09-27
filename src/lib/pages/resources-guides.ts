@@ -174,7 +174,7 @@ export const RESOURCE_GUIDES: Article[] = [
     slug: "planning-a-property-network",
     kicker: "Guides",
     title: "Planning a property network",
-    lede: "Mark the buildings. Write the distances. Name the jobs each building has to do. Then we talk hardware. The planner exists so this conversation is not a guess.",
+    lede: "Tell us which buildings need a connection, roughly how far apart they are, and what each one is used for. Then we can recommend the hardware.",
     description:
       "How to plan a whole-property network in Victoria before buying Starlink accessories or cameras. VINCONNECT property planner.",
     crumbs: crumbs("Planning a property network"),
@@ -220,7 +220,7 @@ export const RESOURCE_GUIDES: Article[] = [
       {
         heading: "Record locally",
         copy: [
-          "Remote view is a bonus. Recording should still happen on the property if the sky or the app has a bad night. Retention and a recorder that stays powered are part of the camera conversation.",
+          "Watching the cameras remotely is a bonus. The footage should still record at the property if the internet drops. That means a recorder, enough storage, and power that stays on.",
         ],
       },
       {
@@ -256,7 +256,7 @@ export const RESOURCE_GUIDES: Article[] = [
       {
         heading: "A toolkit, not a religion",
         copy: [
-          "If fibre is at the gate, that conversation is different. If the tower does not serve the house, Starlink is often the practical path. Mobile remains the backup a lot of properties already have in their pocket.",
+          "If fibre already reaches the gate, the job is different. If the tower does not serve the house, Starlink is often the practical path. A mobile phone remains the backup a lot of properties already have.",
         ],
       },
       {

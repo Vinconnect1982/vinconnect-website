@@ -35,7 +35,7 @@ export const VINGEAR: Article[] = [
       "VIN Gear is VINCONNECT’s product line in development. Pulse cable lighting is in early access interest only. No price, launch date, IP rating or certification is claimed.",
     crumbs: [{ label: "VIN Gear" }],
     status:
-      "VIN Gear products are in development. Nothing on these pages is an offer to sell, a certification claim, or a published specification. Shopify or any future store is a later conversation. VINCONNECT.com.au stays the install and service site.",
+      "VIN Gear products are in development. Nothing on these pages is for sale, and nothing here is a specification or a certification. VINCONNECT.com.au stays the installation site.",
     children: [
       { href: "/vingear/pulse", title: "VIN Gear Pulse", copy: "Illuminated cable concept. In development." },
       { href: "/vingear/early-access", title: "Early access", copy: "Register interest. No deposit, no launch date." },
