@@ -42,7 +42,7 @@ export const CIRCL: Article[] = [
     lede: "If Circl allocated your Starlink install to VINCONNECT, this hub is for you. Standard labour inside the approved work order has no direct customer payment to us. Kit tracking stays with Circl.",
     description:
       "VINCONNECT installs Starlink for Circl-allocated customers in Victoria. Two deliveries, leave the Starlink box sealed, Circl tracking 1800 950 493, standard scope inside the approved work order.",
-    image: "/scenes/starlink-home-v2.webp",
+    image: "/scenes/starlink-home-v3.webp",
     crumbs: [{ label: "Circl installations" }],
     status:
       "VINCONNECT is an independent installer performing Circl-allocated work. We are not Circl, and Circl is not VINCONNECT. Spelling is Circl — not Circle.",
