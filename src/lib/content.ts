@@ -135,7 +135,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Starlink installation",
     title: "Starlink installed properly.",
     lede: "A considered Starlink installation brings work, calls and everyday life back within reach — for homes, sheds, workshops, stables, offices, farms and businesses across South East Melbourne, the Peninsula, Bass Coast and Gippsland, with regional work by arrangement.",
-    image: "/scenes/starlink-home.webp",
+    image: "/scenes/starlink-home-v2.webp",
     points: [
       "Sky view and mount choice before a drill goes near the roof",
       "Agreed cable route, sealed entry and strain relief",
@@ -191,7 +191,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Building-to-building wireless links",
     title: "Take the connection further.",
     lede: "Keep the workshop, stable or second building connected with a dedicated wireless link instead of hoping the house Wi-Fi stretches across the paddock.",
-    image: "/scenes/building-links.webp",
+    image: "/scenes/building-links-v2.webp",
     points: [
       "Point-to-point links for sheds, stables, offices and granny flats",
       "Line-of-sight check before hardware is ordered",
@@ -219,7 +219,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Rural property connectivity",
     title: "Designed beyond the router.",
     lede: "Acreage, horse properties and farms need a network drawn around buildings, gates, arenas and the places you actually work — not a suburban floor plan.",
-    image: "/visuals/network-cutaway.webp",
+    image: "/visuals/network-cutaway-v2.webp",
     points: [
       "Starlink and NBN-ready network design",
       "A wireless link when the shed is too far for house Wi-Fi",
@@ -337,7 +337,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Equestrian connectivity",
     title: "The horse property, connected.",
     lede: "Wi-Fi that reaches the arena, tack room and house, with cameras and recording planned around how the property is actually used.",
-    image: "/scenes-new/horse-property.webp",
+    image: "/scenes-new/horse-property-v2.webp",
     points: [
       "Stable and arena camera views",
       "Wireless links where cabling cannot run",
@@ -356,7 +356,7 @@ export const SERVICES: ServicePage[] = [
     kicker: "Point-to-point",
     title: "A dedicated path between buildings.",
     lede: "When the shed is 80 metres away and the house Wi-Fi dies at the clothesline, a dedicated link is the grown-up answer. This is the same work as our wireless building links — one page, one job type.",
-    image: "/scenes/building-links.webp",
+    image: "/scenes/building-links-v2.webp",
     points: ["Line-of-sight survey", "Omada or equivalent managed radios", "Grounding and mounting for Victorian weather"],
     body: [
       {
@@ -421,7 +421,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "HiLook CCTV",
     title: "Packages that match the property.",
     lede: "Four specified HiLook kits — from a four-camera home to stables and acreage — with labour and hardware starting prices, not a generic bundle dumped on the verandah.",
-    image: "/scenes-new/home-cctv-kit.webp",
+    image: "/scenes-new/home-cctv-kit-v2.webp",
     points: ["Camera count from views, not a bundle", "Recorder and retention agreed", "Remote access included in the install"],
     body: [
       {
@@ -440,7 +440,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Stable cameras",
     title: "A closer eye on the stable.",
     lede: "Plan cameras, recording and remote access for your horse property.",
-    image: "/scenes-new/stable-cameras-day.webp",
+    image: "/scenes-new/stable-cameras-day-v2.webp",
     points: ["Stable, arena and driveway views", "Dust and lighting taken seriously", "Alerts you can check from the house"],
     body: [
       {
@@ -459,7 +459,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Solar & remote cameras",
     title: "See what’s happening at the gate.",
     lede: "Solar and mobile-connected cameras for places beyond the home network — gates, dams, far paddocks.",
-    image: "/scenes-new/gate-camera.webp",
+    image: "/scenes-new/gate-camera-v2.webp",
     points: ["No trench to the front gate", "Mobile or long-range backhaul", "Power budget checked against shade"],
     body: [
       {
@@ -478,7 +478,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Home CCTV",
     title: "Entrances, yards and the driveway.",
     lede: "A home camera plan starts with the moments that matter: who is at the door, what is in the yard, and whether the cars are still there.",
-    image: "/scenes-new/home-cctv-kit.webp",
+    image: "/scenes-new/home-cctv-kit-v2.webp",
     points: ["Front and rear coverage", "Recording you can review", "Clean internal routing"],
     body: [
       {
@@ -535,7 +535,7 @@ export const SECURITY: ServicePage[] = [
     kicker: "Recording",
     title: "If it is not recorded, it did not happen.",
     lede: "Retention, remote playback and a recorder that stays powered through a short outage.",
-    image: "/scenes-new/home-cctv-kit.webp",
+    image: "/scenes-new/home-cctv-kit-v2.webp",
     points: ["Days of retention agreed", "UPS considered with the rest of the network", "Remote playback tested at handover"],
     body: [
       {
