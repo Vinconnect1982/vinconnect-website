@@ -103,7 +103,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Wireless building-to-building links for Victorian properties. VINCONNECT plans line of sight, power and what the far building actually needs.",
     crumbs: crumbs("Wireless building links"),
-    image: "/scenes/building-links-v2.webp",
+    image: "/scenes/building-links.webp",
     sections: [
       {
         heading: "Line of sight",
@@ -134,7 +134,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Point-to-point wireless links installed by VINCONNECT across South East Melbourne, the Peninsula and Gippsland.",
     crumbs: crumbs("Point-to-point"),
-    image: "/scenes/building-links-v2.webp",
+    image: "/scenes/building-links.webp",
     sections: [
       {
         heading: "Dedicated on purpose",
@@ -237,7 +237,7 @@ export const PROPERTY_NETWORKS: Article[] = [
     description:
       "Wi-Fi, wireless links and camera planning for horse properties across Cardinia, the Peninsula and Gippsland.",
     crumbs: crumbs("Equestrian"),
-    image: "/scenes-new/horse-property-v2.webp",
+    image: "/scenes-new/horse-property.webp",
     sections: [
       {
         heading: "The property is the client",

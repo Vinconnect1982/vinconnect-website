@@ -108,7 +108,7 @@ export const SOLUTIONS: Article[] = [
     description:
       "Connectivity and CCTV for horse properties in Cardinia, the Peninsula, Bass Coast and Gippsland.",
     crumbs: crumbs("Horse properties"),
-    image: "/scenes-new/stable-cameras-day-v2.webp",
+    image: "/scenes-new/stable-cameras-day.webp",
     sections: [
       {
         heading: "Design around the yards",

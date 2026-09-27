@@ -24,7 +24,7 @@ export const HILOOK_PACKAGES: HilookPackage[] = [
     name: "Home Watch 4",
     kicker: "HiLook 4-camera kit",
     lede: "Four 6MP turret cameras and a 4-channel PoE recorder for a typical house: front, rear, and both sides.",
-    image: "/scenes-new/home-cctv-kit-v2.webp",
+    image: "/scenes-new/home-cctv-kit.webp",
     cameras: "4 × HiLook 6MP AI turret (IPC-T361H class)",
     nvr: "4-channel PoE NVR",
     storage: "2 TB surveillance HDD (~7–10 days continuous, longer with motion)",
