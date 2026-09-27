@@ -33,7 +33,7 @@ export const STARLINK: Article[] = [
     lede: "How a dish goes on a Victorian home, rural property or caravan — mounts, cable entry, double-storey and Mini kits.",
     description:
       "Independent Starlink installation guides for Victoria: home and rural installs, roof versus tripod, cable entry, double-storey, Mini and caravan. VINCONNECT is not Starlink or SpaceX.",
-    image: "/scenes/starlink-home-v3.webp",
+    image: "/scenes/starlink-home-v4.webp",
     crumbs: [{ label: "Starlink" }],
     status:
       "VINCONNECT installs Starlink hardware. We do not sell Starlink plans, and we are not Starlink, SpaceX or Circl. Confirm current offers at Starlink checkout.",
